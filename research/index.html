@@ -448,12 +448,15 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     if(!el) return;
     try { el.scrollIntoView({behavior:'smooth', block:'start'}); }
     catch(e){ el.scrollIntoView(true); }
-    // If smooth scrolling never starts, force the jump.
+    // Some browsers silently drop smooth scrolling. If nothing moved, force an
+    // explicitly instant jump — 'instant' is required here, because a plain
+    // scrollTo inherits scroll-behavior:smooth and would fail the same way.
     var before = window.scrollY;
     setTimeout(function(){
       if(Math.abs(window.scrollY - before) < 2){
-        var y = el.getBoundingClientRect().top + window.scrollY - 74;
-        window.scrollTo(0, Math.max(0, y));
+        var y = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 74);
+        try { window.scrollTo({top:y, behavior:'instant'}); }
+        catch(e){ document.documentElement.scrollTop = y; }
       }
     }, 260);
   }
