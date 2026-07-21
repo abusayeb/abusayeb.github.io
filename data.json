@@ -14,7 +14,7 @@
     "orcid": "",
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
-    "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in Osaka I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
+    "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
     "summaryResearch": "I am a computer-vision researcher with three peer-reviewed papers and eighteen months of industry experience deploying perception systems at scale. My work sits where **visual perception**, **generative modelling** and **language understanding** meet, and I am looking for a research-based Master's position where I can pursue that intersection properly.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
@@ -35,11 +35,11 @@
     },
     {
       "date": "Mar 2026",
-      "text": "Finished eighteen months as a Data Scientist at **Othello Financial Services** in Osaka and returned to Dhaka."
+      "text": "Finished eighteen months as a Data Scientist at **Othello Financial Services** in **Japan** and returned to Dhaka."
     },
     {
       "date": "Oct 2024",
-      "text": "Joined **Othello Financial Services** in Osaka as a **Data Scientist** on the AGiFT AI Camera team."
+      "text": "Joined **Othello Financial Services** in **Japan** as a **Data Scientist** on the AGiFT AI Camera team."
     },
     {
       "date": "Sep 2024",
@@ -101,19 +101,6 @@
   ],
   "publications": [
     {
-      "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
-      "authors": "**Md Abu Sayeb Rayhan** et al.",
-      "venue": "IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026",
-      "year": "2026",
-      "tags": [
-        "IEEE"
-      ],
-      "status": "Under review",
-      "link": "",
-      "note": "Evidential deep learning for medical decision support. **Reliability gating** weights each modality by how trustworthy its evidence is, so the model can abstain rather than guess when its inputs are unreliable.",
-      "bibkey": "rayhan2026rgef"
-    },
-    {
       "title": "Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles",
       "authors": "**Md Abu Sayeb Rayhan**, Ajoy Shutradhar, Hustagna Hiya",
       "venue": "IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026",
@@ -153,6 +140,19 @@
       "link": "",
       "note": "A controlled comparison of CNNs, ensembles and **Vision Transformers** under the compute and data constraints that agricultural deployment actually imposes. The strongest architecture on ImageNet is rarely the right choice there.",
       "bibkey": "rayhan2026cnn"
+    },
+    {
+      "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
+      "authors": "**Md Abu Sayeb Rayhan** et al.",
+      "venue": "IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026",
+      "year": "2026",
+      "tags": [
+        "IEEE"
+      ],
+      "status": "Under review",
+      "link": "",
+      "note": "Evidential deep learning for medical decision support. **Reliability gating** weights each modality by how trustworthy its evidence is, so the model can abstain rather than guess when its inputs are unreliable.",
+      "bibkey": "rayhan2026rgef"
     }
   ],
   "talks": [
@@ -180,7 +180,7 @@
       "role": "Data Scientist",
       "org": "Othello Financial Services Co. Ltd.",
       "team": "AGiFT AI Camera team",
-      "location": "Osaka, Japan",
+      "location": "Japan",
       "start": "Oct 2024",
       "end": "Mar 2026",
       "current": false,
@@ -342,6 +342,16 @@
       "year": "2019–2021",
       "title": "Participant, Inter-University Programming Contest",
       "detail": "Comilla University, competitive algorithmic programming."
+    },
+    {
+      "year": "2022-2024",
+      "title": "Batch Representative, Dept. of CSE, Comilla University",
+      "detail": "Elected by peers to represent the cohort to faculty and administration."
+    },
+    {
+      "year": "2019-2023",
+      "title": "Inter-department sport, Comilla University",
+      "detail": "Cricket tournament winners; third place in volleyball."
     }
   ],
   "skills": [
@@ -384,7 +394,7 @@
     {
       "name": "Hossain Md Erfan",
       "role": "Project Manager",
-      "org": "Othello Financial Services Co. Ltd., Osaka"
+      "org": "Othello Financial Services Co. Ltd., Japan"
     }
   ],
   "cv": {

@@ -278,6 +278,16 @@ function pubMetaCount(d){
     return !/review/i.test(String(p.status||''));
   }).length;
 }
+// Published work first, then in press, then under review.
+function pubRank(p){
+  var s = String(p.status||'').toLowerCase();
+  if(s.indexOf('review') > -1) return 2;
+  if(s.indexOf('press')  > -1) return 1;
+  return 0;
+}
+function sortPubs(list){
+  return (list||[]).slice().sort(function(a,b){ return pubRank(a) - pubRank(b); });
+}
 
 function render(d){
   var P = d.profile||{}, out = [];
@@ -363,7 +373,7 @@ function render(d){
   }).length;
   out.push(head('publications','Publications',
       pubCount + ' peer-reviewed papers. Full detail on the <a href="research/">research portfolio</a>.') +
-    '<div class="pubs">' + (d.publications||[]).map(function(p){
+    '<div class="pubs">' + sortPubs(d.publications).map(function(p){
       var t = p.link ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>' : esc(p.title);
       return '<article class="pub"><div class="pub-title">' + t + '</div><div class="pub-meta">' +
         (p.tags||[]).map(function(x){
