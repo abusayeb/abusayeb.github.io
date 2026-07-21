@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Edit my portfolio</title>
+<link rel="icon" href="https://github.com/abusayeb.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f6f7f9;--panel:#fff;--line:#e2e6ec;--line-2:#cdd4de;
+  --ink:#1a2230;--muted:#66707f;--faint:#9aa3b0;
+  --accent:#2563eb;--accent-2:#1d4ed8;--ok:#0f8a4d;--warn:#b45309;--danger:#b91c1c;
+}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',-apple-system,sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+
+/* header */
+.top{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:60}
+.top-in{max-width:1000px;margin:0 auto;padding:14px 24px;display:flex;
+  justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.top h1{font-size:17px;font-weight:700;letter-spacing:-.01em}
+.top .sub{font-size:13px;color:var(--muted);font-weight:400}
+.actions{display:flex;gap:9px;flex-wrap:wrap}
+button{font-family:inherit;font-size:14px;cursor:pointer;border-radius:8px;
+  border:1px solid var(--line-2);background:var(--panel);color:var(--ink);
+  padding:9px 15px;font-weight:600;transition:all .16s}
+button:hover{border-color:var(--accent);color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.primary:hover{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
+button.ghost{border-color:transparent;color:var(--muted);padding:6px 10px;font-weight:500}
+button.ghost:hover{color:var(--danger);border-color:var(--line-2)}
+button.sm{padding:6px 11px;font-size:13px}
+
+.wrap{max-width:1000px;margin:0 auto;padding:22px 24px 90px}
+
+/* how-to */
+.howto{background:#eef4ff;border:1px solid #cfe0ff;border-radius:11px;padding:16px 18px;margin-bottom:20px}
+.howto b{display:block;margin-bottom:7px;font-size:14.5px}
+.howto ol{margin:0 0 0 18px;font-size:14px;color:#28405f}
+.howto li{margin-bottom:4px}
+.howto code{background:#dce8ff;padding:1px 6px;border-radius:4px;font-size:13px}
+
+/* tabs */
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:18px;
+  background:var(--panel);padding:6px;border:1px solid var(--line);border-radius:11px}
+.tab{padding:8px 14px;border-radius:7px;font-size:14px;font-weight:600;color:var(--muted);
+  cursor:pointer;border:none;background:none}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab.on{background:var(--accent);color:#fff}
+.tab.on:hover{background:var(--accent-2);color:#fff}
+
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:22px 24px;margin-bottom:16px}
+.panel h2{font-size:16px;font-weight:700;margin-bottom:4px}
+.panel .hint{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:5px}
+input[type=text],textarea,select{width:100%;font-family:inherit;font-size:14.5px;color:var(--ink);
+  background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:9px 12px;
+  transition:border-color .16s}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+textarea{resize:vertical;min-height:76px;line-height:1.6}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+/* repeatable item cards */
+.item{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:12px;background:#fcfcfd}
+.item-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.item-n{font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.06em;text-transform:uppercase}
+.item-tools{display:flex;gap:5px}
+.add-btn{width:100%;padding:11px;border-style:dashed;color:var(--muted);font-weight:600}
+.add-btn:hover{border-color:var(--accent);color:var(--accent);border-style:solid}
+
+.tip{font-size:12.5px;color:var(--faint);margin-top:5px}
+.kwtip{background:#fff8e1;border:1px solid #f5e2a8;color:#7a5b00;padding:9px 12px;
+  border-radius:8px;font-size:13px;margin-bottom:16px}
+.kwtip code{background:#f8edcb;padding:1px 5px;border-radius:3px}
+
+/* save bar */
+.savebar{position:fixed;bottom:0;left:0;right:0;background:var(--panel);
+  border-top:1px solid var(--line);padding:12px 24px;z-index:70;
+  box-shadow:0 -3px 14px rgba(0,0,0,.05)}
+.savebar-in{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;
+  align-items:center;gap:14px;flex-wrap:wrap}
+.status{font-size:13.5px;color:var(--muted)}
+.status.dirty{color:var(--warn);font-weight:600}
+.status.saved{color:var(--ok);font-weight:600}
+
+/* modal */
+.modal{display:none;position:fixed;inset:0;background:rgba(15,20,30,.55);z-index:100;
+  align-items:center;justify-content:center;padding:24px}
+.modal.open{display:flex}
+.modal-in{background:var(--panel);border-radius:14px;max-width:660px;width:100%;
+  max-height:86vh;overflow:auto;padding:26px 28px}
+.modal-in h2{font-size:19px;margin-bottom:6px}
+.modal-in p{font-size:14.5px;color:var(--muted);margin-bottom:16px}
+.modal-in ol{margin:0 0 18px 20px;font-size:14.5px}
+.modal-in li{margin-bottom:9px}
+pre{background:#f4f6f9;border:1px solid var(--line);border-radius:9px;padding:14px;
+  font-size:12.3px;line-height:1.5;overflow:auto;max-height:260px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+@media(max-width:760px){
+  .row,.row-3{grid-template-columns:1fr}
+  .wrap,.top-in{padding-left:16px;padding-right:16px}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-in">
+    <div>
+      <h1>Portfolio editor</h1>
+      <div class="sub">Edit your details, then save the file to GitHub</div>
+    </div>
+    <div class="actions">
+      <button onclick="reloadData()">Reload</button>
+      <button onclick="preview()">Preview site</button>
+      <button class="primary" onclick="openSave()">Save changes →</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="howto">
+    <b>How this works</b>
+    <ol>
+      <li>Edit anything below — it updates a single file called <code>data.json</code>.</li>
+      <li>Click <b>Save changes</b> and follow the two steps shown.</li>
+      <li>Both your portfolio pages update within about a minute. No coding needed.</li>
+    </ol>
+  </div>
+
+  <div class="kwtip">
+    <b>Tip:</b> wrap important words in <code>**double asterisks**</code> to highlight them —
+    e.g. <code>reduced latency by **70%**</code>. Highlighted terms catch a recruiter's eye when skimming.
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+  <div id="panels"></div>
+</div>
+
+<div class="savebar">
+  <div class="savebar-in">
+    <span class="status" id="status">Loading…</span>
+    <div class="actions">
+      <button onclick="download()">Download data.json</button>
+      <button class="primary" onclick="openSave()">Save changes →</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="saveModal">
+  <div class="modal-in">
+    <h2>Save your changes</h2>
+    <p>Two steps. Takes about thirty seconds.</p>
+    <ol>
+      <li><b>Copy the file contents</b><br>
+        <button class="primary sm" onclick="copyJson()" style="margin-top:7px" id="copyBtn">Copy to clipboard</button></li>
+      <li><b>Paste it into GitHub</b><br>
+        <a href="https://github.com/abusayeb/abusayeb.github.io/edit/main/data.json" target="_blank" rel="noopener">
+          Open data.json on GitHub →</a><br>
+        <span style="font-size:13.5px;color:var(--muted)">
+          Select everything in the box (Ctrl/Cmd + A), paste, then click the green
+          <b>Commit changes</b> button.</span></li>
+    </ol>
+    <p style="font-size:13.5px">Prefer files? <a href="#" onclick="download();return false;">Download data.json</a>
+       and upload it to the repository instead.</p>
+    <pre id="jsonOut"></pre>
+    <div style="display:flex;gap:9px;justify-content:flex-end;margin-top:16px">
+      <button onclick="closeSave()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var DATA = null, DIRTY = false, TAB = 'profile';
+
+var TABS = [
+  ['profile','Profile & summary'],
+  ['news','News'],
+  ['research','Research'],
+  ['publications','Publications'],
+  ['experience','Experience'],
+  ['projects','Projects'],
+  ['education','Education'],
+  ['awards','Awards & talks'],
+  ['skills','Skills'],
+  ['refs','References']
+];
+
+function esc(s){ return String(s==null?'':s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function mark(){ DIRTY=true; setStatus('Unsaved changes','dirty'); }
+function setStatus(t,c){ var s=document.getElementById('status'); s.textContent=t; s.className='status '+(c||''); }
+
+/* ---- generic field builders ---- */
+function txt(label, val, onInput, hint){
+  var id='f'+Math.random().toString(36).slice(2);
+  return '<div class="field"><label for="'+id+'">'+esc(label)+'</label>' +
+    '<input type="text" id="'+id+'" value="'+esc(val)+'" oninput="'+onInput+'">' +
+    (hint?'<div class="tip">'+esc(hint)+'</div>':'') + '</div>';
+}
+function area(label, val, onInput, hint, rows){
+  var id='f'+Math.random().toString(36).slice(2);
+  return '<div class="field"><label for="'+id+'">'+esc(label)+'</label>' +
+    '<textarea id="'+id+'" rows="'+(rows||3)+'" oninput="'+onInput+'">'+esc(val)+'</textarea>' +
+    (hint?'<div class="tip">'+esc(hint)+'</div>':'') + '</div>';
+}
+function itemHead(label, i, arrName){
+  return '<div class="item-head"><span class="item-n">'+esc(label)+' '+(i+1)+'</span>' +
+    '<div class="item-tools">' +
+      '<button class="ghost sm" onclick="moveItem(\''+arrName+'\','+i+',-1)" title="Move up">↑</button>' +
+      '<button class="ghost sm" onclick="moveItem(\''+arrName+'\','+i+',1)" title="Move down">↓</button>' +
+      '<button class="ghost sm" onclick="removeItem(\''+arrName+'\','+i+')" title="Remove">Remove</button>' +
+    '</div></div>';
+}
+
+/* ---- mutation helpers (called from inline handlers) ---- */
+function setPath(path, value){
+  var parts=path.split('.'), o=DATA;
+  for(var i=0;i<parts.length-1;i++){
+    var k=parts[i];
+    if(/^\d+$/.test(k)) k=parseInt(k,10);
+    o=o[k];
+  }
+  var last=parts[parts.length-1];
+  if(/^\d+$/.test(last)) last=parseInt(last,10);
+  o[last]=value;
+  mark();
+}
+function setList(path, value){ setPath(path, value.split('\n').map(function(s){return s.trim();}).filter(Boolean)); }
+function setTags(path, value){ setPath(path, value.split(',').map(function(s){return s.trim();}).filter(Boolean)); }
+
+function removeItem(arrName,i){
+  if(!confirm('Remove this entry?')) return;
+  DATA[arrName].splice(i,1); mark(); draw();
+}
+function moveItem(arrName,i,dir){
+  var a=DATA[arrName], j=i+dir;
+  if(j<0||j>=a.length) return;
+  var t=a[i]; a[i]=a[j]; a[j]=t; mark(); draw();
+}
+function addItem(arrName, tpl){
+  DATA[arrName]=DATA[arrName]||[];
+  DATA[arrName].push(JSON.parse(JSON.stringify(tpl)));
+  mark(); draw();
+}
+
+/* ---- panels ---- */
+function panelProfile(){
+  var P=DATA.profile;
+  return '<div class="panel"><h2>Who you are</h2>' +
+    '<div class="hint">Shown at the top of both pages.</div>' +
+    '<div class="row">' +
+      txt('Full name', P.name, "setPath('profile.name',this.value)") +
+      txt('Location', P.location, "setPath('profile.location',this.value)") +
+    '</div>' +
+    txt('Availability / status', P.availability, "setPath('profile.availability',this.value)",
+        'Appears as the badge at the top. Leave blank to hide it.') +
+    '<div class="row">' +
+      txt('Job title (industry page)', P.roleIndustry, "setPath('profile.roleIndustry',this.value)") +
+      txt('Specialism (industry page)', P.specialismIndustry, "setPath('profile.specialismIndustry',this.value)") +
+    '</div>' +
+    txt('Headline (research page)', P.roleResearch, "setPath('profile.roleResearch',this.value)") +
+    '</div>' +
+
+    '<div class="panel"><h2>Contact & links</h2>' +
+    '<div class="row">' +
+      txt('Email', P.email, "setPath('profile.email',this.value)") +
+      txt('LinkedIn URL', P.linkedin, "setPath('profile.linkedin',this.value)") +
+    '</div><div class="row">' +
+      txt('GitHub URL', P.github, "setPath('profile.github',this.value)") +
+      txt('Google Scholar URL', P.scholar, "setPath('profile.scholar',this.value)", 'Optional — hidden if blank.') +
+    '</div>' +
+      txt('ORCID URL', P.orcid, "setPath('profile.orcid',this.value)", 'Optional — hidden if blank. Free to create at orcid.org.') +
+    '</div>' +
+
+    '<div class="panel"><h2>Summaries</h2>' +
+    '<div class="hint">The opening paragraph on each page.</div>' +
+    area('Industry summary', P.summaryIndustry, "setPath('profile.summaryIndustry',this.value)", 'Use **asterisks** to highlight numbers and key skills.', 5) +
+    area('Research summary', P.summaryResearch, "setPath('profile.summaryResearch',this.value)", 'Short version used for search engines and previews.', 4) +
+    '</div>' +
+
+    '<div class="panel"><h2>Headline numbers</h2>' +
+    '<div class="hint">The four boxes near the top of the industry page.</div>' +
+    (DATA.metrics||[]).map(function(m,i){
+      return '<div class="item">'+itemHead('Metric',i,'metrics')+'<div class="row">' +
+        txt('Number', m.value, "setPath('metrics."+i+".value',this.value)") +
+        txt('Label', m.label, "setPath('metrics."+i+".label',this.value)") +
+      '</div></div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'metrics\',{value:\'\',label:\'\'})">+ Add metric</button></div>';
+}
+
+function panelNews(){
+  return '<div class="panel"><h2>News</h2>' +
+    '<div class="hint">Dated updates on the research page. Keeping this current is the single easiest way to look active to a professor.</div>' +
+    (DATA.news||[]).map(function(nw,i){
+      return '<div class="item">'+itemHead('Update',i,'news') +
+        txt('Date', nw.date, "setPath('news."+i+".date',this.value)", 'e.g. Jul 2026') +
+        area('Text', nw.text, "setPath('news."+i+".text',this.value)", '', 2) +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'news\',{date:\'\',text:\'\'})">+ Add update</button></div>';
+}
+
+function panelResearch(){
+  return '<div class="panel"><h2>Research statement</h2>' +
+    '<div class="hint">One paragraph per box. This is what a professor reads first.</div>' +
+    (DATA.researchStatement||[]).map(function(p,i){
+      return '<div class="item">'+itemHead('Paragraph',i,'researchStatement') +
+        area('Text', p, "setPath('researchStatement."+i+"',this.value)", '', 5) +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'researchStatement\',\'\')">+ Add paragraph</button></div>' +
+
+    '<div class="panel"><h2>Research areas</h2>' +
+    '<div class="hint">The grid of topic cards.</div>' +
+    (DATA.researchAreas||[]).map(function(a,i){
+      return '<div class="item">'+itemHead('Area',i,'researchAreas') +
+        txt('Title', a.title, "setPath('researchAreas."+i+".title',this.value)") +
+        area('Description', a.desc, "setPath('researchAreas."+i+".desc',this.value)", '', 2) +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'researchAreas\',{title:\'\',desc:\'\'})">+ Add area</button></div>';
+}
+
+function panelPubs(){
+  return '<div class="panel"><h2>Publications</h2>' +
+    '<div class="hint">Add the DOI or IEEE Xplore link once each paper goes live — the title becomes clickable automatically.</div>' +
+    (DATA.publications||[]).map(function(p,i){
+      return '<div class="item">'+itemHead('Paper',i,'publications') +
+        area('Title', p.title, "setPath('publications."+i+".title',this.value)", '', 2) +
+        '<div class="row">' +
+          txt('Authors', p.authors, "setPath('publications."+i+".authors',this.value)") +
+          txt('Year', p.year, "setPath('publications."+i+".year',this.value)") +
+        '</div>' +
+        area('Venue', p.venue, "setPath('publications."+i+".venue',this.value)", '', 2) +
+        '<div class="row">' +
+          txt('Link (DOI or Xplore URL)', p.link, "setPath('publications."+i+".link',this.value)", 'Leave blank until published.') +
+          txt('Status', p.status, "setPath('publications."+i+".status',this.value)", 'e.g. In press — clear this once published.') +
+        '</div>' +
+        txt('Tags (comma separated)', (p.tags||[]).join(', '), "setTags('publications."+i+".tags',this.value)") +
+        area('Short description', p.note, "setPath('publications."+i+".note',this.value)", 'One or two sentences on what the paper does.', 3) +
+        txt('BibTeX key', p.bibkey, "setPath('publications."+i+".bibkey',this.value)", 'Used for the copy-citation button.') +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'publications\',{title:\'\',authors:\'M. A. S. Rayhan et al.\',venue:\'\',year:\'\',tags:[],status:\'\',link:\'\',note:\'\',bibkey:\'\'})">+ Add publication</button></div>';
+}
+
+function panelExp(){
+  return '<div class="panel"><h2>Experience</h2>' +
+    '<div class="hint">One entry per role. Put each bullet on its own line.</div>' +
+    (DATA.experience||[]).map(function(e,i){
+      return '<div class="item">'+itemHead('Role',i,'experience') +
+        '<div class="row">' +
+          txt('Job title', e.role, "setPath('experience."+i+".role',this.value)") +
+          txt('Organisation', e.org, "setPath('experience."+i+".org',this.value)") +
+        '</div><div class="row-3">' +
+          txt('Start', e.start, "setPath('experience."+i+".start',this.value)") +
+          txt('End', e.end, "setPath('experience."+i+".end',this.value)", 'or "Present"') +
+          txt('Location', e.location, "setPath('experience."+i+".location',this.value)") +
+        '</div><div class="row">' +
+          txt('Team / supervisor', e.team, "setPath('experience."+i+".team',this.value)", 'Optional') +
+          txt('Note', e.note, "setPath('experience."+i+".note',this.value)", 'e.g. Contractual — optional') +
+        '</div>' +
+        '<div class="field"><label>Type</label><select onchange="setPath(\'experience.'+i+'.kind\',this.value)">' +
+          '<option value="industry"'+(e.kind!=='research'?' selected':'')+'>Industry / applied</option>' +
+          '<option value="research"'+(e.kind==='research'?' selected':'')+'>Research</option>' +
+        '</select><div class="tip">Research roles appear under "Research experience" on the academic page.</div></div>' +
+        area('Bullets (one per line)', (e.bullets||[]).join('\n'), "setList('experience."+i+".bullets',this.value)", 'Use **asterisks** around key terms and numbers.', 6) +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'experience\',{role:\'\',org:\'\',team:\'\',location:\'\',start:\'\',end:\'\',kind:\'industry\',note:\'\',bullets:[]})">+ Add role</button></div>';
+}
+
+function panelProjects(){
+  return '<div class="panel"><h2>Projects</h2>' +
+    (DATA.projects||[]).map(function(p,i){
+      return '<div class="item">'+itemHead('Project',i,'projects') +
+        '<div class="row">' +
+          txt('Title', p.title, "setPath('projects."+i+".title',this.value)") +
+          txt('Date', p.date, "setPath('projects."+i+".date',this.value)") +
+        '</div>' +
+        area('Description', p.desc, "setPath('projects."+i+".desc',this.value)", '', 3) +
+        '<div class="row">' +
+          txt('Impact badge', p.impact, "setPath('projects."+i+".impact',this.value)", 'e.g. 90% accuracy · 50% cost cut. Blank hides it.') +
+          txt('GitHub link', p.link, "setPath('projects."+i+".link',this.value)", 'Blank shows your role instead.') +
+        '</div>' +
+        '<div class="row">' +
+          txt('Tags (comma separated)', (p.tags||[]).join(', '), "setTags('projects."+i+".tags',this.value)") +
+          txt('Your role', p.role, "setPath('projects."+i+".role',this.value)", 'e.g. Team of 3') +
+        '</div>' +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'projects\',{title:\'\',date:\'\',desc:\'\',impact:\'\',tags:[],role:\'\',link:\'\'})">+ Add project</button></div>';
+}
+
+function panelEdu(){
+  var E=DATA.education;
+  return '<div class="panel"><h2>Education</h2>' +
+    '<div class="row">' +
+      txt('Degree', E.degree, "setPath('education.degree',this.value)") +
+      txt('Institution', E.school, "setPath('education.school',this.value)") +
+    '</div><div class="row-3">' +
+      txt('Start', E.start, "setPath('education.start',this.value)") +
+      txt('End', E.end, "setPath('education.end',this.value)") +
+      txt('Grade', E.grade, "setPath('education.grade',this.value)") +
+    '</div>' +
+    area('Relevant coursework', E.coursework, "setPath('education.coursework',this.value)", '', 2) +
+    '</div><div class="panel"><h2>Thesis</h2>' +
+    txt('Label', E.thesisLabel, "setPath('education.thesisLabel',this.value)") +
+    txt('Title', E.thesisTitle, "setPath('education.thesisTitle',this.value)") +
+    area('Description', E.thesisDesc, "setPath('education.thesisDesc',this.value)", '', 4) +
+    '</div>';
+}
+
+function panelAwards(){
+  return '<div class="panel"><h2>Awards & activities</h2>' +
+    (DATA.awards||[]).map(function(a,i){
+      return '<div class="item">'+itemHead('Entry',i,'awards') +
+        '<div class="row">' +
+          txt('Year', a.year, "setPath('awards."+i+".year',this.value)") +
+          txt('Title', a.title, "setPath('awards."+i+".title',this.value)") +
+        '</div>' +
+        txt('Detail', a.detail, "setPath('awards."+i+".detail',this.value)") +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'awards\',{year:\'\',title:\'\',detail:\'\'})">+ Add award</button></div>' +
+
+    '<div class="panel"><h2>Conference presentations</h2>' +
+    '<div class="hint">Speaking experience counts for a lot in academic applications.</div>' +
+    (DATA.talks||[]).map(function(t,i){
+      return '<div class="item">'+itemHead('Talk',i,'talks') +
+        area('Title', t.title, "setPath('talks."+i+".title',this.value)", '', 2) +
+        '<div class="row-3">' +
+          txt('Venue', t.venue, "setPath('talks."+i+".venue',this.value)") +
+          txt('Year', t.year, "setPath('talks."+i+".year',this.value)") +
+          txt('Type', t.type, "setPath('talks."+i+".type',this.value)") +
+        '</div>' +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'talks\',{title:\'\',venue:\'\',year:\'\',type:\'Conference presentation\'})">+ Add talk</button></div>';
+}
+
+function panelSkills(){
+  return '<div class="panel"><h2>Skills</h2>' +
+    '<div class="hint">Separate individual skills with the · character (or a comma).</div>' +
+    (DATA.skills||[]).map(function(s,i){
+      return '<div class="item">'+itemHead('Group',i,'skills') +
+        txt('Group name', s.label, "setPath('skills."+i+".label',this.value)") +
+        area('Skills', s.items, "setPath('skills."+i+".items',this.value)", '', 2) +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'skills\',{label:\'\',items:\'\'})">+ Add group</button></div>';
+}
+
+function panelRefs(){
+  return '<div class="panel"><h2>References</h2>' +
+    '<div class="hint">Names and affiliations only — email addresses are deliberately left off the public page.</div>' +
+    (DATA.references||[]).map(function(r,i){
+      return '<div class="item">'+itemHead('Referee',i,'references') +
+        txt('Name', r.name, "setPath('references."+i+".name',this.value)") +
+        txt('Role', r.role, "setPath('references."+i+".role',this.value)") +
+        txt('Organisation', r.org, "setPath('references."+i+".org',this.value)") +
+      '</div>';
+    }).join('') +
+    '<button class="add-btn" onclick="addItem(\'references\',{name:\'\',role:\'\',org:\'\'})">+ Add referee</button></div>';
+}
+
+var PANELS = { profile:panelProfile, news:panelNews, research:panelResearch,
+  publications:panelPubs, experience:panelExp, projects:panelProjects,
+  education:panelEdu, awards:panelAwards, skills:panelSkills, refs:panelRefs };
+
+function draw(){
+  document.getElementById('tabs').innerHTML = TABS.map(function(t){
+    return '<button class="tab'+(t[0]===TAB?' on':'')+'" onclick="go(\''+t[0]+'\')">'+esc(t[1])+'</button>';
+  }).join('');
+  document.getElementById('panels').innerHTML = PANELS[TAB]();
+}
+function go(t){ TAB=t; draw(); window.scrollTo({top:0,behavior:'instant'}); }
+
+function json(){
+  var clean = JSON.parse(JSON.stringify(DATA));
+  return JSON.stringify(clean, null, 2);
+}
+function openSave(){
+  document.getElementById('jsonOut').textContent = json();
+  document.getElementById('saveModal').classList.add('open');
+}
+function closeSave(){ document.getElementById('saveModal').classList.remove('open'); }
+function copyJson(){
+  var btn=document.getElementById('copyBtn');
+  navigator.clipboard.writeText(json()).then(function(){
+    btn.textContent='Copied ✓';
+    setStatus('Copied — now paste it into GitHub','saved');
+    setTimeout(function(){ btn.textContent='Copy to clipboard'; },1800);
+  }).catch(function(){
+    btn.textContent='Select the text below and copy manually';
+  });
+}
+function download(){
+  var b=new Blob([json()],{type:'application/json'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(b); a.download='data.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setStatus('Downloaded — upload it to GitHub to publish','saved');
+}
+function preview(){ window.open('../','_blank'); }
+function reloadData(){
+  if(DIRTY && !confirm('Discard your unsaved changes and reload?')) return;
+  load();
+}
+function load(){
+  setStatus('Loading…','');
+  fetch('../data.json?t='+Date.now())
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(d){
+      DATA=d; DIRTY=false;
+      draw();
+      setStatus('Loaded — all changes saved','saved');
+    })
+    .catch(function(e){
+      setStatus('Could not load data.json — check the file exists','dirty');
+      document.getElementById('panels').innerHTML =
+        '<div class="panel"><h2>Could not load data.json</h2>' +
+        '<p class="hint">Make sure <code>data.json</code> exists in the repository root. ' +
+        'Error: '+esc(e.message)+'</p></div>';
+    });
+}
+
+document.getElementById('saveModal').addEventListener('click', function(e){
+  if(e.target===this) closeSave();
+});
+window.addEventListener('beforeunload', function(e){
+  if(DIRTY){ e.preventDefault(); e.returnValue=''; }
+});
+
+load();
+</script>
+
+</body>
+</html>
