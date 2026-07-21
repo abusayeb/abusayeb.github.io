@@ -706,6 +706,39 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   img.addEventListener('error', function(){ wrap.hidden = true; });
 })();
 
+// Drive in-page navigation from JS. Some browsers silently drop CSS smooth
+// scrolling, which would otherwise leave anchor links doing nothing at all.
+(function(){
+  function goTo(el){
+    if(!el) return;
+    try { el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    catch(e){ el.scrollIntoView(true); }
+    var before = window.scrollY;
+    setTimeout(function(){
+      if(Math.abs(window.scrollY - before) < 2){
+        var y = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 62);
+        try { window.scrollTo({top:y, behavior:'instant'}); }
+        catch(e){ document.documentElement.scrollTop = y; }
+      }
+    }, 260);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    if(!id) return;
+    a.addEventListener('click', function(ev){
+      var target = document.getElementById(id);
+      if(!target) return;
+      ev.preventDefault();
+      goTo(target);
+      if(history.replaceState){ history.replaceState(null, '', '#' + id); }
+    });
+  });
+  if(location.hash.length > 1){
+    var t = document.getElementById(location.hash.slice(1));
+    if(t){ setTimeout(function(){ goTo(t); }, 60); }
+  }
+})();
+
 var nav = document.getElementById('nav');
 window.addEventListener('scroll', function(){
   nav.classList.toggle('scrolled', window.scrollY > 20);
