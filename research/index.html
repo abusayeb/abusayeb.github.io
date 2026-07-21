@@ -54,9 +54,10 @@ header.hero{padding:54px 0 38px}
 .hero-main{flex:1;min-width:0}
 h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(31px,5vw,40px);
   font-weight:700;letter-spacing:-.018em;line-height:1.15;margin-bottom:9px}
-/* research interests, listed directly under the name */
-.subtitle{font-size:15.2px;color:var(--ink-2);font-weight:500;margin-bottom:7px;
-  line-height:1.55;max-width:56ch}
+/* one-line research identity, then the supporting themes */
+.subtitle{font-family:'Source Serif 4',Georgia,serif;font-size:19px;color:var(--ink);
+  font-weight:600;margin-bottom:6px;line-height:1.35;max-width:52ch}
+.subtitle-sub{font-size:14.2px;color:var(--muted);margin-bottom:9px;line-height:1.55;max-width:60ch}
 .affil{color:var(--muted);font-size:15px;margin-bottom:14px}
 .avail{display:inline-block;font-size:13.5px;color:var(--accent);background:var(--accent-soft);
   border:1px solid #ecd9d6;padding:5px 12px;border-radius:20px;margin-bottom:16px}
@@ -81,11 +82,34 @@ strong{color:var(--ink);font-weight:640}
 .news-date{flex:0 0 84px;color:var(--faint);font-size:13.5px;padding-top:2px;
   font-variant-numeric:tabular-nums}
 
-.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:20px}
-.area{background:var(--card);border:1px solid var(--rule);border-radius:7px;padding:17px 19px}
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:22px}
+.area{background:var(--card);border:1px solid var(--rule);border-radius:7px;padding:17px 19px 17px 46px;
+  position:relative}
+/* numbered thread: the first three are evidenced, the last is the forward direction */
+.area::before{content:counter(area);counter-increment:area;position:absolute;left:16px;top:17px;
+  width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-size:11.5px;
+  font-weight:700;display:flex;align-items:center;justify-content:center}
+.areas{counter-reset:area}
+.area.next{background:#fbf7f6;border-color:#ecd9d6}
+.area.next::before{background:var(--accent)}
 .area-t{font-family:'Source Serif 4',Georgia,serif;font-size:15.5px;font-weight:600;
   margin-bottom:5px;color:var(--navy)}
+.area.next .area-t{color:var(--accent)}
 .area-d{font-size:14.2px;color:var(--muted);line-height:1.58}
+
+/* open questions */
+.q-item{border-left:2px solid var(--rule-2);padding:2px 0 2px 18px;margin-bottom:20px}
+.q-item:last-child{margin-bottom:0}
+.q-q{font-family:'Source Serif 4',Georgia,serif;font-size:16.5px;font-weight:600;
+  color:var(--ink);margin-bottom:7px;line-height:1.4}
+.q-a{font-size:14.6px;color:var(--ink-2);line-height:1.66;margin:0}
+
+/* author position + contribution */
+.pub-role{display:inline-block;font-size:11.5px;font-weight:600;color:var(--navy);
+  background:#eef2f7;border:1px solid #dbe3ed;padding:2px 8px;border-radius:3px;margin-left:6px;
+  vertical-align:1px}
+.pub-contrib{font-size:13.6px;color:var(--ink-2);margin-top:6px;line-height:1.55}
+.pub-contrib b{color:var(--ink);font-weight:640}
 
 /* publications */
 .pub-list{list-style:none;counter-reset:pub}
@@ -182,6 +206,7 @@ footer{border-top:1px solid var(--rule);padding:26px 0 40px;margin-top:18px;
     <nav class="tb-links">
       <a href="#research">Research</a>
       <a href="#publications">Publications</a>
+      <a href="#directions">Open questions</a>
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="../" class="switch">Industry portfolio →</a>
@@ -255,6 +280,7 @@ function render(d){
     '</div></div><div class="hero-main">' +
       '<h1>' + esc(P.name) + '</h1>' +
       '<div class="subtitle">' + esc(P.roleResearch) + '</div>' +
+      (P.roleResearchSub ? '<div class="subtitle-sub">' + esc(P.roleResearchSub) + '</div>' : '') +
       '<div class="affil">' + esc(P.location) + '</div>' +
       (P.availabilityResearch ? '<div class="avail">' + esc(P.availabilityResearch) + '</div>' : '') +
       '<div class="contact-row">' +
@@ -281,11 +307,23 @@ function render(d){
       return '<p' + (i===0?' class="lead"':'') + '>' + rich(p) + '</p>';
     }).join('') +
     ((d.researchAreas||[]).length ? '<div class="areas">' +
-      d.researchAreas.map(function(a){
-        return '<div class="area"><div class="area-t">' + esc(a.title) + '</div>' +
+      d.researchAreas.map(function(a,i,arr){
+        var next = (i === arr.length - 1) ? ' next' : '';
+        return '<div class="area' + next + '"><div class="area-t">' + esc(a.title) + '</div>' +
                '<div class="area-d">' + esc(a.desc) + '</div></div>';
       }).join('') + '</div>' : '') +
     '</section>');
+
+  /* open questions I want to work on */
+  if((d.futureDirections||[]).length){
+    out.push('<section id="directions"><h2>Questions I want to work on</h2>' +
+      '<p style="font-size:14.6px;color:var(--muted);margin-bottom:20px;">' +
+      'Each of these extends something I have already built rather than starting from scratch.</p>' +
+      d.futureDirections.map(function(f){
+        return '<div class="q-item"><div class="q-q">' + rich(f.q) + '</div>' +
+               '<p class="q-a">' + rich(f.a) + '</p></div>';
+      }).join('') + '</section>');
+  }
 
   /* publications */
   if((d.publications||[]).length){
@@ -317,11 +355,13 @@ function render(d){
         var status = p.status ? '<span class="ptag s">' + esc(p.status) + '</span>' : '';
         return '<li class="pub-item">' +
           '<div class="pub-t">' + title + '</div>' +
-          '<div class="pub-authors">' + rich(p.authors) + '</div>' +
+          '<div class="pub-authors">' + rich(p.authors) +
+            (p.authorRole ? '<span class="pub-role">' + esc(p.authorRole) + '</span>' : '') + '</div>' +
           '<div class="pub-venue">' + esc(p.venue) + '</div>' +
           '<div class="pub-tags">' + tags + status +
             '<button class="bib-btn" data-bib="' + i + '">BibTeX</button></div>' +
           (p.note ? '<div class="pub-note">' + rich(p.note) + '</div>' : '') +
+          (p.contribution ? '<div class="pub-contrib"><b>My contribution:</b> ' + rich(p.contribution) + '</div>' : '') +
           '<pre class="bib-box" id="bib' + i + '">' + esc(bibtex(p, P.name)) + '</pre>' +
         '</li>';
       }).join('') + '</ol></section>');
@@ -367,19 +407,21 @@ function render(d){
       '<p>' + rich(E.thesisDesc) + '</p></div>' : '') +
     '</div></section>');
 
-  /* awards */
-  if((d.awards||[]).length){
+  /* awards — entries marked industry-only are left off the research page */
+  var awards = (d.awards||[]).filter(function(a){ return a.pages !== 'industry'; });
+  if(awards.length){
     out.push('<section id="awards"><h2>Awards &amp; activities</h2><ul class="simple-list">' +
-      d.awards.map(function(a){
+      awards.map(function(a){
         return '<li><span class="sl-year">' + esc(a.year) + '</span><span class="sl-main">' +
           '<b>' + esc(a.title) + '</b>' + esc(a.detail) + '</span></li>';
       }).join('') + '</ul></section>');
   }
 
-  /* skills */
-  if((d.skills||[]).length){
+  /* skills — only the research-relevant groups; deployment tooling stays on the industry page */
+  var skills = (d.skills||[]).filter(function(s){ return s.research !== false; });
+  if(skills.length){
     out.push('<section id="skills"><h2>Technical skills</h2>' +
-      d.skills.map(function(s){
+      skills.map(function(s){
         return '<div class="sk-row"><div class="sk-label">' + esc(s.label) + '</div>' +
                '<div class="sk-val">' + esc(s.items) + '</div></div>';
       }).join('') + '</section>');
