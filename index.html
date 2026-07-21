@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Md Abu Sayeb Rayhan — AI Engineer | Computer Vision, LLMs &amp; RAG</title>
+<title>Md Abu Sayeb Rayhan | AI Engineer, Computer Vision &amp; LLMs</title>
 <meta name="description" content="AI Engineer and Data Scientist specialising in computer vision, large language models and RAG systems. Eighteen months deploying production perception pipelines in Japan. Three peer-reviewed publications.">
 <meta name="author" content="Md Abu Sayeb Rayhan">
-<meta property="og:title" content="Md Abu Sayeb Rayhan — AI Engineer">
+<meta property="og:title" content="Md Abu Sayeb Rayhan | AI Engineer">
 <meta property="og:description" content="Computer vision, LLMs and RAG. Production AI systems. Published in IEEE Xplore and Springer Nature.">
 <meta property="og:type" content="website">
 <link rel="icon" href="https://github.com/abusayeb.png">
@@ -67,8 +67,8 @@ section{padding:86px 0;scroll-margin-top:62px}
 .hero-top{display:flex;gap:30px;align-items:flex-start;margin-bottom:6px}
 .hero-copy{flex:1;min-width:0}
 .portrait-wrap{flex-shrink:0;padding-top:6px}
-.portrait-frame{width:150px;height:150px;border-radius:50%;overflow:hidden;
-  border:2px solid var(--line-2);box-shadow:0 10px 34px rgba(0,0,0,.42)}
+.portrait-frame{width:210px;height:210px;border-radius:50%;overflow:hidden;
+  border:2px solid var(--line-2);box-shadow:0 12px 40px rgba(0,0,0,.45)}
 .portrait{width:100%;height:100%;object-fit:cover;display:block}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent-dim);
   border:1px solid rgba(56,189,248,.25);color:var(--accent);padding:6px 14px;
@@ -206,7 +206,7 @@ footer a:hover{color:var(--accent)}
 }
 @media(max-width:820px){
   .hero-top{flex-direction:column-reverse;gap:22px;align-items:flex-start}
-  .portrait{width:112px;height:112px}
+  .portrait-frame{width:140px;height:140px}
 }
 @media(max-width:700px){
   .nav-links{position:fixed;top:62px;left:0;right:0;background:var(--bg-2);flex-direction:column;
@@ -272,7 +272,7 @@ footer a:hover{color:var(--accent)}
 function esc(s){ return String(s==null?'':s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function rich(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<span class="kw">$1</span>'); }
-// Papers under review aren't peer-reviewed yet — don't count them as such.
+// Papers under review aren't peer-reviewed yet - don't count them as such.
 function pubMetaCount(d){
   return (d.publications||[]).filter(function(p){
     return !/review/i.test(String(p.status||''));
@@ -281,16 +281,16 @@ function pubMetaCount(d){
 
 function render(d){
   var P = d.profile||{}, out = [];
-  document.title = P.name + ' — ' + P.roleIndustry + ' | ' + P.specialismIndustry;
+  document.title = P.name + ' | ' + P.roleIndustry + ', ' + P.specialismIndustry;
   var parts = String(P.name||'').trim().split(' ');
   document.getElementById('brand').innerHTML =
     esc(parts.slice(0,-1).join(' ')) + ' <span>' + esc(parts[parts.length-1]) + '</span>';
 
   /* hero */
   out.push('<header class="hero"><div class="wrap"><div class="hero-top"><div class="hero-copy">' +
-    (P.availability ? '<div class="hero-badge"><span class="pulse"></span> ' + esc(P.availability) + '</div>' : '') +
+    (P.availabilityIndustry ? '<div class="hero-badge"><span class="pulse"></span> ' + esc(P.availabilityIndustry) + '</div>' : '') +
     '<h1>' + esc(parts.slice(0,-1).join(' ')) + '<br><span class="grad">' + esc(parts[parts.length-1]) + '</span></h1>' +
-    '<div class="hero-role">' + esc(P.roleIndustry) + ' — <em>' + esc(P.specialismIndustry) + '</em></div>' +
+    '<div class="hero-role">' + esc(P.roleIndustry) + ' · <em>' + esc(P.specialismIndustry) + '</em></div>' +
     '<p class="hero-desc">' + rich(P.summaryIndustry) + '</p></div>' +
     '<div class="portrait-wrap" id="portraitWrap" hidden><div class="portrait-frame">' +
       '<img class="portrait" id="portraitImg" alt="' + esc(P.name) + '" style="' +
@@ -314,7 +314,7 @@ function render(d){
   function head(id, title, sub){
     n++;
     return '<section id="' + id + '"><div class="wrap"><div class="sec-head">' +
-      '<span class="sec-tag">' + (n<10?'0':'') + n + ' — ' + title + '</span>' +
+      '<span class="sec-tag">' + (n<10?'0':'') + n + ' · ' + title + '</span>' +
       '<h2 class="sec-title">' + title + '</h2>' +
       (sub ? '<p class="sec-sub">' + sub + '</p>' : '') + '</div>';
   }
@@ -323,12 +323,12 @@ function render(d){
   out.push(head('experience','Experience','') +
     '<div class="tl">' + (d.experience||[]).map(function(e,i){
       return '<div class="tl-item' + (i>0?' past':'') + '">' +
-        '<div class="tl-date">' + esc(e.start) + ' — ' + esc(e.end) +
+        '<div class="tl-date">' + esc(e.start) + ' \u2013 ' + esc(e.end) +
           (e.location ? ' · ' + esc(e.location) : '') + '</div>' +
         '<div class="tl-role">' + esc(e.role) +
           (e.note ? ' <span style="font-weight:400;color:var(--dim);font-size:14px">(' + esc(e.note) + ')</span>' : '') +
         '</div>' +
-        '<div class="tl-org">' + esc(e.org) + (e.team ? ' — ' + esc(e.team) : '') + '</div>' +
+        '<div class="tl-org">' + esc(e.org) + (e.team ? ' · ' + esc(e.team) : '') + '</div>' +
         '<ul class="tl-list">' + (e.bullets||[]).map(function(b){
           return '<li>' + rich(b) + '</li>'; }).join('') + '</ul></div>';
     }).join('') + '</div></div></section>');
@@ -378,7 +378,7 @@ function render(d){
   out.push(head('education','Education','') +
     '<div class="edu"><div>' +
       '<div class="edu-deg">' + esc(E.degree) + '</div>' +
-      '<div class="edu-school">' + esc(E.school) + ' · ' + esc(E.start) + ' — ' + esc(E.end) + '</div>' +
+      '<div class="edu-school">' + esc(E.school) + ' · ' + esc(E.start) + ' \u2013 ' + esc(E.end) + '</div>' +
       (E.thesisTitle ? '<div class="thesis"><div class="thesis-l">' + esc(E.thesisLabel) + '</div>' +
         '<div class="thesis-t">' + esc(E.thesisTitle) + '</div>' +
         '<div class="thesis-d">' + rich(E.thesisDesc) + '</div></div>' : '') +
@@ -395,9 +395,9 @@ function render(d){
   /* contact */
   out.push('<section id="contact"><div class="wrap"><div class="contact">' +
     '<h2>Let’s build something</h2>' +
-    '<p>I’m open to AI engineering and data science roles, and to research-based Master’s ' +
-    'opportunities — particularly anything touching applied computer vision, perception systems ' +
-    'or retrieval-augmented language models.</p>' +
+    '<p>I’m open to AI engineering and data science roles, especially anything involving applied ' +
+    'computer vision, real-time perception systems or retrieval-augmented language models. ' +
+    'If that sounds like your team, I’d be glad to hear from you.</p>' +
     '<div class="contact-links">' +
       '<a href="mailto:' + esc(P.email) + '" class="btn btn-1">✉ ' + esc(P.email) + '</a>' +
       '<a href="' + esc(P.linkedin) + '" class="btn btn-2" target="_blank" rel="noopener">LinkedIn</a>' +
@@ -432,7 +432,7 @@ function loadPortrait(configured, prefix){
   });
   var i = 0;
   function tryNext(){
-    if(i >= names.length){ wrap.hidden = true; return; }   // no photo present — hide cleanly
+    if(i >= names.length){ wrap.hidden = true; return; }   // no photo present - hide cleanly
     img.src = prefix + names[i++] + '?t=' + Date.now();
   }
   img.addEventListener('load', function(){ if(img.naturalWidth > 1) wrap.hidden = false; });

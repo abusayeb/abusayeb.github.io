@@ -5,7 +5,7 @@
     "shortName": "Abu Sayeb Rayhan",
     "roleIndustry": "AI Engineer & Data Scientist",
     "specialismIndustry": "Computer Vision, LLMs & RAG",
-    "roleResearch": "Computer Vision · Embodied AI · Multimodal Vision-Language Models",
+    "roleResearch": "Robot Perception · Embodied AI · Intelligent Autonomous Systems · Multi-Object Tracking · Activity Recognition · Pose Estimation · Vision-Language Models · Generative Simulation",
     "location": "Dhaka, Bangladesh",
     "email": "sayeb.cc.75@gmail.com",
     "linkedin": "https://www.linkedin.com/in/md-abu-sayeb-rayhan",
@@ -14,10 +14,11 @@
     "orcid": "",
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
-    "availability": "Seeking research-based Master's positions and AI engineering roles",
-    "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in Osaka I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team delivering a **multilingual OCR and retrieval system** for a Bangladesh government project, end to end. The problems I enjoy are the ones where a model has to hold up against messy data, a latency budget and actual users.",
-    "summaryResearch": "I am a computer-vision researcher with three peer-reviewed papers and eighteen months of applied experience deploying perception systems at industrial scale. My work sits where **visual perception**, **generative modelling** and **language understanding** meet, and I am seeking a research-based Master's position to pursue that intersection more rigorously.",
-    "photoZoom": 1.6
+    "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in Osaka I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
+    "summaryResearch": "I am a computer-vision researcher with three peer-reviewed papers and eighteen months of industry experience deploying perception systems at scale. My work sits where **visual perception**, **generative modelling** and **language understanding** meet, and I am looking for a research-based Master's position where I can pursue that intersection properly.",
+    "photoZoom": 1.6,
+    "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
+    "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake"
   },
   "news": [
     {
@@ -26,7 +27,7 @@
     },
     {
       "date": "Jul 2026",
-      "text": "Seeking **research-based Master's positions** for the 2026–27 intake, alongside AI engineering roles."
+      "text": "Looking for **research-based Master's positions** for the 2026-27 intake."
     },
     {
       "date": "Apr 2026",
@@ -34,27 +35,27 @@
     },
     {
       "date": "Mar 2026",
-      "text": "Concluded eighteen months as Data Scientist at **Othello Financial Services**, Osaka, and returned to Dhaka."
+      "text": "Finished eighteen months as a Data Scientist at **Othello Financial Services** in Osaka and returned to Dhaka."
     },
     {
       "date": "Oct 2024",
-      "text": "Joined **Othello Financial Services**, Osaka, as a **Data Scientist** on the AGiFT AI Camera team."
+      "text": "Joined **Othello Financial Services** in Osaka as a **Data Scientist** on the AGiFT AI Camera team."
     },
     {
       "date": "Sep 2024",
-      "text": "Relocated to **Japan**."
+      "text": "Moved to **Japan**."
     },
     {
       "date": "May 2024",
-      "text": "Graduated from **Comilla University** with a BSc in Computer Science & Engineering."
+      "text": "Graduated from **Comilla University** with a BSc in Computer Science and Engineering."
     },
     {
       "date": "Feb 2024",
-      "text": "Joined a **Bangladesh government project** as AI Engineer, leading a three-person team until July 2024."
+      "text": "Joined a **Bangladesh government project** as an AI Engineer, leading a three-person team until July 2024."
     },
     {
       "date": "Jan 2023",
-      "text": "Began work as a **Research Assistant** at Comilla University under Partha Chakraborty, on human–robot interaction and OCR."
+      "text": "Began working as a **Research Assistant** at Comilla University with Partha Chakraborty, on human-robot interaction and OCR."
     }
   ],
   "metrics": [
@@ -76,9 +77,9 @@
     }
   ],
   "researchStatement": [
-    "My research concerns how machines build a usable understanding of the visual world — and what happens to that understanding once it leaves the benchmark. I work on **multi-object tracking**, **human activity recognition** and **pose estimation**, and increasingly on the generative side of the same question: how **diffusion models** can synthesise the data that perception systems are starved of.",
-    "That pairing is deliberate rather than incidental. My undergraduate thesis fine-tuned Stable Diffusion for controllable image synthesis, which taught me how much structure a generative model carries about the scenes it produces. I then spent eighteen months building perception pipelines that had to survive contact with deployment — occlusion, motion blur, camera drift and a fixed latency budget. Reading those two experiences against each other is what convinced me the interesting problem is not perception or generation alone, but the loop between them.",
-    "I am drawn to **embodied AI** and **multimodal vision-language models** for that reason: they are the settings where perception, generation and action stop being separable. I would like to pursue this in a research-based Master's programme, working on grounded scene understanding and on generative simulation as a route around the data bottleneck that constrains embodied agents."
+    "My research is about how machines build a usable understanding of the visual world, and what happens to that understanding once it leaves the benchmark. I work on **multi-object tracking**, **human activity recognition** and **pose estimation**, and increasingly on the generative side of the same question: how **diffusion models** can produce the data that perception systems are starved of.",
+    "That pairing came about deliberately. My undergraduate thesis fine-tuned Stable Diffusion for controllable image synthesis, which taught me how much a generative model quietly knows about the scenes it produces. I then spent eighteen months building perception pipelines that had to survive real deployment, with all its occlusion, motion blur, camera drift and fixed latency budgets. Reading those two experiences against each other convinced me that the interesting problem is not perception or generation on its own, but the loop between them.",
+    "This is why I am drawn to **embodied AI** and **multimodal vision-language models**. They are the settings where perception, generation and action stop being separable. I would like to study this in a research-based Master's programme, focusing on grounded scene understanding and on generative simulation as a way around the data bottleneck that holds embodied agents back."
   ],
   "researchAreas": [
     {
@@ -109,7 +110,7 @@
       ],
       "status": "Under review",
       "link": "",
-      "note": "Evidential deep learning for medical decision support, using **reliability gating** to weight each modality by how trustworthy its evidence is — so the model abstains rather than guessing when inputs are unreliable.",
+      "note": "Evidential deep learning for medical decision support. **Reliability gating** weights each modality by how trustworthy its evidence is, so the model can abstain rather than guess when its inputs are unreliable.",
       "bibkey": "rayhan2026rgef"
     },
     {
@@ -123,7 +124,7 @@
       ],
       "status": "",
       "link": "https://ieeexplore.ieee.org/document/11546484",
-      "note": "Detecting AI-generated imagery through **physics-informed invariants** rather than learned artefacts. Combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator — the failure mode most detectors share.",
+      "note": "Detecting AI-generated imagery through **physics-informed invariants** rather than learned artefacts. It combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator. That is the failure mode most detectors share.",
       "bibkey": "rayhan2026forensic"
     },
     {
@@ -137,7 +138,7 @@
       ],
       "status": "",
       "link": "https://ieeexplore.ieee.org/document/11546216",
-      "note": "Pairs an image-classification pipeline with a conversational interface so that screening can be delivered where ophthalmologists are scarce. The design question is less about accuracy than about **deployability in low-resource clinical settings**.",
+      "note": "An image-classification pipeline paired with a conversational interface, so screening can reach places where ophthalmologists are scarce. The hard question here is **deployability in low-resource clinical settings** rather than raw accuracy.",
       "bibkey": "rayhan2026bdeyedoc"
     },
     {
@@ -150,7 +151,7 @@
       ],
       "status": "In press",
       "link": "",
-      "note": "A controlled comparison of CNNs, ensembles and **Vision Transformers** under the compute and data constraints that actually obtain in agricultural deployment — where the strongest architecture on ImageNet is rarely the right choice.",
+      "note": "A controlled comparison of CNNs, ensembles and **Vision Transformers** under the compute and data constraints that agricultural deployment actually imposes. The strongest architecture on ImageNet is rarely the right choice there.",
       "bibkey": "rayhan2026cnn"
     }
   ],
@@ -319,18 +320,18 @@
     "coursework": "Artificial Intelligence, Algorithm Design, Theory of Computation, Introduction to Data Science, Object-Oriented Programming, Research-Based Project.",
     "thesisLabel": "Bachelor's Thesis · Sep 2023 – Jan 2024",
     "thesisTitle": "Text-to-Image Generation using Diffusion Models",
-    "thesisDesc": "Fine-tuned **Stable Diffusion** with a U-Net backbone on a purpose-built dataset of Bangladeshi landmarks, including Salbon Bihar and the Comilla University Gate. Examined prompt engineering and **conditioning mechanisms** as levers on generative fidelity, with OpenCV post-processing for artefact reduction."
+    "thesisDesc": "Fine-tuned **Stable Diffusion** with a U-Net backbone on a purpose-built dataset of Bangladeshi landmarks. I examined prompt engineering and **conditioning mechanisms** as levers on generative fidelity, and used OpenCV post-processing to reduce artefacts."
   },
   "awards": [
     {
       "year": "2026",
       "title": "Best Presenter Award, IEEE QPAIN 2026",
-      "detail": "Recognised for paper presentation at the IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking."
+      "detail": "Awarded for paper presentation at the IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking."
     },
     {
       "year": "2023–2024",
       "title": "Joint Secretary, North Bengal Student Association",
-      "detail": "Comilla University — elected student leadership role."
+      "detail": "Comilla University, elected student leadership role."
     },
     {
       "year": "2022",
@@ -340,7 +341,7 @@
     {
       "year": "2019–2021",
       "title": "Participant, Inter-University Programming Contest",
-      "detail": "Comilla University — competitive algorithmic programming."
+      "detail": "Comilla University, competitive algorithmic programming."
     }
   ],
   "skills": [
