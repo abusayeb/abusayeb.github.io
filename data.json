@@ -52,7 +52,7 @@
       "year": "2026",
       "tags": ["IEEE Xplore", "Scopus-indexed"],
       "status": "In press",
-      "link": "",
+      "link": "https://ieeexplore.ieee.org/document/11546484/",
       "note": "Detecting AI-generated imagery through **physics-informed invariants** rather than learned artefacts. Combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator — the failure mode most detectors share.",
       "bibkey": "rayhan2026forensic"
     },
@@ -63,7 +63,7 @@
       "year": "2026",
       "tags": ["IEEE Xplore", "Scopus-indexed"],
       "status": "In press",
-      "link": "",
+      "link": "http://ieeexplore.ieee.org/document/11546216",
       "note": "Pairs an image-classification pipeline with a conversational interface so that screening can be delivered where ophthalmologists are scarce. The design question is less about accuracy than about **deployability in low-resource clinical settings**.",
       "bibkey": "rayhan2026bdeyedoc"
     },
