@@ -232,7 +232,8 @@ function render(d){
   /* hero */
   out.push('<div class="wrap"><header class="hero"><div class="hero-grid">' +
     '<div class="avatar-wrap" id="avatarWrap" hidden>' +
-      '<img class="avatar" id="avatarImg" src="../photo.jpg" alt="' + esc(P.name) + '">' +
+      '<img class="avatar" id="avatarImg" alt="' + esc(P.name) + '"' +
+      (P.photoFocus ? ' style="object-position:' + esc(P.photoFocus) + '"' : '') + '>' +
     '</div><div class="hero-main">' +
       '<h1>' + esc(P.name) + '</h1>' +
       '<div class="subtitle">' + esc(P.roleResearch) + '</div>' +
@@ -373,16 +374,34 @@ function render(d){
   document.getElementById('foot').hidden = false;
 
   wireUp();
+  loadPortrait(P.photo, '../');
 }
 
 /* ---------- interactions ---------- */
-function wireUp(){
-  // portrait appears only if photo.jpg exists
+// Try the configured photo filename, then common variants, so an upload named
+// slightly differently still shows up instead of silently failing.
+function loadPortrait(configured, prefix){
   var img = document.getElementById('avatarImg'), wrap = document.getElementById('avatarWrap');
-  if(img && wrap){
-    img.addEventListener('load', function(){ if(img.naturalWidth>1) wrap.hidden=false; });
-    img.addEventListener('error', function(){ wrap.hidden=true; });
+  if(!img || !wrap) return;
+  prefix = prefix || '';
+  var names = [];
+  if(configured) names.push(configured);
+  ['photo.jpg','photo.jpeg','photo.png','photo.webp',
+   'photos.jpg','photos.jpeg','photos.png',
+   'profile.jpg','profile.jpeg','profile.png','me.jpg','me.jpeg'].forEach(function(n){
+    if(names.indexOf(n) === -1) names.push(n);
+  });
+  var i = 0;
+  function tryNext(){
+    if(i >= names.length){ wrap.hidden = true; return; }
+    img.src = prefix + names[i++] + '?t=' + Date.now();
   }
+  img.addEventListener('load', function(){ if(img.naturalWidth > 1) wrap.hidden = false; });
+  img.addEventListener('error', tryNext);
+  tryNext();
+}
+
+function wireUp(){
 
   // BibTeX toggle + copy
   document.querySelectorAll('.bib-btn').forEach(function(b){
