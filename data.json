@@ -22,19 +22,39 @@
   "news": [
     {
       "date": "Jul 2026",
-      "text": "Submitted new research to **RAAICON**."
+      "text": "Submitted **RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI** to the IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (**RAAICON 2026**)."
     },
     {
       "date": "Jul 2026",
       "text": "Seeking **research-based Master's positions** for the 2026–27 intake, alongside AI engineering roles."
     },
     {
-      "date": "Mar 2026",
-      "text": "Concluded eighteen months as Data Scientist at **Othello Financial Services**, Osaka; relocated to Dhaka."
+      "date": "Apr 2026",
+      "text": "Presented two papers at **IEEE QPAIN 2026** and received the **Best Presenter Award**."
     },
     {
-      "date": "2026",
-      "text": "Three papers presented and accepted for publication — two at **IEEE QPAIN 2026**, one at **ECCT 2026**."
+      "date": "Mar 2026",
+      "text": "Concluded eighteen months as Data Scientist at **Othello Financial Services**, Osaka, and returned to Dhaka."
+    },
+    {
+      "date": "Oct 2024",
+      "text": "Joined **Othello Financial Services**, Osaka, as a **Data Scientist** on the AGiFT AI Camera team."
+    },
+    {
+      "date": "Sep 2024",
+      "text": "Relocated to **Japan**."
+    },
+    {
+      "date": "May 2024",
+      "text": "Graduated from **Comilla University** with a BSc in Computer Science & Engineering."
+    },
+    {
+      "date": "Feb 2024",
+      "text": "Joined a **Bangladesh government project** as AI Engineer, leading a three-person team until July 2024."
+    },
+    {
+      "date": "Jan 2023",
+      "text": "Began work as a **Research Assistant** at Comilla University under Partha Chakraborty, on human–robot interaction and OCR."
     }
   ],
   "metrics": [
@@ -52,7 +72,7 @@
     },
     {
       "value": "3",
-      "label": "Peer-reviewed papers, IEEE Xplore & Springer Nature"
+      "label": "Peer-reviewed papers published, plus one under review"
     }
   ],
   "researchStatement": [
@@ -80,36 +100,49 @@
   ],
   "publications": [
     {
+      "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
+      "authors": "**Md Abu Sayeb Rayhan** et al.",
+      "venue": "IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026",
+      "year": "2026",
+      "tags": [
+        "IEEE"
+      ],
+      "status": "Under review",
+      "link": "",
+      "note": "Evidential deep learning for medical decision support, using **reliability gating** to weight each modality by how trustworthy its evidence is — so the model abstains rather than guessing when inputs are unreliable.",
+      "bibkey": "rayhan2026rgef"
+    },
+    {
       "title": "Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles",
-      "authors": "M. A. S. Rayhan et al.",
+      "authors": "**Md Abu Sayeb Rayhan**, Ajoy Shutradhar, Hustagna Hiya",
       "venue": "IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026",
       "year": "2026",
       "tags": [
         "IEEE Xplore",
         "Scopus-indexed"
       ],
-      "status": "In press",
-      "link": "",
+      "status": "",
+      "link": "https://ieeexplore.ieee.org/document/11546484",
       "note": "Detecting AI-generated imagery through **physics-informed invariants** rather than learned artefacts. Combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator — the failure mode most detectors share.",
       "bibkey": "rayhan2026forensic"
     },
     {
       "title": "BD Eye-Doc: When Computer Vision Meets Conversational AI for Scalable Eye Disease Screening in Bangladesh",
-      "authors": "M. A. S. Rayhan et al.",
+      "authors": "Ajoy Shutradhar, **Md Abu Sayeb Rayhan**, Mahmuda Khatun, Bishwajit Das",
       "venue": "IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026",
       "year": "2026",
       "tags": [
         "IEEE Xplore",
         "Scopus-indexed"
       ],
-      "status": "In press",
-      "link": "",
+      "status": "",
+      "link": "https://ieeexplore.ieee.org/document/11546216",
       "note": "Pairs an image-classification pipeline with a conversational interface so that screening can be delivered where ophthalmologists are scarce. The design question is less about accuracy than about **deployability in low-resource clinical settings**.",
       "bibkey": "rayhan2026bdeyedoc"
     },
     {
       "title": "Is CNN Dead? A Comprehensive Empirical Analysis of Convolutional Neural Networks, Ensemble Methods, and Vision Transformers for Rice Leaf Disease Classification in Low-Resource Agricultural Settings",
-      "authors": "M. A. S. Rayhan et al.",
+      "authors": "**Md Abu Sayeb Rayhan** et al.",
       "venue": "International Conference on Emerging Computing and Communication Technologies (ECCT) 2026 · Advances in Computer Science Research, Atlantis Press (Springer Nature)",
       "year": "2026",
       "tags": [
@@ -126,13 +159,13 @@
       "title": "Forensic Invariant Learning for Synthetic Image Detection",
       "venue": "IEEE QPAIN 2026",
       "year": "2026",
-      "type": "Conference presentation"
+      "type": "Conference presentation · Best Presenter Award"
     },
     {
       "title": "BD Eye-Doc: Computer Vision Meets Conversational AI for Eye Disease Screening",
       "venue": "IEEE QPAIN 2026",
       "year": "2026",
-      "type": "Conference presentation"
+      "type": "Conference presentation · Best Presenter Award"
     },
     {
       "title": "Is CNN Dead? CNNs, Ensembles and Vision Transformers for Rice Leaf Disease Classification",
@@ -289,6 +322,11 @@
     "thesisDesc": "Fine-tuned **Stable Diffusion** with a U-Net backbone on a purpose-built dataset of Bangladeshi landmarks, including Salbon Bihar and the Comilla University Gate. Examined prompt engineering and **conditioning mechanisms** as levers on generative fidelity, with OpenCV post-processing for artefact reduction."
   },
   "awards": [
+    {
+      "year": "2026",
+      "title": "Best Presenter Award, IEEE QPAIN 2026",
+      "detail": "Recognised for paper presentation at the IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking."
+    },
     {
       "year": "2023–2024",
       "title": "Joint Secretary, North Bengal Student Association",

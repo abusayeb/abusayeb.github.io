@@ -272,6 +272,12 @@ footer a:hover{color:var(--accent)}
 function esc(s){ return String(s==null?'':s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function rich(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<span class="kw">$1</span>'); }
+// Papers under review aren't peer-reviewed yet — don't count them as such.
+function pubMetaCount(d){
+  return (d.publications||[]).filter(function(p){
+    return !/review/i.test(String(p.status||''));
+  }).length;
+}
 
 function render(d){
   var P = d.profile||{}, out = [];
@@ -297,7 +303,7 @@ function render(d){
     '</div><div class="hero-meta">' +
       '<span>📍 ' + esc(P.location) + '</span>' +
       '<span>🎓 ' + esc((d.education||{}).degree) + '</span>' +
-      '<span>📄 ' + (d.publications||[]).length + ' peer-reviewed publications</span>' +
+      '<span>📄 ' + pubMetaCount(d) + ' peer-reviewed publications</span>' +
     '</div>' +
     ((d.metrics||[]).length ? '<div class="metrics">' + d.metrics.map(function(m){
       return '<div class="metric"><div class="metric-n">' + esc(m.value) + '</div>' +
@@ -352,8 +358,11 @@ function render(d){
     }).join('') + '</div></div></section>');
 
   /* publications */
+  var pubCount = (d.publications||[]).filter(function(p){
+    return !/review/i.test(String(p.status||''));
+  }).length;
   out.push(head('publications','Publications',
-      (d.publications||[]).length + ' peer-reviewed papers. Full detail on the <a href="research/">research portfolio</a>.') +
+      pubCount + ' peer-reviewed papers. Full detail on the <a href="research/">research portfolio</a>.') +
     '<div class="pubs">' + (d.publications||[]).map(function(p){
       var t = p.link ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>' : esc(p.title);
       return '<article class="pub"><div class="pub-title">' + t + '</div><div class="pub-meta">' +
