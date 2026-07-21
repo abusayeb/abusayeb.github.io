@@ -15,7 +15,7 @@
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
     "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
-    "summaryResearch": "I am a computer-vision researcher with three peer-reviewed papers and eighteen months of industry experience deploying perception systems at scale. My work sits where **visual perception**, **generative modelling** and **language understanding** meet, and I am looking for a research-based Master's position where I can pursue that intersection properly.",
+    "summaryResearch": "I am a computer-vision researcher with four conference papers (two published, one in press, one under review) and eighteen months of industry experience deploying perception systems at scale. I am now looking to move from vision applied to images toward **robotics, automation and embedded AI**, where perception has to work under real hardware and control constraints.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
     "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
@@ -73,8 +73,8 @@
       "label": "Detection accuracy on custom-trained YOLO models"
     },
     {
-      "value": "3",
-      "label": "Peer-reviewed papers published, plus one under review"
+      "value": "4",
+      "label": "Conference papers: 2 published, 1 in press, 1 under review"
     }
   ],
   "researchStatement": [
@@ -97,7 +97,7 @@
     },
     {
       "title": "Robotics, automation & embedded AI",
-      "desc": "Where I want to go next: AI systems that couple directly to hardware, sensors and real-time control, not just images. My IoT edge-device integration at Othello and RGEF's abstention logic are the closest existing threads to pull on."
+      "desc": "Where I want to go next: AI systems that couple directly to hardware, sensors and real-time control, not just images. My IoT edge-device integration and 70%-latency-reduction work at Othello, an ADAS lane and vehicle detection project, and RGEF's abstention logic are the closest existing threads to pull on."
     }
   ],
   "publications": [
@@ -317,7 +317,8 @@
         "OpenCV"
       ],
       "role": "",
-      "link": "https://github.com/abusayeb/adas-lane-vehicle-detection"
+      "link": "https://github.com/abusayeb/adas-lane-vehicle-detection",
+      "pages": "both"
     }
   ],
   "education": {
@@ -386,6 +387,11 @@
       "research": true
     },
     {
+      "label": "Systems & real-time deployment",
+      "items": "Edge/IoT device integration · Real-time inference optimisation · Parallel processing under latency budgets · Production computer-vision pipelines (Azure)",
+      "research": true
+    },
+    {
       "label": "Cloud & infrastructure",
       "items": "Microsoft Azure (Databricks, DevOps) · Docker · CI/CD · Git · Flask · PyQt",
       "research": false
@@ -434,6 +440,10 @@
     {
       "q": "How far can generative simulation substitute for data a physical system can't collect on its own?",
       "a": "Low-resource settings and robots trained largely in simulation share the same data problem, and my thesis work on diffusion models points at one route around it. The open question is which properties of simulated data actually transfer to real hardware, and how to tell before deployment rather than discovering the sim-to-real gap after."
+    },
+    {
+      "q": "How do embedded compute and latency budgets change what counts as good perception?",
+      "a": "At Othello, cutting inference latency by ~70% meant trading model complexity against a fixed processing budget for retail video, a generous budget compared to robotics. I want to study how that trade-off holds under the far tighter latency and power constraints of an embedded robotic platform, and whether the architectural choices that worked there even apply."
     }
   ]
 }
