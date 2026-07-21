@@ -216,6 +216,18 @@ function esc(s){ return String(s==null?'':s)
 function rich(s){ return esc(s).replace(/\*\*(.+?)\*\*/g, '<span class="kw">$1</span>'); }
 function el(tag, html){ var e=document.createElement(tag); if(html!=null) e.innerHTML=html; return e; }
 
+// Published work first, then in press, then under review. Applied at render
+// time so newly added papers always land in the right place.
+function pubRank(p){
+  var s = String(p.status||'').toLowerCase();
+  if(s.indexOf('review') > -1) return 2;
+  if(s.indexOf('press')  > -1) return 1;
+  return 0;
+}
+function sortPubs(list){
+  return (list||[]).slice().sort(function(a,b){ return pubRank(a) - pubRank(b); });
+}
+
 function bibtex(p, name){
   var venue = String(p.venue||'').split('·')[0].trim();
   return '@inproceedings{' + (p.bibkey||'rayhan'+(p.year||'')) + ',\n' +
@@ -295,7 +307,7 @@ function render(d){
       '<p style="font-size:14.6px;color:var(--muted);margin-bottom:20px;">' +
       'Peer-reviewed conference papers: ' + summary + '. ' +
       'Click <em>BibTeX</em> to copy a citation.</p><ol class="pub-list">' +
-      d.publications.map(function(p,i){
+      sortPubs(d.publications).map(function(p,i){
         var title = p.link
           ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>'
           : esc(p.title);
