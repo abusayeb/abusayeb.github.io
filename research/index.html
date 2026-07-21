@@ -208,6 +208,7 @@ footer{border-top:1px solid var(--rule);padding:26px 0 40px;margin-top:18px;
       <a href="#publications">Publications</a>
       <a href="#directions">Open questions</a>
       <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
       <a href="#education">Education</a>
       <a href="../" class="switch">Industry portfolio →</a>
     </nav>
@@ -383,6 +384,26 @@ function render(d){
     (research.length ? '<h2>Research experience</h2>' + research.map(entry).join('') : '') +
     (industry.length ? '<h2 style="margin-top:30px">Applied research &amp; engineering</h2>' + industry.map(entry).join('') : '') +
     '</section>');
+
+  /* relevant projects — a curated subset that speaks to where the research is heading,
+     tagged in data.json via pages:"research" or pages:"both". Most projects live only
+     on the industry page; this keeps the research page focused rather than duplicating. */
+  var relProjects = (d.projects||[]).filter(function(p){ return p.pages === 'research' || p.pages === 'both'; });
+  if(relProjects.length){
+    out.push('<section id="projects"><h2>Relevant projects</h2>' +
+      relProjects.map(function(p){
+        var title = p.link
+          ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>'
+          : esc(p.title);
+        return '<div class="entry"><div class="entry-head"><h3>' + title + '</h3>' +
+          '<span class="entry-date">' + esc(p.date) + '</span></div>' +
+          (p.role ? '<div class="entry-where">' + esc(p.role) + '</div>' : '') +
+          '<p style="font-size:15px;margin-top:8px;">' + rich(p.desc) + '</p>' +
+          (p.impact ? '<p style="font-size:13.9px;color:var(--muted);margin-top:4px;">' +
+            '<b style="color:var(--ink)">Impact:</b> ' + esc(p.impact) + '</p>' : '') +
+        '</div>';
+      }).join('') + '</section>');
+  }
 
   /* talks */
   if((d.talks||[]).length){
