@@ -293,16 +293,8 @@ function render(d){
         '<a href="' + esc(P.github) + '" target="_blank" rel="noopener">GitHub</a>' +
       '</div></div></div></header>');
 
-  /* news */
-  if((d.news||[]).length){
-    out.push('<section id="news"><h2>News</h2><ul class="news">' +
-      d.news.map(function(n){
-        return '<li><span class="news-date">' + esc(n.date) + '</span>' +
-               '<span>' + rich(n.text) + '</span></li>';
-      }).join('') + '</ul></section>');
-  }
-
-  /* research statement */
+  /* research statement — professors want to know what you think about before
+     anything else, so this comes straight after the hero */
   out.push('<section id="research"><h2>Research interests</h2>' +
     (d.researchStatement||[]).map(function(p,i){
       return '<p' + (i===0?' class="lead"':'') + '>' + rich(p) + '</p>';
@@ -315,18 +307,8 @@ function render(d){
       }).join('') + '</div>' : '') +
     '</section>');
 
-  /* open questions I want to work on */
-  if((d.futureDirections||[]).length){
-    out.push('<section id="directions"><h2>Questions I want to work on</h2>' +
-      '<p style="font-size:14.6px;color:var(--muted);margin-bottom:20px;">' +
-      'Each of these extends something I have already built rather than starting from scratch.</p>' +
-      d.futureDirections.map(function(f){
-        return '<div class="q-item"><div class="q-q">' + rich(f.q) + '</div>' +
-               '<p class="q-a">' + rich(f.a) + '</p></div>';
-      }).join('') + '</section>');
-  }
-
-  /* publications */
+  /* publications — the hard evidence, comes right after the pitch and before
+     the more speculative open questions */
   if((d.publications||[]).length){
     // State an accurate breakdown rather than lumping everything together.
     var counts = {published:0, press:0, review:0};
@@ -368,6 +350,17 @@ function render(d){
       }).join('') + '</ol></section>');
   }
 
+  /* open questions I want to work on */
+  if((d.futureDirections||[]).length){
+    out.push('<section id="directions"><h2>Questions I want to work on</h2>' +
+      '<p style="font-size:14.6px;color:var(--muted);margin-bottom:20px;">' +
+      'Each of these extends something I have already built rather than starting from scratch.</p>' +
+      d.futureDirections.map(function(f){
+        return '<div class="q-item"><div class="q-q">' + rich(f.q) + '</div>' +
+               '<p class="q-a">' + rich(f.a) + '</p></div>';
+      }).join('') + '</section>');
+  }
+
   /* experience */
   var research = (d.experience||[]).filter(function(e){ return e.kind==='research'; });
   var industry = (d.experience||[]).filter(function(e){ return e.kind!=='research'; });
@@ -405,16 +398,6 @@ function render(d){
       }).join('') + '</section>');
   }
 
-  /* talks */
-  if((d.talks||[]).length){
-    out.push('<section id="talks"><h2>Conference presentations</h2><ul class="simple-list">' +
-      d.talks.map(function(t){
-        return '<li><span class="sl-year">' + esc(t.year) + '</span><span class="sl-main">' +
-          '<b>' + esc(t.title) + '</b>' + esc(t.venue) +
-          (t.type ? ' · ' + esc(t.type) : '') + '</span></li>';
-      }).join('') + '</ul></section>');
-  }
-
   /* education */
   var E = d.education || {};
   out.push('<section id="education"><h2>Education</h2><div class="entry">' +
@@ -427,6 +410,16 @@ function render(d){
       '<div class="thesis-title">' + esc(E.thesisTitle) + '</div>' +
       '<p>' + rich(E.thesisDesc) + '</p></div>' : '') +
     '</div></section>');
+
+  /* talks */
+  if((d.talks||[]).length){
+    out.push('<section id="talks"><h2>Conference presentations</h2><ul class="simple-list">' +
+      d.talks.map(function(t){
+        return '<li><span class="sl-year">' + esc(t.year) + '</span><span class="sl-main">' +
+          '<b>' + esc(t.title) + '</b>' + esc(t.venue) +
+          (t.type ? ' · ' + esc(t.type) : '') + '</span></li>';
+      }).join('') + '</ul></section>');
+  }
 
   /* awards — entries marked industry-only are left off the research page */
   var awards = (d.awards||[]).filter(function(a){ return a.pages !== 'industry'; });
@@ -446,6 +439,17 @@ function render(d){
         return '<div class="sk-row"><div class="sk-label">' + esc(s.label) + '</div>' +
                '<div class="sk-val">' + esc(s.items) + '</div></div>';
       }).join('') + '</section>');
+  }
+
+  /* news — kept, but lower down: a professor evaluating fit reads statement,
+     evidence and experience first, and treats a chronological update log as
+     supplementary context rather than something to lead with */
+  if((d.news||[]).length){
+    out.push('<section id="news"><h2>News</h2><ul class="news">' +
+      d.news.map(function(n){
+        return '<li><span class="news-date">' + esc(n.date) + '</span>' +
+               '<span>' + rich(n.text) + '</span></li>';
+      }).join('') + '</ul></section>');
   }
 
   /* references */
