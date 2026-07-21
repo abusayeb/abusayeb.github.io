@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Abu Sayeb Rayhan — AI Engineer | Computer Vision, LLMs &amp; RAG</title>
+<meta name="description" content="AI Engineer and Data Scientist in Tokyo specialising in computer vision, large language models and RAG systems. Published researcher in synthetic image detection, medical imaging and agricultural AI.">
+<meta name="author" content="Md Abu Sayeb Rayhan">
+<meta property="og:title" content="Md Abu Sayeb Rayhan — AI Engineer">
+<meta property="og:description" content="Computer vision, LLMs and RAG. Production AI systems in Tokyo. Published in IEEE Xplore and Springer Nature.">
+<meta property="og:type" content="website">
+<link rel="icon" href="https://github.com/abusayeb.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0e17;--bg-2:#0f1521;--card:#131a28;--card-2:#172032;
+  --line:#1f2a3d;--line-2:#2a3852;
+  --text:#e8edf7;--muted:#94a3b8;--dim:#64748b;
+  --accent:#38bdf8;--accent-2:#22d3ee;--accent-dim:rgba(56,189,248,.12);
+  --gold:#fbbf24;
+  --max:1080px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;font-size:16px;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:#04121c}
+
+body::before{
+  content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50%);
+  width:1100px;height:700px;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at center,rgba(56,189,248,.10),transparent 65%);
+  filter:blur(40px);
+}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,14,23,.82);backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;transition:border-color .3s,background .3s;
+}
+nav.scrolled{border-bottom-color:var(--line);background:rgba(10,14,23,.94)}
+.nav-in{
+  max-width:var(--max);margin:0 auto;padding:0 28px;height:62px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.brand{font-weight:700;font-size:15px;letter-spacing:-.01em;white-space:nowrap}
+.brand span{color:var(--accent)}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{
+  font-size:14px;color:var(--muted);font-weight:500;
+  transition:color .2s;position:relative;padding:4px 0;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;
+  background:var(--accent);transition:width .25s;
+}
+.nav-links a:hover::after{width:100%}
+.nav-cv{
+  background:var(--accent);color:#04121c !important;padding:7px 15px;
+  border-radius:7px;font-weight:600;font-size:13.5px;transition:all .2s;
+}
+.nav-cv:hover{background:var(--accent-2);transform:translateY(-1px)}
+.nav-cv::after{display:none !important}
+.menu-btn{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:4px}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px;position:relative;z-index:1}
+section{padding:92px 0;scroll-margin-top:62px}
+.sec-head{margin-bottom:44px}
+.sec-tag{
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);
+  letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;display:block;font-weight:500;
+}
+.sec-title{font-size:clamp(26px,4vw,34px);font-weight:700;letter-spacing:-.025em;line-height:1.2}
+.sec-sub{color:var(--muted);margin-top:10px;font-size:15.5px;max-width:640px}
+
+.hero{padding:150px 0 84px;position:relative}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent-dim);border:1px solid rgba(56,189,248,.25);
+  color:var(--accent);padding:6px 14px;border-radius:100px;
+  font-size:13px;font-weight:500;margin-bottom:26px;
+}
+.pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 0 rgba(56,189,248,.7);animation:pulse 2.4s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(56,189,248,.6)}
+  70%{box-shadow:0 0 0 9px rgba(56,189,248,0)}
+  100%{box-shadow:0 0 0 0 rgba(56,189,248,0)}
+}
+.hero h1{
+  font-size:clamp(38px,7vw,62px);font-weight:800;line-height:1.05;
+  letter-spacing:-.035em;margin-bottom:18px;
+}
+.hero h1 .grad{
+  background:linear-gradient(120deg,var(--accent) 0%,var(--accent-2) 50%,#a78bfa 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-role{
+  font-size:clamp(17px,2.6vw,21px);color:var(--text);font-weight:600;
+  margin-bottom:18px;letter-spacing:-.01em;
+}
+.hero-role em{color:var(--accent);font-style:normal}
+.hero-desc{font-size:16.5px;color:var(--muted);max-width:610px;margin-bottom:32px;line-height:1.75}
+.hero-desc strong{color:var(--text);font-weight:600}
+.hero-cta{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:20px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 22px;
+  border-radius:9px;font-weight:600;font-size:14.5px;transition:all .22s;
+  border:1px solid transparent;cursor:pointer;
+}
+.btn-1{background:var(--accent);color:#04121c}
+.btn-1:hover{background:var(--accent-2);transform:translateY(-2px);box-shadow:0 8px 22px rgba(56,189,248,.28)}
+.btn-2{background:transparent;border-color:var(--line-2);color:var(--text)}
+.btn-2:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-meta{
+  display:flex;gap:22px;flex-wrap:wrap;color:var(--dim);font-size:14px;
+  padding-top:8px;
+}
+.hero-meta span{display:inline-flex;align-items:center;gap:7px}
+
+.metrics{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:14px;
+  overflow:hidden;margin-top:52px;
+}
+.metric{background:var(--bg-2);padding:26px 22px;transition:background .25s}
+.metric:hover{background:var(--card-2)}
+.metric-n{
+  font-size:clamp(28px,4.4vw,38px);font-weight:800;letter-spacing:-.035em;
+  color:var(--accent);line-height:1;margin-bottom:8px;
+}
+.metric-l{font-size:13px;color:var(--muted);line-height:1.45}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:26px;transition:all .25s;position:relative;overflow:hidden;
+}
+.card:hover{border-color:var(--line-2);background:var(--card-2);transform:translateY(-2px)}
+
+.pubs{display:flex;flex-direction:column;gap:16px}
+.pub{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:26px 28px;transition:all .25s;border-left:3px solid var(--accent);
+}
+.pub:hover{background:var(--card-2);border-left-color:var(--accent-2);transform:translateX(3px)}
+.pub-title{font-size:16.5px;font-weight:650;line-height:1.45;margin-bottom:12px;letter-spacing:-.012em}
+.pub-meta{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.venue{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:500;
+  padding:4px 10px;border-radius:5px;background:var(--accent-dim);
+  color:var(--accent);border:1px solid rgba(56,189,248,.22);
+}
+.venue.idx{background:rgba(251,191,36,.1);color:var(--gold);border-color:rgba(251,191,36,.25)}
+.pub-note{color:var(--dim);font-size:13px}
+
+.tl{position:relative;padding-left:30px}
+.tl::before{
+  content:'';position:absolute;left:6px;top:8px;bottom:8px;width:1.5px;
+  background:linear-gradient(180deg,var(--accent),var(--line) 85%);
+}
+.tl-item{position:relative;padding-bottom:38px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:'';position:absolute;left:-30px;top:7px;width:13px;height:13px;
+  border-radius:50%;background:var(--bg);border:2.5px solid var(--accent);
+}
+.tl-item.past::before{border-color:var(--line-2)}
+.tl-date{
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);
+  margin-bottom:6px;font-weight:500;
+}
+.tl-item.past .tl-date{color:var(--dim)}
+.tl-role{font-size:18px;font-weight:680;letter-spacing:-.015em;margin-bottom:3px}
+.tl-org{color:var(--muted);font-size:14.5px;margin-bottom:13px}
+.tl-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.tl-list li{
+  position:relative;padding-left:19px;color:var(--muted);font-size:14.8px;line-height:1.62;
+}
+.tl-list li::before{
+  content:'';position:absolute;left:0;top:9px;width:5px;height:5px;
+  border-radius:50%;background:var(--line-2);
+}
+.tl-list li strong{color:var(--text);font-weight:600}
+.hl{color:var(--accent);font-weight:650}
+
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.proj{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:26px;transition:all .25s;display:flex;flex-direction:column;
+}
+.proj:hover{border-color:rgba(56,189,248,.4);background:var(--card-2);transform:translateY(-3px)}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:11px}
+.proj-title{font-size:17.5px;font-weight:680;letter-spacing:-.018em;line-height:1.3}
+.proj-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);white-space:nowrap;padding-top:4px}
+.proj-desc{color:var(--muted);font-size:14.6px;line-height:1.65;margin-bottom:16px;flex:1}
+.proj-impact{
+  display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;
+  color:var(--accent);background:var(--accent-dim);padding:6px 12px;
+  border-radius:6px;margin-bottom:15px;align-self:flex-start;
+}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tag{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);
+  background:var(--bg-2);border:1px solid var(--line);padding:3.5px 9px;border-radius:5px;
+}
+.proj-link{
+  font-size:13.5px;color:var(--accent);font-weight:600;
+  display:inline-flex;align-items:center;gap:6px;transition:gap .2s;margin-top:auto;
+}
+.proj-link:hover{gap:10px}
+
+.research-box{
+  background:linear-gradient(135deg,var(--card) 0%,var(--bg-2) 100%);
+  border:1px solid var(--line);border-radius:16px;padding:32px;
+}
+.ri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.ri{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:18px;
+  transition:all .25s;
+}
+.ri:hover{border-color:rgba(56,189,248,.35);transform:translateY(-2px)}
+.ri-t{font-size:14.5px;font-weight:650;margin-bottom:6px;color:var(--text)}
+.ri-d{font-size:13.2px;color:var(--dim);line-height:1.55}
+
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.sk-cat{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:22px 24px}
+.sk-h{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;font-weight:500;
+}
+.sk-items{display:flex;gap:7px;flex-wrap:wrap}
+.sk{
+  font-size:13.2px;color:var(--muted);background:var(--bg-2);
+  border:1px solid var(--line);padding:5px 11px;border-radius:6px;transition:all .2s;
+}
+.sk:hover{color:var(--text);border-color:var(--line-2);background:var(--card-2)}
+
+.edu{
+  display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;
+}
+.edu-deg{font-size:18.5px;font-weight:680;letter-spacing:-.015em;margin-bottom:4px}
+.edu-school{color:var(--muted);font-size:15px;margin-bottom:16px}
+.edu-gpa{
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);
+  background:var(--accent-dim);padding:6px 13px;border-radius:7px;white-space:nowrap;
+  border:1px solid rgba(56,189,248,.22);
+}
+.thesis{border-top:1px solid var(--line);padding-top:16px;margin-top:4px}
+.thesis-l{
+  font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px;
+}
+.thesis-t{font-size:15px;font-weight:620;margin-bottom:7px}
+.thesis-d{color:var(--muted);font-size:14.2px;line-height:1.65}
+
+.extras{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.ex-h{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:13px;font-weight:500;
+}
+.ex-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ex-list li{color:var(--muted);font-size:13.8px;line-height:1.55;padding-left:15px;position:relative}
+.ex-list li::before{content:'';position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:50%;background:var(--accent)}
+.ex-list li strong{color:var(--text);font-weight:600}
+
+.contact{
+  background:linear-gradient(135deg,var(--card) 0%,var(--bg-2) 100%);
+  border:1px solid var(--line);border-radius:18px;padding:52px 40px;text-align:center;
+}
+.contact h2{font-size:clamp(25px,4vw,33px);font-weight:750;letter-spacing:-.028em;margin-bottom:14px}
+.contact p{color:var(--muted);max-width:520px;margin:0 auto 30px;font-size:15.8px;line-height:1.7}
+.contact-links{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+
+footer{
+  border-top:1px solid var(--line);padding:30px 0;margin-top:80px;
+  text-align:center;color:var(--dim);font-size:13.5px;
+}
+footer a{color:var(--muted);transition:color .2s}
+footer a:hover{color:var(--accent)}
+
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .projects,.skills{grid-template-columns:1fr}
+  .ri-grid,.extras{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .nav-links{
+    position:fixed;top:62px;left:0;right:0;background:var(--bg-2);
+    flex-direction:column;align-items:stretch;gap:0;padding:0;
+    border-bottom:1px solid var(--line);max-height:0;overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  .nav-links.open{max-height:400px}
+  .nav-links a{padding:14px 28px;border-bottom:1px solid var(--line);font-size:15px}
+  .nav-links a::after{display:none}
+  .nav-cv{margin:14px 28px;text-align:center;border-bottom:none !important}
+  .menu-btn{display:block}
+  section{padding:64px 0}
+  .hero{padding:110px 0 60px}
+  .wrap,.nav-in{padding:0 20px}
+  .edu{grid-template-columns:1fr}
+  .contact{padding:38px 24px}
+  .tl{padding-left:24px}
+  .tl-item::before{left:-24px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand">Abu Sayeb <span>Rayhan</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="abu_sayeb_rayhan_cv.pdf" class="nav-cv" target="_blank" rel="noopener">CV</a>
+    </div>
+  </div>
+</nav>
+
+<div id="top"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-badge"><span class="pulse"></span> Open to research &amp; AI engineering roles</div>
+    <h1>Md Abu Sayeb<br><span class="grad">Rayhan</span></h1>
+    <div class="hero-role">AI Engineer &amp; Data Scientist — <em>Computer Vision, LLMs &amp; RAG</em></div>
+    <p class="hero-desc">
+      I build production AI systems that ship: real-time video analytics, multi-object tracking pipelines and
+      retrieval-augmented language systems deployed on Azure. Most recently at <strong>Othello Financial Services</strong>
+      in Japan, where I cut inference latency by <strong>70%</strong> and production costs by <strong>50%</strong>.
+      My research sits at the intersection of <strong>robot perception, embodied AI and multimodal vision-language models</strong>,
+      with three papers appearing in IEEE Xplore and Springer Nature.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-1">Get in touch →</a>
+      <a href="abu_sayeb_rayhan_cv.pdf" class="btn btn-2" target="_blank" rel="noopener">Academic CV</a>
+      <a href="abu_sayeb_rayhan_AI.pdf" class="btn btn-2" target="_blank" rel="noopener">Industry CV</a>
+    </div>
+    <div class="hero-meta">
+      <span>📍 Tokyo, Japan</span>
+      <span>🎓 BSc CSE, Comilla University</span>
+      <span>📄 3 peer-reviewed publications</span>
+    </div>
+
+    <div class="metrics rv">
+      <div class="metric">
+        <div class="metric-n">70%</div>
+        <div class="metric-l">Inference latency reduced in real-time analytics pipeline</div>
+      </div>
+      <div class="metric">
+        <div class="metric-n">50%</div>
+        <div class="metric-l">Production cost cut via automated video generation</div>
+      </div>
+      <div class="metric">
+        <div class="metric-n">90%+</div>
+        <div class="metric-l">Detection accuracy on custom-trained YOLO models</div>
+      </div>
+      <div class="metric">
+        <div class="metric-n">3</div>
+        <div class="metric-l">Papers in IEEE Xplore &amp; Springer Nature (2026)</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-tag">01 — Research</span>
+      <h2 class="sec-title">Research interests</h2>
+      <p class="sec-sub">Working toward intelligent autonomous systems that perceive, reason about and act in the physical world.</p>
+    </div>
+    <div class="research-box rv">
+      <p style="color:var(--muted);font-size:15.8px;line-height:1.78;">
+        My work centres on <strong style="color:var(--text)">robot perception, embodied AI and intelligent autonomous systems</strong>.
+        In practice that means computer vision that holds up outside the benchmark — multi-object tracking, human activity
+        recognition and pose estimation on messy real-world video — combined with multimodal vision-language models and
+        generative models for simulation and robotic learning. I am particularly interested in how generative simulation
+        can close the data gap for embodied agents.
+      </p>
+      <div class="ri-grid">
+        <div class="ri">
+          <div class="ri-t">Robot Perception</div>
+          <div class="ri-d">Multi-object tracking, pose estimation and activity recognition for agents operating in unstructured environments.</div>
+        </div>
+        <div class="ri">
+          <div class="ri-t">Multimodal VLMs</div>
+          <div class="ri-d">Vision-language models for grounded scene understanding and instruction following.</div>
+        </div>
+        <div class="ri">
+          <div class="ri-t">Generative Simulation</div>
+          <div class="ri-d">Diffusion models for synthetic data generation, simulation and robotic learning at scale.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-tag">02 — Publications</span>
+      <h2 class="sec-title">Peer-reviewed work</h2>
+      <p class="sec-sub">Three papers presented in 2026, spanning synthetic media forensics, medical imaging and agricultural AI.</p>
+    </div>
+    <div class="pubs">
+      <article class="pub rv">
+        <div class="pub-title">Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles</div>
+        <div class="pub-meta">
+          <span class="venue">IEEE QPAIN 2026</span>
+          <span class="venue idx">IEEE Xplore · Scopus</span>
+          <span class="pub-note">Physics-informed features with a six-model ensemble for AI-generated image detection</span>
+        </div>
+      </article>
+      <article class="pub rv">
+        <div class="pub-title">BD Eye-Doc: When Computer Vision Meets Conversational AI for Scalable Eye Disease Screening in Bangladesh</div>
+        <div class="pub-meta">
+          <span class="venue">IEEE QPAIN 2026</span>
+          <span class="venue idx">IEEE Xplore · Scopus</span>
+          <span class="pub-note">Vision and LLM pipeline for low-resource clinical screening</span>
+        </div>
+      </article>
+      <article class="pub rv">
+        <div class="pub-title">Is CNN Dead? A Comprehensive Empirical Analysis of Convolutional Neural Networks, Ensemble Methods, and Vision Transformers for Rice Leaf Disease Classification in Low-Resource Agricultural Settings</div>
+        <div class="pub-meta">
+          <span class="venue">ECCT 2026</span>
+          <span class="venue idx">ACSR · Atlantis Press (Springer Nature)</span>
+          <span class="pub-note">CNN versus ViT benchmark under low-resource constraints</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-tag">03 — Experience</span>
+      <h2 class="sec-title">Where I've worked</h2>
+    </div>
+    <div class="tl">
+      <div class="tl-item rv">
+        <div class="tl-date">Oct 2024 — Oct 2025 · Tokyo, Japan</div>
+        <div class="tl-role">Data Scientist</div>
+        <div class="tl-org">Othello Financial Services Co. Ltd. — AGiFT AI Camera team</div>
+        <ul class="tl-list">
+          <li>Built multi-object tracking (<strong>ByteTrack</strong>), pose estimation (<strong>MoveNet</strong>) and human activity recognition (<strong>MMAction2</strong>) pipelines for automated retail behaviour analysis.</li>
+          <li>Designed a spatial clustering pipeline (OPTICS over pose-estimation outputs) for group-dynamics modelling; parallel inference optimisation reduced processing latency by <span class="hl">~70%</span>.</li>
+          <li>Developed a video event-segmentation system on a fine-tuned YOLO detector at <span class="hl">90%+ accuracy</span>, automating highlight extraction and cutting NFT production cost by <span class="hl">50%</span>.</li>
+          <li>Implemented a RAG conversational system (<strong>LangChain, Pinecone, GPT-4</strong>) for context-aware document querying, deployed on <strong>Microsoft Azure</strong>.</li>
+          <li>Integrated IoT edge devices feeding real-time computer vision pipelines for automated retail data acquisition.</li>
+        </ul>
+      </div>
+      <div class="tl-item past rv">
+        <div class="tl-date">Feb 2024 — Jul 2024 · Bangladesh</div>
+        <div class="tl-role">AI Engineer <span style="font-weight:400;color:var(--dim);font-size:14px">(Contractual)</span></div>
+        <div class="tl-org">Bangladesh Government Project</div>
+        <ul class="tl-list">
+          <li>Developed a multilingual (Bangla/English) <strong>NLP and OCR</strong> pipeline for keyword and context-based retrieval across PDF, Word, Excel and image formats.</li>
+          <li>Shipped as a desktop application built with <strong>PyQt and ChromaDB</strong>.</li>
+          <li>Led a three-person team across the full product lifecycle, from design through deployment.</li>
+        </ul>
+      </div>
+      <div class="tl-item past rv">
+        <div class="tl-date">Jan 2023 — Mar 2024 · Comilla University</div>
+        <div class="tl-role">Research Assistant</div>
+        <div class="tl-org">Supervisor: Partha Chakraborty, Associate Professor, Dept. of CSE</div>
+        <ul class="tl-list">
+          <li>Contributed to empirical studies in <strong>Human–Robot Interaction</strong> and <strong>Optical Character Recognition</strong>: dataset design, experiment execution and quantitative analysis.</li>
+          <li>Prepared and validated results subsequently incorporated into peer-reviewed conference publications.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-tag">04 — Projects</span>
+      <h2 class="sec-title">Selected work</h2>
+      <p class="sec-sub">Production systems and research prototypes. Code for open projects lives on GitHub.</p>
+    </div>
+    <div class="projects">
+
+      <article class="proj rv">
+        <div class="proj-top">
+          <div class="proj-title">Universal NFT Generation Platform</div>
+          <div class="proj-date">Jul–Oct 2025</div>
+        </div>
+        <p class="proj-desc">Extended a sports-specific NFT system into a general platform handling user-generated video across festivals, concerts and other domains. Fine-tuned action detection models and built the pipeline for automated clip creation.</p>
+        <div class="tags"><span class="tag">MMAction2</span><span class="tag">OpenCV</span><span class="tag">MoviePy</span><span class="tag">Azure DevOps</span></div>
+        <span class="proj-link" style="color:var(--dim)">Implementation lead · Team of 3</span>
+      </article>
+
+      <article class="proj rv">
+        <div class="proj-top">
+          <div class="proj-title">Sports NFT Generation System</div>
+          <div class="proj-date">Feb–Jul 2025</div>
+        </div>
+        <p class="proj-desc">Trained a custom object detection model and built a real-time video processing pipeline that automatically identifies key moments in sports games and generates clips without human intervention.</p>
+        <div class="proj-impact">⚡ 90% accuracy · 50% cost reduction</div>
+        <div class="tags"><span class="tag">YOLO</span><span class="tag">ByteTrack</span><span class="tag">OpenCV</span><span class="tag">MoviePy</span></div>
+        <a href="https://github.com/abusayeb/basketball-highlight-generator" class="proj-link" target="_blank" rel="noopener">Related open-source work →</a>
+      </article>
+
+      <article class="proj rv">
+        <div class="proj-top">
+          <div class="proj-title">Real-Time In-Store Behaviour Analytics</div>
+          <div class="proj-date">Oct 2024–Jan 2025</div>
+        </div>
+        <p class="proj-desc">Real-time system detecting customer groups and product interest from in-store camera feeds, using pose estimation and density-based spatial clustering. Parallel processing brought latency down dramatically.</p>
+        <div class="proj-impact">⚡ ~70% latency reduction</div>
+        <div class="tags"><span class="tag">MoveNet</span><span class="tag">OPTICS</span><span class="tag">Azure Databricks</span><span class="tag">Power BI</span></div>
+        <span class="proj-link" style="color:var(--dim)">System developer · Team of 3</span>
+      </article>
+
+      <article class="proj rv">
+        <div class="proj-top">
+          <div class="proj-title">RAG Customer Support Chatbot</div>
+          <div class="proj-date">Sep 2025</div>
+        </div>
+        <p class="proj-desc">End-to-end retrieval-augmented chatbot that retrieves relevant context from a vector index and generates accurate, grounded answers. Built and deployed solo on Azure.</p>
+        <div class="tags"><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">GPT-4</span><span class="tag">Flask</span><span class="tag">Azure</span></div>
+        <a href="https://github.com/abusayeb/rag-chatbot" class="proj-link" target="_blank" rel="noopener">View on GitHub →</a>
+      </article>
+
+      <article class="proj rv">
+        <div class="proj-top">
+          <div class="proj-title">Context Searcher</div>
+          <div class="proj-date">Feb–Jul 2024</div>
+        </div>
+        <p class="proj-desc">RAG-based desktop application for keyword and semantic search across PDF, DOCX, XLSX, TXT and images in both Bengali and English, combining OCR with dense embeddings. Led full-cycle development.</p>
+        <div class="tags"><span class="tag">OCR</span><span class="tag">LangChain</span><span class="tag">ChromaDB</span><span class="tag">PyQt</span><span class="tag">MongoDB</span></div>
+        <a href="https://github.com/abusayeb/keyword-file-searcher" class="proj-link" target="_blank" rel="noopener">Related open-source work →</a>
+      </article>
+
+      <article class="proj rv">
+        <div class="proj-top">
+          <div class="proj-title">ADAS Lane &amp; Vehicle Detection</div>
+          <div class="proj-date">Research project</div>
+        </div>
+        <p class="proj-desc">Real-time lane boundary and vehicle detection for advanced driver-assistance systems, combining a YOLOv5 detector fine-tuned on a custom dataset with classical computer vision for lane geometry.</p>
+        <div class="tags"><span class="tag">YOLOv5</span><span class="tag">PyTorch</span><span class="tag">OpenCV</span></div>
+        <a href="https://github.com/abusayeb/adas-lane-vehicle-detection" class="proj-link" target="_blank" rel="noopener">View on GitHub →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-tag">05 — Education</span>
+      <h2 class="sec-title">Academic background</h2>
+    </div>
+    <div class="edu rv">
+      <div>
+        <div class="edu-deg">BSc in Computer Science &amp; Engineering</div>
+        <div class="edu-school">Comilla University, Bangladesh · Jan 2019 — May 2024</div>
+        <div class="thesis">
+          <div class="thesis-l">Bachelor's Thesis · Sep 2023 – Jan 2024</div>
+          <div class="thesis-t">Text-to-Image Generation using Diffusion Models</div>
+          <div class="thesis-d">
+            Fine-tuned Stable Diffusion (U-Net backbone) on a custom dataset of Bangladeshi landmarks including
+            Salbon Bihar and the Comilla University Gate. Investigated prompt engineering and conditioning
+            mechanisms for generative fidelity, with OpenCV post-processing for artefact reduction.
+          </div>
+        </div>
+      </div>
+      <div class="edu-gpa">GPA 3.4 / 4.0</div>
+    </div>
+
+    <div class="extras">
+      <div class="card rv">
+        <div class="ex-h">Certifications</div>
+        <ul class="ex-list">
+          <li><strong>Skill Development for Mobile Game &amp; Application Development</strong> — ICT Division, Government of Bangladesh (2022)</li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <div class="ex-h">Honours &amp; Activities</div>
+        <ul class="ex-list">
+          <li>Participant, <strong>Inter-University Programming Contest</strong>, Comilla University (2019–2021)</li>
+          <li>Joint Secretary, North Bengal Student Association, Comilla University (2023–2024)</li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <div class="ex-h">Languages</div>
+        <ul class="ex-list">
+          <li><strong>Bangla</strong> — Native</li>
+          <li><strong>English</strong> — Business level, professional fluency</li>
+          <li><strong>Japanese</strong> — Conversational, studying toward N3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-tag">06 — Skills</span>
+      <h2 class="sec-title">Technical toolkit</h2>
+    </div>
+    <div class="skills">
+      <div class="sk-cat rv">
+        <div class="sk-h">Languages</div>
+        <div class="sk-items">
+          <span class="sk">Python (advanced)</span><span class="sk">C / C++</span><span class="sk">SQL</span><span class="sk">Java</span>
+        </div>
+      </div>
+      <div class="sk-cat rv">
+        <div class="sk-h">ML &amp; AI Frameworks</div>
+        <div class="sk-items">
+          <span class="sk">PyTorch</span><span class="sk">TensorFlow</span><span class="sk">Scikit-learn</span><span class="sk">Hugging Face</span><span class="sk">LangChain</span><span class="sk">Stable Diffusion</span><span class="sk">Pandas</span>
+        </div>
+      </div>
+      <div class="sk-cat rv">
+        <div class="sk-h">Computer Vision</div>
+        <div class="sk-items">
+          <span class="sk">OpenCV</span><span class="sk">YOLO</span><span class="sk">ByteTrack</span><span class="sk">MoveNet</span><span class="sk">MMAction2</span>
+        </div>
+      </div>
+      <div class="sk-cat rv">
+        <div class="sk-h">Methods</div>
+        <div class="sk-items">
+          <span class="sk">Object Detection</span><span class="sk">Action Recognition</span><span class="sk">Pose Estimation</span><span class="sk">Spatial Clustering</span><span class="sk">Diffusion Models</span><span class="sk">RAG</span><span class="sk">Dense Embeddings</span><span class="sk">Temporal Segmentation</span><span class="sk">OCR</span><span class="sk">NLP</span>
+        </div>
+      </div>
+      <div class="sk-cat rv">
+        <div class="sk-h">Cloud &amp; Infrastructure</div>
+        <div class="sk-items">
+          <span class="sk">Azure Databricks</span><span class="sk">Azure DevOps</span><span class="sk">Docker</span><span class="sk">CI/CD</span><span class="sk">Git</span><span class="sk">Flask</span><span class="sk">PyQt</span>
+        </div>
+      </div>
+      <div class="sk-cat rv">
+        <div class="sk-h">Data &amp; Storage</div>
+        <div class="sk-items">
+          <span class="sk">Pinecone</span><span class="sk">ChromaDB</span><span class="sk">MongoDB</span><span class="sk">Azure SQL</span><span class="sk">MySQL</span><span class="sk">Power BI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact rv">
+      <h2>Let's build something</h2>
+      <p>
+        I'm open to research collaborations, PhD opportunities and AI engineering roles —
+        particularly anything touching robot perception, embodied AI or applied computer vision.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:sayeb.cc.75@gmail.com" class="btn btn-1">✉ sayeb.cc.75@gmail.com</a>
+        <a href="https://www.linkedin.com/in/md-abu-sayeb-rayhan" class="btn btn-2" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/abusayeb" class="btn btn-2" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>
+      © <span id="yr">2026</span> Md Abu Sayeb Rayhan · Tokyo, Japan ·
+      <a href="abu_sayeb_rayhan_cv.pdf" target="_blank" rel="noopener">Academic CV</a> ·
+      <a href="abu_sayeb_rayhan_AI.pdf" target="_blank" rel="noopener">Industry CV</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function(){
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, {passive:true});
+
+var btn = document.getElementById('menuBtn');
+var links = document.getElementById('navLinks');
+btn.addEventListener('click', function(){
+  links.classList.toggle('open');
+  btn.textContent = links.classList.contains('open') ? '✕' : '☰';
+});
+links.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click', function(){
+    links.classList.remove('open');
+    btn.textContent = '☰';
+  });
+});
+
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(function(el, i){
+  el.style.transitionDelay = (Math.min(i % 4, 3) * 60) + 'ms';
+  io.observe(el);
+});
+</script>
+
+</body>
+</html>
