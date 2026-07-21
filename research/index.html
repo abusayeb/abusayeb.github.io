@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Md Abu Sayeb Rayhan — Research</title>
+<title>Md Abu Sayeb Rayhan | Research</title>
 <meta name="description" content="Research homepage of Md Abu Sayeb Rayhan. Computer vision, embodied AI, multimodal vision-language models and generative simulation. Three peer-reviewed papers in IEEE Xplore and Springer Nature.">
 <meta name="author" content="Md Abu Sayeb Rayhan">
 <meta name="citation_author" content="Rayhan, Md Abu Sayeb">
-<meta property="og:title" content="Md Abu Sayeb Rayhan — Research">
+<meta property="og:title" content="Md Abu Sayeb Rayhan | Research">
 <meta property="og:description" content="Computer vision, embodied AI and multimodal vision-language models.">
 <meta property="og:type" content="profile">
 <link rel="icon" href="https://github.com/abusayeb.png">
@@ -54,7 +54,9 @@ header.hero{padding:54px 0 38px}
 .hero-main{flex:1;min-width:0}
 h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(31px,5vw,40px);
   font-weight:700;letter-spacing:-.018em;line-height:1.15;margin-bottom:9px}
-.subtitle{font-size:17px;color:var(--ink-2);font-weight:500;margin-bottom:5px}
+/* research interests, listed directly under the name */
+.subtitle{font-size:15.2px;color:var(--ink-2);font-weight:500;margin-bottom:7px;
+  line-height:1.55;max-width:56ch}
 .affil{color:var(--muted);font-size:15px;margin-bottom:14px}
 .avail{display:inline-block;font-size:13.5px;color:var(--accent);background:var(--accent-soft);
   border:1px solid #ecd9d6;padding:5px 12px;border-radius:20px;margin-bottom:16px}
@@ -230,7 +232,7 @@ function render(d){
   var out = [];
 
   document.getElementById('tbName').textContent = P.name || '';
-  document.title = (P.name||'') + ' — Research';
+  document.title = (P.name||'') + ' | Research';
 
   /* hero */
   out.push('<div class="wrap"><header class="hero"><div class="hero-grid">' +
@@ -242,7 +244,7 @@ function render(d){
       '<h1>' + esc(P.name) + '</h1>' +
       '<div class="subtitle">' + esc(P.roleResearch) + '</div>' +
       '<div class="affil">' + esc(P.location) + '</div>' +
-      (P.availability ? '<div class="avail">' + esc(P.availability) + '</div>' : '') +
+      (P.availabilityResearch ? '<div class="avail">' + esc(P.availabilityResearch) + '</div>' : '') +
       '<div class="contact-row">' +
         '<a href="mailto:' + esc(P.email) + '">' + esc(P.email) + '</a>' +
         '<a href="../' + esc((d.cv||{}).academic) + '" target="_blank" rel="noopener">Academic CV (PDF)</a>' +
@@ -291,7 +293,7 @@ function render(d){
 
     out.push('<section id="publications"><h2>Publications</h2>' +
       '<p style="font-size:14.6px;color:var(--muted);margin-bottom:20px;">' +
-      'Peer-reviewed conference papers — ' + summary + '. ' +
+      'Peer-reviewed conference papers: ' + summary + '. ' +
       'Click <em>BibTeX</em> to copy a citation.</p><ol class="pub-list">' +
       d.publications.map(function(p,i){
         var title = p.link
