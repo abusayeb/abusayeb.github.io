@@ -424,16 +424,16 @@
   },
   "futureDirections": [
     {
-      "q": "Can a model's own uncertainty drive its behaviour rather than merely report it?",
-      "a": "RGEF stops at weighting and abstention. In a sequential or embodied setting the more useful question is whether an agent can use its own evidential state to decide where to look next, when to slow down, or when to ask for help. That turns reliability from a diagnostic into a policy."
+      "q": "Can a model's own uncertainty drive a robot's actions, not just flag them?",
+      "a": "RGEF stops at weighting and abstaining on a single decision. The useful extension is whether that same evidential state can feed a control loop directly: slowing a system down, triggering a sensor check, or handing off to a human, in real time rather than as an offline diagnostic. That is what turns reliability estimation into a control problem."
     },
     {
-      "q": "What perceptual structure survives a change of sensor?",
-      "a": "The forensic invariant work looked for cues that persist across image generators. The same framing applies to a robot moving between cameras, lighting conditions and environments. I would like to know how far invariant-seeking transfers from detecting synthetic images to maintaining perception across embodiment."
+      "q": "What perceptual structure survives when the sensor or hardware changes?",
+      "a": "The forensic invariant work looked for cues that persist across different image generators. The same question applies to a robot or embedded system moving between cameras, lighting conditions and constrained onboard compute. I want to know how far that invariant-seeking approach carries over from detecting synthetic images to holding perception steady on real hardware in the field."
     },
     {
-      "q": "How far can generative simulation substitute for data that cannot be collected?",
-      "a": "Low-resource settings and embodied agents share a data problem, and my thesis work on diffusion models suggests one route around it. The open question is which properties of synthetic data actually transfer, and how to tell before deployment rather than after."
+      "q": "How far can generative simulation substitute for data a physical system can't collect on its own?",
+      "a": "Low-resource settings and robots trained largely in simulation share the same data problem, and my thesis work on diffusion models points at one route around it. The open question is which properties of simulated data actually transfer to real hardware, and how to tell before deployment rather than discovering the sim-to-real gap after."
     }
   ]
 }
