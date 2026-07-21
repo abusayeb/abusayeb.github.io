@@ -132,14 +132,14 @@ pre{background:#f4f6f9;border:1px solid var(--line);border-radius:9px;padding:14
   <div class="howto">
     <b>How this works</b>
     <ol>
-      <li>Edit anything below — it updates a single file called <code>data.json</code>.</li>
+      <li>Edit anything below - it updates a single file called <code>data.json</code>.</li>
       <li>Click <b>Save changes</b> and follow the two steps shown.</li>
       <li>Both your portfolio pages update within about a minute. No coding needed.</li>
     </ol>
   </div>
 
   <div class="kwtip">
-    <b>Tip:</b> wrap important words in <code>**double asterisks**</code> to highlight them —
+    <b>Tip:</b> wrap important words in <code>**double asterisks**</code> to highlight them -
     e.g. <code>reduced latency by **70%**</code>. Highlighted terms catch a recruiter's eye when skimming.
   </div>
 
@@ -264,13 +264,24 @@ function panelProfile(){
       txt('Full name', P.name, "setPath('profile.name',this.value)") +
       txt('Location', P.location, "setPath('profile.location',this.value)") +
     '</div>' +
-    txt('Availability / status', P.availability, "setPath('profile.availability',this.value)",
-        'Appears as the badge at the top. Leave blank to hide it.') +
+    '</div>' +
+
+    '<div class="panel"><h2>Availability badges</h2>' +
+    '<div class="hint">Each page shows its own badge, so recruiters never see the Master\'s search ' +
+    'and professors never see the job search.</div>' +
+    txt('Industry page badge', P.availabilityIndustry, "setPath('profile.availabilityIndustry',this.value)",
+        'Jobs only. Leave blank to hide the badge.') +
+    txt('Research page badge', P.availabilityResearch, "setPath('profile.availabilityResearch',this.value)",
+        'Study and research only. Leave blank to hide the badge.') +
+    '</div>' +
+
+    '<div class="panel"><h2>Headlines</h2>' +
     '<div class="row">' +
       txt('Job title (industry page)', P.roleIndustry, "setPath('profile.roleIndustry',this.value)") +
       txt('Specialism (industry page)', P.specialismIndustry, "setPath('profile.specialismIndustry',this.value)") +
     '</div>' +
-    txt('Headline (research page)', P.roleResearch, "setPath('profile.roleResearch',this.value)") +
+    area('Research interests (research page)', P.roleResearch, "setPath('profile.roleResearch',this.value)",
+        'Listed under your name on the research page. Separate topics with the · character.', 3) +
     '</div>' +
 
     '<div class="panel"><h2>Contact & links</h2>' +
@@ -279,9 +290,9 @@ function panelProfile(){
       txt('LinkedIn URL', P.linkedin, "setPath('profile.linkedin',this.value)") +
     '</div><div class="row">' +
       txt('GitHub URL', P.github, "setPath('profile.github',this.value)") +
-      txt('Google Scholar URL', P.scholar, "setPath('profile.scholar',this.value)", 'Optional — hidden if blank.') +
+      txt('Google Scholar URL', P.scholar, "setPath('profile.scholar',this.value)", 'Optional - hidden if blank.') +
     '</div>' +
-      txt('ORCID URL', P.orcid, "setPath('profile.orcid',this.value)", 'Optional — hidden if blank. Free to create at orcid.org.') +
+      txt('ORCID URL', P.orcid, "setPath('profile.orcid',this.value)", 'Optional - hidden if blank. Free to create at orcid.org.') +
     '</div>' +
 
     '<div class="panel"><h2>Photo</h2>' +
@@ -297,15 +308,15 @@ function panelProfile(){
         '<div class="tip" style="margin-top:7px">Live preview</div>' +
       '</div>' +
       '<div style="flex:1;min-width:250px">' +
-        '<div class="field"><label>Zoom — <span id="zoomVal">' + (P.photoZoom||1) + '</span>×</label>' +
+        '<div class="field"><label>Zoom - <span id="zoomVal">' + (P.photoZoom||1) + '</span>×</label>' +
           '<input type="range" min="1" max="3" step="0.05" value="' + (P.photoZoom||1) + '" ' +
           'style="width:100%" oninput="setZoom(this.value)">' +
           '<div class="tip">Drag right to move in closer on your face.</div></div>' +
         '<div class="row">' +
-          '<div class="field"><label>Move left / right — <span id="fxVal">50</span>%</label>' +
+          '<div class="field"><label>Move left / right - <span id="fxVal">50</span>%</label>' +
             '<input type="range" min="0" max="100" step="1" value="' + focusPart(P.photoFocus,0) + '" ' +
             'style="width:100%" oninput="setFocus(0,this.value)"></div>' +
-          '<div class="field"><label>Move up / down — <span id="fyVal">50</span>%</label>' +
+          '<div class="field"><label>Move up / down - <span id="fyVal">50</span>%</label>' +
             '<input type="range" min="0" max="100" step="1" value="' + focusPart(P.photoFocus,1) + '" ' +
             'style="width:100%" oninput="setFocus(1,this.value)">' +
             '<div class="tip">Lower = shows more of the top of your head.</div></div>' +
@@ -365,7 +376,7 @@ function panelResearch(){
 
 function panelPubs(){
   return '<div class="panel"><h2>Publications</h2>' +
-    '<div class="hint">Add the DOI or IEEE Xplore link once each paper goes live — the title becomes clickable automatically.</div>' +
+    '<div class="hint">Add the DOI or IEEE Xplore link once each paper goes live - the title becomes clickable automatically.</div>' +
     (DATA.publications||[]).map(function(p,i){
       return '<div class="item">'+itemHead('Paper',i,'publications') +
         area('Title', p.title, "setPath('publications."+i+".title',this.value)", '', 2) +
@@ -376,7 +387,7 @@ function panelPubs(){
         area('Venue', p.venue, "setPath('publications."+i+".venue',this.value)", '', 2) +
         '<div class="row">' +
           txt('Link (DOI or Xplore URL)', p.link, "setPath('publications."+i+".link',this.value)", 'Leave blank until published.') +
-          txt('Status', p.status, "setPath('publications."+i+".status',this.value)", 'e.g. In press — clear this once published.') +
+          txt('Status', p.status, "setPath('publications."+i+".status',this.value)", 'e.g. In press - clear this once published.') +
         '</div>' +
         txt('Tags (comma separated)', (p.tags||[]).join(', '), "setTags('publications."+i+".tags',this.value)") +
         area('Short description', p.note, "setPath('publications."+i+".note',this.value)", 'One or two sentences on what the paper does.', 3) +
@@ -400,7 +411,7 @@ function panelExp(){
           txt('Location', e.location, "setPath('experience."+i+".location',this.value)") +
         '</div><div class="row">' +
           txt('Team / supervisor', e.team, "setPath('experience."+i+".team',this.value)", 'Optional') +
-          txt('Note', e.note, "setPath('experience."+i+".note',this.value)", 'e.g. Contractual — optional') +
+          txt('Note', e.note, "setPath('experience."+i+".note',this.value)", 'e.g. Contractual - optional') +
         '</div>' +
         '<div class="field"><label>Type</label><select onchange="setPath(\'experience.'+i+'.kind\',this.value)">' +
           '<option value="industry"'+(e.kind!=='research'?' selected':'')+'>Industry / applied</option>' +
@@ -495,7 +506,7 @@ function panelSkills(){
 
 function panelRefs(){
   return '<div class="panel"><h2>References</h2>' +
-    '<div class="hint">Names and affiliations only — email addresses are deliberately left off the public page.</div>' +
+    '<div class="hint">Names and affiliations only - email addresses are deliberately left off the public page.</div>' +
     (DATA.references||[]).map(function(r,i){
       return '<div class="item">'+itemHead('Referee',i,'references') +
         txt('Name', r.name, "setPath('references."+i+".name',this.value)") +
@@ -546,7 +557,7 @@ function refreshPhoto(){
   if(ly) ly.textContent = focusPart(P.photoFocus,1);
   img.onerror = function(){
     img.removeAttribute('src');
-    img.alt = 'Not found — check the filename';
+    img.alt = 'Not found - check the filename';
   };
   img.src = '../' + (P.photo || 'photo.jpg') + '?t=' + Date.now();
 }
@@ -573,7 +584,7 @@ function copyJson(){
   var btn=document.getElementById('copyBtn');
   navigator.clipboard.writeText(json()).then(function(){
     btn.textContent='Copied ✓';
-    setStatus('Copied — now paste it into GitHub','saved');
+    setStatus('Copied - now paste it into GitHub','saved');
     setTimeout(function(){ btn.textContent='Copy to clipboard'; },1800);
   }).catch(function(){
     btn.textContent='Select the text below and copy manually';
@@ -584,7 +595,7 @@ function download(){
   var a=document.createElement('a');
   a.href=URL.createObjectURL(b); a.download='data.json';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  setStatus('Downloaded — upload it to GitHub to publish','saved');
+  setStatus('Downloaded - upload it to GitHub to publish','saved');
 }
 function preview(){ window.open('../','_blank'); }
 function reloadData(){
@@ -598,10 +609,10 @@ function load(){
     .then(function(d){
       DATA=d; DIRTY=false;
       draw();
-      setStatus('Loaded — all changes saved','saved');
+      setStatus('Loaded - all changes saved','saved');
     })
     .catch(function(e){
-      setStatus('Could not load data.json — check the file exists','dirty');
+      setStatus('Could not load data.json - check the file exists','dirty');
       document.getElementById('panels').innerHTML =
         '<div class="panel"><h2>Could not load data.json</h2>' +
         '<p class="hint">Make sure <code>data.json</code> exists in the repository root. ' +
