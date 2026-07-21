@@ -5,7 +5,7 @@
     "shortName": "Abu Sayeb Rayhan",
     "roleIndustry": "AI Engineer & Data Scientist",
     "specialismIndustry": "Computer Vision, LLMs & RAG",
-    "roleResearch": "Robot perception and embodied AI, built on computer vision and generative modelling",
+    "roleResearch": "Computer vision researcher moving toward robotics, automation and embedded AI",
     "location": "Dhaka, Bangladesh",
     "email": "sayeb.cc.75@gmail.com",
     "linkedin": "https://www.linkedin.com/in/md-abu-sayeb-rayhan",
@@ -19,7 +19,7 @@
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
     "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
-    "roleResearchSub": "Robot perception & embodied AI · Multi-object tracking, activity recognition & pose estimation · Multimodal vision-language models · Generative models for simulation"
+    "roleResearchSub": "Multi-object tracking, activity recognition & pose estimation · Multimodal vision-language models · Generative modelling & synthetic data · Toward robotics, automation & embedded AI"
   },
   "news": [
     {
@@ -78,9 +78,9 @@
     }
   ],
   "researchStatement": [
-    "My work asks whether a vision model can still be trusted once conditions stop matching its training data. The same question runs through all four of my papers: what survives when the **generator changes**, when the clinic has **no specialist**, when the farm has **no GPU**, and when the model **should not be answering at all**.",
-    "In synthetic image detection I looked for **forensic invariants** that persist across generators rather than artefacts a classifier memorises. The rice leaf study asked the same of architecture under real compute budgets, and BD Eye-Doc under real clinical access. RGEF turned the question inward, using **evidential reliability gating** so a model can abstain instead of guess. Eighteen months at Othello gave me the practical half: tracking and activity recognition on live video, where occlusion, drift and a fixed latency budget show you exactly where models degrade quietly.",
-    "**Embodied AI is where I want to take this next.** An agent acting in the world meets all of these failures at once and cannot pause to ask for help, which makes reliability a control problem rather than a reporting one. I am looking for a research-based Master's where I can work on that directly."
+    "My published work is all **computer vision**, applied across four different problems: detecting synthetic images, screening for eye disease, classifying rice leaf disease, and fusing evidence for medical AI. Eighteen months at **Othello** added the production side: tracking, pose estimation and activity recognition running on live video, including a first hands-on look at **IoT edge devices** feeding those pipelines.",
+    "The forensic invariant paper looks for cues that survive a change of image generator rather than artefacts a classifier memorises. BD Eye-Doc pairs a vision classifier with a conversational interface for places without a specialist. The rice leaf study compares CNNs, ensembles and **Vision Transformers** under real compute limits. RGEF uses **evidential reliability gating** so a medical AI model can abstain instead of guess.",
+    "What I want to work on next is where **AI meets hardware directly**: robotics, automation and embedded systems, rather than vision applied to static images alone. That means perception under real actuation and control constraints, not just classification accuracy, and I am looking for a research-based Master's in robotics, automation or embedded AI where I can make that shift properly."
   ],
   "researchAreas": [
     {
@@ -96,8 +96,8 @@
       "desc": "Using generative models to produce data and scenarios that cannot be collected directly. Rooted in my thesis on diffusion models, and turned toward detection in the forensic invariant learning paper, which asks what generative signal survives across models."
     },
     {
-      "title": "Robot perception & embodied AI",
-      "desc": "Perception built for systems that act in the world, not just classify it. This is the direction I want to move toward next, building on the abstention and reliability-gating work in RGEF."
+      "title": "Robotics, automation & embedded AI",
+      "desc": "Where I want to go next: AI systems that couple directly to hardware, sensors and real-time control, not just images. My IoT edge-device integration at Othello and RGEF's abstention logic are the closest existing threads to pull on."
     }
   ],
   "publications": [
