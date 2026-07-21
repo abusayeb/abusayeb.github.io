@@ -5,7 +5,7 @@
     "shortName": "Abu Sayeb Rayhan",
     "roleIndustry": "AI Engineer & Data Scientist",
     "specialismIndustry": "Computer Vision, LLMs & RAG",
-    "roleResearch": "Reliable visual perception under real-world constraints",
+    "roleResearch": "Robot perception and embodied AI, built on computer vision and generative modelling",
     "location": "Dhaka, Bangladesh",
     "email": "sayeb.cc.75@gmail.com",
     "linkedin": "https://www.linkedin.com/in/md-abu-sayeb-rayhan",
@@ -19,7 +19,7 @@
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
     "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
-    "roleResearchSub": "Robustness under distribution shift · Uncertainty and abstention · Perception for low-resource deployment · Toward embodied AI"
+    "roleResearchSub": "Robot perception & embodied AI · Multi-object tracking, activity recognition & pose estimation · Multimodal vision-language models · Generative models for simulation"
   },
   "news": [
     {
@@ -84,20 +84,20 @@
   ],
   "researchAreas": [
     {
-      "title": "Robustness under distribution shift",
-      "desc": "Finding perceptual cues that survive a change of generator, sensor or domain. Evidenced in the forensic invariant learning paper."
+      "title": "Tracking, activity recognition & pose estimation",
+      "desc": "Multi-object tracking, human activity recognition and pose estimation on live video. Built and shipped in production at Othello (ByteTrack, MoveNet, MMAction2), and the same perceptual problem underlies the rice leaf and BD Eye-Doc classification studies."
     },
     {
-      "title": "Uncertainty and abstention",
-      "desc": "Letting a model represent how much it should be trusted, and act on that. Evidenced in RGEF's evidential reliability gating."
+      "title": "Multimodal vision-language models",
+      "desc": "Coupling vision with language so a system can act on and explain what it sees. Evidenced in BD Eye-Doc's conversational screening interface and the retrieval-augmented pipelines I built at Othello and on the Bangladesh government project."
     },
     {
-      "title": "Perception for low-resource deployment",
-      "desc": "Architecture and design choices under real compute, data and access constraints. Evidenced in the rice leaf disease and BD Eye-Doc studies."
+      "title": "Generative models for simulation & robotic learning",
+      "desc": "Using generative models to produce data and scenarios that cannot be collected directly. Rooted in my thesis on diffusion models, and turned toward detection in the forensic invariant learning paper, which asks what generative signal survives across models."
     },
     {
-      "title": "Toward embodied AI",
-      "desc": "Where I want to go next: coupling perception to action, and using generative simulation to supply data that cannot be collected."
+      "title": "Robot perception & embodied AI",
+      "desc": "Perception built for systems that act in the world, not just classify it. This is the direction I want to move toward next, building on the abstention and reliability-gating work in RGEF."
     }
   ],
   "publications": [
