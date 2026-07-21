@@ -286,17 +286,31 @@ function panelProfile(){
 
     '<div class="panel"><h2>Photo</h2>' +
     '<div class="hint">Upload your picture to the repository, then put its exact filename here.</div>' +
-    '<div class="row">' +
-      txt('Photo filename', P.photo, "setPath('profile.photo',this.value)", 'e.g. photos.jpeg — must match the file in the repository exactly.') +
-      txt('Crop position', P.photoFocus, "setPath('profile.photoFocus',this.value)", 'Left–right, then top–bottom. Lower the second number to show more of your head.') +
-    '</div>' +
-    '<div class="tip" style="margin-bottom:10px">Common values: <code>50% 22%</code> face near the top · ' +
-      '<code>50% 50%</code> dead centre · <code>50% 12%</code> face very high in the frame.</div>' +
-    '<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">' +
-      '<img id="photoPreview" style="width:120px;height:120px;border-radius:50%;object-fit:cover;' +
-        'border:1px solid var(--line-2);background:#eef1f5" alt="preview">' +
-      '<div><button class="sm" onclick="refreshPhoto()">Refresh preview</button>' +
-      '<div class="tip">This is exactly how it will appear on your site.</div></div>' +
+    txt('Photo filename', P.photo, "setPath('profile.photo',this.value);refreshPhoto()",
+        'Must match the file in your repository exactly, including .jpg or .jpeg.') +
+    '<div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-top:6px">' +
+      '<div style="text-align:center">' +
+        '<div style="width:132px;height:132px;border-radius:50%;overflow:hidden;' +
+          'border:1px solid var(--line-2);background:#eef1f5">' +
+          '<img id="photoPreview" style="width:100%;height:100%;object-fit:cover;display:block" alt="">' +
+        '</div>' +
+        '<div class="tip" style="margin-top:7px">Live preview</div>' +
+      '</div>' +
+      '<div style="flex:1;min-width:250px">' +
+        '<div class="field"><label>Zoom — <span id="zoomVal">' + (P.photoZoom||1) + '</span>×</label>' +
+          '<input type="range" min="1" max="3" step="0.05" value="' + (P.photoZoom||1) + '" ' +
+          'style="width:100%" oninput="setZoom(this.value)">' +
+          '<div class="tip">Drag right to move in closer on your face.</div></div>' +
+        '<div class="row">' +
+          '<div class="field"><label>Move left / right — <span id="fxVal">50</span>%</label>' +
+            '<input type="range" min="0" max="100" step="1" value="' + focusPart(P.photoFocus,0) + '" ' +
+            'style="width:100%" oninput="setFocus(0,this.value)"></div>' +
+          '<div class="field"><label>Move up / down — <span id="fyVal">50</span>%</label>' +
+            '<input type="range" min="0" max="100" step="1" value="' + focusPart(P.photoFocus,1) + '" ' +
+            'style="width:100%" oninput="setFocus(1,this.value)">' +
+            '<div class="tip">Lower = shows more of the top of your head.</div></div>' +
+        '</div>' +
+      '</div>' +
     '</div></div>' +
 
     '<div class="panel"><h2>Summaries</h2>' +
@@ -496,16 +510,45 @@ var PANELS = { profile:panelProfile, news:panelNews, research:panelResearch,
   publications:panelPubs, experience:panelExp, projects:panelProjects,
   education:panelEdu, awards:panelAwards, skills:panelSkills, refs:panelRefs };
 
-function refreshPhoto(){
+function focusPart(focus, idx){
+  var parts = String(focus||'50% 50%').split(/\s+/);
+  return parseFloat(parts[idx]) || 50;
+}
+function setZoom(v){
+  DATA.profile.photoZoom = parseFloat(v);
+  var lbl=document.getElementById('zoomVal'); if(lbl) lbl.textContent = v;
+  mark(); applyPhotoStyle();
+}
+function setFocus(idx, v){
+  var x = focusPart(DATA.profile.photoFocus, 0);
+  var y = focusPart(DATA.profile.photoFocus, 1);
+  if(idx===0) x = parseFloat(v); else y = parseFloat(v);
+  DATA.profile.photoFocus = x + '% ' + y + '%';
+  var lx=document.getElementById('fxVal'), ly=document.getElementById('fyVal');
+  if(lx) lx.textContent = x;
+  if(ly) ly.textContent = y;
+  mark(); applyPhotoStyle();
+}
+function applyPhotoStyle(){
   var img = document.getElementById('photoPreview');
   if(!img || !DATA) return;
   var P = DATA.profile || {};
   img.style.objectPosition = P.photoFocus || '50% 50%';
-  img.src = '../' + (P.photo || 'photo.jpg') + '?t=' + Date.now();
+  img.style.transform = 'scale(' + (parseFloat(P.photoZoom) || 1) + ')';
+}
+function refreshPhoto(){
+  var img = document.getElementById('photoPreview');
+  if(!img || !DATA) return;
+  var P = DATA.profile || {};
+  applyPhotoStyle();
+  var lx=document.getElementById('fxVal'), ly=document.getElementById('fyVal');
+  if(lx) lx.textContent = focusPart(P.photoFocus,0);
+  if(ly) ly.textContent = focusPart(P.photoFocus,1);
   img.onerror = function(){
     img.removeAttribute('src');
     img.alt = 'Not found — check the filename';
   };
+  img.src = '../' + (P.photo || 'photo.jpg') + '?t=' + Date.now();
 }
 
 function draw(){
