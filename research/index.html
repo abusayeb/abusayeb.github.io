@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Abu Sayeb Rayhan — Research</title>
+<meta name="description" content="Research homepage of Md Abu Sayeb Rayhan. Robot perception, embodied AI, multimodal vision-language models and generative simulation. Published in IEEE Xplore and Springer Nature.">
+<meta name="author" content="Md Abu Sayeb Rayhan">
+<meta name="citation_author" content="Rayhan, Md Abu Sayeb">
+<meta property="og:title" content="Md Abu Sayeb Rayhan — Research">
+<meta property="og:description" content="Robot perception, embodied AI and multimodal vision-language models. Tokyo, Japan.">
+<meta property="og:type" content="profile">
+<link rel="icon" href="https://github.com/abusayeb.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#fbfaf7;--paper-2:#f4f2ed;--card:#ffffff;
+  --ink:#1a1f2b;--ink-2:#3d4657;--muted:#6b7280;--faint:#9aa1ad;
+  --rule:#e2ded5;--rule-2:#d3cec2;
+  --accent:#8a2e2e;--accent-soft:#f5eceb;
+  --navy:#1e3a5f;
+  --max:820px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:16.5px;line-height:1.68;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+::selection{background:#e8dcc8}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+
+/* ---- top bar ---- */
+.topbar{
+  border-bottom:1px solid var(--rule);background:rgba(251,250,247,.94);
+  backdrop-filter:blur(10px);position:sticky;top:0;z-index:50;
+}
+.topbar-in{
+  max-width:var(--max);margin:0 auto;padding:13px 32px;
+  display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
+}
+.tb-name{font-family:'Source Serif 4',Georgia,serif;font-weight:600;font-size:16px;color:var(--ink)}
+.tb-links{display:flex;gap:19px;font-size:14px}
+.tb-links a{color:var(--ink-2);text-decoration:none}
+.tb-links a:hover{color:var(--accent)}
+.tb-links a.switch{color:var(--accent);font-weight:600}
+
+/* ---- header ---- */
+header.hero{padding:56px 0 40px}
+.hero-grid{display:flex;gap:34px;align-items:flex-start}
+.avatar-wrap{flex-shrink:0}
+.avatar{
+  width:132px;height:132px;border-radius:50%;object-fit:cover;
+  border:1px solid var(--rule-2);display:block;
+  filter:saturate(.96);
+}
+.hero-main{flex:1;min-width:0}
+h1{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:clamp(31px,5vw,40px);font-weight:700;letter-spacing:-.018em;
+  line-height:1.15;margin-bottom:9px;
+}
+.subtitle{
+  font-size:17px;color:var(--ink-2);font-weight:500;margin-bottom:5px;
+}
+.affil{color:var(--muted);font-size:15px;margin-bottom:17px}
+.contact-row{display:flex;gap:8px;flex-wrap:wrap;font-size:14px}
+.contact-row a, .contact-row span.cv-dl{
+  color:var(--ink-2);border:1px solid var(--rule-2);background:var(--card);
+  padding:5px 12px;border-radius:5px;text-decoration:none;transition:all .18s;
+}
+.contact-row a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+
+/* ---- sections ---- */
+section{padding:36px 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:none}
+h2{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:23px;font-weight:600;letter-spacing:-.012em;margin-bottom:18px;color:var(--ink);
+}
+h3{font-size:16.5px;font-weight:650;margin-bottom:3px;letter-spacing:-.008em}
+p{margin-bottom:14px;color:var(--ink-2)}
+p:last-child{margin-bottom:0}
+.lead{font-size:17px;line-height:1.75}
+strong{color:var(--ink);font-weight:640}
+
+/* ---- research areas ---- */
+.areas{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:20px}
+.area{
+  background:var(--card);border:1px solid var(--rule);border-radius:7px;padding:17px 19px;
+}
+.area-t{
+  font-family:'Source Serif 4',Georgia,serif;font-size:15.5px;font-weight:600;
+  margin-bottom:5px;color:var(--navy);
+}
+.area-d{font-size:14.2px;color:var(--muted);line-height:1.58}
+
+/* ---- publications ---- */
+.pub-list{list-style:none;counter-reset:pub}
+.pub-item{
+  position:relative;padding:0 0 22px 34px;margin-bottom:0;counter-increment:pub;
+}
+.pub-item:last-child{padding-bottom:0}
+.pub-item::before{
+  content:'[' counter(pub) ']';
+  position:absolute;left:0;top:1px;color:var(--faint);
+  font-size:13.5px;font-variant-numeric:tabular-nums;
+}
+.pub-t{
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:16.5px;font-weight:600;line-height:1.45;margin-bottom:5px;color:var(--ink);
+}
+.pub-authors{font-size:14.3px;color:var(--ink-2);margin-bottom:4px}
+.pub-authors .me{font-weight:680;color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.pub-venue{font-size:14.3px;color:var(--muted);font-style:italic;margin-bottom:7px}
+.pub-tags{display:flex;gap:6px;flex-wrap:wrap}
+.ptag{
+  font-size:11.5px;letter-spacing:.03em;padding:2.5px 8px;border-radius:3px;
+  background:var(--accent-soft);color:var(--accent);border:1px solid #ecd9d6;
+  font-weight:500;
+}
+.ptag.n{background:#eef2f7;color:var(--navy);border-color:#dbe3ed}
+.pub-note{font-size:13.8px;color:var(--muted);margin-top:6px;line-height:1.55}
+
+/* ---- entries (experience/education) ---- */
+.entry{margin-bottom:26px}
+.entry:last-child{margin-bottom:0}
+.entry-head{
+  display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+  flex-wrap:wrap;margin-bottom:2px;
+}
+.entry-where{color:var(--muted);font-size:14.6px;margin-bottom:9px}
+.entry-date{
+  font-size:13.5px;color:var(--faint);white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.entry ul{list-style:none;margin-top:8px}
+.entry ul li{
+  position:relative;padding-left:17px;margin-bottom:7px;
+  color:var(--ink-2);font-size:15px;line-height:1.62;
+}
+.entry ul li::before{
+  content:'';position:absolute;left:2px;top:9px;width:4px;height:4px;
+  border-radius:50%;background:var(--rule-2);
+}
+.entry ul li:last-child{margin-bottom:0}
+
+/* ---- thesis ---- */
+.thesis-box{
+  background:var(--paper-2);border:1px solid var(--rule);border-left:3px solid var(--navy);
+  border-radius:0 7px 7px 0;padding:18px 21px;margin-top:14px;
+}
+.thesis-label{
+  font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px;font-weight:600;
+}
+.thesis-title{
+  font-family:'Source Serif 4',Georgia,serif;font-size:16px;font-weight:600;
+  margin-bottom:7px;font-style:italic;
+}
+.thesis-box p{font-size:14.6px;margin-bottom:0;line-height:1.62}
+
+/* ---- skills ---- */
+.sk-row{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.sk-row:last-child{border-bottom:none}
+.sk-label{
+  flex:0 0 148px;font-size:13.5px;font-weight:600;color:var(--navy);
+}
+.sk-val{flex:1;font-size:14.6px;color:var(--ink-2)}
+
+/* ---- references ---- */
+.refs{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.ref{background:var(--card);border:1px solid var(--rule);border-radius:7px;padding:16px 18px}
+.ref-n{font-weight:650;font-size:15px;margin-bottom:3px}
+.ref-r{font-size:13.6px;color:var(--muted);line-height:1.5}
+
+/* ---- footer ---- */
+footer{
+  border-top:1px solid var(--rule);padding:26px 0 40px;margin-top:20px;
+  font-size:13.8px;color:var(--faint);display:flex;
+  justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+
+@media(max-width:720px){
+  .wrap,.topbar-in{padding-left:22px;padding-right:22px}
+  .hero-grid{flex-direction:column;gap:20px}
+  .areas,.refs{grid-template-columns:1fr}
+  .sk-row{flex-direction:column;gap:3px}
+  .sk-label{flex:none}
+  .tb-links{gap:14px;font-size:13.5px}
+  header.hero{padding:36px 0 30px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <span class="tb-name">Md Abu Sayeb Rayhan</span>
+    <nav class="tb-links">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="../" class="switch">Industry portfolio →</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="avatar-wrap" id="avatarWrap" hidden>
+        <img class="avatar" id="avatarImg" src="../photo.jpg" alt="Md Abu Sayeb Rayhan">
+      </div>
+      <div class="hero-main">
+        <h1>Md Abu Sayeb Rayhan</h1>
+        <div class="subtitle">Robot Perception · Embodied AI · Multimodal Vision-Language Models</div>
+        <div class="affil">Tokyo, Japan · BSc in Computer Science &amp; Engineering, Comilla University</div>
+        <div class="contact-row">
+          <a href="mailto:sayeb.cc.75@gmail.com">sayeb.cc.75@gmail.com</a>
+          <a href="../abu_sayeb_rayhan_cv.pdf" target="_blank" rel="noopener">Academic CV (PDF)</a>
+          <a href="https://www.linkedin.com/in/md-abu-sayeb-rayhan" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/abusayeb" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="research">
+    <h2>Research interests</h2>
+    <p class="lead">
+      I work toward <strong>intelligent autonomous systems that perceive, reason about and act in the
+      physical world</strong>. My interests span robot perception and embodied AI, computer vision for
+      unstructured real-world settings — multi-object tracking, human activity recognition and pose
+      estimation — and multimodal vision-language models. I am particularly drawn to
+      <strong>generative models for simulation and robotic learning</strong>, and to the question of how
+      synthetic data can close the data gap that constrains embodied agents.
+    </p>
+    <p>
+      This direction grew out of two complementary experiences: an undergraduate thesis fine-tuning
+      diffusion models for controllable image synthesis, and a year building perception pipelines that
+      had to survive contact with real deployment — noisy video, occlusion, and latency budgets. That
+      combination is what draws me to embodied AI, where perception, generation and action have to work
+      together rather than in isolation.
+    </p>
+    <div class="areas">
+      <div class="area">
+        <div class="area-t">Robot Perception</div>
+        <div class="area-d">Multi-object tracking, pose estimation and activity recognition for agents operating in cluttered, unstructured environments.</div>
+      </div>
+      <div class="area">
+        <div class="area-t">Embodied AI</div>
+        <div class="area-d">Linking perception to action; grounding agent behaviour in continuous sensory streams rather than curated benchmarks.</div>
+      </div>
+      <div class="area">
+        <div class="area-t">Multimodal VLMs</div>
+        <div class="area-d">Vision-language models for grounded scene understanding, instruction following and cross-modal reasoning.</div>
+      </div>
+      <div class="area">
+        <div class="area-t">Generative Simulation</div>
+        <div class="area-d">Diffusion models for synthetic data generation and simulation, with an eye toward scalable robotic learning.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <p style="font-size:14.6px;color:var(--muted);margin-bottom:20px;">
+      Three peer-reviewed conference papers, 2026. Author list abbreviated; full citations available in the CV.
+    </p>
+    <ol class="pub-list">
+      <li class="pub-item">
+        <div class="pub-t">Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles</div>
+        <div class="pub-authors"><span class="me">M. A. S. Rayhan</span> et al.</div>
+        <div class="pub-venue">IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026</div>
+        <div class="pub-tags">
+          <span class="ptag">IEEE Xplore</span>
+          <span class="ptag n">Scopus-indexed</span>
+        </div>
+        <div class="pub-note">
+          A physics-informed approach to detecting AI-generated imagery, combining Benford's Law digit
+          statistics and topological features with a six-model ensemble — targeting forensic invariants
+          that survive generator shift.
+        </div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-t">BD Eye-Doc: When Computer Vision Meets Conversational AI for Scalable Eye Disease Screening in Bangladesh</div>
+        <div class="pub-authors"><span class="me">M. A. S. Rayhan</span> et al.</div>
+        <div class="pub-venue">IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026</div>
+        <div class="pub-tags">
+          <span class="ptag">IEEE Xplore</span>
+          <span class="ptag n">Scopus-indexed</span>
+        </div>
+        <div class="pub-note">
+          Pairing an image-classification pipeline with a conversational interface to make eye disease
+          screening deployable in low-resource clinical settings.
+        </div>
+      </li>
+      <li class="pub-item">
+        <div class="pub-t">Is CNN Dead? A Comprehensive Empirical Analysis of Convolutional Neural Networks, Ensemble Methods, and Vision Transformers for Rice Leaf Disease Classification in Low-Resource Agricultural Settings</div>
+        <div class="pub-authors"><span class="me">M. A. S. Rayhan</span> et al.</div>
+        <div class="pub-venue">International Conference on Emerging Computing and Communication Technologies (ECCT) 2026 · Advances in Computer Science Research, Atlantis Press (Springer Nature)</div>
+        <div class="pub-tags">
+          <span class="ptag n">Springer Nature</span>
+        </div>
+        <div class="pub-note">
+          A controlled comparison of CNNs, ensembles and Vision Transformers under the compute and data
+          constraints that actually apply in agricultural deployment.
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="experience">
+    <h2>Research experience</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Research Assistant</h3>
+        <span class="entry-date">Jan 2023 – Mar 2024</span>
+      </div>
+      <div class="entry-where">Department of CSE, Comilla University · Supervisor: Partha Chakraborty, Associate Professor</div>
+      <ul>
+        <li>Conducted empirical studies in <strong>Human–Robot Interaction</strong> and <strong>Optical Character Recognition</strong>, covering dataset design, experimental protocol and quantitative analysis.</li>
+        <li>Prepared and validated results subsequently incorporated into peer-reviewed conference publications.</li>
+      </ul>
+    </div>
+
+    <h2 style="margin-top:32px">Applied research &amp; engineering</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Data Scientist</h3>
+        <span class="entry-date">Oct 2024 – Oct 2025</span>
+      </div>
+      <div class="entry-where">Othello Financial Services Co. Ltd., Japan — AGiFT AI Camera team</div>
+      <ul>
+        <li>Investigated multi-object tracking (<strong>ByteTrack</strong>), pose estimation (<strong>MoveNet</strong>) and human activity recognition (<strong>MMAction2</strong>) for automated behaviour analysis on real-world video.</li>
+        <li>Designed a spatial clustering pipeline applying <strong>OPTICS</strong> to pose-estimation output for group-dynamics modelling; parallel inference optimisation reduced processing latency by ~70%.</li>
+        <li>Built a video event-segmentation system on a fine-tuned YOLO detector achieving 90%+ accuracy for automated temporal segmentation.</li>
+        <li>Implemented a retrieval-augmented conversational system (<strong>LangChain, Pinecone, GPT-4</strong>) for context-aware document querying.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>AI Engineer <span style="font-weight:400;color:var(--faint);font-size:14px">(contractual)</span></h3>
+        <span class="entry-date">Feb 2024 – Jul 2024</span>
+      </div>
+      <div class="entry-where">Bangladesh Government Project</div>
+      <ul>
+        <li>Developed a multilingual (Bangla/English) <strong>NLP and OCR</strong> retrieval pipeline spanning PDF, Word, Excel and image formats, combining optical character recognition with dense embeddings.</li>
+        <li>Led a three-person team across the full development lifecycle.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>BSc in Computer Science &amp; Engineering</h3>
+        <span class="entry-date">Jan 2019 – May 2024</span>
+      </div>
+      <div class="entry-where">Comilla University, Bangladesh · GPA 3.4 / 4.0</div>
+      <p style="font-size:14.6px;margin-top:6px;margin-bottom:0;">
+        Relevant coursework: Artificial Intelligence, Algorithm Design, Theory of Computation,
+        Introduction to Data Science, Object-Oriented Programming, Research-Based Project.
+      </p>
+      <div class="thesis-box">
+        <div class="thesis-label">Bachelor's Thesis · Sep 2023 – Jan 2024</div>
+        <div class="thesis-title">Text-to-Image Generation using Diffusion Models</div>
+        <p>
+          Fine-tuned Stable Diffusion with a U-Net backbone on a purpose-built dataset of Bangladeshi
+          landmarks, including Salbon Bihar and the Comilla University Gate. Investigated prompt
+          engineering and conditioning mechanisms as levers on generative fidelity, with OpenCV
+          post-processing for artefact reduction.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Technical skills</h2>
+    <div class="sk-row">
+      <div class="sk-label">Research methods</div>
+      <div class="sk-val">Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation</div>
+    </div>
+    <div class="sk-row">
+      <div class="sk-label">Frameworks</div>
+      <div class="sk-val">PyTorch · TensorFlow · OpenCV · MMAction2 · YOLO · ByteTrack · MoveNet · Stable Diffusion · Hugging Face · Scikit-learn</div>
+    </div>
+    <div class="sk-row">
+      <div class="sk-label">Programming</div>
+      <div class="sk-val">Python (advanced) · C/C++ · SQL · Java</div>
+    </div>
+    <div class="sk-row">
+      <div class="sk-label">Infrastructure</div>
+      <div class="sk-val">Microsoft Azure (Databricks, DevOps) · Docker · CI/CD · Git · Flask · PyQt</div>
+    </div>
+    <div class="sk-row">
+      <div class="sk-label">Languages</div>
+      <div class="sk-val">Bangla (native) · English (professional fluency) · Japanese (conversational, studying toward N3)</div>
+    </div>
+  </section>
+
+  <section id="references">
+    <h2>References</h2>
+    <p style="font-size:14.6px;color:var(--muted);margin-bottom:16px;">Contact details available on request.</p>
+    <div class="refs">
+      <div class="ref">
+        <div class="ref-n">Partha Chakraborty</div>
+        <div class="ref-r">Associate Professor &amp; Research Supervisor<br>Dept. of CSE, Comilla University</div>
+      </div>
+      <div class="ref">
+        <div class="ref-n">Md Mohibullah</div>
+        <div class="ref-r">Assistant Professor, Dept. of CSE, Comilla University<br>PhD Fellow, Saitama University, Japan</div>
+      </div>
+      <div class="ref">
+        <div class="ref-n">Hossain Md Erfan</div>
+        <div class="ref-r">Project Manager<br>Othello Financial Services Co. Ltd., Osaka</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;width:100%;">
+    <span>© <span id="yr">2026</span> Md Abu Sayeb Rayhan · Tokyo, Japan</span>
+    <span><a href="../">Industry portfolio</a> · <a href="../abu_sayeb_rayhan_cv.pdf" target="_blank" rel="noopener">Academic CV</a></span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Show the portrait only if photo.jpg actually exists in the repo root.
+// Until then the layout renders cleanly without it.
+(function(){
+  var img = document.getElementById('avatarImg');
+  var wrap = document.getElementById('avatarWrap');
+  if(!img || !wrap) return;
+  img.addEventListener('load', function(){
+    if(img.naturalWidth > 1){ wrap.hidden = false; }
+  });
+  img.addEventListener('error', function(){ wrap.hidden = true; });
+})();
+</script>
+
+</body>
+</html>
