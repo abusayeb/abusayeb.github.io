@@ -48,8 +48,9 @@ a:hover{text-decoration:underline}
 header.hero{padding:54px 0 38px}
 .hero-grid{display:flex;gap:34px;align-items:flex-start}
 .avatar-wrap{flex-shrink:0}
-.avatar{width:132px;height:132px;border-radius:50%;object-fit:cover;
-  border:1px solid var(--rule-2);display:block}
+.avatar-frame{width:132px;height:132px;border-radius:50%;overflow:hidden;
+  border:1px solid var(--rule-2)}
+.avatar{width:100%;height:100%;object-fit:cover;display:block}
 .hero-main{flex:1;min-width:0}
 h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(31px,5vw,40px);
   font-weight:700;letter-spacing:-.018em;line-height:1.15;margin-bottom:9px}
@@ -231,10 +232,11 @@ function render(d){
 
   /* hero */
   out.push('<div class="wrap"><header class="hero"><div class="hero-grid">' +
-    '<div class="avatar-wrap" id="avatarWrap" hidden>' +
-      '<img class="avatar" id="avatarImg" alt="' + esc(P.name) + '"' +
-      (P.photoFocus ? ' style="object-position:' + esc(P.photoFocus) + '"' : '') + '>' +
-    '</div><div class="hero-main">' +
+    '<div class="avatar-wrap" id="avatarWrap" hidden><div class="avatar-frame">' +
+      '<img class="avatar" id="avatarImg" alt="' + esc(P.name) + '" style="' +
+      'object-position:' + esc(P.photoFocus || '50% 50%') + ';' +
+      'transform:scale(' + (parseFloat(P.photoZoom) || 1) + ')">' +
+    '</div></div><div class="hero-main">' +
       '<h1>' + esc(P.name) + '</h1>' +
       '<div class="subtitle">' + esc(P.roleResearch) + '</div>' +
       '<div class="affil">' + esc(P.location) + '</div>' +
