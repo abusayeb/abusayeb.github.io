@@ -284,6 +284,21 @@ function panelProfile(){
       txt('ORCID URL', P.orcid, "setPath('profile.orcid',this.value)", 'Optional — hidden if blank. Free to create at orcid.org.') +
     '</div>' +
 
+    '<div class="panel"><h2>Photo</h2>' +
+    '<div class="hint">Upload your picture to the repository, then put its exact filename here.</div>' +
+    '<div class="row">' +
+      txt('Photo filename', P.photo, "setPath('profile.photo',this.value)", 'e.g. photos.jpeg — must match the file in the repository exactly.') +
+      txt('Crop position', P.photoFocus, "setPath('profile.photoFocus',this.value)", 'Left–right, then top–bottom. Lower the second number to show more of your head.') +
+    '</div>' +
+    '<div class="tip" style="margin-bottom:10px">Common values: <code>50% 22%</code> face near the top · ' +
+      '<code>50% 50%</code> dead centre · <code>50% 12%</code> face very high in the frame.</div>' +
+    '<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">' +
+      '<img id="photoPreview" style="width:120px;height:120px;border-radius:50%;object-fit:cover;' +
+        'border:1px solid var(--line-2);background:#eef1f5" alt="preview">' +
+      '<div><button class="sm" onclick="refreshPhoto()">Refresh preview</button>' +
+      '<div class="tip">This is exactly how it will appear on your site.</div></div>' +
+    '</div></div>' +
+
     '<div class="panel"><h2>Summaries</h2>' +
     '<div class="hint">The opening paragraph on each page.</div>' +
     area('Industry summary', P.summaryIndustry, "setPath('profile.summaryIndustry',this.value)", 'Use **asterisks** to highlight numbers and key skills.', 5) +
@@ -481,11 +496,24 @@ var PANELS = { profile:panelProfile, news:panelNews, research:panelResearch,
   publications:panelPubs, experience:panelExp, projects:panelProjects,
   education:panelEdu, awards:panelAwards, skills:panelSkills, refs:panelRefs };
 
+function refreshPhoto(){
+  var img = document.getElementById('photoPreview');
+  if(!img || !DATA) return;
+  var P = DATA.profile || {};
+  img.style.objectPosition = P.photoFocus || '50% 50%';
+  img.src = '../' + (P.photo || 'photo.jpg') + '?t=' + Date.now();
+  img.onerror = function(){
+    img.removeAttribute('src');
+    img.alt = 'Not found — check the filename';
+  };
+}
+
 function draw(){
   document.getElementById('tabs').innerHTML = TABS.map(function(t){
     return '<button class="tab'+(t[0]===TAB?' on':'')+'" onclick="go(\''+t[0]+'\')">'+esc(t[1])+'</button>';
   }).join('');
   document.getElementById('panels').innerHTML = PANELS[TAB]();
+  if(TAB === 'profile') refreshPhoto();
 }
 function go(t){ TAB=t; draw(); window.scrollTo({top:0,behavior:'instant'}); }
 
