@@ -263,7 +263,7 @@ footer a:hover{color:var(--accent)}
   <div class="wrap">
     <p>© <span id="yr">2026</span> <span id="footName"></span> · <span id="footLoc"></span> ·
       <a href="research/">Research portfolio</a> ·
-      <a href="abu_sayeb_rayhan_cv.pdf" target="_blank" rel="noopener">CV</a></p>
+      <a href="abu_sayeb_rayhan_AI.pdf" target="_blank" rel="noopener">CV</a></p>
   </div>
 </footer>
 
@@ -286,7 +286,8 @@ function render(d){
     '<div class="hero-role">' + esc(P.roleIndustry) + ' — <em>' + esc(P.specialismIndustry) + '</em></div>' +
     '<p class="hero-desc">' + rich(P.summaryIndustry) + '</p></div>' +
     '<div class="portrait-wrap" id="portraitWrap" hidden>' +
-      '<img class="portrait" id="portraitImg" src="photos.jpeg" alt="' + esc(P.name) + '"></div>' +
+      '<img class="portrait" id="portraitImg" alt="' + esc(P.name) + '"' +
+      (P.photoFocus ? ' style="object-position:' + esc(P.photoFocus) + '"' : '') + '></div>' +
     '</div><div class="hero-cta">' +
       '<a href="#contact" class="btn btn-1">Get in touch →</a>' +
       '<a href="' + esc((d.cv||{}).industry) + '" class="btn btn-2" target="_blank" rel="noopener">Download CV</a>' +
@@ -401,14 +402,34 @@ function render(d){
   document.getElementById('yr').textContent = new Date().getFullYear();
   document.getElementById('foot').hidden = false;
   wireUp();
+  loadPortrait(P.photo, '');
+}
+
+// Try the configured photo filename, then common variants, so an upload named
+// slightly differently still shows up instead of silently failing.
+function loadPortrait(configured, prefix){
+  var img = document.getElementById('portraitImg') || document.getElementById('avatarImg');
+  var wrap = document.getElementById('portraitWrap') || document.getElementById('avatarWrap');
+  if(!img || !wrap) return;
+  prefix = prefix || '';
+  var names = [];
+  if(configured) names.push(configured);
+  ['photo.jpg','photo.jpeg','photo.png','photo.webp',
+   'photos.jpg','photos.jpeg','photos.png',
+   'profile.jpg','profile.jpeg','profile.png','me.jpg','me.jpeg'].forEach(function(n){
+    if(names.indexOf(n) === -1) names.push(n);
+  });
+  var i = 0;
+  function tryNext(){
+    if(i >= names.length){ wrap.hidden = true; return; }   // no photo present — hide cleanly
+    img.src = prefix + names[i++] + '?t=' + Date.now();
+  }
+  img.addEventListener('load', function(){ if(img.naturalWidth > 1) wrap.hidden = false; });
+  img.addEventListener('error', tryNext);
+  tryNext();
 }
 
 function wireUp(){
-  var img=document.getElementById('portraitImg'), wrap=document.getElementById('portraitWrap');
-  if(img&&wrap){
-    img.addEventListener('load',function(){ if(img.naturalWidth>1) wrap.hidden=false; });
-    img.addEventListener('error',function(){ wrap.hidden=true; });
-  }
   var nav=document.getElementById('nav');
   window.addEventListener('scroll',function(){
     nav.classList.toggle('scrolled', window.scrollY>20); },{passive:true});

@@ -13,14 +13,17 @@
     "github": "https://github.com/abusayeb",
     "scholar": "",
     "orcid": "",
+    "photo": "photos.jpeg",
+    "photoFocus": "50% 22%",
     "availability": "Seeking research-based Master's positions and AI engineering roles",
-    "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team delivering a **multilingual OCR and retrieval system** for a Bangladesh government project, end to end. The problems I enjoy are the ones where a model has to hold up against messy data, a latency budget and actual users.",
+    "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in Osaka I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team delivering a **multilingual OCR and retrieval system** for a Bangladesh government project, end to end. The problems I enjoy are the ones where a model has to hold up against messy data, a latency budget and actual users.",
     "summaryResearch": "I am a computer-vision researcher with three peer-reviewed papers and eighteen months of applied experience deploying perception systems at industrial scale. My work sits where **visual perception**, **generative modelling** and **language understanding** meet, and I am seeking a research-based Master's position to pursue that intersection more rigorously."
   },
 
   "news": [
+    { "date": "Jul 2026", "text": "Submitted new research to **RAAICON**." },
     { "date": "Jul 2026", "text": "Seeking **research-based Master's positions** for the 2026–27 intake, alongside AI engineering roles." },
-    { "date": "Mar 2026", "text": "Concluded eighteen months as Data Scientist at **Othello Financial Services**, Osaka, **Japan**; relocated to Dhaka." },
+    { "date": "Mar 2026", "text": "Concluded eighteen months as Data Scientist at **Othello Financial Services**, Osaka; relocated to Dhaka." },
     { "date": "2026", "text": "Three papers presented and accepted for publication — two at **IEEE QPAIN 2026**, one at **ECCT 2026**." }
   ],
 
@@ -52,7 +55,7 @@
       "year": "2026",
       "tags": ["IEEE Xplore", "Scopus-indexed"],
       "status": "In press",
-      "link": "https://ieeexplore.ieee.org/document/11546484/",
+      "link": "",
       "note": "Detecting AI-generated imagery through **physics-informed invariants** rather than learned artefacts. Combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator — the failure mode most detectors share.",
       "bibkey": "rayhan2026forensic"
     },
@@ -63,7 +66,7 @@
       "year": "2026",
       "tags": ["IEEE Xplore", "Scopus-indexed"],
       "status": "In press",
-      "link": "http://ieeexplore.ieee.org/document/11546216",
+      "link": "",
       "note": "Pairs an image-classification pipeline with a conversational interface so that screening can be delivered where ophthalmologists are scarce. The design question is less about accuracy than about **deployability in low-resource clinical settings**.",
       "bibkey": "rayhan2026bdeyedoc"
     },
