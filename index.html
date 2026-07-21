@@ -239,8 +239,8 @@ footer a:hover{color:var(--accent)}
     <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
       <a href="#publications">Publications</a>
       <a href="#contact">Contact</a>
       <a href="research/" class="nav-research">Research →</a>
@@ -343,6 +343,16 @@ function render(d){
           return '<li>' + rich(b) + '</li>'; }).join('') + '</ul></div>';
     }).join('') + '</div></div></section>');
 
+  /* skills — recruiters keyword-scan the stack before reading project detail,
+     so this comes right after Experience */
+  out.push(head('skills','Skills','') +
+    '<div class="skills">' + (d.skills||[]).map(function(s){
+      return '<div class="sk-cat"><div class="sk-h">' + esc(s.label) + '</div><div class="sk-items">' +
+        String(s.items||'').split('·').map(function(x){
+          return '<span class="sk">' + esc(x.trim()) + '</span>'; }).join('') +
+        '</div></div>';
+    }).join('') + '</div></div></section>');
+
   /* projects */
   out.push(head('projects','Projects','Production systems and research prototypes. Code for open projects lives on GitHub.') +
     '<div class="projects">' + (d.projects||[]).map(function(p){
@@ -356,15 +366,6 @@ function render(d){
         (p.link ? '<a href="' + esc(p.link) + '" class="proj-link" target="_blank" rel="noopener">View on GitHub →</a>'
                 : (p.role ? '<span class="proj-role">' + esc(p.role) + '</span>' : '')) +
       '</article>';
-    }).join('') + '</div></div></section>');
-
-  /* skills */
-  out.push(head('skills','Skills','') +
-    '<div class="skills">' + (d.skills||[]).map(function(s){
-      return '<div class="sk-cat"><div class="sk-h">' + esc(s.label) + '</div><div class="sk-items">' +
-        String(s.items||'').split('·').map(function(x){
-          return '<span class="sk">' + esc(x.trim()) + '</span>'; }).join('') +
-        '</div></div>';
     }).join('') + '</div></div></section>');
 
   /* publications */
