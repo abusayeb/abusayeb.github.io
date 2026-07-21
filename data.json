@@ -5,7 +5,7 @@
     "shortName": "Abu Sayeb Rayhan",
     "roleIndustry": "AI Engineer & Data Scientist",
     "specialismIndustry": "Computer Vision, LLMs & RAG",
-    "roleResearch": "Robot Perception · Embodied AI · Intelligent Autonomous Systems · Multi-Object Tracking · Activity Recognition · Pose Estimation · Vision-Language Models · Generative Simulation",
+    "roleResearch": "Reliable visual perception under real-world constraints",
     "location": "Dhaka, Bangladesh",
     "email": "sayeb.cc.75@gmail.com",
     "linkedin": "https://www.linkedin.com/in/md-abu-sayeb-rayhan",
@@ -18,7 +18,8 @@
     "summaryResearch": "I am a computer-vision researcher with three peer-reviewed papers and eighteen months of industry experience deploying perception systems at scale. My work sits where **visual perception**, **generative modelling** and **language understanding** meet, and I am looking for a research-based Master's position where I can pursue that intersection properly.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
-    "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake"
+    "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
+    "roleResearchSub": "Robustness under distribution shift · Uncertainty and abstention · Perception for low-resource deployment · Toward embodied AI"
   },
   "news": [
     {
@@ -77,26 +78,26 @@
     }
   ],
   "researchStatement": [
-    "My research is about how machines build a usable understanding of the visual world, and what happens to that understanding once it leaves the benchmark. I work on **multi-object tracking**, **human activity recognition** and **pose estimation**, and increasingly on the generative side of the same question: how **diffusion models** can produce the data that perception systems are starved of.",
-    "That pairing came about deliberately. My undergraduate thesis fine-tuned Stable Diffusion for controllable image synthesis, which taught me how much a generative model quietly knows about the scenes it produces. I then spent eighteen months building perception pipelines that had to survive real deployment, with all its occlusion, motion blur, camera drift and fixed latency budgets. Reading those two experiences against each other convinced me that the interesting problem is not perception or generation on its own, but the loop between them.",
-    "This is why I am drawn to **embodied AI** and **multimodal vision-language models**. They are the settings where perception, generation and action stop being separable. I would like to study this in a research-based Master's programme, focusing on grounded scene understanding and on generative simulation as a way around the data bottleneck that holds embodied agents back."
+    "My work asks whether a vision model can still be trusted once conditions stop matching its training data. The same question runs through all four of my papers: what survives when the **generator changes**, when the clinic has **no specialist**, when the farm has **no GPU**, and when the model **should not be answering at all**.",
+    "In synthetic image detection I looked for **forensic invariants** that persist across generators rather than artefacts a classifier memorises. The rice leaf study asked the same of architecture under real compute budgets, and BD Eye-Doc under real clinical access. RGEF turned the question inward, using **evidential reliability gating** so a model can abstain instead of guess. Eighteen months at Othello gave me the practical half: tracking and activity recognition on live video, where occlusion, drift and a fixed latency budget show you exactly where models degrade quietly.",
+    "**Embodied AI is where I want to take this next.** An agent acting in the world meets all of these failures at once and cannot pause to ask for help, which makes reliability a control problem rather than a reporting one. I am looking for a research-based Master's where I can work on that directly."
   ],
   "researchAreas": [
     {
-      "title": "Robot & Scene Perception",
-      "desc": "Multi-object tracking, pose estimation and activity recognition in cluttered, unscripted environments."
+      "title": "Robustness under distribution shift",
+      "desc": "Finding perceptual cues that survive a change of generator, sensor or domain. Evidenced in the forensic invariant learning paper."
     },
     {
-      "title": "Embodied AI",
-      "desc": "Coupling perception to action, and grounding agent behaviour in continuous sensory streams rather than curated datasets."
+      "title": "Uncertainty and abstention",
+      "desc": "Letting a model represent how much it should be trusted, and act on that. Evidenced in RGEF's evidential reliability gating."
     },
     {
-      "title": "Multimodal Vision-Language Models",
-      "desc": "Grounded scene understanding, instruction following and cross-modal reasoning."
+      "title": "Perception for low-resource deployment",
+      "desc": "Architecture and design choices under real compute, data and access constraints. Evidenced in the rice leaf disease and BD Eye-Doc studies."
     },
     {
-      "title": "Generative Simulation",
-      "desc": "Diffusion models for synthetic data and simulation, aimed at the data bottleneck in embodied learning."
+      "title": "Toward embodied AI",
+      "desc": "Where I want to go next: coupling perception to action, and using generative simulation to supply data that cannot be collected."
     }
   ],
   "publications": [
@@ -112,7 +113,9 @@
       "status": "",
       "link": "https://ieeexplore.ieee.org/document/11546484",
       "note": "Detecting AI-generated imagery through **physics-informed invariants** rather than learned artefacts. It combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator. That is the failure mode most detectors share.",
-      "bibkey": "rayhan2026forensic"
+      "bibkey": "rayhan2026forensic",
+      "authorRole": "First author",
+      "contribution": ""
     },
     {
       "title": "BD Eye-Doc: When Computer Vision Meets Conversational AI for Scalable Eye Disease Screening in Bangladesh",
@@ -126,7 +129,9 @@
       "status": "",
       "link": "https://ieeexplore.ieee.org/document/11546216",
       "note": "An image-classification pipeline paired with a conversational interface, so screening can reach places where ophthalmologists are scarce. The hard question here is **deployability in low-resource clinical settings** rather than raw accuracy.",
-      "bibkey": "rayhan2026bdeyedoc"
+      "bibkey": "rayhan2026bdeyedoc",
+      "authorRole": "Second author",
+      "contribution": ""
     },
     {
       "title": "Is CNN Dead? A Comprehensive Empirical Analysis of Convolutional Neural Networks, Ensemble Methods, and Vision Transformers for Rice Leaf Disease Classification in Low-Resource Agricultural Settings",
@@ -139,7 +144,9 @@
       "status": "In press",
       "link": "",
       "note": "A controlled comparison of CNNs, ensembles and **Vision Transformers** under the compute and data constraints that agricultural deployment actually imposes. The strongest architecture on ImageNet is rarely the right choice there.",
-      "bibkey": "rayhan2026cnn"
+      "bibkey": "rayhan2026cnn",
+      "authorRole": "First author",
+      "contribution": ""
     },
     {
       "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
@@ -152,7 +159,9 @@
       "status": "Under review",
       "link": "",
       "note": "Evidential deep learning for medical decision support. **Reliability gating** weights each modality by how trustworthy its evidence is, so the model can abstain rather than guess when its inputs are unreliable.",
-      "bibkey": "rayhan2026rgef"
+      "bibkey": "rayhan2026rgef",
+      "authorRole": "First author",
+      "contribution": ""
     }
   ],
   "talks": [
@@ -326,58 +335,70 @@
     {
       "year": "2026",
       "title": "Best Presenter Award, IEEE QPAIN 2026",
-      "detail": "Awarded for paper presentation at the IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking."
+      "detail": "Awarded for paper presentation at the IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking.",
+      "pages": "both"
     },
     {
       "year": "2023–2024",
       "title": "Joint Secretary, North Bengal Student Association",
-      "detail": "Comilla University, elected student leadership role."
+      "detail": "Comilla University, elected student leadership role.",
+      "pages": "both"
     },
     {
       "year": "2022",
       "title": "Certified, Skill Development for Mobile Game & Application Development",
-      "detail": "ICT Division, Government of Bangladesh."
+      "detail": "ICT Division, Government of Bangladesh.",
+      "pages": "both"
     },
     {
       "year": "2019–2021",
       "title": "Participant, Inter-University Programming Contest",
-      "detail": "Comilla University, competitive algorithmic programming."
+      "detail": "Comilla University, competitive algorithmic programming.",
+      "pages": "both"
     },
     {
       "year": "2022-2024",
       "title": "Batch Representative, Dept. of CSE, Comilla University",
-      "detail": "Elected by peers to represent the cohort to faculty and administration."
+      "detail": "Elected by peers to represent the cohort to faculty and administration.",
+      "pages": "both"
     },
     {
       "year": "2019-2023",
       "title": "Inter-department sport, Comilla University",
-      "detail": "Cricket tournament winners; third place in volleyball."
+      "detail": "Cricket tournament winners; third place in volleyball.",
+      "pages": "industry"
     }
   ],
   "skills": [
     {
       "label": "Research methods",
-      "items": "Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR"
+      "items": "Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR",
+      "research": true
     },
     {
       "label": "Frameworks",
-      "items": "PyTorch · TensorFlow · OpenCV · MMAction2 · YOLO · ByteTrack · MoveNet · Stable Diffusion · Hugging Face · Scikit-learn · LangChain"
+      "items": "PyTorch · TensorFlow · OpenCV · MMAction2 · YOLO · ByteTrack · MoveNet · Stable Diffusion · Hugging Face · Scikit-learn · LangChain",
+      "research": true
     },
     {
       "label": "Programming",
-      "items": "Python (advanced) · C/C++ · SQL · Java"
+      "items": "Python (advanced) · C/C++ · SQL · Java",
+      "research": true
     },
     {
       "label": "Cloud & infrastructure",
-      "items": "Microsoft Azure (Databricks, DevOps) · Docker · CI/CD · Git · Flask · PyQt"
+      "items": "Microsoft Azure (Databricks, DevOps) · Docker · CI/CD · Git · Flask · PyQt",
+      "research": false
     },
     {
       "label": "Data & storage",
-      "items": "Pinecone · ChromaDB · MongoDB · Azure SQL · MySQL · Power BI"
+      "items": "Pinecone · ChromaDB · MongoDB · Azure SQL · MySQL · Power BI",
+      "research": false
     },
     {
       "label": "Languages",
-      "items": "Bangla (native) · English (professional fluency) · Japanese (conversational, studying toward N3)"
+      "items": "Bangla (native) · English (professional fluency) · Japanese (conversational, studying toward N3)",
+      "research": true
     }
   ],
   "references": [
@@ -400,5 +421,19 @@
   "cv": {
     "academic": "abu_sayeb_rayhan_cv.pdf",
     "industry": "abu_sayeb_rayhan_AI.pdf"
-  }
+  },
+  "futureDirections": [
+    {
+      "q": "Can a model's own uncertainty drive its behaviour rather than merely report it?",
+      "a": "RGEF stops at weighting and abstention. In a sequential or embodied setting the more useful question is whether an agent can use its own evidential state to decide where to look next, when to slow down, or when to ask for help. That turns reliability from a diagnostic into a policy."
+    },
+    {
+      "q": "What perceptual structure survives a change of sensor?",
+      "a": "The forensic invariant work looked for cues that persist across image generators. The same framing applies to a robot moving between cameras, lighting conditions and environments. I would like to know how far invariant-seeking transfers from detecting synthetic images to maintaining perception across embodiment."
+    },
+    {
+      "q": "How far can generative simulation substitute for data that cannot be collected?",
+      "a": "Low-resource settings and embodied agents share a data problem, and my thesis work on diffusion models suggests one route around it. The open question is which properties of synthetic data actually transfer, and how to tell before deployment rather than after."
+    }
+  ]
 }
