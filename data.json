@@ -1,6 +1,5 @@
 {
   "_readme": "This file is the single source of truth for both portfolio pages. Edit it at /edit/ in your browser, or edit it here directly. Text fields support **double asterisks** to highlight key terms.",
-
   "profile": {
     "name": "Md Abu Sayeb Rayhan",
     "shortName": "Abu Sayeb Rayhan",
@@ -14,46 +13,81 @@
     "scholar": "",
     "orcid": "",
     "photo": "photos.jpeg",
-    "photoFocus": "50% 22%",
+    "photoFocus": "50% 18%",
     "availability": "Seeking research-based Master's positions and AI engineering roles",
     "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in Osaka I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team delivering a **multilingual OCR and retrieval system** for a Bangladesh government project, end to end. The problems I enjoy are the ones where a model has to hold up against messy data, a latency budget and actual users.",
-    "summaryResearch": "I am a computer-vision researcher with three peer-reviewed papers and eighteen months of applied experience deploying perception systems at industrial scale. My work sits where **visual perception**, **generative modelling** and **language understanding** meet, and I am seeking a research-based Master's position to pursue that intersection more rigorously."
+    "summaryResearch": "I am a computer-vision researcher with three peer-reviewed papers and eighteen months of applied experience deploying perception systems at industrial scale. My work sits where **visual perception**, **generative modelling** and **language understanding** meet, and I am seeking a research-based Master's position to pursue that intersection more rigorously.",
+    "photoZoom": 1.6
   },
-
   "news": [
-    { "date": "Jul 2026", "text": "Submitted new research to **RAAICON**." },
-    { "date": "Jul 2026", "text": "Seeking **research-based Master's positions** for the 2026–27 intake, alongside AI engineering roles." },
-    { "date": "Mar 2026", "text": "Concluded eighteen months as Data Scientist at **Othello Financial Services**, Osaka; relocated to Dhaka." },
-    { "date": "2026", "text": "Three papers presented and accepted for publication — two at **IEEE QPAIN 2026**, one at **ECCT 2026**." }
+    {
+      "date": "Jul 2026",
+      "text": "Submitted new research to **RAAICON**."
+    },
+    {
+      "date": "Jul 2026",
+      "text": "Seeking **research-based Master's positions** for the 2026–27 intake, alongside AI engineering roles."
+    },
+    {
+      "date": "Mar 2026",
+      "text": "Concluded eighteen months as Data Scientist at **Othello Financial Services**, Osaka; relocated to Dhaka."
+    },
+    {
+      "date": "2026",
+      "text": "Three papers presented and accepted for publication — two at **IEEE QPAIN 2026**, one at **ECCT 2026**."
+    }
   ],
-
   "metrics": [
-    { "value": "70%", "label": "Inference latency reduced in a real-time analytics pipeline" },
-    { "value": "50%", "label": "Production cost cut through automated video generation" },
-    { "value": "90%+", "label": "Detection accuracy on custom-trained YOLO models" },
-    { "value": "3", "label": "Peer-reviewed papers, IEEE Xplore & Springer Nature" }
+    {
+      "value": "70%",
+      "label": "Inference latency reduced in a real-time analytics pipeline"
+    },
+    {
+      "value": "50%",
+      "label": "Production cost cut through automated video generation"
+    },
+    {
+      "value": "90%+",
+      "label": "Detection accuracy on custom-trained YOLO models"
+    },
+    {
+      "value": "3",
+      "label": "Peer-reviewed papers, IEEE Xplore & Springer Nature"
+    }
   ],
-
   "researchStatement": [
     "My research concerns how machines build a usable understanding of the visual world — and what happens to that understanding once it leaves the benchmark. I work on **multi-object tracking**, **human activity recognition** and **pose estimation**, and increasingly on the generative side of the same question: how **diffusion models** can synthesise the data that perception systems are starved of.",
     "That pairing is deliberate rather than incidental. My undergraduate thesis fine-tuned Stable Diffusion for controllable image synthesis, which taught me how much structure a generative model carries about the scenes it produces. I then spent eighteen months building perception pipelines that had to survive contact with deployment — occlusion, motion blur, camera drift and a fixed latency budget. Reading those two experiences against each other is what convinced me the interesting problem is not perception or generation alone, but the loop between them.",
     "I am drawn to **embodied AI** and **multimodal vision-language models** for that reason: they are the settings where perception, generation and action stop being separable. I would like to pursue this in a research-based Master's programme, working on grounded scene understanding and on generative simulation as a route around the data bottleneck that constrains embodied agents."
   ],
-
   "researchAreas": [
-    { "title": "Robot & Scene Perception", "desc": "Multi-object tracking, pose estimation and activity recognition in cluttered, unscripted environments." },
-    { "title": "Embodied AI", "desc": "Coupling perception to action, and grounding agent behaviour in continuous sensory streams rather than curated datasets." },
-    { "title": "Multimodal Vision-Language Models", "desc": "Grounded scene understanding, instruction following and cross-modal reasoning." },
-    { "title": "Generative Simulation", "desc": "Diffusion models for synthetic data and simulation, aimed at the data bottleneck in embodied learning." }
+    {
+      "title": "Robot & Scene Perception",
+      "desc": "Multi-object tracking, pose estimation and activity recognition in cluttered, unscripted environments."
+    },
+    {
+      "title": "Embodied AI",
+      "desc": "Coupling perception to action, and grounding agent behaviour in continuous sensory streams rather than curated datasets."
+    },
+    {
+      "title": "Multimodal Vision-Language Models",
+      "desc": "Grounded scene understanding, instruction following and cross-modal reasoning."
+    },
+    {
+      "title": "Generative Simulation",
+      "desc": "Diffusion models for synthetic data and simulation, aimed at the data bottleneck in embodied learning."
+    }
   ],
-
   "publications": [
     {
       "title": "Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles",
       "authors": "M. A. S. Rayhan et al.",
       "venue": "IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026",
       "year": "2026",
-      "tags": ["IEEE Xplore", "Scopus-indexed"],
+      "tags": [
+        "IEEE Xplore",
+        "Scopus-indexed"
+      ],
       "status": "In press",
       "link": "",
       "note": "Detecting AI-generated imagery through **physics-informed invariants** rather than learned artefacts. Combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator — the failure mode most detectors share.",
@@ -64,7 +98,10 @@
       "authors": "M. A. S. Rayhan et al.",
       "venue": "IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026",
       "year": "2026",
-      "tags": ["IEEE Xplore", "Scopus-indexed"],
+      "tags": [
+        "IEEE Xplore",
+        "Scopus-indexed"
+      ],
       "status": "In press",
       "link": "",
       "note": "Pairs an image-classification pipeline with a conversational interface so that screening can be delivered where ophthalmologists are scarce. The design question is less about accuracy than about **deployability in low-resource clinical settings**.",
@@ -75,20 +112,35 @@
       "authors": "M. A. S. Rayhan et al.",
       "venue": "International Conference on Emerging Computing and Communication Technologies (ECCT) 2026 · Advances in Computer Science Research, Atlantis Press (Springer Nature)",
       "year": "2026",
-      "tags": ["Springer Nature"],
+      "tags": [
+        "Springer Nature"
+      ],
       "status": "In press",
       "link": "",
       "note": "A controlled comparison of CNNs, ensembles and **Vision Transformers** under the compute and data constraints that actually obtain in agricultural deployment — where the strongest architecture on ImageNet is rarely the right choice.",
       "bibkey": "rayhan2026cnn"
     }
   ],
-
   "talks": [
-    { "title": "Forensic Invariant Learning for Synthetic Image Detection", "venue": "IEEE QPAIN 2026", "year": "2026", "type": "Conference presentation" },
-    { "title": "BD Eye-Doc: Computer Vision Meets Conversational AI for Eye Disease Screening", "venue": "IEEE QPAIN 2026", "year": "2026", "type": "Conference presentation" },
-    { "title": "Is CNN Dead? CNNs, Ensembles and Vision Transformers for Rice Leaf Disease Classification", "venue": "ECCT 2026", "year": "2026", "type": "Conference presentation" }
+    {
+      "title": "Forensic Invariant Learning for Synthetic Image Detection",
+      "venue": "IEEE QPAIN 2026",
+      "year": "2026",
+      "type": "Conference presentation"
+    },
+    {
+      "title": "BD Eye-Doc: Computer Vision Meets Conversational AI for Eye Disease Screening",
+      "venue": "IEEE QPAIN 2026",
+      "year": "2026",
+      "type": "Conference presentation"
+    },
+    {
+      "title": "Is CNN Dead? CNNs, Ensembles and Vision Transformers for Rice Leaf Disease Classification",
+      "venue": "ECCT 2026",
+      "year": "2026",
+      "type": "Conference presentation"
+    }
   ],
-
   "experience": [
     {
       "role": "Data Scientist",
@@ -138,14 +190,18 @@
       ]
     }
   ],
-
   "projects": [
     {
       "title": "Universal NFT Generation Platform",
       "date": "Jul–Oct 2025",
       "desc": "Generalised a sports-specific video system into a platform handling user-generated footage across festivals, concerts and other domains. Fine-tuned action detection models and built the pipeline for automated clip creation.",
       "impact": "",
-      "tags": ["MMAction2", "OpenCV", "MoviePy", "Azure DevOps"],
+      "tags": [
+        "MMAction2",
+        "OpenCV",
+        "MoviePy",
+        "Azure DevOps"
+      ],
       "role": "Implementation lead · Team of 3",
       "link": ""
     },
@@ -154,7 +210,12 @@
       "date": "Feb–Jul 2025",
       "desc": "Trained a custom object detection model and built a real-time video processing pipeline that identifies key moments in sports footage and generates clips without human intervention.",
       "impact": "90% accuracy · 50% cost reduction",
-      "tags": ["YOLO", "ByteTrack", "OpenCV", "MoviePy"],
+      "tags": [
+        "YOLO",
+        "ByteTrack",
+        "OpenCV",
+        "MoviePy"
+      ],
       "role": "AI Engineer · Team of 3",
       "link": "https://github.com/abusayeb/basketball-highlight-generator"
     },
@@ -163,7 +224,12 @@
       "date": "Oct 2024–Jan 2025",
       "desc": "Real-time system detecting customer groupings and product interest from in-store camera feeds using pose estimation and density-based spatial clustering. Parallelised inference brought latency down sharply.",
       "impact": "~70% latency reduction",
-      "tags": ["MoveNet", "OPTICS", "Azure Databricks", "Power BI"],
+      "tags": [
+        "MoveNet",
+        "OPTICS",
+        "Azure Databricks",
+        "Power BI"
+      ],
       "role": "System developer · Team of 3",
       "link": ""
     },
@@ -172,7 +238,13 @@
       "date": "Sep 2025",
       "desc": "End-to-end retrieval-augmented chatbot that retrieves relevant context from a vector index and generates grounded answers. Built and deployed solo on Azure.",
       "impact": "",
-      "tags": ["LangChain", "Pinecone", "GPT-4", "Flask", "Azure"],
+      "tags": [
+        "LangChain",
+        "Pinecone",
+        "GPT-4",
+        "Flask",
+        "Azure"
+      ],
       "role": "Solo developer",
       "link": "https://github.com/abusayeb/rag-chatbot"
     },
@@ -181,7 +253,13 @@
       "date": "Feb–Jul 2024",
       "desc": "RAG-based desktop application for keyword and semantic search across PDF, DOCX, XLSX, TXT and images in Bengali and English, combining OCR with dense embeddings.",
       "impact": "",
-      "tags": ["OCR", "LangChain", "ChromaDB", "PyQt", "MongoDB"],
+      "tags": [
+        "OCR",
+        "LangChain",
+        "ChromaDB",
+        "PyQt",
+        "MongoDB"
+      ],
       "role": "AI Engineer & team lead",
       "link": "https://github.com/abusayeb/keyword-file-searcher"
     },
@@ -190,12 +268,15 @@
       "date": "Research project",
       "desc": "Real-time lane boundary and vehicle detection for driver-assistance systems, combining a YOLOv5 detector fine-tuned on a custom dataset with classical computer vision for lane geometry.",
       "impact": "",
-      "tags": ["YOLOv5", "PyTorch", "OpenCV"],
+      "tags": [
+        "YOLOv5",
+        "PyTorch",
+        "OpenCV"
+      ],
       "role": "",
       "link": "https://github.com/abusayeb/adas-lane-vehicle-detection"
     }
   ],
-
   "education": {
     "degree": "BSc in Computer Science & Engineering",
     "school": "Comilla University, Bangladesh",
@@ -207,28 +288,66 @@
     "thesisTitle": "Text-to-Image Generation using Diffusion Models",
     "thesisDesc": "Fine-tuned **Stable Diffusion** with a U-Net backbone on a purpose-built dataset of Bangladeshi landmarks, including Salbon Bihar and the Comilla University Gate. Examined prompt engineering and **conditioning mechanisms** as levers on generative fidelity, with OpenCV post-processing for artefact reduction."
   },
-
   "awards": [
-    { "year": "2023–2024", "title": "Joint Secretary, North Bengal Student Association", "detail": "Comilla University — elected student leadership role." },
-    { "year": "2022", "title": "Certified, Skill Development for Mobile Game & Application Development", "detail": "ICT Division, Government of Bangladesh." },
-    { "year": "2019–2021", "title": "Participant, Inter-University Programming Contest", "detail": "Comilla University — competitive algorithmic programming." }
+    {
+      "year": "2023–2024",
+      "title": "Joint Secretary, North Bengal Student Association",
+      "detail": "Comilla University — elected student leadership role."
+    },
+    {
+      "year": "2022",
+      "title": "Certified, Skill Development for Mobile Game & Application Development",
+      "detail": "ICT Division, Government of Bangladesh."
+    },
+    {
+      "year": "2019–2021",
+      "title": "Participant, Inter-University Programming Contest",
+      "detail": "Comilla University — competitive algorithmic programming."
+    }
   ],
-
   "skills": [
-    { "label": "Research methods", "items": "Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR" },
-    { "label": "Frameworks", "items": "PyTorch · TensorFlow · OpenCV · MMAction2 · YOLO · ByteTrack · MoveNet · Stable Diffusion · Hugging Face · Scikit-learn · LangChain" },
-    { "label": "Programming", "items": "Python (advanced) · C/C++ · SQL · Java" },
-    { "label": "Cloud & infrastructure", "items": "Microsoft Azure (Databricks, DevOps) · Docker · CI/CD · Git · Flask · PyQt" },
-    { "label": "Data & storage", "items": "Pinecone · ChromaDB · MongoDB · Azure SQL · MySQL · Power BI" },
-    { "label": "Languages", "items": "Bangla (native) · English (professional fluency) · Japanese (conversational, studying toward N3)" }
+    {
+      "label": "Research methods",
+      "items": "Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR"
+    },
+    {
+      "label": "Frameworks",
+      "items": "PyTorch · TensorFlow · OpenCV · MMAction2 · YOLO · ByteTrack · MoveNet · Stable Diffusion · Hugging Face · Scikit-learn · LangChain"
+    },
+    {
+      "label": "Programming",
+      "items": "Python (advanced) · C/C++ · SQL · Java"
+    },
+    {
+      "label": "Cloud & infrastructure",
+      "items": "Microsoft Azure (Databricks, DevOps) · Docker · CI/CD · Git · Flask · PyQt"
+    },
+    {
+      "label": "Data & storage",
+      "items": "Pinecone · ChromaDB · MongoDB · Azure SQL · MySQL · Power BI"
+    },
+    {
+      "label": "Languages",
+      "items": "Bangla (native) · English (professional fluency) · Japanese (conversational, studying toward N3)"
+    }
   ],
-
   "references": [
-    { "name": "Partha Chakraborty", "role": "Associate Professor & Research Supervisor", "org": "Dept. of CSE, Comilla University" },
-    { "name": "Md Mohibullah", "role": "Assistant Professor, Dept. of CSE, Comilla University", "org": "PhD Fellow, Saitama University, Japan" },
-    { "name": "Hossain Md Erfan", "role": "Project Manager", "org": "Othello Financial Services Co. Ltd., Osaka" }
+    {
+      "name": "Partha Chakraborty",
+      "role": "Associate Professor & Research Supervisor",
+      "org": "Dept. of CSE, Comilla University"
+    },
+    {
+      "name": "Md Mohibullah",
+      "role": "Assistant Professor, Dept. of CSE, Comilla University",
+      "org": "PhD Fellow, Saitama University, Japan"
+    },
+    {
+      "name": "Hossain Md Erfan",
+      "role": "Project Manager",
+      "org": "Othello Financial Services Co. Ltd., Osaka"
+    }
   ],
-
   "cv": {
     "academic": "abu_sayeb_rayhan_cv.pdf",
     "industry": "abu_sayeb_rayhan_AI.pdf"
