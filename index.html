@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Md Abu Sayeb Rayhan | AI Engineer, Computer Vision &amp; LLMs</title>
-<meta name="description" content="AI Engineer and Data Scientist specialising in computer vision, large language models and RAG systems. Eighteen months deploying production perception pipelines in Japan. Three peer-reviewed publications.">
+<meta name="description" content="Computer Vision Engineer specialising in real-time perception, multi-object tracking and LLM/RAG systems. Eighteen months deploying production perception pipelines in Japan. Four conference papers in IEEE Xplore and Springer Nature.">
 <meta name="author" content="Md Abu Sayeb Rayhan">
 <meta property="og:title" content="Md Abu Sayeb Rayhan | AI Engineer">
 <meta property="og:description" content="Computer vision, LLMs and RAG. Production AI systems. Published in IEEE Xplore and Springer Nature.">
@@ -272,11 +272,21 @@ footer a:hover{color:var(--accent)}
 function esc(s){ return String(s==null?'':s)
   .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function rich(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,'<span class="kw">$1</span>'); }
-// Papers under review aren't peer-reviewed yet - don't count them as such.
-function pubMetaCount(d){
-  return (d.publications||[]).filter(function(p){
-    return !/review/i.test(String(p.status||''));
-  }).length;
+// Precise status breakdown, e.g. "2 published, 1 in press and 1 under review".
+// Stating this exactly reads as more trustworthy than a rounded total.
+function pubBreakdown(d){
+  var c = {published:0, press:0, review:0};
+  (d.publications||[]).forEach(function(p){
+    var s = String(p.status||'').toLowerCase();
+    if(/review/.test(s)) c.review++;
+    else if(/press/.test(s)) c.press++;
+    else c.published++;
+  });
+  var bits = [];
+  if(c.published) bits.push(c.published + ' published');
+  if(c.press) bits.push(c.press + ' in press');
+  if(c.review) bits.push(c.review + ' under review');
+  return bits.join(', ').replace(/,([^,]*)$/, ' and$1');
 }
 // Published work first, then in press, then under review.
 function pubRank(p){
@@ -313,7 +323,7 @@ function render(d){
     '</div><div class="hero-meta">' +
       '<span>📍 ' + esc(P.location) + '</span>' +
       '<span>🎓 ' + esc((d.education||{}).degree) + '</span>' +
-      '<span>📄 ' + pubMetaCount(d) + ' peer-reviewed publications</span>' +
+      '<span>📄 ' + (d.publications||[]).length + ' conference papers · ' + pubBreakdown(d) + '</span>' +
     '</div>' +
     ((d.metrics||[]).length ? '<div class="metrics">' + d.metrics.map(function(m){
       return '<div class="metric"><div class="metric-n">' + esc(m.value) + '</div>' +
@@ -369,11 +379,9 @@ function render(d){
     }).join('') + '</div></div></section>');
 
   /* publications */
-  var pubCount = (d.publications||[]).filter(function(p){
-    return !/review/i.test(String(p.status||''));
-  }).length;
   out.push(head('publications','Publications',
-      pubCount + ' peer-reviewed papers. Full detail on the <a href="research/">research portfolio</a>.') +
+      'Conference papers: ' + pubBreakdown(d) +
+      '. Full detail on the <a href="research/">research portfolio</a>.') +
     '<div class="pubs">' + sortPubs(d.publications).map(function(p){
       var t = p.link ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>' : esc(p.title);
       return '<article class="pub"><div class="pub-title">' + t + '</div><div class="pub-meta">' +
