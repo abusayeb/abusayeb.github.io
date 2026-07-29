@@ -104,6 +104,14 @@ strong{color:var(--ink);font-weight:640}
   color:var(--ink);margin-bottom:7px;line-height:1.4}
 .q-a{font-size:14.6px;color:var(--ink-2);line-height:1.66;margin:0}
 
+/* relevant projects */
+.proj-why{font-size:13.9px;color:var(--ink-2);line-height:1.6;
+  border-left:2px solid var(--rule-2);padding:2px 0 2px 12px;margin-top:8px}
+.proj-why b{color:var(--navy);font-weight:640}
+.proj-private{font-size:11px;font-weight:500;color:var(--muted);background:#f0f0ee;
+  border:1px solid var(--rule);padding:2px 7px;border-radius:3px;vertical-align:2px;
+  letter-spacing:.02em}
+
 /* author position + contribution */
 .pub-role{display:inline-block;font-size:11.5px;font-weight:600;color:var(--navy);
   background:#eef2f7;border:1px solid #dbe3ed;padding:2px 8px;border-radius:3px;margin-left:6px;
@@ -384,16 +392,23 @@ function render(d){
   var relProjects = (d.projects||[]).filter(function(p){ return p.pages === 'research' || p.pages === 'both'; });
   if(relProjects.length){
     out.push('<section id="projects"><h2>Relevant projects</h2>' +
+      '<p style="font-size:14.6px;color:var(--muted);margin-bottom:22px;">' +
+      'Selected for what they evidence rather than for scale. Code is public where the work was not proprietary.</p>' +
       relProjects.map(function(p){
         var title = p.link
           ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>'
           : esc(p.title);
-        return '<div class="entry"><div class="entry-head"><h3>' + title + '</h3>' +
+        var tags = (p.tags||[]).map(function(t){
+          return '<span class="ptag s">' + esc(t) + '</span>'; }).join('');
+        return '<div class="entry"><div class="entry-head"><h3>' + title +
+            (p.link ? '' : ' <span class="proj-private">proprietary</span>') + '</h3>' +
           '<span class="entry-date">' + esc(p.date) + '</span></div>' +
           (p.role ? '<div class="entry-where">' + esc(p.role) + '</div>' : '') +
-          '<p style="font-size:15px;margin-top:8px;">' + rich(p.desc) + '</p>' +
-          (p.impact ? '<p style="font-size:13.9px;color:var(--muted);margin-top:4px;">' +
-            '<b style="color:var(--ink)">Impact:</b> ' + esc(p.impact) + '</p>' : '') +
+          '<p style="font-size:15px;margin-top:8px;margin-bottom:8px;">' + rich(p.desc) + '</p>' +
+          (p.researchNote ? '<div class="proj-why"><b>Why it matters here:</b> ' + rich(p.researchNote) + '</div>' : '') +
+          (p.impact ? '<p style="font-size:13.9px;color:var(--muted);margin-top:8px;margin-bottom:0;">' +
+            '<b style="color:var(--ink)">Result:</b> ' + esc(p.impact) + '</p>' : '') +
+          (tags ? '<div class="pub-tags" style="margin-top:10px">' + tags + '</div>' : '') +
         '</div>';
       }).join('') + '</section>');
   }
