@@ -135,7 +135,7 @@
     },
     {
       "title": "Is CNN Dead? A Comprehensive Empirical Analysis of Convolutional Neural Networks, Ensemble Methods, and Vision Transformers for Rice Leaf Disease Classification in Low-Resource Agricultural Settings",
-      "authors": "**Md Abu Sayeb Rayhan** et al.",
+      "authors": "",
       "venue": "International Conference on Emerging Computing and Communication Technologies (ECCT) 2026 · Advances in Computer Science Research, Atlantis Press (Springer Nature)",
       "year": "2026",
       "tags": [
@@ -145,7 +145,7 @@
       "link": "",
       "note": "A controlled comparison of CNNs, ensembles and **Vision Transformers** under the compute and data constraints that agricultural deployment actually imposes. The strongest architecture on ImageNet is rarely the right choice there.",
       "bibkey": "rayhan2026cnn",
-      "authorRole": "First author",
+      "authorRole": "Fourth author",
       "contribution": ""
     },
     {
@@ -235,36 +235,20 @@
   ],
   "projects": [
     {
-      "title": "ADAS Lane & Vehicle Detection",
-      "date": "Research project · 2023–2024",
-      "desc": "Real-time lane boundary and vehicle detection for driver-assistance systems, combining a **YOLOv5** detector fine-tuned on a custom dataset with classical computer vision for lane geometry.",
-      "impact": "",
+      "title": "Universal NFT Generation Platform",
+      "date": "Jul–Oct 2025",
+      "desc": "Generalised a sports-specific video system into a platform handling **user-generated footage** across festivals, concerts and other domains. Fine-tuned **action detection** models and built the pipeline for automated clip creation.",
+      "impact": "Extended a single-domain system to open-domain video",
       "tags": [
-        "YOLOv5",
-        "PyTorch",
-        "OpenCV"
-      ],
-      "role": "Solo project",
-      "link": "https://github.com/abusayeb/adas-lane-vehicle-detection",
-      "pages": "both",
-      "researchNote": "Perception for a system that has to act: the closest existing work to my robotics and embedded AI direction."
-    },
-    {
-      "title": "ILLUSION — Virtual Object Control by Hand Gesture",
-      "date": "2023",
-      "desc": "Real-time **hand tracking** and gesture control: webcam frames are processed to detect hand landmarks and fingertips, and pinch/grab gestures are mapped to a virtual object that can be dragged in real time.",
-      "impact": "Runs live on a webcam feed",
-      "tags": [
-        "MediaPipe",
+        "MMAction2",
         "OpenCV",
-        "Python",
-        "Hand tracking",
-        "Gesture control"
+        "MoviePy",
+        "Azure DevOps"
       ],
-      "role": "Solo project",
-      "link": "https://github.com/abusayeb/virtual-object-control",
+      "role": "Implementation lead · Team of 3",
+      "link": "",
       "pages": "both",
-      "researchNote": "Real-time human-machine interaction from vision alone, closely related to the Human–Robot Interaction studies I ran as a Research Assistant."
+      "researchNote": "Domain generalisation in practice: an action-recognition pipeline tuned for one controlled setting, then forced to hold up on unconstrained user video."
     },
     {
       "title": "Real-Time In-Store Behaviour Analytics",
@@ -283,10 +267,10 @@
       "researchNote": "Pose estimation coupled with density-based clustering under a hard latency budget: evidence for perception under real deployment constraints."
     },
     {
-      "title": "Sports Highlight Generation System",
+      "title": "Sports NFT Generation System",
       "date": "Feb–Jul 2025",
       "desc": "Trained a custom object detection model and built a real-time video processing pipeline that identifies key moments in sports footage and generates clips without human intervention.",
-      "impact": "90% accuracy · 50% cost reduction",
+      "impact": "90% detection accuracy · 50% production cost reduction",
       "tags": [
         "YOLO",
         "ByteTrack",
@@ -296,7 +280,7 @@
       "role": "AI Engineer · Team of 3",
       "link": "https://github.com/abusayeb/basketball-highlight-generator",
       "pages": "both",
-      "researchNote": "Multi-object tracking and temporal event segmentation on unconstrained video, with occlusion and camera motion as the hard cases."
+      "researchNote": "Multi-object tracking and temporal event segmentation on unconstrained broadcast video, where occlusion and camera motion are the hard cases."
     },
     {
       "title": "Context Searcher",
@@ -316,19 +300,36 @@
       "researchNote": "Multimodal retrieval across text and images in a low-resource language (Bangla), combining OCR with dense embeddings."
     },
     {
-      "title": "Universal NFT Generation Platform",
-      "date": "Jul–Oct 2025",
-      "desc": "Generalised a sports-specific video system into a platform handling user-generated footage across festivals, concerts and other domains. Fine-tuned action detection models and built the pipeline for automated clip creation.",
+      "title": "ILLUSION — Virtual Object Control by Hand Gesture",
+      "date": "2023",
+      "desc": "Real-time **hand tracking** and gesture control: webcam frames are processed to detect hand landmarks and fingertips, and pinch/grab gestures are mapped to a virtual object that can be dragged in real time.",
+      "impact": "Runs live on a webcam feed",
+      "tags": [
+        "MediaPipe",
+        "OpenCV",
+        "Python",
+        "Hand tracking",
+        "Gesture control"
+      ],
+      "role": "Solo project",
+      "link": "https://github.com/abusayeb/virtual-object-control",
+      "pages": "both",
+      "researchNote": "Real-time human-machine interaction from vision alone, closely related to the Human–Robot Interaction studies I ran as a Research Assistant."
+    },
+    {
+      "title": "ADAS Lane & Vehicle Detection",
+      "date": "Research project · 2023–2024",
+      "desc": "Real-time lane boundary and vehicle detection for driver-assistance systems, combining a **YOLOv5** detector fine-tuned on a custom dataset with classical computer vision for lane geometry.",
       "impact": "",
       "tags": [
-        "MMAction2",
-        "OpenCV",
-        "MoviePy",
-        "Azure DevOps"
+        "YOLOv5",
+        "PyTorch",
+        "OpenCV"
       ],
-      "role": "Implementation lead · Team of 3",
-      "link": "",
-      "pages": "industry"
+      "role": "Solo project",
+      "link": "https://github.com/abusayeb/adas-lane-vehicle-detection",
+      "pages": "both",
+      "researchNote": "Perception for a system that has to act: the closest existing work to my robotics and embedded AI direction."
     },
     {
       "title": "RAG Customer Support Chatbot",
@@ -470,6 +471,24 @@
     {
       "q": "How do embedded compute and latency budgets change what counts as good perception?",
       "a": "At Othello, cutting inference latency by ~70% meant trading model complexity against a fixed processing budget for retail video, a generous budget compared to robotics. I want to study how that trade-off holds under the far tighter latency and power constraints of an embedded robotic platform, and whether the architectural choices that worked there even apply."
+    }
+  ],
+  "quickFacts": [
+    {
+      "k": "4",
+      "v": "conference papers — 2 published (IEEE Xplore, Scopus), 1 in press (Springer), 1 under review"
+    },
+    {
+      "k": "Best Presenter",
+      "v": "IEEE QPAIN 2026"
+    },
+    {
+      "k": "18 months",
+      "v": "production computer vision at Othello Financial Services, Japan"
+    },
+    {
+      "k": "GPA 3.4/4.0",
+      "v": "BSc Computer Science & Engineering, Comilla University"
     }
   ]
 }
