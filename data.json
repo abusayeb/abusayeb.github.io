@@ -15,7 +15,7 @@
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
     "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
-    "summaryResearch": "I am a computer-vision researcher with four conference papers (two published, one in press, one under review) and eighteen months of industry experience deploying perception systems at scale. I am now looking to move from vision applied to images toward **robotics, automation and embedded AI**, where perception has to work under real hardware and control constraints.",
+    "summaryResearch": "I am a computer-vision researcher with four conference papers (two published, one in press, one under review) and 2+ years of industry experience deploying perception systems at scale. I am now looking to move from vision applied to images toward **robotics, automation and embedded AI**, where perception has to work under real hardware and control constraints.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
     "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
@@ -483,8 +483,8 @@
       "v": "IEEE QPAIN 2026"
     },
     {
-      "k": "18 months",
-      "v": "production computer vision at Othello Financial Services, Japan"
+      "k": "2+ years experience",
+      "v": "Including production computer vision at Othello Financial Services, Japan"
     },
     {
       "k": "GPA 3.4/4.0",
