@@ -145,7 +145,7 @@
       "link": "",
       "note": "A controlled comparison of CNNs, ensembles and **Vision Transformers** under the compute and data constraints that agricultural deployment actually imposes. The strongest architecture on ImageNet is rarely the right choice there.",
       "bibkey": "rayhan2026cnn",
-      "authorRole": "Fourth author",
+      "authorRole": "First author",
       "contribution": ""
     },
     {
@@ -235,32 +235,36 @@
   ],
   "projects": [
     {
-      "title": "Universal NFT Generation Platform",
-      "date": "Jul–Oct 2025",
-      "desc": "Generalised a sports-specific video system into a platform handling user-generated footage across festivals, concerts and other domains. Fine-tuned action detection models and built the pipeline for automated clip creation.",
+      "title": "ADAS Lane & Vehicle Detection",
+      "date": "Research project · 2023–2024",
+      "desc": "Real-time lane boundary and vehicle detection for driver-assistance systems, combining a **YOLOv5** detector fine-tuned on a custom dataset with classical computer vision for lane geometry.",
       "impact": "",
       "tags": [
-        "MMAction2",
-        "OpenCV",
-        "MoviePy",
-        "Azure DevOps"
+        "YOLOv5",
+        "PyTorch",
+        "OpenCV"
       ],
-      "role": "Implementation lead · Team of 3",
-      "link": ""
+      "role": "Solo project",
+      "link": "https://github.com/abusayeb/adas-lane-vehicle-detection",
+      "pages": "both",
+      "researchNote": "Perception for a system that has to act: the closest existing work to my robotics and embedded AI direction."
     },
     {
-      "title": "Sports Highlight Generation System",
-      "date": "Feb–Jul 2025",
-      "desc": "Trained a custom object detection model and built a real-time video processing pipeline that identifies key moments in sports footage and generates clips without human intervention.",
-      "impact": "90% accuracy · 50% cost reduction",
+      "title": "ILLUSION — Virtual Object Control by Hand Gesture",
+      "date": "2023",
+      "desc": "Real-time **hand tracking** and gesture control: webcam frames are processed to detect hand landmarks and fingertips, and pinch/grab gestures are mapped to a virtual object that can be dragged in real time.",
+      "impact": "Runs live on a webcam feed",
       "tags": [
-        "YOLO",
-        "ByteTrack",
+        "MediaPipe",
         "OpenCV",
-        "MoviePy"
+        "Python",
+        "Hand tracking",
+        "Gesture control"
       ],
-      "role": "AI Engineer · Team of 3",
-      "link": "https://github.com/abusayeb/basketball-highlight-generator"
+      "role": "Solo project",
+      "link": "https://github.com/abusayeb/virtual-object-control",
+      "pages": "both",
+      "researchNote": "Real-time human-machine interaction from vision alone, closely related to the Human–Robot Interaction studies I ran as a Research Assistant."
     },
     {
       "title": "Real-Time In-Store Behaviour Analytics",
@@ -274,22 +278,25 @@
         "Power BI"
       ],
       "role": "System developer · Team of 3",
-      "link": ""
+      "link": "",
+      "pages": "both",
+      "researchNote": "Pose estimation coupled with density-based clustering under a hard latency budget: evidence for perception under real deployment constraints."
     },
     {
-      "title": "RAG Customer Support Chatbot",
-      "date": "Sep 2025",
-      "desc": "End-to-end retrieval-augmented chatbot that retrieves relevant context from a vector index and generates grounded answers. Built and deployed solo on Azure.",
-      "impact": "",
+      "title": "Sports Highlight Generation System",
+      "date": "Feb–Jul 2025",
+      "desc": "Trained a custom object detection model and built a real-time video processing pipeline that identifies key moments in sports footage and generates clips without human intervention.",
+      "impact": "90% accuracy · 50% cost reduction",
       "tags": [
-        "LangChain",
-        "Pinecone",
-        "GPT-4",
-        "Flask",
-        "Azure"
+        "YOLO",
+        "ByteTrack",
+        "OpenCV",
+        "MoviePy"
       ],
-      "role": "Solo developer",
-      "link": "https://github.com/abusayeb/rag-chatbot"
+      "role": "AI Engineer · Team of 3",
+      "link": "https://github.com/abusayeb/basketball-highlight-generator",
+      "pages": "both",
+      "researchNote": "Multi-object tracking and temporal event segmentation on unconstrained video, with occlusion and camera motion as the hard cases."
     },
     {
       "title": "Context Searcher",
@@ -304,21 +311,40 @@
         "MongoDB"
       ],
       "role": "AI Engineer & team lead",
-      "link": "https://github.com/abusayeb/keyword-file-searcher"
+      "link": "https://github.com/abusayeb/keyword-file-searcher",
+      "pages": "both",
+      "researchNote": "Multimodal retrieval across text and images in a low-resource language (Bangla), combining OCR with dense embeddings."
     },
     {
-      "title": "ADAS Lane & Vehicle Detection",
-      "date": "Research project",
-      "desc": "Real-time lane boundary and vehicle detection for driver-assistance systems, combining a YOLOv5 detector fine-tuned on a custom dataset with classical computer vision for lane geometry.",
+      "title": "Universal NFT Generation Platform",
+      "date": "Jul–Oct 2025",
+      "desc": "Generalised a sports-specific video system into a platform handling user-generated footage across festivals, concerts and other domains. Fine-tuned action detection models and built the pipeline for automated clip creation.",
       "impact": "",
       "tags": [
-        "YOLOv5",
-        "PyTorch",
-        "OpenCV"
+        "MMAction2",
+        "OpenCV",
+        "MoviePy",
+        "Azure DevOps"
       ],
-      "role": "",
-      "link": "https://github.com/abusayeb/adas-lane-vehicle-detection",
-      "pages": "both"
+      "role": "Implementation lead · Team of 3",
+      "link": "",
+      "pages": "industry"
+    },
+    {
+      "title": "RAG Customer Support Chatbot",
+      "date": "Sep 2025",
+      "desc": "End-to-end retrieval-augmented chatbot that retrieves relevant context from a vector index and generates grounded answers. Built and deployed solo on Azure.",
+      "impact": "",
+      "tags": [
+        "LangChain",
+        "Pinecone",
+        "GPT-4",
+        "Flask",
+        "Azure"
+      ],
+      "role": "Solo developer",
+      "link": "https://github.com/abusayeb/rag-chatbot",
+      "pages": "industry"
     }
   ],
   "education": {
