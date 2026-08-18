@@ -28,11 +28,13 @@ a{color:var(--accent)}
 button{font-family:inherit;font-size:14px;cursor:pointer;border-radius:8px;
   border:1px solid var(--line-2);background:var(--panel);color:var(--ink);
   padding:9px 15px;font-weight:600;transition:all .16s}
-button:hover{border-color:var(--accent);color:var(--accent)}
+button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+button:disabled{opacity:.4;cursor:not-allowed}
 button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-button.primary:hover{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
+button.primary:hover:not(:disabled){background:var(--accent-2);border-color:var(--accent-2);color:#fff}
 button.ghost{border-color:transparent;color:var(--muted);padding:6px 10px;font-weight:500}
-button.ghost:hover{color:var(--danger);border-color:var(--line-2)}
+button.ghost:hover:not(:disabled){color:var(--danger);border-color:var(--line-2)}
+button.ghost.move:hover:not(:disabled){color:var(--accent)}
 button.sm{padding:6px 11px;font-size:13px}
 
 .wrap{max-width:1000px;margin:0 auto;padding:22px 24px 90px}
@@ -46,12 +48,15 @@ button.sm{padding:6px 11px;font-size:13px}
 
 /* tabs */
 .tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:18px;
-  background:var(--panel);padding:6px;border:1px solid var(--line);border-radius:11px}
+  background:var(--panel);padding:6px;border:1px solid var(--line);border-radius:11px;
+  position:sticky;top:69px;z-index:55}
+.tabs[hidden]{display:none}
 .tab{padding:8px 14px;border-radius:7px;font-size:14px;font-weight:600;color:var(--muted);
   cursor:pointer;border:none;background:none}
-.tab:hover{color:var(--ink);background:var(--bg)}
+.tab:hover:not(:disabled){color:var(--ink);background:var(--bg)}
 .tab.on{background:var(--accent);color:#fff}
-.tab.on:hover{background:var(--accent-2);color:#fff}
+.tab.on:hover:not(:disabled){background:var(--accent-2);color:#fff}
+.tab .count{font-weight:500;opacity:.7;margin-left:5px;font-size:12.5px}
 
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;
   padding:22px 24px;margin-bottom:16px}
@@ -59,11 +64,14 @@ button.sm{padding:6px 11px;font-size:13px}
 .panel .hint{font-size:13.5px;color:var(--muted);margin-bottom:16px}
 
 .field{margin-bottom:14px}
-.field label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.field label{display:block}
+.field .lab{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:5px}
 input[type=text],textarea,select{width:100%;font-family:inherit;font-size:14.5px;color:var(--ink);
-  background:var(--panel);border:1px solid var(--line-2);border-radius:8px;padding:9px 12px;
-  transition:border-color .16s}
-input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+  font-weight:400;background:var(--panel);border:1px solid var(--line-2);border-radius:8px;
+  padding:9px 12px;transition:border-color .16s}
+input[type=range]{width:100%;accent-color:var(--accent)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 textarea{resize:vertical;min-height:76px;line-height:1.6}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
@@ -74,9 +82,11 @@ textarea{resize:vertical;min-height:76px;line-height:1.6}
 .item-n{font-size:12px;font-weight:700;color:var(--faint);letter-spacing:.06em;text-transform:uppercase}
 .item-tools{display:flex;gap:5px}
 .add-btn{width:100%;padding:11px;border-style:dashed;color:var(--muted);font-weight:600}
-.add-btn:hover{border-color:var(--accent);color:var(--accent);border-style:solid}
+.add-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent);border-style:solid}
+.empty{font-size:13.5px;color:var(--faint);padding:14px 0 16px}
 
 .tip{font-size:12.5px;color:var(--faint);margin-top:5px}
+.tip.bad{color:var(--danger)}
 .kwtip{background:#fff8e1;border:1px solid #f5e2a8;color:#7a5b00;padding:9px 12px;
   border-radius:8px;font-size:13px;margin-bottom:16px}
 .kwtip code{background:#f8edcb;padding:1px 5px;border-radius:3px}
@@ -90,6 +100,7 @@ textarea{resize:vertical;min-height:76px;line-height:1.6}
 .status{font-size:13.5px;color:var(--muted)}
 .status.dirty{color:var(--warn);font-weight:600}
 .status.saved{color:var(--ok);font-weight:600}
+.status.bad{color:var(--danger);font-weight:600}
 
 /* modal */
 .modal{display:none;position:fixed;inset:0;background:rgba(15,20,30,.55);z-index:100;
@@ -103,7 +114,7 @@ textarea{resize:vertical;min-height:76px;line-height:1.6}
 .modal-in li{margin-bottom:9px}
 pre{background:#f4f6f9;border:1px solid var(--line);border-radius:9px;padding:14px;
   font-size:12.3px;line-height:1.5;overflow:auto;max-height:260px;
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;word-break:break-word}
 
 /* validation summary */
 .checks{background:#fff6f5;border:1px solid #f3d3cf;color:#7d2a20;border-radius:9px;
@@ -120,14 +131,17 @@ pre{background:#f4f6f9;border:1px solid var(--line);border-radius:9px;padding:14
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
 .toast-action{background:none;border:none;color:#7cc4ff;font-weight:700;padding:0;
   font-size:14px;cursor:pointer}
-.toast-action:hover{color:#a8d8ff;border:none}
+.toast-action:hover{color:#a8d8ff;border:none;background:none}
 
-/* sticky tabs so navigation stays reachable on long panels */
-.tabs{position:sticky;top:69px;z-index:55}
+/* photo */
+.photo-frame{width:132px;height:132px;border-radius:50%;overflow:hidden;
+  border:1px solid var(--line-2);background:#eef1f5}
+.photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* clearer focus for keyboard users */
 input:focus-visible,textarea:focus-visible,button:focus-visible,select:focus-visible{
   outline:2px solid var(--accent);outline-offset:2px}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
 @media(max-width:760px){
   .row,.row-3{grid-template-columns:1fr}
@@ -153,9 +167,10 @@ input:focus-visible,textarea:focus-visible,button:focus-visible,select:focus-vis
       <div class="sub">Edit your details, then save the file to GitHub</div>
     </div>
     <div class="actions">
-      <button onclick="reloadData()">Reload</button>
-      <button onclick="preview()">Preview site</button>
-      <button class="primary" onclick="openSave()">Save changes →</button>
+      <button id="btnReload">Reload</button>
+      <button id="btnOpen">Open a file…</button>
+      <button id="btnPreview">Preview site</button>
+      <button class="primary" id="btnSaveTop">Save changes →</button>
     </div>
   </div>
 </div>
@@ -166,7 +181,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible,select:focus-vis
     <b>How this works</b>
     <ol>
       <li>Edit anything below - it updates a single file called <code>data.json</code>.</li>
-      <li>Click <b>Save changes</b> and follow the two steps shown.</li>
+      <li>Click <b>Save changes</b> and follow the three steps shown.</li>
       <li>Both your portfolio pages update within about a minute. No coding needed.</li>
     </ol>
   </div>
@@ -176,7 +191,7 @@ input:focus-visible,textarea:focus-visible,button:focus-visible,select:focus-vis
     e.g. <code>reduced latency by **70%**</code>. Highlighted terms catch a recruiter's eye when skimming.
   </div>
 
-  <div class="tabs" id="tabs"></div>
+  <div class="tabs" id="tabs" hidden></div>
   <div id="panels"></div>
 </div>
 
@@ -184,8 +199,8 @@ input:focus-visible,textarea:focus-visible,button:focus-visible,select:focus-vis
   <div class="savebar-in">
     <span class="status" id="status">Loading…</span>
     <div class="actions">
-      <button onclick="download()">Download data.json</button>
-      <button class="primary" onclick="openSave()">Save changes →</button>
+      <button id="btnDownload">Download data.json</button>
+      <button class="primary" id="btnSaveBottom">Save changes →</button>
     </div>
   </div>
 </div>
@@ -193,11 +208,11 @@ input:focus-visible,textarea:focus-visible,button:focus-visible,select:focus-vis
 <div class="modal" id="saveModal">
   <div class="modal-in">
     <h2>Save your changes</h2>
-    <p>Two steps. Takes about thirty seconds.</p>
+    <p>Three quick steps. Takes about thirty seconds.</p>
     <div class="checks" id="checks" style="display:none"></div>
     <ol>
       <li><b>Copy the file contents</b><br>
-        <button class="primary sm" onclick="copyJson()" style="margin-top:7px" id="copyBtn">Copy to clipboard</button></li>
+        <button class="primary sm" id="copyBtn" style="margin-top:7px">Copy to clipboard</button></li>
       <li><b>Paste it into GitHub</b><br>
         <a href="https://github.com/abusayeb/abusayeb.github.io/edit/main/data.json" target="_blank" rel="noopener">
           Open data.json on GitHub →</a><br>
@@ -205,30 +220,144 @@ input:focus-visible,textarea:focus-visible,button:focus-visible,select:focus-vis
           Select everything in the box (Ctrl/Cmd + A), paste, then click the green
           <b>Commit changes</b> button.</span></li>
       <li><b>Done?</b><br>
-        <button class="sm" onclick="markPublished()" style="margin-top:7px">I've committed it</button>
+        <button class="sm" id="btnPublished" style="margin-top:7px">I've committed it</button>
         <span class="tip" style="display:inline;margin-left:8px">Clears the local draft.</span></li>
     </ol>
-    <p style="font-size:13.5px">Prefer files? <a href="#" onclick="download();return false;">Download data.json</a>
+    <p style="font-size:13.5px">Prefer files? <a href="#" id="lnkDownload">Download data.json</a>
        and upload it to the repository instead.</p>
     <pre id="jsonOut"></pre>
     <div style="display:flex;gap:9px;justify-content:flex-end;margin-top:16px">
-      <button onclick="closeSave()">Close</button>
+      <button id="btnCloseSave">Close</button>
     </div>
   </div>
 </div>
 
-<script>
-var DATA = null, DIRTY = false, TAB = 'profile';
-var LAST_REMOVED = null;          // supports undo after a delete
-var DRAFT_KEY = 'portfolio-draft-v1';
+<input type="file" id="filePick" accept=".json,application/json" style="display:none">
 
-/* ---------- draft safety net ----------
-   Work is kept in the browser as you type, so closing the tab, a crash or a
-   stray refresh cannot lose your edits. Wrapped in try/catch because private
-   browsing modes can refuse storage entirely. */
-function saveDraft(){
-  try { localStorage.setItem(DRAFT_KEY, JSON.stringify({at:Date.now(), data:DATA})); }
-  catch(e){ /* storage unavailable; the page still works, just without recovery */ }
+<script>
+'use strict';
+
+/* ----------------------------------------------------------------
+   State. DATA is the whole data.json; PUBLISHED is a snapshot of
+   what is live, so "unsaved" is measured by comparison, not by a
+   flag that can drift out of step with reality.
+------------------------------------------------------------------ */
+var DRAFT_KEY = 'portfolio-draft-v1';
+var DATA = null;          // working copy
+var PUBLISHED = null;     // JSON string of the last known published state
+var TAB = 'profile';
+var LAST_REMOVED = null;  // supports undo after a delete
+var FOCUS_NEW = null;     // path prefix of a freshly added entry
+
+var TABS = [
+  ['profile','Profile & summary'],
+  ['news','News','news'],
+  ['research','Research'],
+  ['publications','Publications','publications'],
+  ['experience','Experience','experience'],
+  ['projects','Projects','projects'],
+  ['education','Education'],
+  ['awards','Awards & talks'],
+  ['skills','Skills','skills'],
+  ['refs','References','references']
+];
+
+/* Every field the editor touches, with a safe default. Anything else
+   in data.json is left untouched and written back out unchanged. */
+var DEFAULTS = {
+  profile: {
+    name:'', location:'', availabilityIndustry:'', availabilityResearch:'',
+    roleIndustry:'', specialismIndustry:'', roleResearch:'',
+    email:'', linkedin:'', github:'', scholar:'', orcid:'',
+    photo:'photo.jpg', photoZoom:1, photoFocus:'50% 50%',
+    summaryIndustry:'', summaryResearch:''
+  },
+  education: {
+    degree:'', school:'', start:'', end:'', grade:'', coursework:'',
+    thesisLabel:'', thesisTitle:'', thesisDesc:''
+  },
+  metrics:[], news:[], researchStatement:[], researchAreas:[], publications:[],
+  experience:[], projects:[], awards:[], talks:[], skills:[], references:[]
+};
+
+var TPL = {
+  metrics:{value:'',label:''},
+  news:{date:'',text:''},
+  researchStatement:'',
+  researchAreas:{title:'',desc:''},
+  publications:{title:'',authors:'M. A. S. Rayhan et al.',venue:'',year:'',tags:[],status:'',link:'',note:'',bibkey:''},
+  experience:{role:'',org:'',team:'',location:'',start:'',end:'',kind:'industry',note:'',bullets:[]},
+  projects:{title:'',date:'',desc:'',impact:'',tags:[],role:'',link:''},
+  awards:{year:'',title:'',detail:''},
+  talks:{title:'',venue:'',year:'',type:'Conference presentation'},
+  skills:{label:'',items:''},
+  references:{name:'',role:'',org:''}
+};
+
+var $ = function(id){ return document.getElementById(id); };
+var panelsEl = $('panels'), tabsEl = $('tabs'), modalEl = $('saveModal');
+
+function esc(s){
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function isObj(v){ return v && typeof v === 'object' && !Array.isArray(v); }
+function clone(v){ return JSON.parse(JSON.stringify(v)); }
+function splitLines(v){ return String(v).split('\n').map(function(s){return s.trim();}).filter(Boolean); }
+function splitTags(v){ return String(v).split(',').map(function(s){return s.trim();}).filter(Boolean); }
+function asList(v){ return Array.isArray(v) ? v.filter(function(x){return typeof x === 'string';}) : (typeof v === 'string' && v.trim() ? splitLines(v) : []); }
+
+/* ---------- normalise, so one missing key can't blank the page ---------- */
+function normalize(raw){
+  var d = isObj(raw) ? clone(raw) : {};
+
+  Object.keys(DEFAULTS).forEach(function(k){
+    var def = DEFAULTS[k];
+    if(Array.isArray(def)){
+      if(!Array.isArray(d[k])) d[k] = [];
+    } else {
+      if(!isObj(d[k])) d[k] = {};
+      Object.keys(def).forEach(function(f){
+        if(d[k][f] === undefined || d[k][f] === null) d[k][f] = def[f];
+      });
+    }
+  });
+
+  d.profile.photoZoom = parseFloat(d.profile.photoZoom) || 1;
+  if(typeof d.profile.photoFocus !== 'string') d.profile.photoFocus = '50% 50%';
+
+  d.researchStatement = d.researchStatement.map(function(p){ return typeof p === 'string' ? p : ''; });
+
+  ['metrics','news','researchAreas','publications','experience','projects','awards','talks','skills','references']
+    .forEach(function(k){
+      d[k] = d[k].map(function(it){
+        var base = clone(TPL[k]);
+        if(!isObj(it)) return base;
+        Object.keys(it).forEach(function(f){ base[f] = it[f]; });
+        return base;
+      });
+    });
+
+  d.publications.forEach(function(p){ p.tags = Array.isArray(p.tags) ? p.tags : splitTags(p.tags || ''); });
+  d.projects.forEach(function(p){ p.tags = Array.isArray(p.tags) ? p.tags : splitTags(p.tags || ''); });
+  d.experience.forEach(function(e){
+    e.bullets = asList(e.bullets);
+    if(e.kind !== 'research') e.kind = 'industry';
+  });
+  d.skills.forEach(function(s){ if(Array.isArray(s.items)) s.items = s.items.join(' · '); });
+
+  return d;
+}
+
+/* ---------- draft safety net ---------- */
+var DRAFT_T = null;
+function saveDraftSoon(){
+  clearTimeout(DRAFT_T);
+  DRAFT_T = setTimeout(function(){
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify({at:Date.now(), data:DATA})); }
+    catch(e){ /* private mode: the editor still works, just without recovery */ }
+  }, 400);
 }
 function readDraft(){
   try {
@@ -237,185 +366,186 @@ function readDraft(){
   } catch(e){ return null; }
 }
 function clearDraft(){
+  clearTimeout(DRAFT_T);
   try { localStorage.removeItem(DRAFT_KEY); } catch(e){}
 }
 function ago(ms){
-  var m = Math.round((Date.now()-ms)/60000);
+  var m = Math.round((Date.now() - ms) / 60000);
   if(m < 1) return 'moments ago';
-  if(m < 60) return m + (m===1?' minute ago':' minutes ago');
-  var h = Math.round(m/60);
-  return h + (h===1?' hour ago':' hours ago');
+  if(m < 60) return m + (m === 1 ? ' minute ago' : ' minutes ago');
+  var h = Math.round(m / 60);
+  if(h < 24) return h + (h === 1 ? ' hour ago' : ' hours ago');
+  var day = Math.round(h / 24);
+  return day + (day === 1 ? ' day ago' : ' days ago');
 }
 
-var TABS = [
-  ['profile','Profile & summary'],
-  ['news','News'],
-  ['research','Research'],
-  ['publications','Publications'],
-  ['experience','Experience'],
-  ['projects','Projects'],
-  ['education','Education'],
-  ['awards','Awards & talks'],
-  ['skills','Skills'],
-  ['refs','References']
-];
-
-function esc(s){ return String(s==null?'':s)
-  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
+/* ---------- status ---------- */
+function json(){ return JSON.stringify(DATA, null, 2); }
+function isDirty(){ return DATA !== null && PUBLISHED !== null && json() !== PUBLISHED; }
+function setStatus(t, c){ var s = $('status'); s.textContent = t; s.className = 'status ' + (c || ''); }
 function mark(){
-  DIRTY = true;
-  saveDraft();
-  setStatus('Unsaved changes · kept safe in this browser', 'dirty');
+  saveDraftSoon();
+  if(isDirty()) setStatus('Unsaved changes · kept safe in this browser', 'dirty');
+  else setStatus('No changes since your last publish', 'saved');
 }
-function setStatus(t,c){ var s=document.getElementById('status'); s.textContent=t; s.className='status '+(c||''); }
 
-/* ---- generic field builders ---- */
-function txt(label, val, onInput, hint){
-  var id='f'+Math.random().toString(36).slice(2);
-  return '<div class="field"><label for="'+id+'">'+esc(label)+'</label>' +
-    '<input type="text" id="'+id+'" value="'+esc(val)+'" oninput="'+onInput+'">' +
-    (hint?'<div class="tip">'+esc(hint)+'</div>':'') + '</div>';
+/* ---------- field builders ---------- */
+function textField(label, value, path, hint, kind){
+  return '<div class="field"><label><span class="lab">' + esc(label) + '</span>' +
+    '<input type="text" data-path="' + esc(path) + '" data-kind="' + (kind || 'text') + '" ' +
+    'value="' + esc(value) + '"></label>' +
+    (hint ? '<div class="tip">' + esc(hint) + '</div>' : '') + '</div>';
 }
-function area(label, val, onInput, hint, rows){
-  var id='f'+Math.random().toString(36).slice(2);
-  return '<div class="field"><label for="'+id+'">'+esc(label)+'</label>' +
-    '<textarea id="'+id+'" rows="'+(rows||3)+'" oninput="'+onInput+'">'+esc(val)+'</textarea>' +
-    (hint?'<div class="tip">'+esc(hint)+'</div>':'') + '</div>';
+function areaField(label, value, path, hint, rows, kind){
+  return '<div class="field"><label><span class="lab">' + esc(label) + '</span>' +
+    '<textarea rows="' + (rows || 3) + '" data-path="' + esc(path) + '" ' +
+    'data-kind="' + (kind || 'text') + '">' + esc(value) + '</textarea></label>' +
+    (hint ? '<div class="tip">' + esc(hint) + '</div>' : '') + '</div>';
 }
-function itemHead(label, i, arrName){
-  return '<div class="item-head"><span class="item-n">'+esc(label)+' '+(i+1)+'</span>' +
+function itemHead(label, i, arrName, len){
+  return '<div class="item-head"><span class="item-n">' + esc(label) + ' ' + (i + 1) + '</span>' +
     '<div class="item-tools">' +
-      '<button class="ghost sm" onclick="moveItem(\''+arrName+'\','+i+',-1)" title="Move up">↑</button>' +
-      '<button class="ghost sm" onclick="moveItem(\''+arrName+'\','+i+',1)" title="Move down">↓</button>' +
-      '<button class="ghost sm" onclick="removeItem(\''+arrName+'\','+i+')" title="Remove">Remove</button>' +
+      '<button class="ghost sm move" data-act="up" data-arr="' + arrName + '" data-i="' + i + '"' +
+        (i === 0 ? ' disabled' : '') + ' title="Move up" aria-label="Move up">↑</button>' +
+      '<button class="ghost sm move" data-act="down" data-arr="' + arrName + '" data-i="' + i + '"' +
+        (i === len - 1 ? ' disabled' : '') + ' title="Move down" aria-label="Move down">↓</button>' +
+      '<button class="ghost sm" data-act="remove" data-arr="' + arrName + '" data-i="' + i + '">Remove</button>' +
     '</div></div>';
 }
-
-/* ---- mutation helpers (called from inline handlers) ---- */
-function setPath(path, value){
-  var parts=path.split('.'), o=DATA;
-  for(var i=0;i<parts.length-1;i++){
-    var k=parts[i];
-    if(/^\d+$/.test(k)) k=parseInt(k,10);
-    o=o[k];
-  }
-  var last=parts[parts.length-1];
-  if(/^\d+$/.test(last)) last=parseInt(last,10);
-  o[last]=value;
-  mark();
+function addBtn(arrName, label){
+  return '<button class="add-btn" data-act="add" data-arr="' + arrName + '">+ ' + esc(label) + '</button>';
 }
-function setList(path, value){ setPath(path, value.split('\n').map(function(s){return s.trim();}).filter(Boolean)); }
-function setTags(path, value){ setPath(path, value.split(',').map(function(s){return s.trim();}).filter(Boolean)); }
+function emptyNote(text){ return '<div class="empty">' + esc(text) + '</div>'; }
+function list(arrName, render, emptyText){
+  var a = DATA[arrName] || [];
+  if(!a.length) return emptyNote(emptyText);
+  return a.map(function(it, i){ return render(it, i, a.length); }).join('');
+}
 
-function removeItem(arrName,i){
-  if(!confirm('Remove this entry? You can undo straight afterwards.')) return;
-  LAST_REMOVED = { arr: arrName, index: i, item: DATA[arrName][i] };
-  DATA[arrName].splice(i,1);
+/* ---------- data mutation ---------- */
+function setPath(path, value){
+  var parts = String(path).split('.'), o = DATA;
+  for(var i = 0; i < parts.length - 1; i++){
+    var k = /^\d+$/.test(parts[i]) ? parseInt(parts[i], 10) : parts[i];
+    if(o[k] === undefined || o[k] === null) return;
+    o = o[k];
+  }
+  var last = parts[parts.length - 1];
+  if(/^\d+$/.test(last)) last = parseInt(last, 10);
+  o[last] = value;
+}
+function moveItem(arrName, i, dir){
+  var a = DATA[arrName], j = i + dir;
+  if(!a || j < 0 || j >= a.length) return;
+  var t = a[i]; a[i] = a[j]; a[j] = t;
+  mark(); draw();
+}
+function removeItem(arrName, i){
+  var a = DATA[arrName];
+  if(!a || !a.length) return;
+  LAST_REMOVED = { arr:arrName, index:i, item:a[i] };
+  a.splice(i, 1);
   mark(); draw();
   toast('Entry removed', 'Undo', function(){
-    DATA[LAST_REMOVED.arr].splice(LAST_REMOVED.index, 0, LAST_REMOVED.item);
-    LAST_REMOVED = null; mark(); draw();
+    if(!LAST_REMOVED) return;
+    var target = DATA[LAST_REMOVED.arr];
+    if(!Array.isArray(target)) return;
+    var at = Math.min(LAST_REMOVED.index, target.length);
+    target.splice(at, 0, LAST_REMOVED.item);
+    LAST_REMOVED = null;
+    mark(); draw();
   });
 }
+function addItem(arrName){
+  if(!Array.isArray(DATA[arrName])) DATA[arrName] = [];
+  DATA[arrName].push(clone(TPL[arrName]));
+  FOCUS_NEW = arrName + '.' + (DATA[arrName].length - 1);
+  mark(); draw();
+}
 
-/* small transient message with an optional action */
+/* ---------- toast ---------- */
 var TOAST_T = null;
 function toast(msg, actionLabel, action){
-  var t = document.getElementById('toast');
-  if(!t){
-    t = document.createElement('div'); t.id = 'toast'; document.body.appendChild(t);
-  }
+  var t = $('toast');
+  if(!t){ t = document.createElement('div'); t.id = 'toast'; document.body.appendChild(t); }
   t.innerHTML = '<span>' + esc(msg) + '</span>';
   if(actionLabel){
     var b = document.createElement('button');
-    b.className = 'toast-action'; b.textContent = actionLabel;
+    b.className = 'toast-action';
+    b.textContent = actionLabel;
     b.onclick = function(){ action(); hideToast(); };
     t.appendChild(b);
   }
+  void t.offsetWidth;              // force a reflow so the first toast animates
   t.classList.add('show');
   clearTimeout(TOAST_T);
   TOAST_T = setTimeout(hideToast, 7000);
 }
-function hideToast(){
-  var t = document.getElementById('toast');
-  if(t) t.classList.remove('show');
-}
-function moveItem(arrName,i,dir){
-  var a=DATA[arrName], j=i+dir;
-  if(j<0||j>=a.length) return;
-  var t=a[i]; a[i]=a[j]; a[j]=t; mark(); draw();
-}
-function addItem(arrName, tpl){
-  DATA[arrName]=DATA[arrName]||[];
-  DATA[arrName].push(JSON.parse(JSON.stringify(tpl)));
-  mark(); draw();
-}
+function hideToast(){ var t = $('toast'); if(t) t.classList.remove('show'); }
 
-/* ---- panels ---- */
+/* ---------- panels ---------- */
 function panelProfile(){
-  var P=DATA.profile;
+  var P = DATA.profile;
   return '<div class="panel"><h2>Who you are</h2>' +
     '<div class="hint">Shown at the top of both pages.</div>' +
     '<div class="row">' +
-      txt('Full name', P.name, "setPath('profile.name',this.value)") +
-      txt('Location', P.location, "setPath('profile.location',this.value)") +
-    '</div>' +
-    '</div>' +
+      textField('Full name', P.name, 'profile.name') +
+      textField('Location', P.location, 'profile.location') +
+    '</div></div>' +
 
     '<div class="panel"><h2>Availability badges</h2>' +
-    '<div class="hint">Each page shows its own badge, so recruiters never see the Master\'s search ' +
-    'and professors never see the job search.</div>' +
-    txt('Industry page badge', P.availabilityIndustry, "setPath('profile.availabilityIndustry',this.value)",
-        'Jobs only. Leave blank to hide the badge.') +
-    txt('Research page badge', P.availabilityResearch, "setPath('profile.availabilityResearch',this.value)",
-        'Study and research only. Leave blank to hide the badge.') +
+    '<div class="hint">Each page shows its own badge, so recruiters never see the Master&#39;s search ' +
+      'and professors never see the job search.</div>' +
+    textField('Industry page badge', P.availabilityIndustry, 'profile.availabilityIndustry',
+      'Jobs only. Leave blank to hide the badge.') +
+    textField('Research page badge', P.availabilityResearch, 'profile.availabilityResearch',
+      'Study and research only. Leave blank to hide the badge.') +
     '</div>' +
 
     '<div class="panel"><h2>Headlines</h2>' +
     '<div class="row">' +
-      txt('Job title (industry page)', P.roleIndustry, "setPath('profile.roleIndustry',this.value)") +
-      txt('Specialism (industry page)', P.specialismIndustry, "setPath('profile.specialismIndustry',this.value)") +
+      textField('Job title (industry page)', P.roleIndustry, 'profile.roleIndustry') +
+      textField('Specialism (industry page)', P.specialismIndustry, 'profile.specialismIndustry') +
     '</div>' +
-    area('Research interests (research page)', P.roleResearch, "setPath('profile.roleResearch',this.value)",
-        'Listed under your name on the research page. Separate topics with the · character.', 3) +
+    areaField('Research interests (research page)', P.roleResearch, 'profile.roleResearch',
+      'Listed under your name on the research page. Separate topics with the · character.', 3) +
     '</div>' +
 
-    '<div class="panel"><h2>Contact & links</h2>' +
+    '<div class="panel"><h2>Contact &amp; links</h2>' +
     '<div class="row">' +
-      txt('Email', P.email, "setPath('profile.email',this.value)") +
-      txt('LinkedIn URL', P.linkedin, "setPath('profile.linkedin',this.value)") +
+      textField('Email', P.email, 'profile.email') +
+      textField('LinkedIn URL', P.linkedin, 'profile.linkedin') +
     '</div><div class="row">' +
-      txt('GitHub URL', P.github, "setPath('profile.github',this.value)") +
-      txt('Google Scholar URL', P.scholar, "setPath('profile.scholar',this.value)", 'Optional - hidden if blank.') +
+      textField('GitHub URL', P.github, 'profile.github') +
+      textField('Google Scholar URL', P.scholar, 'profile.scholar', 'Optional - hidden if blank.') +
     '</div>' +
-      txt('ORCID URL', P.orcid, "setPath('profile.orcid',this.value)", 'Optional - hidden if blank. Free to create at orcid.org.') +
+      textField('ORCID URL', P.orcid, 'profile.orcid', 'Optional - hidden if blank. Free to create at orcid.org.') +
     '</div>' +
 
     '<div class="panel"><h2>Photo</h2>' +
     '<div class="hint">Upload your picture to the repository, then put its exact filename here.</div>' +
-    txt('Photo filename', P.photo, "setPath('profile.photo',this.value);refreshPhoto()",
-        'Must match the file in your repository exactly, including .jpg or .jpeg.') +
+    textField('Photo filename', P.photo, 'profile.photo',
+      'Must match the file in your repository exactly, including .jpg or .jpeg.') +
     '<div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-top:6px">' +
       '<div style="text-align:center">' +
-        '<div style="width:132px;height:132px;border-radius:50%;overflow:hidden;' +
-          'border:1px solid var(--line-2);background:#eef1f5">' +
-          '<img id="photoPreview" style="width:100%;height:100%;object-fit:cover;display:block" alt="">' +
-        '</div>' +
-        '<div class="tip" style="margin-top:7px">Live preview</div>' +
+        '<div class="photo-frame"><img id="photoPreview" alt=""></div>' +
+        '<div class="tip" id="photoNote" style="margin-top:7px">Live preview</div>' +
       '</div>' +
       '<div style="flex:1;min-width:250px">' +
-        '<div class="field"><label>Zoom - <span id="zoomVal">' + (P.photoZoom||1) + '</span>×</label>' +
-          '<input type="range" min="1" max="3" step="0.05" value="' + (P.photoZoom||1) + '" ' +
-          'style="width:100%" oninput="setZoom(this.value)">' +
+        '<div class="field"><label><span class="lab">Zoom - <span id="zoomVal">' +
+          esc(P.photoZoom) + '</span>×</span>' +
+          '<input type="range" data-role="zoom" min="1" max="3" step="0.05" value="' +
+          esc(P.photoZoom) + '"></label>' +
           '<div class="tip">Drag right to move in closer on your face.</div></div>' +
         '<div class="row">' +
-          '<div class="field"><label>Move left / right - <span id="fxVal">50</span>%</label>' +
-            '<input type="range" min="0" max="100" step="1" value="' + focusPart(P.photoFocus,0) + '" ' +
-            'style="width:100%" oninput="setFocus(0,this.value)"></div>' +
-          '<div class="field"><label>Move up / down - <span id="fyVal">50</span>%</label>' +
-            '<input type="range" min="0" max="100" step="1" value="' + focusPart(P.photoFocus,1) + '" ' +
-            'style="width:100%" oninput="setFocus(1,this.value)">' +
+          '<div class="field"><label><span class="lab">Move left / right - <span id="fxVal">' +
+            focusPart(P.photoFocus, 0) + '</span>%</span>' +
+            '<input type="range" data-role="fx" min="0" max="100" step="1" value="' +
+            focusPart(P.photoFocus, 0) + '"></label></div>' +
+          '<div class="field"><label><span class="lab">Move up / down - <span id="fyVal">' +
+            focusPart(P.photoFocus, 1) + '</span>%</span>' +
+            '<input type="range" data-role="fy" min="0" max="100" step="1" value="' +
+            focusPart(P.photoFocus, 1) + '"></label>' +
             '<div class="tip">Lower = shows more of the top of your head.</div></div>' +
         '</div>' +
       '</div>' +
@@ -423,380 +553,565 @@ function panelProfile(){
 
     '<div class="panel"><h2>Summaries</h2>' +
     '<div class="hint">The opening paragraph on each page.</div>' +
-    area('Industry summary', P.summaryIndustry, "setPath('profile.summaryIndustry',this.value)", 'Use **asterisks** to highlight numbers and key skills.', 5) +
-    area('Research summary', P.summaryResearch, "setPath('profile.summaryResearch',this.value)", 'Short version used for search engines and previews.', 4) +
+    areaField('Industry summary', P.summaryIndustry, 'profile.summaryIndustry',
+      'Use **asterisks** to highlight numbers and key skills.', 5) +
+    areaField('Research summary', P.summaryResearch, 'profile.summaryResearch',
+      'Short version used for search engines and previews.', 4) +
     '</div>' +
 
     '<div class="panel"><h2>Headline numbers</h2>' +
     '<div class="hint">The four boxes near the top of the industry page.</div>' +
-    (DATA.metrics||[]).map(function(m,i){
-      return '<div class="item">'+itemHead('Metric',i,'metrics')+'<div class="row">' +
-        txt('Number', m.value, "setPath('metrics."+i+".value',this.value)") +
-        txt('Label', m.label, "setPath('metrics."+i+".label',this.value)") +
+    list('metrics', function(m, i, n){
+      return '<div class="item">' + itemHead('Metric', i, 'metrics', n) + '<div class="row">' +
+        textField('Number', m.value, 'metrics.' + i + '.value') +
+        textField('Label', m.label, 'metrics.' + i + '.label') +
       '</div></div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'metrics\',{value:\'\',label:\'\'})">+ Add metric</button></div>';
+    }, 'No metrics yet. Four short numbers work best.') +
+    addBtn('metrics', 'Add metric') + '</div>';
 }
 
 function panelNews(){
   return '<div class="panel"><h2>News</h2>' +
     '<div class="hint">Dated updates on the research page. Keeping this current is the single easiest way to look active to a professor.</div>' +
-    (DATA.news||[]).map(function(nw,i){
-      return '<div class="item">'+itemHead('Update',i,'news') +
-        txt('Date', nw.date, "setPath('news."+i+".date',this.value)", 'e.g. Jul 2026') +
-        area('Text', nw.text, "setPath('news."+i+".text',this.value)", '', 2) +
+    list('news', function(nw, i, n){
+      return '<div class="item">' + itemHead('Update', i, 'news', n) +
+        textField('Date', nw.date, 'news.' + i + '.date', 'e.g. Jul 2026') +
+        areaField('Text', nw.text, 'news.' + i + '.text', '', 2) +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'news\',{date:\'\',text:\'\'})">+ Add update</button></div>';
+    }, 'No updates yet. Newest first reads best.') +
+    addBtn('news', 'Add update') + '</div>';
 }
 
 function panelResearch(){
   return '<div class="panel"><h2>Research statement</h2>' +
     '<div class="hint">One paragraph per box. This is what a professor reads first.</div>' +
-    (DATA.researchStatement||[]).map(function(p,i){
-      return '<div class="item">'+itemHead('Paragraph',i,'researchStatement') +
-        area('Text', p, "setPath('researchStatement."+i+"',this.value)", '', 5) +
+    list('researchStatement', function(p, i, n){
+      return '<div class="item">' + itemHead('Paragraph', i, 'researchStatement', n) +
+        areaField('Text', p, 'researchStatement.' + i, '', 5) +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'researchStatement\',\'\')">+ Add paragraph</button></div>' +
+    }, 'No statement yet. Two or three paragraphs is plenty.') +
+    addBtn('researchStatement', 'Add paragraph') + '</div>' +
 
     '<div class="panel"><h2>Research areas</h2>' +
     '<div class="hint">The grid of topic cards.</div>' +
-    (DATA.researchAreas||[]).map(function(a,i){
-      return '<div class="item">'+itemHead('Area',i,'researchAreas') +
-        txt('Title', a.title, "setPath('researchAreas."+i+".title',this.value)") +
-        area('Description', a.desc, "setPath('researchAreas."+i+".desc',this.value)", '', 2) +
+    list('researchAreas', function(a, i, n){
+      return '<div class="item">' + itemHead('Area', i, 'researchAreas', n) +
+        textField('Title', a.title, 'researchAreas.' + i + '.title') +
+        areaField('Description', a.desc, 'researchAreas.' + i + '.desc', '', 2) +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'researchAreas\',{title:\'\',desc:\'\'})">+ Add area</button></div>';
+    }, 'No areas yet.') +
+    addBtn('researchAreas', 'Add area') + '</div>';
 }
 
 function panelPubs(){
   return '<div class="panel"><h2>Publications</h2>' +
     '<div class="hint">Add the DOI or IEEE Xplore link once each paper goes live - the title becomes clickable automatically.</div>' +
-    (DATA.publications||[]).map(function(p,i){
-      return '<div class="item">'+itemHead('Paper',i,'publications') +
-        area('Title', p.title, "setPath('publications."+i+".title',this.value)", '', 2) +
+    list('publications', function(p, i, n){
+      return '<div class="item">' + itemHead('Paper', i, 'publications', n) +
+        areaField('Title', p.title, 'publications.' + i + '.title', '', 2) +
         '<div class="row">' +
-          txt('Authors', p.authors, "setPath('publications."+i+".authors',this.value)") +
-          txt('Year', p.year, "setPath('publications."+i+".year',this.value)") +
+          textField('Authors', p.authors, 'publications.' + i + '.authors') +
+          textField('Year', p.year, 'publications.' + i + '.year') +
         '</div>' +
-        area('Venue', p.venue, "setPath('publications."+i+".venue',this.value)", '', 2) +
+        areaField('Venue', p.venue, 'publications.' + i + '.venue', '', 2) +
         '<div class="row">' +
-          txt('Link (DOI or Xplore URL)', p.link, "setPath('publications."+i+".link',this.value)", 'Leave blank until published.') +
-          txt('Status', p.status, "setPath('publications."+i+".status',this.value)", 'e.g. In press - clear this once published.') +
+          textField('Link (DOI or Xplore URL)', p.link, 'publications.' + i + '.link', 'Leave blank until published.') +
+          textField('Status', p.status, 'publications.' + i + '.status', 'e.g. In press - clear this once published.') +
         '</div>' +
-        txt('Tags (comma separated)', (p.tags||[]).join(', '), "setTags('publications."+i+".tags',this.value)") +
-        area('Short description', p.note, "setPath('publications."+i+".note',this.value)", 'One or two sentences on what the paper does.', 3) +
-        txt('BibTeX key', p.bibkey, "setPath('publications."+i+".bibkey',this.value)", 'Used for the copy-citation button.') +
+        textField('Tags (comma separated)', (p.tags || []).join(', '), 'publications.' + i + '.tags', '', 'tags') +
+        areaField('Short description', p.note, 'publications.' + i + '.note',
+          'One or two sentences on what the paper does.', 3) +
+        textField('BibTeX key', p.bibkey, 'publications.' + i + '.bibkey', 'Used for the copy-citation button.') +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'publications\',{title:\'\',authors:\'M. A. S. Rayhan et al.\',venue:\'\',year:\'\',tags:[],status:\'\',link:\'\',note:\'\',bibkey:\'\'})">+ Add publication</button></div>';
+    }, 'No publications yet.') +
+    addBtn('publications', 'Add publication') + '</div>';
 }
 
 function panelExp(){
   return '<div class="panel"><h2>Experience</h2>' +
     '<div class="hint">One entry per role. Put each bullet on its own line.</div>' +
-    (DATA.experience||[]).map(function(e,i){
-      return '<div class="item">'+itemHead('Role',i,'experience') +
+    list('experience', function(e, i, n){
+      return '<div class="item">' + itemHead('Role', i, 'experience', n) +
         '<div class="row">' +
-          txt('Job title', e.role, "setPath('experience."+i+".role',this.value)") +
-          txt('Organisation', e.org, "setPath('experience."+i+".org',this.value)") +
+          textField('Job title', e.role, 'experience.' + i + '.role') +
+          textField('Organisation', e.org, 'experience.' + i + '.org') +
         '</div><div class="row-3">' +
-          txt('Start', e.start, "setPath('experience."+i+".start',this.value)") +
-          txt('End', e.end, "setPath('experience."+i+".end',this.value)", 'or "Present"') +
-          txt('Location', e.location, "setPath('experience."+i+".location',this.value)") +
+          textField('Start', e.start, 'experience.' + i + '.start') +
+          textField('End', e.end, 'experience.' + i + '.end', 'or "Present"') +
+          textField('Location', e.location, 'experience.' + i + '.location') +
         '</div><div class="row">' +
-          txt('Team / supervisor', e.team, "setPath('experience."+i+".team',this.value)", 'Optional') +
-          txt('Note', e.note, "setPath('experience."+i+".note',this.value)", 'e.g. Contractual - optional') +
+          textField('Team / supervisor', e.team, 'experience.' + i + '.team', 'Optional') +
+          textField('Note', e.note, 'experience.' + i + '.note', 'e.g. Contractual - optional') +
         '</div>' +
-        '<div class="field"><label>Type</label><select onchange="setPath(\'experience.'+i+'.kind\',this.value)">' +
-          '<option value="industry"'+(e.kind!=='research'?' selected':'')+'>Industry / applied</option>' +
-          '<option value="research"'+(e.kind==='research'?' selected':'')+'>Research</option>' +
-        '</select><div class="tip">Research roles appear under "Research experience" on the academic page.</div></div>' +
-        area('Bullets (one per line)', (e.bullets||[]).join('\n'), "setList('experience."+i+".bullets',this.value)", 'Use **asterisks** around key terms and numbers.', 6) +
+        '<div class="field"><label><span class="lab">Type</span>' +
+          '<select data-path="experience.' + i + '.kind" data-kind="text">' +
+          '<option value="industry"' + (e.kind !== 'research' ? ' selected' : '') + '>Industry / applied</option>' +
+          '<option value="research"' + (e.kind === 'research' ? ' selected' : '') + '>Research</option>' +
+        '</select></label><div class="tip">Research roles appear under “Research experience” on the academic page.</div></div>' +
+        areaField('Bullets (one per line)', (e.bullets || []).join('\n'), 'experience.' + i + '.bullets',
+          'Use **asterisks** around key terms and numbers.', 6, 'list') +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'experience\',{role:\'\',org:\'\',team:\'\',location:\'\',start:\'\',end:\'\',kind:\'industry\',note:\'\',bullets:[]})">+ Add role</button></div>';
+    }, 'No roles yet.') +
+    addBtn('experience', 'Add role') + '</div>';
 }
 
 function panelProjects(){
   return '<div class="panel"><h2>Projects</h2>' +
-    (DATA.projects||[]).map(function(p,i){
-      return '<div class="item">'+itemHead('Project',i,'projects') +
+    list('projects', function(p, i, n){
+      return '<div class="item">' + itemHead('Project', i, 'projects', n) +
         '<div class="row">' +
-          txt('Title', p.title, "setPath('projects."+i+".title',this.value)") +
-          txt('Date', p.date, "setPath('projects."+i+".date',this.value)") +
+          textField('Title', p.title, 'projects.' + i + '.title') +
+          textField('Date', p.date, 'projects.' + i + '.date') +
         '</div>' +
-        area('Description', p.desc, "setPath('projects."+i+".desc',this.value)", '', 3) +
+        areaField('Description', p.desc, 'projects.' + i + '.desc', '', 3) +
         '<div class="row">' +
-          txt('Impact badge', p.impact, "setPath('projects."+i+".impact',this.value)", 'e.g. 90% accuracy · 50% cost cut. Blank hides it.') +
-          txt('GitHub link', p.link, "setPath('projects."+i+".link',this.value)", 'Blank shows your role instead.') +
-        '</div>' +
-        '<div class="row">' +
-          txt('Tags (comma separated)', (p.tags||[]).join(', '), "setTags('projects."+i+".tags',this.value)") +
-          txt('Your role', p.role, "setPath('projects."+i+".role',this.value)", 'e.g. Team of 3') +
+          textField('Impact badge', p.impact, 'projects.' + i + '.impact',
+            'e.g. 90% accuracy · 50% cost cut. Blank hides it.') +
+          textField('GitHub link', p.link, 'projects.' + i + '.link', 'Blank shows your role instead.') +
+        '</div><div class="row">' +
+          textField('Tags (comma separated)', (p.tags || []).join(', '), 'projects.' + i + '.tags', '', 'tags') +
+          textField('Your role', p.role, 'projects.' + i + '.role', 'e.g. Team of 3') +
         '</div>' +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'projects\',{title:\'\',date:\'\',desc:\'\',impact:\'\',tags:[],role:\'\',link:\'\'})">+ Add project</button></div>';
+    }, 'No projects yet.') +
+    addBtn('projects', 'Add project') + '</div>';
 }
 
 function panelEdu(){
-  var E=DATA.education;
+  var E = DATA.education;
   return '<div class="panel"><h2>Education</h2>' +
     '<div class="row">' +
-      txt('Degree', E.degree, "setPath('education.degree',this.value)") +
-      txt('Institution', E.school, "setPath('education.school',this.value)") +
+      textField('Degree', E.degree, 'education.degree') +
+      textField('Institution', E.school, 'education.school') +
     '</div><div class="row-3">' +
-      txt('Start', E.start, "setPath('education.start',this.value)") +
-      txt('End', E.end, "setPath('education.end',this.value)") +
-      txt('Grade', E.grade, "setPath('education.grade',this.value)") +
+      textField('Start', E.start, 'education.start') +
+      textField('End', E.end, 'education.end') +
+      textField('Grade', E.grade, 'education.grade') +
     '</div>' +
-    area('Relevant coursework', E.coursework, "setPath('education.coursework',this.value)", '', 2) +
+    areaField('Relevant coursework', E.coursework, 'education.coursework', '', 2) +
     '</div><div class="panel"><h2>Thesis</h2>' +
-    txt('Label', E.thesisLabel, "setPath('education.thesisLabel',this.value)") +
-    txt('Title', E.thesisTitle, "setPath('education.thesisTitle',this.value)") +
-    area('Description', E.thesisDesc, "setPath('education.thesisDesc',this.value)", '', 4) +
+    textField('Label', E.thesisLabel, 'education.thesisLabel') +
+    textField('Title', E.thesisTitle, 'education.thesisTitle') +
+    areaField('Description', E.thesisDesc, 'education.thesisDesc', '', 4) +
     '</div>';
 }
 
 function panelAwards(){
-  return '<div class="panel"><h2>Awards & activities</h2>' +
-    (DATA.awards||[]).map(function(a,i){
-      return '<div class="item">'+itemHead('Entry',i,'awards') +
+  return '<div class="panel"><h2>Awards &amp; activities</h2>' +
+    list('awards', function(a, i, n){
+      return '<div class="item">' + itemHead('Entry', i, 'awards', n) +
         '<div class="row">' +
-          txt('Year', a.year, "setPath('awards."+i+".year',this.value)") +
-          txt('Title', a.title, "setPath('awards."+i+".title',this.value)") +
+          textField('Year', a.year, 'awards.' + i + '.year') +
+          textField('Title', a.title, 'awards.' + i + '.title') +
         '</div>' +
-        txt('Detail', a.detail, "setPath('awards."+i+".detail',this.value)") +
+        textField('Detail', a.detail, 'awards.' + i + '.detail') +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'awards\',{year:\'\',title:\'\',detail:\'\'})">+ Add award</button></div>' +
+    }, 'No awards yet.') +
+    addBtn('awards', 'Add award') + '</div>' +
 
     '<div class="panel"><h2>Conference presentations</h2>' +
     '<div class="hint">Speaking experience counts for a lot in academic applications.</div>' +
-    (DATA.talks||[]).map(function(t,i){
-      return '<div class="item">'+itemHead('Talk',i,'talks') +
-        area('Title', t.title, "setPath('talks."+i+".title',this.value)", '', 2) +
+    list('talks', function(t, i, n){
+      return '<div class="item">' + itemHead('Talk', i, 'talks', n) +
+        areaField('Title', t.title, 'talks.' + i + '.title', '', 2) +
         '<div class="row-3">' +
-          txt('Venue', t.venue, "setPath('talks."+i+".venue',this.value)") +
-          txt('Year', t.year, "setPath('talks."+i+".year',this.value)") +
-          txt('Type', t.type, "setPath('talks."+i+".type',this.value)") +
+          textField('Venue', t.venue, 'talks.' + i + '.venue') +
+          textField('Year', t.year, 'talks.' + i + '.year') +
+          textField('Type', t.type, 'talks.' + i + '.type') +
         '</div>' +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'talks\',{title:\'\',venue:\'\',year:\'\',type:\'Conference presentation\'})">+ Add talk</button></div>';
+    }, 'No talks yet.') +
+    addBtn('talks', 'Add talk') + '</div>';
 }
 
 function panelSkills(){
   return '<div class="panel"><h2>Skills</h2>' +
     '<div class="hint">Separate individual skills with the · character (or a comma).</div>' +
-    (DATA.skills||[]).map(function(s,i){
-      return '<div class="item">'+itemHead('Group',i,'skills') +
-        txt('Group name', s.label, "setPath('skills."+i+".label',this.value)") +
-        area('Skills', s.items, "setPath('skills."+i+".items',this.value)", '', 2) +
+    list('skills', function(s, i, n){
+      return '<div class="item">' + itemHead('Group', i, 'skills', n) +
+        textField('Group name', s.label, 'skills.' + i + '.label') +
+        areaField('Skills', s.items, 'skills.' + i + '.items', '', 2) +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'skills\',{label:\'\',items:\'\'})">+ Add group</button></div>';
+    }, 'No skill groups yet.') +
+    addBtn('skills', 'Add group') + '</div>';
 }
 
 function panelRefs(){
   return '<div class="panel"><h2>References</h2>' +
     '<div class="hint">Names and affiliations only - email addresses are deliberately left off the public page.</div>' +
-    (DATA.references||[]).map(function(r,i){
-      return '<div class="item">'+itemHead('Referee',i,'references') +
-        txt('Name', r.name, "setPath('references."+i+".name',this.value)") +
-        txt('Role', r.role, "setPath('references."+i+".role',this.value)") +
-        txt('Organisation', r.org, "setPath('references."+i+".org',this.value)") +
+    list('references', function(r, i, n){
+      return '<div class="item">' + itemHead('Referee', i, 'references', n) +
+        textField('Name', r.name, 'references.' + i + '.name') +
+        textField('Role', r.role, 'references.' + i + '.role') +
+        textField('Organisation', r.org, 'references.' + i + '.org') +
       '</div>';
-    }).join('') +
-    '<button class="add-btn" onclick="addItem(\'references\',{name:\'\',role:\'\',org:\'\'})">+ Add referee</button></div>';
+    }, 'No referees yet.') +
+    addBtn('references', 'Add referee') + '</div>';
 }
 
 var PANELS = { profile:panelProfile, news:panelNews, research:panelResearch,
   publications:panelPubs, experience:panelExp, projects:panelProjects,
   education:panelEdu, awards:panelAwards, skills:panelSkills, refs:panelRefs };
 
+/* ---------- photo ---------- */
 function focusPart(focus, idx){
-  var parts = String(focus||'50% 50%').split(/\s+/);
-  return parseFloat(parts[idx]) || 50;
+  var parts = String(focus || '50% 50%').split(/\s+/);
+  var v = parseFloat(parts[idx]);
+  return isNaN(v) ? 50 : v;
 }
-function setZoom(v){
-  DATA.profile.photoZoom = parseFloat(v);
-  var lbl=document.getElementById('zoomVal'); if(lbl) lbl.textContent = v;
-  mark(); applyPhotoStyle();
-}
-function setFocus(idx, v){
-  var x = focusPart(DATA.profile.photoFocus, 0);
-  var y = focusPart(DATA.profile.photoFocus, 1);
-  if(idx===0) x = parseFloat(v); else y = parseFloat(v);
-  DATA.profile.photoFocus = x + '% ' + y + '%';
-  var lx=document.getElementById('fxVal'), ly=document.getElementById('fyVal');
-  if(lx) lx.textContent = x;
-  if(ly) ly.textContent = y;
-  mark(); applyPhotoStyle();
-}
+function setText(id, v){ var el = $(id); if(el) el.textContent = v; }
 function applyPhotoStyle(){
-  var img = document.getElementById('photoPreview');
+  var img = $('photoPreview');
   if(!img || !DATA) return;
-  var P = DATA.profile || {};
+  var P = DATA.profile;
   img.style.objectPosition = P.photoFocus || '50% 50%';
   img.style.transform = 'scale(' + (parseFloat(P.photoZoom) || 1) + ')';
 }
-function refreshPhoto(){
-  var img = document.getElementById('photoPreview');
+var PHOTO_T = null, LAST_PHOTO = null;
+function schedulePhoto(){
+  clearTimeout(PHOTO_T);
+  PHOTO_T = setTimeout(function(){ refreshPhoto(); }, 500);
+}
+function refreshPhoto(force){
+  var img = $('photoPreview'), note = $('photoNote');
   if(!img || !DATA) return;
-  var P = DATA.profile || {};
+  var P = DATA.profile;
   applyPhotoStyle();
-  var lx=document.getElementById('fxVal'), ly=document.getElementById('fyVal');
-  if(lx) lx.textContent = focusPart(P.photoFocus,0);
-  if(ly) ly.textContent = focusPart(P.photoFocus,1);
+  setText('zoomVal', P.photoZoom);
+  setText('fxVal', focusPart(P.photoFocus, 0));
+  setText('fyVal', focusPart(P.photoFocus, 1));
+
+  var name = String(P.photo || '').trim();
+  if(!name){
+    img.removeAttribute('src');
+    LAST_PHOTO = null;
+    if(note){ note.textContent = 'Enter a filename to see the preview.'; note.className = 'tip'; }
+    return;
+  }
+  if(name === LAST_PHOTO && !force && img.getAttribute('src')) return;
+  LAST_PHOTO = name;
+  img.onload = function(){ if(note){ note.textContent = 'Live preview'; note.className = 'tip'; } };
   img.onerror = function(){
     img.removeAttribute('src');
-    img.alt = 'Not found - check the filename';
+    if(note){ note.textContent = 'No file called “' + name + '” in the repository.'; note.className = 'tip bad'; }
   };
-  img.src = '../' + (P.photo || 'photo.jpg') + '?t=' + Date.now();
+  img.src = '../' + encodeURI(name) + '?t=' + Date.now();
 }
 
-function draw(){
-  document.getElementById('tabs').innerHTML = TABS.map(function(t){
-    return '<button class="tab'+(t[0]===TAB?' on':'')+'" onclick="go(\''+t[0]+'\')">'+esc(t[1])+'</button>';
-  }).join('');
-  document.getElementById('panels').innerHTML = PANELS[TAB]();
-  if(TAB === 'profile') refreshPhoto();
+/* ---------- render ---------- */
+function countFor(key){
+  if(!key || !DATA || !Array.isArray(DATA[key])) return '';
+  return '<span class="count">' + DATA[key].length + '</span>';
 }
-function go(t){ TAB=t; draw(); window.scrollTo({top:0,behavior:'instant'}); }
+function draw(keepScroll){
+  if(!DATA) return;
+  var y = window.pageYOffset;
+  tabsEl.hidden = false;
+  tabsEl.innerHTML = TABS.map(function(t){
+    return '<button class="tab' + (t[0] === TAB ? ' on' : '') + '" data-tab="' + t[0] + '">' +
+      esc(t[1]) + countFor(t[2]) + '</button>';
+  }).join('');
+  panelsEl.innerHTML = PANELS[TAB]();
+  if(TAB === 'profile') refreshPhoto(true);
+  window.scrollTo(0, keepScroll === false ? 0 : y);
+
+  if(FOCUS_NEW){
+    var el = panelsEl.querySelector('[data-path="' + FOCUS_NEW + '"], [data-path^="' + FOCUS_NEW + '."]');
+    FOCUS_NEW = null;
+    if(el){
+      var card = el.closest('.item');
+      if(card) card.scrollIntoView({block:'center', behavior:'smooth'});
+      el.focus({preventScroll:true});
+    }
+  }
+}
+function go(tab){
+  if(!PANELS[tab]) return;
+  TAB = tab;
+  draw(false);
+}
+
+/* ---------- input handling (delegated: survives every re-render) ---------- */
+function onFieldInput(e){
+  var el = e.target;
+  if(!DATA) return;
+
+  if(el.dataset.role){
+    var P = DATA.profile;
+    if(el.dataset.role === 'zoom'){
+      P.photoZoom = parseFloat(el.value) || 1;
+      setText('zoomVal', el.value);
+    } else if(el.dataset.role === 'fx' || el.dataset.role === 'fy'){
+      var x = focusPart(P.photoFocus, 0), y = focusPart(P.photoFocus, 1);
+      if(el.dataset.role === 'fx'){ x = parseFloat(el.value) || 0; setText('fxVal', x); }
+      else { y = parseFloat(el.value) || 0; setText('fyVal', y); }
+      P.photoFocus = x + '% ' + y + '%';
+    } else return;
+    applyPhotoStyle();
+    mark();
+    return;
+  }
+
+  var path = el.dataset.path;
+  if(!path) return;
+  var kind = el.dataset.kind || 'text';
+  if(kind === 'list') setPath(path, splitLines(el.value));
+  else if(kind === 'tags') setPath(path, splitTags(el.value));
+  else setPath(path, el.value);
+  if(path === 'profile.photo') schedulePhoto();
+  mark();
+}
+panelsEl.addEventListener('input', onFieldInput);
+panelsEl.addEventListener('change', function(e){
+  if(e.target.tagName === 'SELECT') onFieldInput(e);
+});
+panelsEl.addEventListener('click', function(e){
+  var btn = e.target.closest('button[data-act]');
+  if(!btn || !DATA) return;
+  var act = btn.dataset.act, arr = btn.dataset.arr, i = parseInt(btn.dataset.i, 10);
+  if(act === 'add') addItem(arr);
+  else if(act === 'up') moveItem(arr, i, -1);
+  else if(act === 'down') moveItem(arr, i, 1);
+  else if(act === 'remove') removeItem(arr, i);
+});
+tabsEl.addEventListener('click', function(e){
+  var btn = e.target.closest('button[data-tab]');
+  if(btn) go(btn.dataset.tab);
+});
 
 /* ---------- checks that catch the mistakes that actually happen ---------- */
 function problems(){
   var out = [];
   function scan(o, path){
     if(typeof o === 'string'){
-      if((o.match(/\*\*/g)||[]).length % 2)
+      if((o.match(/\*\*/g) || []).length % 2)
         out.push('Unclosed ** highlight in ' + path + ' — every ** needs a closing **.');
     } else if(Array.isArray(o)){
-      o.forEach(function(v,i){ scan(v, path + '[' + (i+1) + ']'); });
+      o.forEach(function(v, i){ scan(v, path + '[' + (i + 1) + ']'); });
     } else if(o && typeof o === 'object'){
       Object.keys(o).forEach(function(k){ scan(o[k], path ? path + ' › ' + k : k); });
     }
   }
   scan(DATA, '');
+
   var P = DATA.profile || {};
   if(!P.name) out.push('Your name is empty.');
   if(P.email && P.email.indexOf('@') === -1) out.push('Email address looks wrong.');
   ['linkedin','github','scholar','orcid'].forEach(function(k){
     if(P[k] && !/^https?:\/\//i.test(P[k])) out.push(k + ' link should start with https://');
   });
-  (DATA.publications||[]).forEach(function(p,i){
+  if(!String(P.photo || '').trim()) out.push('Photo filename is empty — the page will show a broken image.');
+
+  var keys = {};
+  (DATA.publications || []).forEach(function(p, i){
+    if(!p.title) out.push('Publication ' + (i + 1) + ' has no title.');
     if(p.link && !/^https?:\/\//i.test(p.link))
-      out.push('Publication ' + (i+1) + ': link should start with https://');
-    if(!p.title) out.push('Publication ' + (i+1) + ' has no title.');
+      out.push('Publication ' + (i + 1) + ': link should start with https://');
+    if(p.bibkey){
+      if(keys[p.bibkey]) out.push('Two publications share the BibTeX key “' + p.bibkey + '” — citations will clash.');
+      keys[p.bibkey] = true;
+    }
+  });
+  (DATA.projects || []).forEach(function(p, i){
+    if(p.link && !/^https?:\/\//i.test(p.link))
+      out.push('Project ' + (i + 1) + ': link should start with https://');
+  });
+  (DATA.experience || []).forEach(function(e, i){
+    if(!e.role && !e.org) out.push('Experience ' + (i + 1) + ' is blank — remove it or fill it in.');
+  });
+  (DATA.news || []).forEach(function(n, i){
+    if(n.text && !n.date) out.push('News update ' + (i + 1) + ' has no date.');
   });
   return out;
 }
 
-function json(){
-  var clean = JSON.parse(JSON.stringify(DATA));
-  return JSON.stringify(clean, null, 2);
-}
+/* ---------- save flow ---------- */
 function openSave(){
-  var errs = problems();
-  var box = document.getElementById('checks');
+  if(!DATA) return;
+  var errs = problems(), box = $('checks');
   if(errs.length){
-    box.innerHTML = '<b>' + errs.length + (errs.length===1?' thing to check':' things to check') +
+    box.className = 'checks';
+    box.innerHTML = '<b>' + errs.length + (errs.length === 1 ? ' thing to check' : ' things to check') +
       ' before you publish</b><ul>' +
       errs.map(function(e){ return '<li>' + esc(e) + '</li>'; }).join('') + '</ul>' +
       '<div class="tip" style="margin-top:6px">You can still save; these are warnings, not blocks.</div>';
-    box.style.display = 'block';
   } else {
-    box.innerHTML = '<b>Everything checks out.</b> No problems found.';
     box.className = 'checks ok';
-    box.style.display = 'block';
+    box.innerHTML = '<b>Everything checks out.</b> No problems found.';
   }
-  document.getElementById('jsonOut').textContent = json();
-  document.getElementById('saveModal').classList.add('open');
+  box.style.display = 'block';
+  $('jsonOut').textContent = json();
+  modalEl.classList.add('open');
+  $('copyBtn').focus();
 }
-function closeSave(){ document.getElementById('saveModal').classList.remove('open'); }
-function copyJson(){
-  var btn=document.getElementById('copyBtn');
-  navigator.clipboard.writeText(json()).then(function(){
-    btn.textContent='Copied ✓';
-    setStatus('Copied · now paste it into GitHub and commit','saved');
-    setTimeout(function(){ btn.textContent='Copy to clipboard'; },1800);
-  }).catch(function(){
-    // Clipboard blocked: select the text so a manual copy is one keystroke away.
-    var pre=document.getElementById('jsonOut');
-    var r=document.createRange(); r.selectNodeContents(pre);
-    var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
-    btn.textContent='Text selected · press Ctrl/Cmd + C';
-  });
-}
+function closeSave(){ modalEl.classList.remove('open'); }
 
-// Once it's committed, the local draft has served its purpose.
+var COPY_T = null;
+function copyJson(){
+  var btn = $('copyBtn'), text = json();
+  clearTimeout(COPY_T);
+  function done(){
+    btn.textContent = 'Copied ✓';
+    COPY_T = setTimeout(function(){ btn.textContent = 'Copy to clipboard'; }, 1800);
+  }
+  function fallback(){
+    var pre = $('jsonOut');
+    var r = document.createRange(); r.selectNodeContents(pre);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    btn.textContent = 'Text selected · press Ctrl/Cmd + C';
+    COPY_T = setTimeout(function(){ btn.textContent = 'Copy to clipboard'; }, 4000);
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(fallback);
+  } else {
+    fallback();
+  }
+}
 function markPublished(){
+  PUBLISHED = json();
   clearDraft();
-  DIRTY = false;
-  setStatus('Marked as published · draft cleared','saved');
+  setStatus('Published · nothing left to save', 'saved');
   hideToast();
   closeSave();
 }
 function download(){
-  var b=new Blob([json()],{type:'application/json'});
-  var a=document.createElement('a');
-  a.href=URL.createObjectURL(b); a.download='data.json';
+  var b = new Blob([json()], {type:'application/json'});
+  var url = URL.createObjectURL(b);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'data.json';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  setStatus('Downloaded - upload it to GitHub to publish','saved');
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  toast('Downloaded data.json — upload it to GitHub to publish');
 }
-function preview(){ window.open('../','_blank'); }
-function reloadData(){
-  if(DIRTY && !confirm('Discard your unsaved changes and reload?')) return;
-  load();
-}
-function load(){
-  setStatus('Loading…','');
-  fetch('../data.json?t='+Date.now())
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(d){
-      DATA = d; DIRTY = false;
+function preview(){ window.open('../', '_blank', 'noopener'); }
 
-      // Offer to restore work that was edited but never published.
+/* ---------- loading ---------- */
+function load(){
+  setStatus('Loading…', '');
+  if(location.protocol === 'file:'){
+    fallbackPanel('This page was opened straight from your computer, so the browser blocks it from reading ' +
+      'data.json on its own. Choose the file below, or open the editor through your site instead.');
+    return;
+  }
+  fetch('../data.json?t=' + Date.now())
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(d){
+      var published = normalize(d);
+      DATA = published;
+      PUBLISHED = JSON.stringify(published, null, 2);
+
       var draft = readDraft();
-      if(draft && draft.data && JSON.stringify(draft.data) !== JSON.stringify(d)){
-        if(confirm('You have unpublished changes from ' + ago(draft.at) + '.\n\n' +
-                   'OK = restore them\nCancel = discard them and use the published version')){
-          DATA = draft.data; DIRTY = true;
-          draw();
-          setStatus('Restored your unpublished changes','dirty');
-          return;
+      if(draft && draft.data){
+        var draftJson = JSON.stringify(normalize(draft.data), null, 2);
+        if(draftJson !== PUBLISHED){
+          if(confirm('You have unpublished changes from ' + ago(draft.at) + '.\n\n' +
+                     'OK = restore them\nCancel = discard them and use the published version')){
+            DATA = normalize(draft.data);
+            draw(false);
+            setStatus('Restored your unpublished changes', 'dirty');
+            return;
+          }
+          clearDraft();
+        } else {
+          clearDraft();
         }
-        clearDraft();
       }
-      draw();
-      setStatus('Loaded · all changes published','saved');
+      draw(false);
+      setStatus('Loaded · all changes published', 'saved');
     })
     .catch(function(e){
-      setStatus('Could not load data.json - check the file exists','dirty');
-      document.getElementById('panels').innerHTML =
-        '<div class="panel"><h2>Could not load data.json</h2>' +
-        '<p class="hint">Make sure <code>data.json</code> exists in the repository root. ' +
-        'Error: '+esc(e.message)+'</p></div>';
+      fallbackPanel('Could not read data.json (' + e.message + '). Make sure the file exists in the ' +
+        'repository root, or choose a copy from your computer.');
     });
 }
-
-document.getElementById('saveModal').addEventListener('click', function(e){
-  if(e.target===this) closeSave();
-});
-window.addEventListener('beforeunload', function(e){
-  if(DIRTY){ e.preventDefault(); e.returnValue=''; }
-});
-
-// Keyboard: Ctrl/Cmd+S opens save, Escape closes the dialog.
-document.addEventListener('keydown', function(e){
-  if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's'){
-    e.preventDefault(); openSave();
+function fallbackPanel(message){
+  DATA = null;
+  tabsEl.hidden = true;
+  setStatus('Nothing loaded yet', 'bad');
+  panelsEl.innerHTML =
+    '<div class="panel"><h2>Load your data</h2>' +
+    '<p class="hint">' + esc(message) + '</p>' +
+    '<div class="actions">' +
+      '<button class="primary" data-boot="pick">Choose a data.json file…</button>' +
+      '<button data-boot="retry">Try again</button>' +
+      (readDraft() ? '<button data-boot="draft">Restore my last draft</button>' : '') +
+      '<button data-boot="blank">Start from a blank file</button>' +
+    '</div></div>';
+}
+panelsEl.addEventListener('click', function(e){
+  var btn = e.target.closest('button[data-boot]');
+  if(!btn) return;
+  var what = btn.dataset.boot;
+  if(what === 'pick') $('filePick').click();
+  else if(what === 'retry') load();
+  else if(what === 'draft'){
+    var d = readDraft();
+    if(!d || !d.data){ toast('No draft found in this browser'); return; }
+    DATA = normalize(d.data); PUBLISHED = '';
+    draw(false);
+    setStatus('Draft from ' + ago(d.at) + ' · not published yet', 'dirty');
   }
-  if(e.key === 'Escape') closeSave();
+  else if(what === 'blank'){
+    DATA = normalize({}); PUBLISHED = '';
+    draw(false);
+    setStatus('Blank file · nothing published yet', 'dirty');
+  }
+});
+$('filePick').addEventListener('change', function(e){
+  var f = e.target.files && e.target.files[0];
+  if(!f) return;
+  var reader = new FileReader();
+  reader.onload = function(){
+    try {
+      var parsed = JSON.parse(reader.result);
+      DATA = normalize(parsed);
+      PUBLISHED = json();
+      draw(false);
+      setStatus('Loaded ' + f.name + ' · all changes published', 'saved');
+      toast('Loaded ' + f.name);
+    } catch(err){
+      toast('That file is not valid JSON — ' + err.message);
+    }
+  };
+  reader.onerror = function(){ toast('Could not read that file'); };
+  reader.readAsText(f);
+  e.target.value = '';   // so picking the same file twice still fires
+});
+
+/* ---------- wiring ---------- */
+$('btnReload').addEventListener('click', function(){
+  if(isDirty() && !confirm('Discard your unsaved changes and reload the published version?')) return;
+  load();
+});
+$('btnOpen').addEventListener('click', function(){
+  if(isDirty() && !confirm('Discard your unsaved changes and open another file?')) return;
+  $('filePick').click();
+});
+$('btnPreview').addEventListener('click', preview);
+$('btnSaveTop').addEventListener('click', openSave);
+$('btnSaveBottom').addEventListener('click', openSave);
+$('btnDownload').addEventListener('click', download);
+$('copyBtn').addEventListener('click', copyJson);
+$('btnPublished').addEventListener('click', markPublished);
+$('btnCloseSave').addEventListener('click', closeSave);
+$('lnkDownload').addEventListener('click', function(e){ e.preventDefault(); download(); });
+
+modalEl.addEventListener('click', function(e){ if(e.target === this) closeSave(); });
+
+window.addEventListener('beforeunload', function(e){
+  if(isDirty()){ e.preventDefault(); e.returnValue = ''; }
+});
+
+document.addEventListener('keydown', function(e){
+  if(!e.key) return;
+  if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's'){
+    e.preventDefault();
+    if(DATA) openSave();
+  }
+  if(e.key === 'Escape'){
+    if(modalEl.classList.contains('open')) closeSave();
+    else hideToast();
+  }
 });
 
 load();
