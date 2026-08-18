@@ -23,6 +23,10 @@
   },
   "news": [
     {
+      "date": "Aug 2026 ",
+      "text": "Submitted **“Foundation-Gated Evidential Fusion for Skin Lesions: Disentangling Acquisition Shift and Semantic Novelty”** to the IEEE Journal of Biomedical and Health Informatics (**J-BHI**)."
+    },
+    {
       "date": "Jul 2026",
       "text": "Submitted **RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI** to the IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (**RAAICON 2026**)."
     },
@@ -57,10 +61,6 @@
     {
       "date": "Jan 2023",
       "text": "Began working as a **Research Assistant** at Comilla University with Partha Chakraborty, on human-robot interaction and OCR."
-    },
-    {
-      "date": "Aug 2026 ",
-      "text": "Submitted “Foundation-Gated Evidential Fusion for Skin Lesions: Disentangling Acquisition Shift and Semantic Novelty” to the IEEE Journal of Biomedical and Health Informatics (J-BHI)."
     }
   ],
   "metrics": [
@@ -196,15 +196,16 @@
       "location": "Japan",
       "start": "Oct 2024",
       "end": "Mar 2026",
-      "current": false,
       "kind": "industry",
+      "note": "",
       "bullets": [
         "Built **multi-object tracking** (ByteTrack), **pose estimation** (MoveNet) and **human activity recognition** (MMAction2) pipelines for automated behaviour analysis on live retail video.",
         "Designed a spatial clustering pipeline applying **OPTICS** to pose-estimation output for group-dynamics modelling; parallel inference optimisation reduced processing latency by **~70%**.",
         "Developed a video **event-segmentation** system on a fine-tuned YOLO detector at **90%+ accuracy**, automating highlight extraction and cutting production cost by **50%**.",
         "Implemented a **retrieval-augmented generation** system (LangChain, Pinecone, GPT-4) for context-aware document querying, deployed on **Microsoft Azure**.",
         "Integrated IoT edge devices feeding real-time computer vision pipelines for automated data acquisition."
-      ]
+      ],
+      "current": false
     },
     {
       "role": "AI Engineer",
@@ -213,14 +214,14 @@
       "location": "Bangladesh",
       "start": "Feb 2024",
       "end": "Jul 2024",
-      "current": false,
       "kind": "industry",
       "note": "Contractual",
       "bullets": [
         "Developed a multilingual (Bangla/English) **NLP and OCR** retrieval pipeline spanning PDF, Word, Excel and image formats, combining optical character recognition with **dense embeddings**.",
         "Shipped as a desktop application built with PyQt and ChromaDB.",
         "**Led a three-person team** across the full product lifecycle, from design through deployment."
-      ]
+      ],
+      "current": false
     },
     {
       "role": "Research Assistant",
@@ -229,12 +230,13 @@
       "location": "Bangladesh",
       "start": "Jan 2023",
       "end": "Mar 2024",
-      "current": false,
       "kind": "research",
+      "note": "",
       "bullets": [
         "Conducted empirical studies in **Human–Robot Interaction** and **Optical Character Recognition**, covering dataset design, experimental protocol and quantitative analysis.",
         "Prepared and validated results subsequently incorporated into **peer-reviewed conference publications**."
-      ]
+      ],
+      "current": false
     }
   ],
   "projects": [
