@@ -276,7 +276,7 @@ var DEFAULTS = {
     degree:'', school:'', start:'', end:'', grade:'', coursework:'',
     thesisLabel:'', thesisTitle:'', thesisDesc:''
   },
-  metrics:[], news:[], researchStatement:[], researchAreas:[], publications:[],
+  metrics:[], news:[], researchStatement:[], researchAreas:[], researchProfile:[], publications:[],
   experience:[], projects:[], awards:[], talks:[], skills:[], references:[]
 };
 
@@ -285,10 +285,12 @@ var TPL = {
   news:{date:'',text:''},
   researchStatement:'',
   researchAreas:{title:'',desc:''},
-  publications:{title:'',authors:'M. A. S. Rayhan et al.',venue:'',year:'',tags:[],status:'',link:'',note:'',bibkey:''},
+  researchProfile:{stage:'',title:'',body:''},
+  publications:{title:'',authors:'M. A. S. Rayhan et al.',venue:'',year:'',tags:[],status:'',link:'',code:'',note:'',contribution:'',bibkey:''},
   experience:{role:'',org:'',team:'',location:'',start:'',end:'',kind:'industry',note:'',bullets:[]},
   projects:{title:'',date:'',desc:'',impact:'',tags:[],role:'',link:'',demo:'',
-            pages:'industry',categories:[],featured:false,details:[],researchNote:''},
+            pages:'industry',categories:[],featured:false,problem:'',details:[],
+            experiment:'',researchNote:''},
   awards:{year:'',title:'',detail:''},
   talks:{title:'',venue:'',year:'',type:'Conference presentation'},
   skills:{label:'',items:''},
@@ -330,7 +332,7 @@ function normalize(raw){
 
   d.researchStatement = d.researchStatement.map(function(p){ return typeof p === 'string' ? p : ''; });
 
-  ['metrics','news','researchAreas','publications','experience','projects','awards','talks','skills','references']
+  ['metrics','news','researchAreas','researchProfile','publications','experience','projects','awards','talks','skills','references']
     .forEach(function(k){
       d[k] = d[k].map(function(it){
         var base = clone(TPL[k]);
@@ -601,6 +603,21 @@ function panelResearch(){
     }, 'No statement yet. Two or three paragraphs is plenty.') +
     addBtn('researchStatement', 'Add paragraph') + '</div>' +
 
+    '<div class="panel"><h2>Research profile</h2>' +
+    '<div class="hint">The three cards at the top of the research page: what you built, ' +
+      'what you researched, and what you want to research next. Keep it to three.</div>' +
+    list('researchProfile', function(r, i, n){
+      return '<div class="item">' + itemHead('Stage', i, 'researchProfile', n) +
+        '<div class="row">' +
+          textField('Stage label', r.stage, 'researchProfile.' + i + '.stage',
+            'e.g. Engineering experience') +
+          textField('Heading', r.title, 'researchProfile.' + i + '.title') +
+        '</div>' +
+        areaField('Text', r.body, 'researchProfile.' + i + '.body', '', 4) +
+      '</div>';
+    }, 'No stages yet.') +
+    addBtn('researchProfile', 'Add stage') + '</div>' +
+
     '<div class="panel"><h2>Research areas</h2>' +
     '<div class="hint">The grid of topic cards.</div>' +
     list('researchAreas', function(a, i, n){
@@ -627,9 +644,15 @@ function panelPubs(){
           textField('Link (DOI or Xplore URL)', p.link, 'publications.' + i + '.link', 'Leave blank until published.') +
           textField('Status', p.status, 'publications.' + i + '.status', 'e.g. In press - clear this once published.') +
         '</div>' +
-        textField('Tags (comma separated)', (p.tags || []).join(', '), 'publications.' + i + '.tags', '', 'tags') +
+        '<div class="row">' +
+          textField('Tags (comma separated)', (p.tags || []).join(', '), 'publications.' + i + '.tags', '', 'tags') +
+          textField('Code link', p.code, 'publications.' + i + '.code',
+            'Optional repository for the paper.') +
+        '</div>' +
         areaField('Short description', p.note, 'publications.' + i + '.note',
           'One or two sentences on what the paper does.', 3) +
+        areaField('My contribution', p.contribution, 'publications.' + i + '.contribution',
+          'Optional - what you personally did. Shown on the research page only.', 2) +
         textField('BibTeX key', p.bibkey, 'publications.' + i + '.bibkey', 'Used for the copy-citation button.') +
       '</div>';
     }, 'No publications yet.') +
@@ -687,12 +710,16 @@ function panelProjects(){
             'tags') +
           textField('Demo link', p.demo, 'projects.' + i + '.demo', 'Optional - video or live demo.') +
         '</div>' +
-        areaField('Case-study bullets (one per line)', (p.details || []).join('\n'),
+        areaField('Problem', p.problem, 'projects.' + i + '.problem',
+          'What question the work set out to answer. Research page only - leave empty to hide.', 2) +
+        areaField('Approach - one bullet per line', (p.details || []).join('\n'),
           'projects.' + i + '.details',
           'Shown behind the "Case study" toggle on the card. Leave empty to hide the toggle.',
           3, 'list') +
-        areaField('Why it matters for my research', p.researchNote, 'projects.' + i + '.researchNote',
-          'Only shown on the research portfolio.', 2) +
+        areaField('Experiment', p.experiment, 'projects.' + i + '.experiment',
+          'How it was evaluated. Research page only - leave empty to hide.', 2) +
+        areaField('Contribution', p.researchNote, 'projects.' + i + '.researchNote',
+          'What the work contributes. Only shown on the research portfolio.', 2) +
         '<div class="row">' +
           '<div class="field"><label><span class="lab">Show on</span>' +
             '<select data-path="projects.' + i + '.pages" data-kind="text">' +

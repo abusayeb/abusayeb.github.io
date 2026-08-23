@@ -122,17 +122,27 @@
       ? '<a ' + linkAttrs(p.link) + '>' + esc(p.title) + '</a>'
       : esc(p.title);
 
+    /* Every block below is rendered only when its field exists, so a card is
+       never padded out with a heading that has nothing behind it. On the
+       research page the labels follow the academic problem-to-contribution
+       arc; on the industry page they stay plain. */
     var caseBlocks = [];
+    function block(label, html, cls) {
+      caseBlocks.push('<div class="case-block' + (cls ? ' ' + cls : '') + '">' +
+        '<h4>' + label + '</h4>' + html + '</div>');
+    }
+    if (opts.academic && p.problem) block('Problem', '<p>' + rich(p.problem) + '</p>', 'case-block--lead');
     if ((p.details || []).length) {
-      caseBlocks.push('<div class="case-block"><h4>How it works</h4><ul class="bullets">' +
-        p.details.map(function (b) { return '<li>' + rich(b) + '</li>'; }).join('') + '</ul></div>');
+      block(opts.academic ? 'Approach' : 'How it works',
+        '<ul class="bullets">' + p.details.map(function (b) {
+          return '<li>' + rich(b) + '</li>';
+        }).join('') + '</ul>');
     }
-    if (p.challenge) {
-      caseBlocks.push('<div class="case-block"><h4>Hard part</h4><p>' + rich(p.challenge) + '</p></div>');
-    }
+    if (opts.academic && p.experiment) block('Experiment', '<p>' + rich(p.experiment) + '</p>');
+    if (p.challenge) block(opts.academic ? 'Hard part' : 'Hard part', '<p>' + rich(p.challenge) + '</p>');
     if (opts.researchNote && p.researchNote) {
-      caseBlocks.push('<div class="case-block"><h4>Why it matters for my research</h4><p>' +
-        rich(p.researchNote) + '</p></div>');
+      block(opts.academic ? 'Contribution' : 'Why it matters for my research',
+        '<p>' + rich(p.researchNote) + '</p>');
     }
 
     return '<article class="proj' + (p.featured ? ' is-featured' : '') + '"' +
@@ -145,8 +155,9 @@
       '<p class="proj-desc">' + rich(p.desc) + '</p>' +
       (p.impact ? '<div class="proj-impact"><span aria-hidden="true">⚡</span>' + esc(p.impact) + '</div>' : '') +
       (caseBlocks.length
-        ? '<details class="case"><summary>Case study</summary>' +
-            '<div class="case-body">' + caseBlocks.join('') + '</div></details>'
+        ? '<details class="case"><summary>' + (opts.academic ? 'Case study' : 'Case study') +
+            '</summary><div class="case-body' + (opts.academic ? ' case-steps' : '') + '">' +
+            caseBlocks.join('') + '</div></details>'
         : '') +
       '<div class="chips">' + chips(p.tags) + '</div>' +
       '<div class="proj-foot">' +
@@ -406,13 +417,20 @@
 
   /* ============================================================ RESEARCH */
 
+  /* Ordered for the reader this page is written for: a supervisor or an
+     admissions committee deciding, in about two minutes, whether this applicant
+     can do research. Who I am, what I studied, what I have researched, what I
+     have published, what I built, where I want to go, what I have been given
+     credit for. */
   function renderResearch(d) {
     var P = d.profile || {}, E = d.education || {}, out = [];
     var parts = String(P.name || '').trim().split(' ');
     var first = parts.slice(0, -1).join(' '), last = parts[parts.length - 1] || '';
 
-    document.title = P.name + ' | Research — computer vision, embodied & embedded AI';
+    document.title = P.name + ' | Research — computer vision & reliable AI';
     $('brandName').innerHTML = '<b>' + esc(first) + '</b> <i>' + esc(last) + '</i>';
+
+    var focus = (P.researchFocusAreas || []);
 
     /* ---- hero ---- */
     out.push('<header class="hero" id="top">' +
@@ -422,10 +440,9 @@
           (P.availabilityResearch
             ? '<p class="hero-badge"><span class="badge-dot"></span>' + esc(P.availabilityResearch) + '</p>' : '') +
           '<h1>' + esc(first) + '<br><span class="grad">' + esc(last) + '</span></h1>' +
-          '<p class="hero-role">' + esc(P.roleResearch) + '</p>' +
-          (P.roleResearchSub
-            ? '<div class="hero-focus">' + chips(String(P.roleResearchSub).split('·')
-                .map(function (s) { return s.trim(); }).filter(Boolean), 'chip--accent') + '</div>' : '') +
+          '<p class="hero-role">' + esc(P.titleResearch || 'AI Engineer · Researcher') + '</p>' +
+          '<p class="hero-lead">' + esc(P.roleResearch) + '</p>' +
+          (focus.length ? '<div class="hero-focus">' + chips(focus, 'chip--accent') + '</div>' : '') +
           '<p class="hero-desc">' + rich(P.summaryResearch) + '</p>' +
           '<div class="hero-cta">' +
             '<a class="btn btn-primary" href="#publications">Publications ' + ARROW + '</a>' +
@@ -453,7 +470,7 @@
       '</div></div>' +
     '</header>');
 
-    /* ---- quick facts (full-bleed) ---- */
+    /* ---- profile at a glance (full-bleed) ---- */
     if ((d.quickFacts || []).length) {
       out.push('<section class="stats" aria-label="Research profile at a glance">' +
         d.quickFacts.map(function (f) {
@@ -463,69 +480,57 @@
         }).join('') + '</section>');
     }
 
-    /* ---- research interests ---- */
-    out.push(section('research', 'section--band',
-      head('research', 'Research interests',
-        P.researchInterestsLine ? esc(P.researchInterestsLine) : '') +
-      '<div class="prose" style="display:grid;gap:1.1rem;margin-bottom:clamp(2rem,3.5vw,3.25rem)" data-reveal>' +
-        (d.researchStatement || []).map(function (p) {
-          return '<p style="color:var(--muted);font-size:var(--t-lead);line-height:1.78">' + rich(p) + '</p>';
+    /* ---- 1. research profile: the transition ---- */
+    out.push(section('profile', 'section--band',
+      head('profile', 'Research profile',
+        'How the engineering and the research fit together, and where the two are heading.') +
+      ((d.researchProfile || []).length
+        ? '<div class="arc" style="margin-bottom:clamp(2rem,3.5vw,3.25rem)">' +
+          d.researchProfile.map(function (r, i, arr) {
+            var n = (i + 1 < 10 ? '0' : '') + (i + 1);
+            return '<article class="arc-step' + (i === arr.length - 1 ? ' is-future' : '') + '" data-reveal>' +
+              '<span class="arc-n">' + n + ' · ' + esc(r.stage) + '</span>' +
+              '<h3>' + esc(r.title) + '</h3>' +
+              '<p>' + rich(r.body) + '</p></article>';
+          }).join('') + '</div>'
+        : '') +
+      '<div class="prose" style="display:grid;gap:1.05rem" data-reveal>' +
+        (d.researchStatement || []).map(function (para) {
+          return '<p style="color:var(--muted);font-size:var(--t-lead);line-height:1.78">' +
+            rich(para) + '</p>';
         }).join('') +
-      '</div>' +
-      '<div class="areas">' + (d.researchAreas || []).map(function (a, i, arr) {
-        var n = (i + 1 < 10 ? '0' : '') + (i + 1);
-        return '<article class="area' + (i === arr.length - 1 ? ' is-next' : '') + '" data-reveal>' +
-          '<span class="area-n">' + n + (i === arr.length - 1 ? ' · WHERE I WANT TO GO' : '') + '</span>' +
-          '<h3>' + esc(a.title) + '</h3><p>' + esc(a.desc) + '</p></article>';
-      }).join('') + '</div>'));
+      '</div>'));
 
-    /* ---- publications ---- */
-    out.push(section('publications', '',
-      head('publications', 'Publications',
-        'Peer-reviewed conference papers: ' + esc(pubBreakdown(d)) +
-        '. Status is stated per paper. Use <em>BibTeX</em> to copy a citation.',
-        (d.publications || []).length + ' papers') +
-      '<div class="pubs">' + sortPubs(d.publications).map(function (p, i) {
-        var t = p.link ? '<a ' + linkAttrs(p.link) + '>' + esc(p.title) + '</a>' : esc(p.title);
-        return '<article class="pub" data-state="' + pubState(p) + '" data-reveal>' +
-          '<h3 class="pub-title">' + t + '</h3>' +
-          ((p.authors || p.authorRole)
-            ? '<p class="pub-authors">' + (p.authors ? rich(p.authors) : '') +
-              (p.authorRole ? '<span class="pub-role"' + (p.authors ? '' :
-                ' style="margin-left:0;padding-left:0;border-left:0"') + '>' +
-                esc(p.authorRole) + '</span>' : '') + '</p>'
-            : '') +
-          '<p class="pub-venue">' + esc(p.venue) + '</p>' +
-          '<div class="pub-meta">' +
-            '<span class="chip ' + (pubState(p) === 'published' ? 'chip--accent'
-              : pubState(p) === 'press' ? 'chip--gold' : 'chip--warn') + '">' + statusLabel(p) + '</span>' +
-            chips(p.tags) +
-            '<button class="bib-btn" type="button" data-bib="bib' + i + '" aria-expanded="false">BibTeX</button>' +
-          '</div>' +
-          (p.note ? '<p class="pub-note">' + rich(p.note) + '</p>' : '') +
-          (p.contribution ? '<p class="pub-contrib"><b>My contribution:</b> ' + rich(p.contribution) + '</p>' : '') +
-          '<pre class="bib" id="bib' + i + '">' + esc(bibtex(p, P.name)) + '</pre>' +
-        '</article>';
-      }).join('') + '</div>'));
+    /* ---- 2. academic background ---- */
+    out.push(section('education', '',
+      head('education', 'Academic background', '') +
+      '<div class="split">' +
+        '<div class="card edu-card" data-reveal>' +
+          '<div class="edu-top"><div>' +
+            '<h3 class="edu-deg">' + esc(E.degree) + '</h3>' +
+            '<p class="edu-school">' + esc(E.school) + ' · ' + esc(E.start) + ' – ' + esc(E.end) + '</p>' +
+          '</div><span class="edu-grade">' + esc(E.grade) + '</span></div>' +
+          (E.coursework ? '<p class="edu-meta"><b>Relevant coursework</b>' + esc(E.coursework) + '</p>' : '') +
+          (E.thesisTitle ? '<div class="thesis">' +
+            '<div class="thesis-l">' + esc(E.thesisLabel) + '</div>' +
+            '<div class="thesis-t">' + esc(E.thesisTitle) + '</div>' +
+            '<p class="thesis-d">' + rich(E.thesisDesc) + '</p></div>' : '') +
+        '</div>' +
+        '<div class="card" data-reveal>' +
+          '<h3 class="eyebrow" style="margin-bottom:1.25rem">Languages</h3>' +
+          '<div class="chips">' + chips(splitSkills(
+            ((d.skills || []).filter(function (x) { return x.label === 'Languages'; })[0] || {}).items
+          )) + '</div>' +
+          '<h3 class="eyebrow" style="margin:1.75rem 0 1.25rem">References</h3>' +
+          '<p style="color:var(--muted);font-size:var(--t-sm);margin-bottom:1rem">' +
+          'Contact details available on request.</p>' +
+          '<ul class="list-plain">' + (d.references || []).map(function (r) {
+            return '<li><b>' + esc(r.name) + '</b>' + esc(r.role) + ' · ' + esc(r.org) + '</li>';
+          }).join('') + '</ul>' +
+        '</div>' +
+      '</div>'));
 
-    /* ---- research projects ---- */
-    var rel = (d.projects || []).filter(function (p) {
-      return p.pages === 'research' || p.pages === 'both';
-    });
-    out.push(section('projects', 'section--band',
-      head('projects', 'Research projects',
-        'Selected for what they evidence rather than for scale. Each card opens into ' +
-        'method, result and relevance. Code is public wherever the work was not proprietary.',
-        rel.length + ' projects') +
-      filterBar(rel) +
-      '<div class="projects" id="projGrid">' +
-        rel.map(function (p) { return projectCard(p, { researchNote: true }); }).join('') +
-      '</div>' +
-      '<p class="sec-sub" id="projEmpty" hidden>No projects in this area yet.</p>'));
-
-    /* ---- experience ---- */
-    var researchExp = (d.experience || []).filter(function (e) { return e.kind === 'research'; });
-    var appliedExp = (d.experience || []).filter(function (e) { return e.kind !== 'research'; });
+    /* ---- 3. research experience ---- */
     function entry(e, lead) {
       return '<article class="tl-item' + (lead ? ' is-lead' : '') + '" data-reveal>' +
         '<div>' +
@@ -541,71 +546,133 @@
           }).join('') + '</ul>' +
         '</div></article>';
     }
-    out.push(section('experience', '',
-      head('experience', 'Research experience',
-        'Academic research first, then the applied engineering that tested the same ideas ' +
-        'against production constraints.') +
-      (researchExp.length
-        ? '<h3 class="eyebrow" style="margin-bottom:1.25rem">Academic research</h3>' +
-          '<div class="timeline" style="margin-bottom:clamp(2rem,3.5vw,3rem)">' +
-          researchExp.map(function (e) { return entry(e, true); }).join('') + '</div>'
-        : '') +
-      (appliedExp.length
-        ? '<h3 class="eyebrow" style="margin-bottom:1.25rem">Applied research &amp; engineering</h3>' +
-          '<div class="timeline">' + appliedExp.map(function (e) { return entry(e, false); }).join('') + '</div>'
+    var researchExp = (d.experience || []).filter(function (e) { return e.kind === 'research'; });
+    var appliedExp = (d.experience || []).filter(function (e) { return e.kind !== 'research'; });
+    if (researchExp.length) {
+      out.push(section('experience', 'section--band',
+        head('experience', 'Research experience',
+          'Supervised academic research: dataset design, experimental protocol and ' +
+          'quantitative analysis, with results carried through to peer review.',
+          researchExp.length + (researchExp.length === 1 ? ' role' : ' roles')) +
+        '<div class="timeline">' + researchExp.map(function (e) { return entry(e, true); }).join('') + '</div>'));
+    }
+
+    /* ---- 4. publications ---- */
+    out.push(section('publications', '',
+      head('publications', 'Publications',
+        'Peer-reviewed conference papers: ' + esc(pubBreakdown(d)) +
+        '. Status is stated per paper and never rounded up. ' +
+        'Use <em>BibTeX</em> to copy a citation.',
+        (d.publications || []).length + ' papers') +
+      '<div class="pubs">' + sortPubs(d.publications).map(function (p, i) {
+        var t = p.link ? '<a ' + linkAttrs(p.link) + '>' + esc(p.title) + '</a>' : esc(p.title);
+        return '<article class="pub" data-state="' + pubState(p) + '" data-reveal>' +
+          '<h3 class="pub-title">' + t + '</h3>' +
+          ((p.authors || p.authorRole)
+            ? '<p class="pub-authors">' + (p.authors ? rich(p.authors) : '') +
+              (p.authorRole ? '<span class="pub-role"' + (p.authors ? '' :
+                ' style="margin-left:0;padding-left:0;border-left:0"') + '>' +
+                esc(p.authorRole) + '</span>' : '') + '</p>'
+            : '') +
+          '<p class="pub-venue">' + esc(p.venue) + (p.year ? ' · ' + esc(p.year) : '') + '</p>' +
+          '<div class="pub-meta">' +
+            '<span class="chip ' + (pubState(p) === 'published' ? 'chip--accent'
+              : pubState(p) === 'press' ? 'chip--gold' : 'chip--warn') + '">' + statusLabel(p) + '</span>' +
+            chips(p.tags) +
+            '<button class="bib-btn" type="button" data-bib="bib' + i + '" aria-expanded="false">BibTeX</button>' +
+          '</div>' +
+          (p.note ? '<p class="pub-note">' + rich(p.note) + '</p>' : '') +
+          (p.contribution ? '<p class="pub-contrib"><b>My contribution:</b> ' + rich(p.contribution) + '</p>' : '') +
+          ((p.link || p.code) ? '<div class="proj-foot">' +
+            (p.link ? '<a class="btn-link" ' + linkAttrs(p.link) + '>Read the paper ' + ARROW + '</a>' : '') +
+            (p.code ? '<a class="btn-link" ' + linkAttrs(p.code) + '>Code ' + ARROW + '</a>' : '') +
+          '</div>' : '') +
+          '<pre class="bib" id="bib' + i + '">' + esc(bibtex(p, P.name)) + '</pre>' +
+        '</article>';
+      }).join('') + '</div>'));
+
+    /* ---- 5. research projects ---- */
+    var rel = (d.projects || []).filter(function (p) {
+      return p.pages === 'research' || p.pages === 'both';
+    });
+    out.push(section('projects', 'section--band',
+      head('projects', 'Research projects',
+        'Selected for what they evidence rather than for scale. Open a case study for ' +
+        'the approach, the result and what it contributes. Code is public wherever the ' +
+        'work was not proprietary.',
+        rel.length + ' projects') +
+      filterBar(rel) +
+      '<div class="projects" id="projGrid">' +
+        rel.map(function (p) { return projectCard(p, { researchNote: true, academic: true }); }).join('') +
+      '</div>' +
+      '<p class="sec-sub" id="projEmpty" hidden>No projects in this area yet.</p>'));
+
+    /* ---- 6. research interests + methods ---- */
+    var rskills = (d.skills || []).filter(function (s) { return s.research !== false; });
+    out.push(section('interests', '',
+      head('interests', 'Research interests',
+        P.researchInterestsLine ? esc(P.researchInterestsLine) : '',
+        (d.researchAreas || []).length + ' clusters') +
+      '<div class="areas">' + (d.researchAreas || []).map(function (a, i, arr) {
+        var n = (i + 1 < 10 ? '0' : '') + (i + 1);
+        var next = (i === arr.length - 1);
+        return '<article class="area' + (next ? ' is-next' : '') + '" data-reveal>' +
+          '<span class="area-n">' + n + (next ? ' · WHERE I WANT TO GO NEXT' : '') + '</span>' +
+          '<h3>' + esc(a.title) + '</h3><p>' + esc(a.desc) + '</p></article>';
+      }).join('') + '</div>' +
+      (rskills.length
+        ? '<h3 class="eyebrow" style="margin:clamp(2.25rem,4vw,3.5rem) 0 1.25rem">Methods &amp; tools</h3>' +
+          '<div class="grid-auto" style="--col:clamp(17rem,20vw,26rem)">' +
+          rskills.map(function (s) {
+            return '<div class="card skill-cat" data-reveal>' +
+              '<h3>' + esc(s.label) + '</h3>' +
+              '<div class="chips">' + chips(splitSkills(s.items)) + '</div></div>';
+          }).join('') + '</div>'
         : '')));
 
-    /* ---- education ---- */
-    out.push(section('education', 'section--band',
-      head('education', 'Education', '') +
-      '<div class="split">' +
-        '<div class="card edu-card" data-reveal>' +
-          '<div class="edu-top"><div>' +
-            '<h3 class="edu-deg">' + esc(E.degree) + '</h3>' +
-            '<p class="edu-school">' + esc(E.school) + ' · ' + esc(E.start) + ' – ' + esc(E.end) + '</p>' +
-          '</div><span class="edu-grade">' + esc(E.grade) + '</span></div>' +
-          (E.coursework ? '<p class="edu-meta"><b>Relevant coursework</b>' + esc(E.coursework) + '</p>' : '') +
-          (E.thesisTitle ? '<div class="thesis">' +
-            '<div class="thesis-l">' + esc(E.thesisLabel) + '</div>' +
-            '<div class="thesis-t">' + esc(E.thesisTitle) + '</div>' +
-            '<p class="thesis-d">' + rich(E.thesisDesc) + '</p></div>' : '') +
-        '</div>' +
-        '<div style="display:grid;gap:var(--sp-gap)">' +
-          ((d.talks || []).length ? '<div class="card" data-reveal>' +
-            '<h3 class="eyebrow" style="margin-bottom:1.15rem">Conference presentations</h3>' +
-            '<ul class="list-plain">' + d.talks.map(function (t) {
-              return '<li><b>' + esc(t.title) + '</b>' + esc(t.venue) + ' · ' + esc(t.year) +
-                (t.type ? ' · ' + esc(t.type) : '') + '</li>';
-            }).join('') + '</ul></div>' : '') +
-          '<div class="card" data-reveal>' +
-            '<h3 class="eyebrow" style="margin-bottom:1.15rem">Awards &amp; activities</h3>' +
-            '<ul class="list-plain">' + (d.awards || []).filter(function (a) {
-              return a.pages !== 'industry';
-            }).map(function (a) {
-              return '<li><b>' + esc(a.title) + ' (' + esc(a.year) + ')</b>' + esc(a.detail) + '</li>';
-            }).join('') + '</ul></div>' +
-        '</div>' +
-      '</div>'));
+    /* ---- 7. engineering evidence ---- */
+    var engMetrics = (d.metrics || []).filter(function (m) {
+      return !/papers?|publication/i.test(m.label);
+    });
+    var engSkills = (d.skills || []).filter(function (sk) { return sk.research === false; });
+    out.push(section('engineering', 'section--band',
+      head('engineering', 'Engineering evidence',
+        'Research ideas are only worth as much as the systems you can get them into. ' +
+        'These are the production results behind the methods above.',
+        'Industry') +
+      /* Publication counts belong to the academic sections, not to a strip
+         introduced as production results. */
+      (engMetrics.length
+        ? '<div class="stats stats--boxed" style="margin-bottom:var(--sp-gap)">' +
+          engMetrics.map(function (m) {
+            return '<div class="stat" data-reveal>' +
+              '<div class="stat-n" data-count="' + esc(m.value) + '">' + esc(m.value) + '</div>' +
+              '<p class="stat-l">' + esc(m.label) + '</p></div>';
+          }).join('') + '</div>'
+        : '') +
+      (appliedExp.length
+        ? '<div class="timeline">' + appliedExp.map(function (e, i) {
+            return entry(e, i === 0);
+          }).join('') + '</div>'
+        : '') +
+      /* The deployment and storage stack is deliberately kept out of "Methods
+         & tools"; it belongs here, as evidence that the research can be built. */
+      (engSkills.length
+        ? '<h3 class="eyebrow" style="margin:clamp(2rem,3.5vw,3rem) 0 1.25rem">Deployment stack</h3>' +
+          '<div class="grid-auto" style="--col:clamp(17rem,20vw,26rem)">' +
+          engSkills.map(function (sk) {
+            return '<div class="card skill-cat" data-reveal>' +
+              '<h3>' + esc(sk.label) + '</h3>' +
+              '<div class="chips">' + chips(splitSkills(sk.items)) + '</div></div>';
+          }).join('') + '</div>'
+        : '')));
 
-    /* ---- methods & skills ---- */
-    var rskills = (d.skills || []).filter(function (s) { return s.research !== false; });
-    out.push(section('methods', '',
-      head('methods', 'Methods & tools',
-        'The methods behind the papers and the systems, grouped by what they are used for.',
-        rskills.length + ' groups') +
-      '<div class="grid-auto" style="--col:clamp(17rem,20vw,26rem)">' +
-        rskills.map(function (s) {
-          return '<div class="card skill-cat" data-reveal>' +
-            '<h3>' + esc(s.label) + '</h3>' +
-            '<div class="chips">' + chips(splitSkills(s.items)) + '</div></div>';
-        }).join('') + '</div>'));
-
-    /* ---- future direction ---- */
+    /* ---- 8. research direction ---- */
     if ((d.futureDirections || []).length) {
-      out.push(section('direction', 'section--band',
-        head('direction', 'Future research direction',
-          'Open questions I want to work on. Each extends something I have already ' +
-          'built rather than starting from scratch.',
+      out.push(section('direction', '',
+        head('direction', 'Research direction',
+          'What I want to investigate during a Master’s. Each question extends ' +
+          'something I have already built rather than starting from scratch.',
           d.futureDirections.length + ' questions') +
         '<div class="qa">' + d.futureDirections.map(function (f) {
           return '<article class="qa-item" data-reveal>' +
@@ -614,23 +681,46 @@
         }).join('') + '</div>'));
     }
 
-    /* ---- news + references ---- */
-    out.push(section('news', '',
-      head('news', 'News', '') +
-      '<div class="split">' +
-        '<div class="card" data-reveal><ul class="news">' + (d.news || []).map(function (n) {
+    /* ---- 9. academic achievements ---- */
+    var awards = (d.awards || []).filter(function (a) { return a.pages !== 'industry'; });
+    var venues = [];
+    (d.publications || []).forEach(function (p) {
+      (p.tags || []).forEach(function (t) { if (venues.indexOf(t) === -1) venues.push(t); });
+    });
+    out.push(section('achievements', 'section--band',
+      head('achievements', 'Academic achievements', '') +
+      '<div class="grid-auto" style="--col:clamp(18rem,22vw,28rem)">' +
+        '<div class="ach" data-reveal>' +
+          '<h3>Peer-reviewed output</h3>' +
+          '<div class="ach-n">' + (d.publications || []).length + '</div>' +
+          '<p style="color:var(--muted);font-size:var(--t-sm);line-height:1.6">' +
+            'Conference papers — ' + esc(pubBreakdown(d)) + '.</p>' +
+          (venues.length ? '<div class="chips">' + chips(venues) + '</div>' : '') +
+        '</div>' +
+        ((d.talks || []).length ? '<div class="ach" data-reveal>' +
+          '<h3>Conference presentations</h3>' +
+          '<ul class="list-plain">' + d.talks.map(function (t) {
+            return '<li><b>' + esc(t.title) + '</b>' + esc(t.venue) + ' · ' + esc(t.year) +
+              (t.type ? ' · ' + esc(t.type) : '') + '</li>';
+          }).join('') + '</ul></div>' : '') +
+        (awards.length ? '<div class="ach" data-reveal>' +
+          '<h3>Awards &amp; activities</h3>' +
+          '<ul class="list-plain">' + awards.map(function (a) {
+            var key = /best presenter/i.test(a.title);
+            return '<li' + (key ? ' class="is-key"' : '') + '><b>' + esc(a.title) +
+              ' (' + esc(a.year) + ')</b>' + esc(a.detail) + '</li>';
+          }).join('') + '</ul></div>' : '') +
+      '</div>'));
+
+    /* ---- 10. news ---- */
+    if ((d.news || []).length) {
+      out.push(section('news', '',
+        head('news', 'News', '') +
+        '<div class="card" data-reveal><ul class="news">' + d.news.map(function (n) {
           return '<li><span class="news-date">' + esc(n.date) + '</span>' +
             '<span class="news-text">' + rich(n.text) + '</span></li>';
-        }).join('') + '</ul></div>' +
-        ((d.references || []).length ? '<div data-reveal>' +
-          '<h3 class="eyebrow" style="margin-bottom:1.15rem">References</h3>' +
-          '<p style="color:var(--muted);font-size:var(--t-sm);margin-bottom:1rem">' +
-          'Contact details available on request.</p>' +
-          '<div class="refs">' + d.references.map(function (r) {
-            return '<div class="ref"><div class="ref-n">' + esc(r.name) + '</div>' +
-              '<div class="ref-r">' + esc(r.role) + '<br>' + esc(r.org) + '</div></div>';
-          }).join('') + '</div></div>' : '') +
-      '</div>'));
+        }).join('') + '</ul></div>'));
+    }
 
     /* ---- contact ---- */
     out.push('<section id="contact" class="section contact-band" aria-labelledby="contact-title">' +
@@ -638,8 +728,9 @@
         '<div data-reveal>' +
           '<span class="eyebrow">Contact</span>' +
           '<h2 id="contact-title" style="margin-top:.75rem">Get in touch</h2>' +
-          '<p>' + esc(P.availabilityResearch || '') + '. I am glad to discuss potential ' +
-          'supervision, collaboration or any of the open questions above.</p>' +
+          '<p>' + esc(P.availabilityResearch || '') + '. I would be glad to discuss potential ' +
+          'supervision, collaboration, or any of the open questions above — and I am happy to ' +
+          'send transcripts, full texts or code on request.</p>' +
           '<div class="contact-links">' +
             '<a class="btn btn-primary" href="mailto:' + esc(P.email) + '">✉ ' + esc(P.email) + '</a>' +
             '<a class="btn btn-ghost" href="' + BASE + esc((d.cv || {}).academic || '') + '" ' +

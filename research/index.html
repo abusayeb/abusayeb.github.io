@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Md Abu Sayeb Rayhan | Research — Computer Vision, Embodied &amp; Embedded AI</title>
-<meta name="description" content="Research portfolio of Md Abu Sayeb Rayhan: computer vision, multi-object tracking, activity recognition and pose estimation, multimodal vision-language models, generative modelling for simulation, and a move toward robotics, automation and embedded AI. Four conference papers in IEEE Xplore and Springer Nature.">
+<title>Md Abu Sayeb Rayhan | Research — Computer Vision &amp; Reliable AI</title>
+<meta name="description" content="Research portfolio of Md Abu Sayeb Rayhan, AI engineer and researcher applying for research-based Master's programmes. Four conference papers in IEEE Xplore and Springer Nature, reliable and uncertainty-aware computer vision, and two years deploying production perception systems.">
 <meta name="author" content="Md Abu Sayeb Rayhan">
 <meta name="citation_author" content="Rayhan, Md Abu Sayeb">
-<meta name="theme-color" content="#0D1020">
+<meta name="theme-color" content="#0A1220">
 <link rel="canonical" href="https://abusayeb.github.io/research/">
 
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Md Abu Sayeb Rayhan — Research">
 <meta property="og:url" content="https://abusayeb.github.io/research/">
 <meta property="og:title" content="Md Abu Sayeb Rayhan | Research Portfolio">
-<meta property="og:description" content="Computer vision, multimodal vision-language models, generative simulation and reliable AI — moving toward robotics, automation and embedded systems.">
+<meta property="og:description" content="Research portfolio of an AI engineer preparing for graduate study: four conference papers, reliable and uncertainty-aware computer vision, and production perception systems deployed in Japan.">
 <meta property="og:image" content="https://abusayeb.github.io/photos.jpeg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Md Abu Sayeb Rayhan | Research">
@@ -29,50 +29,55 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../assets/base.css?v=10">
+<link rel="stylesheet" href="../assets/base.css?v=17">
 
 <style>
-/* ---- Research identity: deep charcoal-navy + violet. Identical design
-       language to the industry page, deliberately different palette. ---- */
+/* ---- Research identity: deep navy, academic blue and soft cyan on ivory
+       text. Identical design language to the industry page — same type scale,
+       spacing, components and motion — with a deliberately different, more
+       academic colour system. ---- */
 :root{
-  --bg:#0D1020;
-  --bg-2:#15182A;
-  --card:#1A1E33;
-  --card-2:#20253D;
-  --line:#282D48;
-  --line-2:#353B5C;
+  --bg:#0A1220;
+  --bg-2:#101B2D;
+  --card:#16243A;
+  --card-2:#1C2C46;
+  --line:rgba(121,184,216,.14);
+  --line-2:rgba(121,184,216,.26);
 
-  --text:#F5F5FA;
-  --muted:#A9AEC5;
-  --dim:#7E84A0;
+  --text:#F2F4F3;
+  --muted:#A8B5C4;
+  --dim:#7C8A9C;
 
-  --accent:#8B7CFF;
-  --accent-2:#A79BFF;
-  --on-accent:#0B0A1C;
-  --accent-dim:rgba(139,124,255,.13);
-  --accent-line:rgba(139,124,255,.34);
-  --glow:rgba(139,124,255,.30);
+  --accent:#4F8FBA;
+  --accent-2:#79B8D8;
+  --soft:#A8C7D8;
+  --on-accent:#061018;
+  --accent-dim:rgba(79,143,186,.15);
+  --accent-line:rgba(121,184,216,.32);
+  --glow:rgba(79,143,186,.30);
 
-  --gold:#67E8F9;
-  --gold-dim:rgba(103,232,249,.10);
-  --gold-line:rgba(103,232,249,.28);
-  --warn:#F0A9C8;
-  --warn-dim:rgba(240,169,200,.10);
-  --warn-line:rgba(240,169,200,.28);
+  /* Publication status colours: three distinguishable steps down from the
+     accent, so status reads at a glance without a badge shouting for it. */
+  --gold:#A8C7D8;
+  --gold-dim:rgba(168,199,216,.10);
+  --gold-line:rgba(168,199,216,.26);
+  --warn:#7C8A9C;
+  --warn-dim:rgba(124,138,156,.12);
+  --warn-line:rgba(124,138,156,.30);
 
   --nav-h:66px;
-  --nav-bg:rgba(13,16,32,.72);
-  --nav-bg-solid:rgba(13,16,32,.95);
-  --card-glass:rgba(26,30,51,.5);
-  --portrait-wash:rgba(13,16,32,.55);
+  --nav-bg:rgba(10,18,32,.74);
+  --nav-bg-solid:rgba(10,18,32,.95);
+  --card-glass:rgba(22,36,58,.5);
+  --portrait-wash:rgba(10,18,32,.55);
 
-  --grad-name:linear-gradient(115deg,#8B7CFF 0%,#A79BFF 45%,#67E8F9 100%);
-  --grad-rail:linear-gradient(180deg,#8B7CFF,rgba(139,124,255,0));
-  --grad-contact:linear-gradient(155deg,#15182A 0%,#0D1020 60%);
-  --hero-glow-1:rgba(139,124,255,.15);
-  --hero-glow-2:rgba(103,232,249,.08);
-  --viz-dot:#8B7CFF;
-  --viz-line:rgba(139,124,255,.42);
+  --grad-name:linear-gradient(115deg,#4F8FBA 0%,#79B8D8 55%,#A8C7D8 100%);
+  --grad-rail:linear-gradient(180deg,#4F8FBA,rgba(79,143,186,0));
+  --grad-contact:linear-gradient(155deg,#101B2D 0%,#0A1220 60%);
+  --hero-glow-1:rgba(79,143,186,.16);
+  --hero-glow-2:rgba(121,184,216,.08);
+  --viz-dot:#79B8D8;
+  --viz-line:rgba(79,143,186,.42);
 }
 </style>
 
@@ -83,9 +88,9 @@
   "name":"Md Abu Sayeb Rayhan",
   "url":"https://abusayeb.github.io/research/",
   "image":"https://abusayeb.github.io/photos.jpeg",
-  "jobTitle":"Computer vision researcher",
+  "jobTitle":"AI Engineer and Researcher",
   "email":"mailto:sayeb.cc.75@gmail.com",
-  "knowsAbout":["Computer Vision","Multi-Object Tracking","Activity Recognition","Pose Estimation","Multimodal Vision-Language Models","Diffusion Models","Evidential Deep Learning","Robotics","Embedded AI"],
+  "knowsAbout":["Computer Vision","Reliable AI","Uncertainty Quantification","Evidential Deep Learning","Multi-Object Tracking","Activity Recognition","Pose Estimation","Multimodal Vision-Language Models","Diffusion Models","Embedded AI"],
   "alumniOf":{"@type":"CollegeOrUniversity","name":"Comilla University","address":"Bangladesh"},
   "sameAs":["https://github.com/abusayeb","https://www.linkedin.com/in/md-abu-sayeb-rayhan","https://abusayeb.github.io/"]
 }
@@ -109,14 +114,15 @@
     </button>
 
     <nav class="nav-links" id="navLinks" aria-label="Primary">
-      <a href="#research">Research</a>
+      <a href="#profile">Profile</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
       <a href="#publications">Publications</a>
       <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#direction">Research direction</a>
+      <a href="#engineering">Engineering</a>
+      <a href="#direction">Direction</a>
       <a href="#contact">Contact</a>
-      <a href="../" class="nav-cross">Industry portfolio ↗</a>
+      <a href="../" class="nav-cross">Industry ↗</a>
       <a href="../abu_sayeb_rayhan_cv.pdf" class="nav-cv" target="_blank" rel="noopener">CV</a>
     </nav>
   </div>
@@ -158,6 +164,6 @@
   </div>
 </footer>
 
-<script src="../assets/site.js?v=10" defer></script>
+<script src="../assets/site.js?v=17" defer></script>
 </body>
 </html>

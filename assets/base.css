@@ -99,10 +99,12 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 }
 .prose{max-width:var(--measure)}
 
+/* auto-fit, not auto-fill: a row of three cards on a 4K screen should share
+   the width rather than huddle left with empty tracks beside it. */
 .grid-auto{
   display:grid;
   gap:var(--sp-gap);
-  grid-template-columns:repeat(auto-fill,minmax(min(100%,var(--col,20rem)),1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,var(--col,20rem)),1fr));
 }
 
 /* ------------------------------------------------------------------- nav */
@@ -169,6 +171,15 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .menu-btn .ic-x{display:none}
 .menu-btn[aria-expanded="true"] .ic-x{display:block}
 .menu-btn[aria-expanded="true"] .ic-m{display:none}
+
+/* Between the drawer breakpoint and full desktop the bar is tight — the
+   research nav carries ten items — so the brand sheds its qualifier and the
+   links close up rather than pushing the CV button off the edge. */
+@media (max-width:1180px){
+  .brand-kind{display:none}
+  .nav-links{gap:clamp(.55rem,1.1vw,1rem)}
+  .nav-cv{padding:.5rem .8rem}
+}
 
 @media (max-width:900px){
   .menu-btn{display:inline-flex}
@@ -319,6 +330,14 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 .hero-focus{
   display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:clamp(1.1rem,2vw,1.7rem);
 }
+/* One-line positioning statement between the title and the summary */
+.hero-lead{
+  font-size:clamp(1rem,.92rem + .5vw,1.42rem);
+  color:var(--soft,var(--muted));
+  font-weight:500;letter-spacing:-.012em;line-height:1.5;
+  max-width:42ch;margin-bottom:clamp(1.1rem,2vw,1.6rem);
+  text-wrap:balance;
+}
 .hero-desc{
   color:var(--muted);font-size:var(--t-lead);line-height:1.72;
   max-width:66ch;margin-bottom:clamp(1.5rem,2.5vw,2.25rem);
@@ -357,14 +376,19 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 /* Short laptop screens: the hero still fills the viewport, but the type and
    rhythm tighten instead of pushing the call to action below the fold. */
 @media (min-width:1000px) and (max-height:1000px){
+  /* Widen the copy column so the chips and buttons stop wrapping onto extra
+     rows — that, not the type size, is what pushes the CTA below the fold. */
+  .hero-grid{grid-template-columns:minmax(0,1.45fr) minmax(0,.55fr)}
   .hero{padding-block:calc(var(--nav-h,64px) + 1.5rem) 2rem}
   .hero h1{font-size:clamp(2.2rem,1rem + 3.2vw,3.9rem)}
-  .hero-badge{margin-bottom:1rem}
-  .hero-role{margin-bottom:.9rem;font-size:clamp(1.05rem,.9rem + .6vw,1.4rem)}
-  .hero-focus{margin-bottom:1rem}
-  .hero-desc{font-size:var(--t-body);line-height:1.66;margin-bottom:1.25rem;max-width:60ch}
-  .hero-cta{margin-bottom:1rem}
-  .portrait{max-width:min(26vw,22rem)}
+  .hero-badge{margin-bottom:.9rem}
+  .hero-role{margin-bottom:.85rem;font-size:clamp(1.05rem,.9rem + .6vw,1.4rem)}
+  .hero-lead{font-size:clamp(.95rem,.88rem + .4vw,1.22rem);margin-bottom:.9rem;max-width:52ch}
+  .hero-focus{margin-bottom:.9rem}
+  .hero-focus .chip{font-size:.72rem;padding:.24rem .55rem}
+  .hero-desc{font-size:var(--t-sm);line-height:1.68;margin-bottom:1.1rem;max-width:70ch}
+  .hero-cta{margin-bottom:.9rem;gap:.55rem}
+  .portrait{max-width:min(24vw,20rem)}
 }
 
 /* Very large displays: scale the whole type system up and let cards and the
@@ -616,6 +640,72 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 .award.is-hero h3{font-size:var(--t-h2);color:var(--gold);letter-spacing:-.025em}
 .award.is-hero p{font-size:var(--t-lead);color:var(--muted);max-width:70ch}
 
+/* ------------------------------------------------ research profile arc */
+
+/* Three stages of one trajectory: what was built, what was researched, what
+   comes next. Reads left to right on wide screens, stacks on narrow ones. */
+.arc{
+  display:grid;gap:var(--sp-gap);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));
+}
+.arc-step{
+  position:relative;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:clamp(1.25rem,2vw,2.15rem);
+  display:grid;gap:.7rem;align-content:start;
+  transition:border-color .25s var(--ease),background .25s var(--ease),transform .25s var(--ease);
+}
+.arc-step::before{
+  content:'';position:absolute;inset-inline:0;top:0;height:2px;
+  background:var(--grad-rail);opacity:.6;
+}
+.arc-step:hover{border-color:var(--line-2);background:var(--card-2);transform:translateY(-3px)}
+.arc-n{
+  font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);
+}
+.arc-step h3{font-size:var(--t-h3);font-weight:660;letter-spacing:-.02em;line-height:1.32}
+.arc-step p{color:var(--muted);font-size:var(--t-sm);line-height:1.72}
+.arc-step.is-future{
+  border-color:var(--accent-line);
+  background:linear-gradient(150deg,var(--accent-dim),var(--card) 58%);
+}
+
+/* Stat strip reused inside a section rather than edge to edge */
+.stats--boxed{
+  border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;
+}
+.stats--boxed .stat{background:var(--card)}
+.stats--boxed .stat:hover{background:var(--card-2)}
+
+/* Academic case study: labelled blocks, each hidden when its field is empty */
+.case-block--lead h4{color:var(--accent)}
+.case-steps{
+  display:grid;gap:.85rem;
+}
+.case-steps .case-block{
+  border-left:2px solid var(--line-2);padding-left:.95rem;
+}
+.case-steps .case-block:first-child{border-left-color:var(--accent)}
+
+/* Restrained achievement cards: no trophies, no gradients */
+.ach{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:clamp(1.25rem,1.9vw,2rem);display:grid;gap:1rem;align-content:start;
+}
+.ach-n{
+  font-size:clamp(1.6rem,1.1rem + 1.4vw,2.4rem);font-weight:750;
+  color:var(--accent);letter-spacing:-.035em;line-height:1;
+}
+.ach h3{
+  font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);font-weight:500;
+}
+.ach .list-plain li.is-key::before{
+  background:var(--accent-2);width:6px;height:6px;
+}
+.ach .list-plain li.is-key b{color:var(--accent-2)}
+
 /* --------------------------------------------------------------- misc UI */
 
 .split{
@@ -778,9 +868,6 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   .portrait-tag{left:auto;right:clamp(.5rem,2vw,1rem);bottom:.75rem}
   .sec-head{align-items:start}
   .sec-aside{order:-1}
-}
-@media (max-width:480px){
-  .brand-kind{display:none}
 }
 @media (max-width:400px){
   :root{--gutter:1rem}
