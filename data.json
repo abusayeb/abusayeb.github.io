@@ -8,6 +8,7 @@
     "roleResearch": "Computer vision researcher moving toward robotics, automation and embedded AI",
     "location": "Dhaka, Bangladesh",
     "email": "sayeb.cc.75@gmail.com",
+    "emailAcademic": "sayeb.cse@gmail.com",
     "linkedin": "https://www.linkedin.com/in/md-abu-sayeb-rayhan",
     "github": "https://github.com/abusayeb",
     "scholar": "",
@@ -289,9 +290,9 @@
         "Deployment"
       ],
       "featured": true,
-      "problem": "",
+      "problem": "A video pipeline tuned for one controlled sport had to keep working on user-generated footage from festivals, concerts and other domains it was never built for.",
       "details": [],
-      "experiment": "",
+      "experiment": "Action-detection models fine-tuned on the original sports setting were run against unconstrained user video, and the clip-creation pipeline rebuilt around what survived the change of domain.",
       "researchNote": "Domain generalisation in practice: an action-recognition pipeline tuned for one controlled setting, then forced to hold up on unconstrained user video."
     },
     {
@@ -314,9 +315,9 @@
         "Deployment"
       ],
       "featured": true,
-      "problem": "",
+      "problem": "Reading how customers group and where their interest falls, from ordinary in-store camera feeds, fast enough for the answer to still be useful.",
       "details": [],
-      "experiment": "",
+      "experiment": "Pose estimation feeding density-based spatial clustering was run on live store cameras; parallelising inference brought processing latency down by about 70%.",
       "researchNote": "Pose estimation coupled with density-based clustering under a hard latency budget: evidence for perception under real deployment constraints."
     },
     {
@@ -339,7 +340,7 @@
         "Deployment"
       ],
       "featured": true,
-      "problem": "",
+      "problem": "Finding the moments worth keeping in raw sports footage without a person having to watch the whole match.",
       "details": [
         "Detects players, the ball and the basket with **YOLOv8**, then tracks them across frames with DeepSORT or ByteTrack.",
         "Keeps ball tracking smooth through brief occlusion using trajectory interpolation and **Kalman filtering**.",
@@ -347,7 +348,7 @@
         "Compiles the final reel automatically: auto zoom on the action, slow-motion replay, transitions and metadata overlay.",
         "Derives per-player statistics — shots, passes and time on court."
       ],
-      "experiment": "",
+      "experiment": "A custom detector was trained and run over full-length game video, reaching 90% detection accuracy and producing highlight clips with no human in the loop — cutting production cost by half.",
       "researchNote": "Multi-object tracking and temporal event segmentation on unconstrained broadcast video, where occlusion and camera motion are the hard cases."
     },
     {
@@ -371,9 +372,9 @@
         "Deployment"
       ],
       "featured": true,
-      "problem": "",
+      "problem": "Searching a mixed pile of office documents and scanned images by meaning rather than exact keyword, in a low-resource language where that is much harder.",
       "details": [],
-      "experiment": "",
+      "experiment": "OCR combined with dense embeddings was exercised across PDF, DOCX, XLSX, TXT and image files in both Bengali and English, and shipped as a desktop application.",
       "researchNote": "Multimodal retrieval across text and images in a low-resource language (Bangla), combining OCR with dense embeddings."
     },
     {
@@ -397,9 +398,9 @@
         "Research"
       ],
       "featured": true,
-      "problem": "",
+      "problem": "Whether a general text-to-image model can be fine-tuned to render a specific, under-represented subject faithfully — in this case Bangladeshi landmarks.",
       "details": [],
-      "experiment": "",
+      "experiment": "Stable Diffusion with a U-Net backbone was fine-tuned on a purpose-built dataset of those landmarks, varying prompts and conditioning to see how each moved generative fidelity, with OpenCV post-processing to reduce artefacts.",
       "researchNote": "The origin of the generative-model thread in my research: diffusion-model fine-tuning and conditioning, which the forensic invariant learning paper later turned around into a detection problem."
     },
     {
@@ -422,13 +423,13 @@
         "Computer Vision"
       ],
       "featured": false,
-      "problem": "",
+      "problem": "Driving an on-screen object with nothing but a webcam and your hands, at a speed that still feels like direct manipulation.",
       "details": [
         "Processes the webcam feed frame by frame.",
         "Detects and tracks **hand landmarks and fingertips**.",
         "Maps finger position and pinch/grab gestures to a virtual object so it can be dragged in real time."
       ],
-      "experiment": "",
+      "experiment": "Hand landmarks and fingertips were detected frame by frame on a live webcam feed and pinch/grab gestures mapped to a virtual object, which can be dragged in real time.",
       "researchNote": "Real-time human-machine interaction from vision alone, closely related to the Human–Robot Interaction studies I ran as a Research Assistant."
     },
     {
@@ -450,14 +451,14 @@
         "Research"
       ],
       "featured": false,
-      "problem": "",
+      "problem": "Detecting lane boundaries and surrounding vehicles in road footage reliably enough to sit underneath lane-keeping and collision-warning behaviour.",
       "details": [
         "Detects vehicles in road footage with a **YOLOv5** model fine-tuned on a custom dataset.",
         "Detects lane boundaries and overlays them on the video stream.",
         "Outputs a single annotated video combining both — the building blocks of lane-keeping and collision-warning systems.",
         "Split across three notebooks: dataset preparation, YOLOv5 training/inference, and the full end-to-end pipeline."
       ],
-      "experiment": "",
+      "experiment": "A YOLOv5 detector fine-tuned on a custom dataset was combined with classical lane-geometry vision and run end-to-end over road video, producing a single annotated stream — the demo output is in stacked.mp4.",
       "researchNote": "Perception for a system that has to act: the closest existing work to my robotics and embedded AI direction."
     },
     {

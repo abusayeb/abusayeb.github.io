@@ -274,7 +274,7 @@ var DEFAULTS = {
     roleIndustry:'', specialismIndustry:'', roleResearch:'', titleResearch:'',
     roleResearchSub:'', researchInterestsLine:'',
     focusAreas:[], researchFocusAreas:[],
-    email:'', linkedin:'', github:'', scholar:'', orcid:'',
+    email:'', emailAcademic:'', linkedin:'', github:'', scholar:'', orcid:'',
     photo:'photo.jpg', photoZoom:1, photoFocus:'50% 50%',
     summaryIndustry:'', summaryResearch:''
   },
@@ -561,15 +561,20 @@ function panelProfile(){
     '</div>' +
 
     '<div class="panel"><h2>Contact &amp; links</h2>' +
+    '<div class="hint">Each page shows its own address, so a recruiter and a professor ' +
+      'never see the same inbox.</div>' +
     '<div class="row">' +
-      textField('Email', P.email, 'profile.email') +
+      textField('Professional email (industry page)', P.email, 'profile.email') +
+      textField('Academic email (research page)', P.emailAcademic, 'profile.emailAcademic',
+        'Leave blank to use the professional address on both pages.') +
+    '</div>' +
+    '<div class="row">' +
       textField('LinkedIn URL', P.linkedin, 'profile.linkedin') +
-    '</div><div class="row">' +
       textField('GitHub URL', P.github, 'profile.github') +
+    '</div><div class="row">' +
       textField('Google Scholar URL', P.scholar, 'profile.scholar', 'Optional - hidden if blank.') +
-    '</div>' +
       textField('ORCID URL', P.orcid, 'profile.orcid', 'Optional - hidden if blank. Free to create at orcid.org.') +
-    '</div>' +
+    '</div></div>' +
 
     '<div class="panel"><h2>Photo</h2>' +
     '<div class="hint">Upload your picture to the repository, then put its exact filename here.</div>' +
@@ -1131,6 +1136,8 @@ function problems(){
     if(P[k] && !/^https?:\/\//i.test(P[k])) out.push(k + ' link should start with https://');
   });
   if(!String(P.photo || '').trim()) out.push('Photo filename is empty — the page will show a broken image.');
+  if(!String(P.emailAcademic || '').trim())
+    out.push('Academic email is empty — the research page will fall back to your professional address.');
 
   var keys = {};
   (DATA.publications || []).forEach(function(p, i){

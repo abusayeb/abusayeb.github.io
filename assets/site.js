@@ -430,6 +430,10 @@
     document.title = P.name + ' | Research — computer vision & reliable AI';
     $('brandName').innerHTML = '<b>' + esc(first) + '</b> <i>' + esc(last) + '</i>';
 
+    /* Academics write to the academic address; the professional one is the
+       fallback so a blank field can never leave the page without a contact. */
+    var mail = P.emailAcademic || P.email;
+
     var focus = (P.researchFocusAreas || []);
 
     /* ---- hero ---- */
@@ -452,7 +456,7 @@
           '</div>' +
           '<div class="hero-meta">' +
             '<span>📍 ' + esc(P.location) + '</span>' +
-            '<span>✉ <a href="mailto:' + esc(P.email) + '">' + esc(P.email) + '</a></span>' +
+            '<span>✉ <a href="mailto:' + esc(mail) + '">' + esc(mail) + '</a></span>' +
             (P.scholar ? '<span><a ' + linkAttrs(P.scholar) + '>Google Scholar</a></span>' : '') +
             (P.orcid ? '<span><a ' + linkAttrs(P.orcid) + '>ORCID</a></span>' : '') +
             '<span><a ' + linkAttrs(P.linkedin) + '>LinkedIn</a></span>' +
@@ -732,15 +736,15 @@
           'supervision, collaboration, or any of the open questions above — and I am happy to ' +
           'send transcripts, full texts or code on request.</p>' +
           '<div class="contact-links">' +
-            '<a class="btn btn-primary" href="mailto:' + esc(P.email) + '">✉ ' + esc(P.email) + '</a>' +
+            '<a class="btn btn-primary" href="mailto:' + esc(mail) + '">✉ ' + esc(mail) + '</a>' +
             '<a class="btn btn-ghost" href="' + BASE + esc((d.cv || {}).academic || '') + '" ' +
               'target="_blank" rel="noopener">Academic CV (PDF)</a>' +
             '<a class="btn btn-ghost" href="' + BASE + '">Engineering portfolio ' + ARROW + '</a>' +
           '</div>' +
         '</div>' +
         '<div class="contact-side" data-reveal>' +
-          '<a class="contact-row" href="mailto:' + esc(P.email) + '">' +
-            '<span class="k">Email</span><span class="v">' + esc(P.email) + '</span></a>' +
+          '<a class="contact-row" href="mailto:' + esc(mail) + '">' +
+            '<span class="k">Email</span><span class="v">' + esc(mail) + '</span></a>' +
           (P.scholar ? '<a class="contact-row" ' + linkAttrs(P.scholar) + '>' +
             '<span class="k">Scholar</span><span class="v">Google Scholar</span></a>' : '') +
           (P.orcid ? '<a class="contact-row" ' + linkAttrs(P.orcid) + '>' +
