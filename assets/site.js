@@ -500,12 +500,19 @@
               '<p>' + rich(r.body) + '</p></article>';
           }).join('') + '</div>'
         : '') +
-      '<div class="prose" style="display:grid;gap:1.05rem" data-reveal>' +
-        (d.researchStatement || []).map(function (para) {
-          return '<p style="color:var(--muted);font-size:var(--t-lead);line-height:1.78">' +
-            rich(para) + '</p>';
-        }).join('') +
-      '</div>'));
+      ((d.researchStatement || []).length
+        ? '<div class="statement" data-reveal>' +
+            '<div class="statement-head">' +
+              '<h3 class="eyebrow">Research statement</h3>' +
+              '<span class="note">' + d.researchStatement.length + ' paragraphs</span>' +
+            '</div>' +
+            '<div class="statement-cols">' +
+              d.researchStatement.map(function (para) {
+                return '<p>' + rich(para) + '</p>';
+              }).join('') +
+            '</div>' +
+          '</div>'
+        : '')));
 
     /* ---- 2. academic background ---- */
     out.push(section('education', '',

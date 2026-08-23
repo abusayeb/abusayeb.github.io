@@ -647,6 +647,52 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 .award.is-hero h3{font-size:var(--t-h2);color:var(--gold);letter-spacing:-.025em}
 .award.is-hero p{font-size:var(--t-lead);color:var(--muted);max-width:70ch}
 
+/* ------------------------------------------------- research statement */
+
+/* The statement is the one long piece of prose on either site. Capped to a
+   single readable measure it left most of a wide screen empty, so it sits in
+   its own container and flows into columns instead: the block fills the width
+   the rest of the page uses, while each column keeps a sane line length. */
+.statement{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:clamp(1.5rem,2.6vw,3rem);
+}
+.statement-head{
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:.5rem 1.5rem;margin-bottom:clamp(1.1rem,1.8vw,1.6rem);
+  padding-bottom:clamp(.9rem,1.4vw,1.25rem);
+  border-bottom:1px solid var(--line);
+}
+.statement-head .note{
+  font-family:var(--mono);font-size:var(--t-xs);color:var(--dim);
+  letter-spacing:.08em;
+}
+.statement-cols{
+  column-gap:clamp(1.75rem,2.6vw,3.25rem);
+  column-rule:1px solid var(--line);
+}
+@media (min-width:1100px){ .statement-cols{column-count:2} }
+@media (min-width:2200px){ .statement-cols{column-count:3} }
+@media (min-width:3200px){ .statement-cols{column-count:4} }
+.statement-cols p{
+  color:var(--muted);
+  font-size:var(--t-lead);
+  line-height:1.82;
+  /* Justified, with hyphenation so the columns do not open up rivers. The
+     last line of each paragraph stays ragged, which is what we want. */
+  text-align:justify;
+  text-justify:inter-word;
+  -webkit-hyphens:auto;hyphens:auto;
+  margin-bottom:1.15em;
+}
+.statement-cols p:last-child{margin-bottom:0}
+/* One column: justification buys nothing and costs readability on a phone. */
+@media (max-width:1099px){
+  .statement-cols p{text-align:left;hyphens:manual;-webkit-hyphens:manual}
+}
+
 /* ------------------------------------------------ research profile arc */
 
 /* Three stages of one trajectory: what was built, what was researched, what
