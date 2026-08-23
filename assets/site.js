@@ -574,9 +574,10 @@
     var appliedExp = (d.experience || []).filter(function (e) { return e.kind !== 'research'; });
     if (researchExp.length) {
       out.push(section('experience', 'section--band',
-        head('experience', 'Research experience',
-          'Supervised academic research: dataset design, experimental protocol and ' +
-          'quantitative analysis, with results carried through to peer review.',
+        head('experience', 'Academic research experience',
+          'Supervised research at university: dataset design, experimental protocol and ' +
+          'quantitative analysis, with results carried through to peer review. My industry ' +
+          'roles are further down, under Industry experience.',
           researchExp.length + (researchExp.length === 1 ? ' role' : ' roles')) +
         '<div class="timeline">' + researchExp.map(function (e) { return entry(e, true); }).join('') + '</div>'));
     }
@@ -659,10 +660,11 @@
     });
     var engSkills = (d.skills || []).filter(function (sk) { return sk.research === false; });
     out.push(section('engineering', 'section--band',
-      head('engineering', 'Engineering evidence',
-        'Research ideas are only worth as much as the systems you can get them into. ' +
-        'These are the production results behind the methods above.',
-        'Industry') +
+      head('engineering', 'Industry experience',
+        'My professional roles outside the university: two years building and shipping ' +
+        'production AI systems, the measured results they produced, and the stack behind ' +
+        'them. Research ideas are only worth as much as the systems you can get them into.',
+        appliedExp.length + (appliedExp.length === 1 ? ' role' : ' roles')) +
       /* Publication counts belong to the academic sections, not to a strip
          introduced as production results. */
       (engMetrics.length
@@ -859,7 +861,7 @@
       }
     });
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 900) setMenu(false);
+      if (window.innerWidth > 1150) setMenu(false);   // must match the CSS drawer breakpoint
     });
 
     /* scroll-spy: pick whichever tracked section owns the 40% line, so fast

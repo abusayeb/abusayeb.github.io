@@ -174,15 +174,16 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .menu-btn[aria-expanded="true"] .ic-m{display:none}
 
 /* Between the drawer breakpoint and full desktop the bar is tight — the
-   research nav carries ten items — so the brand sheds its qualifier and the
-   links close up rather than pushing the CV button off the edge. */
-@media (max-width:1180px){
+   research nav carries ten items with explicit labels — so the brand sheds its
+   qualifier and the links close up rather than pushing the CV button off the
+   edge. */
+@media (max-width:1400px){
   .brand-kind{display:none}
   .nav-links{gap:clamp(.55rem,1.1vw,1rem)}
   .nav-cv{padding:.5rem .8rem}
 }
 
-@media (max-width:900px){
+@media (max-width:1150px){
   .menu-btn{display:inline-flex}
   .nav-links{
     position:fixed;inset:var(--nav-h,64px) 0 auto 0;
