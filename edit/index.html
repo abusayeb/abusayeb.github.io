@@ -1188,6 +1188,50 @@ function openSave(){
   $('jsonOut').textContent = json();
   modalEl.classList.add('open');
   $('copyBtn').focus();
+  checkStale(box);
+}
+
+/* Count entries that exist in the published file but not in what is about to
+   replace it. Deletions are what make a stale tab dangerous; additions are
+   just edits. */
+function countLosses(live, local){
+  var lost = [], keys = ['news','metrics','researchStatement','researchAreas','researchProfile',
+    'publications','experience','projects','awards','talks','skills','references',
+    'futureDirections','quickFacts'];
+  keys.forEach(function(k){
+    var a = Array.isArray(live[k]) ? live[k].length : 0;
+    var b = Array.isArray(local[k]) ? local[k].length : 0;
+    if(a > b) lost.push((a - b) + ' from ' + k);
+  });
+  return lost;
+}
+
+function checkStale(box){
+  fetch('../data.json?t=' + Date.now(), {cache:'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(live){
+      if(!live || !DATA) return;
+      var liveStr = JSON.stringify(normalize(live), null, 2);
+      if(liveStr === PUBLISHED) return;              // nothing changed since load
+
+      var lost = countLosses(live, DATA);
+      box.className = 'checks';
+      box.innerHTML =
+        '<b>The published file has changed since you opened this page.</b>' +
+        '<div class="tip" style="margin-top:6px">Someone — or another tab — has saved ' +
+        'since. Publishing now replaces their version with yours.' +
+        (lost.length
+          ? ' Yours is missing <b>' + esc(lost.join(', ')) + '</b>.'
+          : '') +
+        ' Reload before saving if you did not mean to.</div>' +
+        '<button class="sm" id="btnStaleReload" style="margin-top:9px">Reload the published version</button>';
+      var b = $('btnStaleReload');
+      if(b) b.addEventListener('click', function(){
+        if(isDirty() && !confirm('Discard your unsaved changes and reload the published version?')) return;
+        closeSave(); load();
+      });
+    })
+    .catch(function(){ /* offline: the normal checks still apply */ });
 }
 function closeSave(){ modalEl.classList.remove('open'); }
 
