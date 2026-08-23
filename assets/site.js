@@ -239,12 +239,13 @@
 
     /* ---- impact strip (full-bleed) ---- */
     if ((d.metrics || []).length) {
-      out.push('<section class="stats" aria-label="Impact at a glance">' +
+      out.push('<section class="stats-band" aria-label="Impact at a glance">' +
+        '<div class="shell"><div class="stats">' +
         d.metrics.map(function (m) {
           return '<div class="stat" data-reveal>' +
             '<div class="stat-n" data-count="' + esc(m.value) + '">' + esc(m.value) + '</div>' +
             '<p class="stat-l">' + esc(m.label) + '</p></div>';
-        }).join('') + '</section>');
+        }).join('') + '</div></div></section>');
     }
 
     /* ---- experience ---- */
@@ -476,12 +477,13 @@
 
     /* ---- profile at a glance (full-bleed) ---- */
     if ((d.quickFacts || []).length) {
-      out.push('<section class="stats" aria-label="Research profile at a glance">' +
+      out.push('<section class="stats-band" aria-label="Research profile at a glance">' +
+        '<div class="shell"><div class="stats">' +
         d.quickFacts.map(function (f) {
           return '<div class="stat" data-reveal>' +
             '<div class="stat-n">' + esc(f.k) + '</div>' +
             '<p class="stat-l">' + rich(f.v) + '</p></div>';
-        }).join('') + '</section>');
+        }).join('') + '</div></div></section>');
     }
 
     /* ---- 1. research profile: the transition ---- */
@@ -617,11 +619,10 @@
       head('interests', 'Research interests',
         P.researchInterestsLine ? esc(P.researchInterestsLine) : '',
         (d.researchAreas || []).length + ' clusters') +
-      '<div class="areas">' + (d.researchAreas || []).map(function (a, i, arr) {
+      '<div class="areas">' + (d.researchAreas || []).map(function (a, i) {
         var n = (i + 1 < 10 ? '0' : '') + (i + 1);
-        var next = (i === arr.length - 1);
-        return '<article class="area' + (next ? ' is-next' : '') + '" data-reveal>' +
-          '<span class="area-n">' + n + (next ? ' · WHERE I WANT TO GO NEXT' : '') + '</span>' +
+        return '<article class="area' + (a.next ? ' is-next' : '') + '" data-reveal>' +
+          '<span class="area-n">' + n + (a.next ? ' · DIRECTION' : '') + '</span>' +
           '<h3>' + esc(a.title) + '</h3><p>' + esc(a.desc) + '</p></article>';
       }).join('') + '</div>' +
       (rskills.length
@@ -647,7 +648,7 @@
       /* Publication counts belong to the academic sections, not to a strip
          introduced as production results. */
       (engMetrics.length
-        ? '<div class="stats stats--boxed" style="margin-bottom:var(--sp-gap)">' +
+        ? '<div class="stats" style="margin-bottom:var(--sp-gap)">' +
           engMetrics.map(function (m) {
             return '<div class="stat" data-reveal>' +
               '<div class="stat-n" data-count="' + esc(m.value) + '">' + esc(m.value) + '</div>' +

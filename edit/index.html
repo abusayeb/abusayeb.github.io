@@ -292,7 +292,7 @@ var TPL = {
   metrics:{value:'',label:''},
   news:{date:'',text:''},
   researchStatement:'',
-  researchAreas:{title:'',desc:''},
+  researchAreas:{title:'',desc:'',next:false},
   researchProfile:{stage:'',title:'',body:''},
   publications:{title:'',authors:'M. A. S. Rayhan et al.',venue:'',year:'',tags:[],status:'',link:'',code:'',note:'',contribution:'',bibkey:''},
   experience:{role:'',org:'',team:'',location:'',start:'',end:'',kind:'industry',note:'',bullets:[]},
@@ -677,7 +677,12 @@ function panelResearch(){
     list('researchAreas', function(a, i, n){
       return '<div class="item">' + itemHead('Area', i, 'researchAreas', n) +
         textField('Title', a.title, 'researchAreas.' + i + '.title') +
-        areaField('Description', a.desc, 'researchAreas.' + i + '.desc', '', 2) +
+        areaField('Description', a.desc, 'researchAreas.' + i + '.desc', '', 3) +
+        '<div class="field"><label><span class="lab">Emphasis</span>' +
+          '<select data-path="researchAreas.' + i + '.next" data-kind="bool">' +
+            opt('false', 'Normal card', String(!!a.next)) +
+            opt('true', 'Mark as \u201Cwhere I want to go next\u201D', String(!!a.next)) +
+          '</select></label></div>' +
       '</div>';
     }, 'No areas yet.') +
     addBtn('researchAreas', 'Add area') + '</div>';
