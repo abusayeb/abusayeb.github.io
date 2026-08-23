@@ -68,6 +68,12 @@
       '  year      = {' + (p.year || '') + '}\n}';
   }
 
+  /* True only when the most recent role has no end date yet. The portrait tag
+     reads off this, so the page can never imply a job that has ended. */
+  function isOngoing(e) {
+    return /present|now|current|ongoing/i.test(String((e || {}).end || ''));
+  }
+
   function linkAttrs(href) {
     return 'href="' + esc(href) + '" target="_blank" rel="noopener noreferrer"';
   }
@@ -201,6 +207,7 @@
     $('brandName').innerHTML = '<b>' + esc(first) + '</b> <i>' + esc(last) + '</i>';
 
     var focus = (P.focusAreas || []);
+    var lead = (d.experience || [])[0] || {};
 
     /* ---- hero ---- */
     out.push('<header class="hero" id="home">' +
@@ -231,8 +238,9 @@
               'style="object-position:' + esc(P.photoFocus || '50% 50%') +
               ';transform:scale(' + (parseFloat(P.photoZoom) || 1) + ')">' +
           '</div>' +
-          '<p class="portrait-tag">' + esc(P.roleIndustry) + '<br><b>' +
-            esc(((d.experience || [])[0] || {}).org || '') + '</b></p>' +
+          '<p class="portrait-tag">' +
+            (isOngoing(lead) ? esc(P.roleIndustry) : 'Most recently') + '<br><b>' +
+            esc(lead.org || '') + '</b></p>' +
         '</div>' +
       '</div></div>' +
     '</header>');
@@ -470,7 +478,9 @@
               'style="object-position:' + esc(P.photoFocus || '50% 50%') +
               ';transform:scale(' + (parseFloat(P.photoZoom) || 1) + ')">' +
           '</div>' +
-          '<p class="portrait-tag">Research profile<br><b>' + esc(E.school || '') + '</b></p>' +
+          '<p class="portrait-tag">' +
+            (E.end ? 'Graduated ' + esc(E.end) : 'Research profile') +
+            '<br><b>' + esc(E.school || '') + '</b></p>' +
         '</div>' +
       '</div></div>' +
     '</header>');
