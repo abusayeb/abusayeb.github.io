@@ -755,6 +755,11 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   transition:border-color .25s var(--ease),background .25s var(--ease);
 }
 .qa-item:hover{background:var(--card-2);border-top-color:var(--accent)}
+.qa-area{
+  display:inline-block;font-family:var(--mono);font-size:var(--t-xs);
+  letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:.75rem;
+}
 .qa-q{font-size:var(--t-h3);font-weight:650;line-height:1.4;margin-bottom:.9rem;letter-spacing:-.018em}
 .qa-a{color:var(--muted);font-size:var(--t-sm);line-height:1.72;max-width:78ch}
 

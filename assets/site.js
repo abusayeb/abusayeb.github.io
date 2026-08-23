@@ -676,11 +676,13 @@
     if ((d.futureDirections || []).length) {
       out.push(section('direction', '',
         head('direction', 'Research direction',
-          'What I want to investigate during a Master’s. Each question extends ' +
-          'something I have already built rather than starting from scratch.',
+          'What I want to investigate during a Master’s — one question per research ' +
+          'interest above. Each extends something I have already built rather than ' +
+          'starting from scratch.',
           d.futureDirections.length + ' questions') +
         '<div class="qa">' + d.futureDirections.map(function (f) {
           return '<article class="qa-item" data-reveal>' +
+            (f.area ? '<span class="qa-area">' + esc(f.area) + '</span>' : '') +
             '<h3 class="qa-q">' + rich(f.q) + '</h3>' +
             '<p class="qa-a">' + rich(f.a) + '</p></article>';
         }).join('') + '</div>'));

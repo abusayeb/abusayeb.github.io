@@ -303,7 +303,7 @@ var TPL = {
   talks:{title:'',venue:'',year:'',type:'Conference presentation'},
   skills:{label:'',items:''},
   references:{name:'',role:'',org:''},
-  futureDirections:{q:'',a:''},
+  futureDirections:{area:'',q:'',a:''},
   quickFacts:{k:'',v:''}
 };
 
@@ -888,9 +888,12 @@ function panelRefs(){
 function panelDirection(){
   return '<div class="panel"><h2>Research direction</h2>' +
     '<div class="hint">The open questions on the research page. A supervisor reads these to see ' +
-      'whether you have a direction of your own. Each one should extend work you have already done.</div>' +
+      'whether you have a direction of your own. Keep one per research interest, in the same ' +
+      'order, and make each extend work you have already done.</div>' +
     list('futureDirections', function(f, i, n){
       return '<div class="item">' + itemHead('Question', i, 'futureDirections', n) +
+        textField('Research interest', f.area, 'futureDirections.' + i + '.area',
+          'Shown above the question. Use the same wording as the matching research interest.') +
         areaField('Question', f.q, 'futureDirections.' + i + '.q',
           'Phrase it as a question you want to answer.', 2) +
         areaField('Answer', f.a, 'futureDirections.' + i + '.a',

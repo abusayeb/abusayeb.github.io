@@ -698,20 +698,24 @@
   },
   "futureDirections": [
     {
+      "area": "Edge AI",
+      "q": "How do embedded compute and latency budgets change what counts as good perception?",
+      "a": "At Othello, cutting inference latency by ~70% meant trading model complexity against a fixed processing budget for retail video, a generous budget compared to robotics. I want to study how that trade-off holds under the far tighter latency and power constraints of an embedded robotic platform, and whether the architectural choices that worked there even apply."
+    },
+    {
+      "area": "Robotics & Automation",
       "q": "Can a model's own uncertainty drive a robot's actions, not just flag them?",
       "a": "RGEF stops at weighting and abstaining on a single decision. The useful extension is whether that same evidential state can feed a control loop directly: slowing a system down, triggering a sensor check, or handing off to a human, in real time rather than as an offline diagnostic. That is what turns reliability estimation into a control problem."
     },
     {
+      "area": "Perception",
       "q": "What perceptual structure survives when the sensor or hardware changes?",
       "a": "The forensic invariant work looked for cues that persist across different image generators. The same question applies to a robot or embedded system moving between cameras, lighting conditions and constrained onboard compute. I want to know how far that invariant-seeking approach carries over from detecting synthetic images to holding perception steady on real hardware in the field."
     },
     {
-      "q": "How far can generative simulation substitute for data a physical system can't collect on its own?",
-      "a": "Low-resource settings and robots trained largely in simulation share the same data problem, and my thesis work on diffusion models points at one route around it. The open question is which properties of simulated data actually transfer to real hardware, and how to tell before deployment rather than discovering the sim-to-real gap after."
-    },
-    {
-      "q": "How do embedded compute and latency budgets change what counts as good perception?",
-      "a": "At Othello, cutting inference latency by ~70% meant trading model complexity against a fixed processing budget for retail video, a generous budget compared to robotics. I want to study how that trade-off holds under the far tighter latency and power constraints of an embedded robotic platform, and whether the architectural choices that worked there even apply."
+      "area": "Tracking & activity recognition",
+      "q": "Does activity recognition survive the move from a fixed camera to one that moves?",
+      "a": "Everything I have built for tracking, activity recognition and pose estimation assumed a camera that stays put: **ByteTrack**, **MoveNet** and **MMAction2** running on live retail video, with OPTICS clustering on top of the pose output. A robot carries its own camera, so ego-motion, a shifting viewpoint and self-occlusion all arrive at once. I want to know how much of that pipeline transfers and which parts have to be rebuilt rather than retuned. The closest thing I have to a first answer is the Universal NFT work, where models tuned on one controlled setting had to hold up on unconstrained user video."
     }
   ],
   "quickFacts": [
