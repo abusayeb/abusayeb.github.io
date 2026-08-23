@@ -271,6 +271,75 @@
   ],
   "projects": [
     {
+      "title": "eGP AutoPilot",
+      "date": "2026",
+      "desc": "My **first startup product**: a bilingual (English/Bengali) desktop application that automates tender submission on the **Bangladesh e-Government Procurement portal**. It drives the portal through Playwright — login, form filling, encryption and signing, document mapping and a verification pass — and keeps going through crashes, network drops and half-finished runs.",
+      "impact": "First startup product · v2.2.0, shipping on macOS and Windows",
+      "tags": [
+        "Python",
+        "PyQt5",
+        "Playwright",
+        "Firebase",
+        "Firestore",
+        "bKash",
+        "PyInstaller"
+      ],
+      "role": "Founder · solo design, build and release",
+      "link": "",
+      "demo": "",
+      "pages": "both",
+      "categories": [
+        "Deployment"
+      ],
+      "featured": true,
+      "problem": "Preparing a tender on the national e-GP portal is long, repetitive and unforgiving: one unfilled form or unmapped document can invalidate a bid, and the work has to be redone from the start if the connection drops.",
+      "details": [
+        "Drives the portal end to end with **Playwright** — login, Tenderer Info, Activities, Personnel and Priced BOQ forms, then click-sign, encrypt and save.",
+        "Resumes exactly where it stopped. Per-account state is written to disk, so a crash or a two-minute network drop does not cost the whole run.",
+        "Every failing row gets five attempts, then five more in a deferred pass; anything still failing is **reported rather than silently skipped**.",
+        "Maps uploaded files to the portal's document categories by fuzzy filename match — trade licence, TIN, VAT, liquid assets.",
+        "Runs from a phone: a mobile dashboard over a REST API with QR-code pairing, and no credentials sent over the wire.",
+        "Firebase-backed accounts, subscriptions and **bKash** billing, with an admin panel for users, plans, devices and payments.",
+        "Packaged for macOS and Windows, behind 273 offline tests that never touch the production database."
+      ],
+      "experiment": "",
+      "researchNote": "Reliability engineering against a system I do not control. Every step retries, defers and resumes from saved state, because the portal, the network and the user's machine each fail in a different way — the same instinct behind wanting a model to abstain rather than guess."
+    },
+    {
+      "title": "Why I Saved This — browser memory",
+      "date": "2026",
+      "desc": "A browser extension that remembers **why** you saved something, not just where. It keeps the page, the passage you highlighted and your own note together, then brings you back to the exact spot months later with the note in the margin beside it.",
+      "impact": "v1.3.0 · Chrome and Firefox",
+      "tags": [
+        "TypeScript",
+        "React",
+        "WXT",
+        "Tailwind",
+        "IndexedDB",
+        "MiniSearch",
+        "Playwright"
+      ],
+      "role": "Solo design, build and release",
+      "link": "",
+      "demo": "",
+      "pages": "industry",
+      "categories": [
+        "Other"
+      ],
+      "featured": true,
+      "problem": "",
+      "details": [
+        "Save a page, a highlighted passage, a link or an image — from the toolbar, the context menu, or one shortcut that works out which you meant.",
+        "Search runs on **your own notes and highlights first**, ranking them above titles and URLs.",
+        "Re-anchors to the saved passage even when the page has changed since, scrolls to it, and lights up every highlight from that page with its note alongside.",
+        "Entirely local: **no account, no server, no sync, no analytics, no network requests**. Installing asks for no site access at all.",
+        "Licence keys are signed tokens verified on the device, because there is no server to check them against.",
+        "TypeScript and React on WXT, Dexie over IndexedDB, MiniSearch for retrieval, with unit tests in Vitest and end-to-end tests in Playwright."
+      ],
+      "experiment": "",
+      "researchNote": ""
+    },
+    {
       "title": "Universal NFT Generation Platform",
       "date": "Jul–Oct 2025",
       "desc": "Generalised a sports-specific video system into a platform handling **user-generated footage** across festivals, concerts and other domains. Fine-tuned **action detection** models and built the pipeline for automated clip creation.",
