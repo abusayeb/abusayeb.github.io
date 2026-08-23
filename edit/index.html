@@ -87,6 +87,7 @@ textarea{resize:vertical;min-height:76px;line-height:1.6}
 
 .tip{font-size:12.5px;color:var(--faint);margin-top:5px}
 .tip.bad{color:var(--danger)}
+.tip.good{color:var(--ok)}
 .kwtip{background:#fff8e1;border:1px solid #f5e2a8;color:#7a5b00;padding:9px 12px;
   border-radius:8px;font-size:13px;margin-bottom:16px}
 .kwtip code{background:#f8edcb;padding:1px 5px;border-radius:3px}
@@ -259,15 +260,20 @@ var TABS = [
   ['education','Education'],
   ['awards','Awards & talks'],
   ['skills','Skills','skills'],
-  ['refs','References','references']
+  ['refs','References','references'],
+  ['direction','Research direction','futureDirections'],
+  ['facts','Quick facts','quickFacts'],
+  ['advanced','Advanced']
 ];
 
 /* Every field the editor touches, with a safe default. Anything else
    in data.json is left untouched and written back out unchanged. */
 var DEFAULTS = {
   profile: {
-    name:'', location:'', availabilityIndustry:'', availabilityResearch:'',
-    roleIndustry:'', specialismIndustry:'', roleResearch:'',
+    name:'', shortName:'', location:'', availabilityIndustry:'', availabilityResearch:'',
+    roleIndustry:'', specialismIndustry:'', roleResearch:'', titleResearch:'',
+    roleResearchSub:'', researchInterestsLine:'',
+    focusAreas:[], researchFocusAreas:[],
     email:'', linkedin:'', github:'', scholar:'', orcid:'',
     photo:'photo.jpg', photoZoom:1, photoFocus:'50% 50%',
     summaryIndustry:'', summaryResearch:''
@@ -276,8 +282,10 @@ var DEFAULTS = {
     degree:'', school:'', start:'', end:'', grade:'', coursework:'',
     thesisLabel:'', thesisTitle:'', thesisDesc:''
   },
+  cv: { academic:'', industry:'' },
   metrics:[], news:[], researchStatement:[], researchAreas:[], researchProfile:[], publications:[],
-  experience:[], projects:[], awards:[], talks:[], skills:[], references:[]
+  experience:[], projects:[], awards:[], talks:[], skills:[], references:[],
+  futureDirections:[], quickFacts:[]
 };
 
 var TPL = {
@@ -294,7 +302,9 @@ var TPL = {
   awards:{year:'',title:'',detail:''},
   talks:{title:'',venue:'',year:'',type:'Conference presentation'},
   skills:{label:'',items:''},
-  references:{name:'',role:'',org:''}
+  references:{name:'',role:'',org:''},
+  futureDirections:{q:'',a:''},
+  quickFacts:{k:'',v:''}
 };
 
 var $ = function(id){ return document.getElementById(id); };
@@ -329,10 +339,15 @@ function normalize(raw){
 
   d.profile.photoZoom = parseFloat(d.profile.photoZoom) || 1;
   if(typeof d.profile.photoFocus !== 'string') d.profile.photoFocus = '50% 50%';
+  ['focusAreas','researchFocusAreas'].forEach(function(k){
+    d.profile[k] = Array.isArray(d.profile[k]) ? d.profile[k]
+      : splitTags(d.profile[k] || '');
+  });
 
   d.researchStatement = d.researchStatement.map(function(p){ return typeof p === 'string' ? p : ''; });
 
-  ['metrics','news','researchAreas','researchProfile','publications','experience','projects','awards','talks','skills','references']
+  ['metrics','news','researchAreas','researchProfile','publications','experience','projects',
+   'awards','talks','skills','references','futureDirections','quickFacts']
     .forEach(function(k){
       d[k] = d[k].map(function(it){
         var base = clone(TPL[k]);
@@ -518,8 +533,25 @@ function panelProfile(){
       textField('Job title (industry page)', P.roleIndustry, 'profile.roleIndustry') +
       textField('Specialism (industry page)', P.specialismIndustry, 'profile.specialismIndustry') +
     '</div>' +
-    areaField('Research interests (research page)', P.roleResearch, 'profile.roleResearch',
-      'Listed under your name on the research page. Separate topics with the · character.', 3) +
+    textField('Short name', P.shortName, 'profile.shortName',
+      'Used where the full name will not fit.') +
+    '<hr style="border:0;border-top:1px solid var(--line);margin:18px 0">' +
+    textField('Title line (research page)', P.titleResearch, 'profile.titleResearch',
+      'Sits directly under your name, e.g. AI Engineer · Researcher.') +
+    areaField('Positioning statement (research page)', P.roleResearch, 'profile.roleResearch',
+      'One sentence under the title line.', 2) +
+    areaField('Research interests line', P.researchInterestsLine, 'profile.researchInterestsLine',
+      'The subtitle of the Research interests section. Usually the sentence from your CV.', 3) +
+    areaField('Topic list (legacy)', P.roleResearchSub, 'profile.roleResearchSub',
+      'Kept from the old research page. Separate topics with the · character.', 2) +
+    '</div>' +
+
+    '<div class="panel"><h2>Focus chips</h2>' +
+    '<div class="hint">The small tags beside your name in each hero. Separate with commas. ' +
+      'Six to eight reads best - more than that wraps onto too many rows on a phone.</div>' +
+    textField('Industry page chips', (P.focusAreas || []).join(', '), 'profile.focusAreas', '', 'tags') +
+    textField('Research page chips', (P.researchFocusAreas || []).join(', '),
+      'profile.researchFocusAreas', '', 'tags') +
     '</div>' +
 
     '<div class="panel"><h2>Contact &amp; links</h2>' +
@@ -570,8 +602,18 @@ function panelProfile(){
       'Short version used for search engines and previews.', 4) +
     '</div>' +
 
+    '<div class="panel"><h2>CV files</h2>' +
+    '<div class="hint">Filenames of the PDFs in your repository. Each page links to its own version.</div>' +
+    '<div class="row">' +
+      textField('Industry CV', (DATA.cv || {}).industry, 'cv.industry',
+        'e.g. abu_sayeb_rayhan_AI.pdf') +
+      textField('Academic CV', (DATA.cv || {}).academic, 'cv.academic',
+        'e.g. abu_sayeb_rayhan_cv.pdf') +
+    '</div></div>' +
+
     '<div class="panel"><h2>Headline numbers</h2>' +
-    '<div class="hint">The four boxes near the top of the industry page.</div>' +
+    '<div class="hint">The strip near the top of the industry page. Also used, minus any ' +
+      'publication count, as the evidence strip on the research page.</div>' +
     list('metrics', function(m, i, n){
       return '<div class="item">' + itemHead('Metric', i, 'metrics', n) + '<div class="row">' +
         textField('Number', m.value, 'metrics.' + i + '.value') +
@@ -639,6 +681,8 @@ function panelPubs(){
           textField('Authors', p.authors, 'publications.' + i + '.authors') +
           textField('Year', p.year, 'publications.' + i + '.year') +
         '</div>' +
+        textField('Your author position', p.authorRole, 'publications.' + i + '.authorRole',
+          'e.g. First author. Shown beside the author list - leave blank to hide.') +
         areaField('Venue', p.venue, 'publications.' + i + '.venue', '', 2) +
         '<div class="row">' +
           textField('Link (DOI or Xplore URL)', p.link, 'publications.' + i + '.link', 'Leave blank until published.') +
@@ -766,6 +810,12 @@ function panelAwards(){
           textField('Title', a.title, 'awards.' + i + '.title') +
         '</div>' +
         textField('Detail', a.detail, 'awards.' + i + '.detail') +
+        '<div class="field"><label><span class="lab">Show on</span>' +
+          '<select data-path="awards.' + i + '.pages" data-kind="text">' +
+            opt('both', 'Both portfolios', a.pages || 'both') +
+            opt('industry', 'Industry portfolio only', a.pages || 'both') +
+            opt('research', 'Research portfolio only', a.pages || 'both') +
+          '</select></label></div>' +
       '</div>';
     }, 'No awards yet.') +
     addBtn('awards', 'Add award') + '</div>' +
@@ -792,6 +842,14 @@ function panelSkills(){
       return '<div class="item">' + itemHead('Group', i, 'skills', n) +
         textField('Group name', s.label, 'skills.' + i + '.label') +
         areaField('Skills', s.items, 'skills.' + i + '.items', '', 2) +
+        '<div class="field"><label><span class="lab">Where it appears</span>' +
+          '<select data-path="skills.' + i + '.research" data-kind="bool">' +
+            opt('true', 'Both pages - counts as a research method',
+              String(s.research !== false)) +
+            opt('false', 'Industry page, and the research page\u2019s engineering evidence',
+              String(s.research !== false)) +
+          '</select></label>' +
+          '<div class="tip">Deployment and storage tooling belongs in the second group.</div></div>' +
       '</div>';
     }, 'No skill groups yet.') +
     addBtn('skills', 'Add group') + '</div>';
@@ -810,9 +868,111 @@ function panelRefs(){
     addBtn('references', 'Add referee') + '</div>';
 }
 
+function panelDirection(){
+  return '<div class="panel"><h2>Research direction</h2>' +
+    '<div class="hint">The open questions on the research page. A supervisor reads these to see ' +
+      'whether you have a direction of your own. Each one should extend work you have already done.</div>' +
+    list('futureDirections', function(f, i, n){
+      return '<div class="item">' + itemHead('Question', i, 'futureDirections', n) +
+        areaField('Question', f.q, 'futureDirections.' + i + '.q',
+          'Phrase it as a question you want to answer.', 2) +
+        areaField('Answer', f.a, 'futureDirections.' + i + '.a',
+          'What you would do about it, and what you have already built that points at it.', 5) +
+      '</div>';
+    }, 'No questions yet.') +
+    addBtn('futureDirections', 'Add question') + '</div>';
+}
+
+function panelFacts(){
+  return '<div class="panel"><h2>Quick facts</h2>' +
+    '<div class="hint">The strip directly under the research hero. Short and checkable - ' +
+      'this is the first thing an admissions committee reads.</div>' +
+    list('quickFacts', function(f, i, n){
+      return '<div class="item">' + itemHead('Fact', i, 'quickFacts', n) +
+        textField('Headline', f.k, 'quickFacts.' + i + '.k', 'e.g. 4, or Best Presenter') +
+        areaField('Detail', f.v, 'quickFacts.' + i + '.v', '', 2) +
+      '</div>';
+    }, 'No quick facts yet.') +
+    addBtn('quickFacts', 'Add fact') + '</div>';
+}
+
+/* The escape hatch. Every other tab is a guided view of some part of
+   data.json; this one is the file itself, so anything the forms do not cover -
+   a brand new section, a field added later, a bulk edit - can still be done
+   here without touching the repository by hand. */
+function panelAdvanced(){
+  return '<div class="panel"><h2>Edit the file directly</h2>' +
+    '<div class="hint">This is the whole of <code>data.json</code>. Change anything, including ' +
+      'fields and sections the tabs above do not show. Nothing is applied until you click ' +
+      '<b>Check &amp; apply</b>, and a broken file is rejected rather than saved.</div>' +
+    '<div class="field"><label><span class="lab">data.json</span>' +
+      '<textarea id="rawJson" rows="26" spellcheck="false" ' +
+      'style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;' +
+      'line-height:1.55;white-space:pre;overflow-wrap:normal;overflow-x:auto">' +
+      esc(json()) + '</textarea></label></div>' +
+    '<div id="rawMsg" class="tip" style="margin-bottom:10px"></div>' +
+    '<div style="display:flex;gap:9px;flex-wrap:wrap">' +
+      '<button class="primary" data-raw="apply">Check &amp; apply</button>' +
+      '<button data-raw="revert">Discard my edits</button>' +
+      '<button data-raw="format">Tidy formatting</button>' +
+    '</div></div>' +
+
+    '<div class="panel"><h2>Starting over</h2>' +
+    '<div class="hint">Both of these replace everything at once. <b>Reload</b> and ' +
+      '<b>Open a file…</b> at the top of the page do the same thing, and both ask first ' +
+      'if you have unsaved changes.</div></div>';
+}
+
 var PANELS = { profile:panelProfile, news:panelNews, research:panelResearch,
   publications:panelPubs, experience:panelExp, projects:panelProjects,
-  education:panelEdu, awards:panelAwards, skills:panelSkills, refs:panelRefs };
+  education:panelEdu, awards:panelAwards, skills:panelSkills, refs:panelRefs,
+  direction:panelDirection, facts:panelFacts, advanced:panelAdvanced };
+
+/* ---------- raw JSON tab ---------- */
+function rawMsg(text, kind){
+  var el = $('rawMsg');
+  if(!el) return;
+  el.textContent = text;
+  el.className = 'tip' + (kind ? ' ' + kind : '');
+}
+function rawApply(){
+  var ta = $('rawJson');
+  if(!ta) return;
+  var parsed;
+  try {
+    parsed = JSON.parse(ta.value);
+  } catch(err){
+    rawMsg('That is not valid JSON, so nothing was changed: ' + err.message, 'bad');
+    return;
+  }
+  if(!isObj(parsed)){
+    rawMsg('The file has to be a JSON object - the outermost characters should be { and }.', 'bad');
+    return;
+  }
+  var before = json();
+  DATA = normalize(parsed);
+  if(json() === before){
+    rawMsg('Applied. Nothing actually changed.');
+  } else {
+    rawMsg('Applied. Check the other tabs, then publish when you are happy.', 'good');
+  }
+  mark(); draw();
+}
+function rawRevert(){
+  var ta = $('rawJson');
+  if(ta) ta.value = json();
+  rawMsg('Back to the current content.');
+}
+function rawFormat(){
+  var ta = $('rawJson');
+  if(!ta) return;
+  try {
+    ta.value = JSON.stringify(JSON.parse(ta.value), null, 2);
+    rawMsg('Formatted. Nothing else was changed.');
+  } catch(err){
+    rawMsg('Cannot tidy a file that is not valid JSON yet: ' + err.message, 'bad');
+  }
+}
 
 /* ---------- photo ---------- */
 function focusPart(focus, idx){
@@ -874,6 +1034,7 @@ function draw(keepScroll){
   }).join('');
   panelsEl.innerHTML = PANELS[TAB]();
   if(TAB === 'profile') refreshPhoto(true);
+  if(TAB === 'advanced') rawMsg('');
   window.scrollTo(0, keepScroll === false ? 0 : y);
 
   if(FOCUS_NEW){
@@ -1100,6 +1261,14 @@ function fallbackPanel(message){
       '<button data-boot="blank">Start from a blank file</button>' +
     '</div></div>';
 }
+panelsEl.addEventListener('click', function(e){
+  var btn = e.target.closest('button[data-raw]');
+  if(!btn) return;
+  var act = btn.dataset.raw;
+  if(act === 'apply') rawApply();
+  else if(act === 'revert') rawRevert();
+  else if(act === 'format') rawFormat();
+});
 panelsEl.addEventListener('click', function(e){
   var btn = e.target.closest('button[data-boot]');
   if(!btn) return;
