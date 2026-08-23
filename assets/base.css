@@ -481,7 +481,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 .bullets{list-style:none;display:grid;gap:.65rem}
 .bullets li{
   position:relative;padding-left:1.35rem;color:var(--muted);
-  font-size:var(--t-body);line-height:1.62;max-width:88ch;
+  font-size:var(--t-body);line-height:1.62;max-width:68ch;
 }
 .bullets li::before{
   content:'';position:absolute;left:.15rem;top:.62em;width:5px;height:5px;
@@ -538,7 +538,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 .proj-title a:hover{color:var(--accent)}
 .proj-when{font-family:var(--mono);font-size:var(--t-xs);color:var(--dim);white-space:nowrap;padding-top:.35rem}
 .proj-role{font-family:var(--mono);font-size:var(--t-xs);color:var(--dim);margin-bottom:.8rem}
-.proj-desc{color:var(--muted);font-size:var(--t-body);line-height:1.68;margin-bottom:1rem;max-width:78ch}
+.proj-desc{color:var(--muted);font-size:var(--t-body);line-height:1.68;margin-bottom:1rem;max-width:68ch}
 .proj-impact{
   display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;
   font-size:var(--t-sm);font-weight:640;color:var(--accent);
@@ -567,7 +567,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.11em;
   text-transform:uppercase;color:var(--dim);font-weight:500;margin-bottom:.45rem;
 }
-.case-block p{color:var(--muted);font-size:var(--t-sm);line-height:1.65;max-width:80ch}
+.case-block p{color:var(--muted);font-size:var(--t-sm);line-height:1.65;max-width:68ch}
 
 /* --------------------------------------------------------------- skills */
 
@@ -602,8 +602,8 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 }
 .pub-venue{color:var(--dim);font-size:var(--t-sm);margin-top:.35rem;font-style:italic}
 .pub-meta{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;margin-top:.9rem}
-.pub-note{color:var(--muted);font-size:var(--t-sm);line-height:1.65;margin-top:.9rem;max-width:80ch}
-.pub-contrib{color:var(--muted);font-size:var(--t-sm);line-height:1.65;margin-top:.6rem;max-width:80ch}
+.pub-note{color:var(--muted);font-size:var(--t-sm);line-height:1.65;margin-top:.9rem;max-width:68ch}
+.pub-contrib{color:var(--muted);font-size:var(--t-sm);line-height:1.65;margin-top:.6rem;max-width:68ch}
 .pub-contrib b{color:var(--text)}
 .bib-btn{
   font-family:var(--mono);font-size:var(--t-xs);color:var(--muted);
@@ -768,13 +768,13 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   background:var(--accent-dim);border:1px solid var(--accent-line);
   padding:.45rem .85rem;border-radius:8px;white-space:nowrap;
 }
-.edu-meta{color:var(--muted);font-size:var(--t-sm);line-height:1.6}
+.edu-meta{color:var(--muted);font-size:var(--t-sm);line-height:1.6;max-width:66ch}
 .edu-meta b{color:var(--text);font-weight:600;display:block;margin-bottom:.3rem}
 .thesis{border-top:1px solid var(--line);padding-top:1rem}
 .thesis-l{font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.11em;
   text-transform:uppercase;color:var(--dim);margin-bottom:.5rem}
 .thesis-t{font-size:var(--t-body);font-weight:650;margin-bottom:.5rem}
-.thesis-d{color:var(--muted);font-size:var(--t-sm);line-height:1.68}
+.thesis-d{color:var(--muted);font-size:var(--t-sm);line-height:1.68;max-width:66ch}
 
 .list-plain{list-style:none;display:grid;gap:.85rem}
 .list-plain li{position:relative;padding-left:1.2rem;color:var(--muted);font-size:var(--t-sm);line-height:1.6}
@@ -807,7 +807,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   margin-bottom:.75rem;
 }
 .qa-q{font-size:var(--t-h3);font-weight:650;line-height:1.4;margin-bottom:.9rem;letter-spacing:-.018em}
-.qa-a{color:var(--muted);font-size:var(--t-sm);line-height:1.72;max-width:78ch}
+.qa-a{color:var(--muted);font-size:var(--t-sm);line-height:1.72;max-width:68ch}
 
 .facts{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
   border-radius:var(--r-md);overflow:hidden;
@@ -890,6 +890,66 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   animation:spin .8s linear infinite;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ------------------------------------------------------------ justification */
+
+/* Justified text needs a wide enough measure and hyphenation. Without
+   hyphenation the browser can only stretch word spaces, which opens rivers of
+   white down the column; below roughly fifty characters no amount of
+   hyphenation saves it. So both ship together, and neither is applied to a
+   line that is too short to take it.
+
+   Headings, labels, chips, metadata and one- or two-line blurbs stay ragged on
+   purpose: justifying a two-line paragraph stretches the first line and leaves
+   the second short, which reads worse than leaving it alone. */
+.justified{
+  text-align:justify;
+  text-justify:inter-word;
+  -webkit-hyphens:auto;hyphens:auto;
+}
+
+/* Blocks whose measure is set by the page, not by a card. */
+@media (min-width:1100px){
+  .hero-desc,
+  .tl-item .bullets li,
+  .pub-note,
+  .pub-contrib,
+  .thesis-d,
+  .edu-meta,
+  .contact-in p{
+    text-align:justify;
+    text-justify:inter-word;
+    -webkit-hyphens:auto;hyphens:auto;
+  }
+}
+
+/* Card prose is a different problem: a project card is 40 characters wide in a
+   three-column grid and 88 in a two-column span, at the same viewport. What
+   matters is the card's own width, so ask the card rather than the screen. */
+.proj,.area,.arc-step,.qa-item{container-type:inline-size}
+
+/* Two thresholds, because the same card is a different measure at a different
+   type size: the small type in an interest card reaches a workable line sooner
+   than project copy, which is a size larger. Note these are content-box
+   widths — a container query does not count the card's own padding. */
+@container (min-width:20rem){
+  .area p,
+  .arc-step p,
+  .qa-a{
+    text-align:justify;
+    text-justify:inter-word;
+    -webkit-hyphens:auto;hyphens:auto;
+  }
+}
+@container (min-width:26rem){
+  .proj-desc,
+  .case-block p,
+  .case-block .bullets li{
+    text-align:justify;
+    text-justify:inter-word;
+    -webkit-hyphens:auto;hyphens:auto;
+  }
+}
 
 /* --------------------------------------------------------------- reveal */
 
