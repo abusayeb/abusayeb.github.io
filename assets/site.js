@@ -445,6 +445,9 @@
     var mail = P.emailAcademic || P.email;
 
     var focus = (P.researchFocusAreas || []);
+    var abroad = (d.experience || []).filter(function (e) {
+      return e.kind !== 'research' && e.location && e.location !== P.location;
+    })[0] || null;
 
     /* ---- hero ---- */
     out.push('<header class="hero" id="top">' +
@@ -466,6 +469,8 @@
           '</div>' +
           '<div class="hero-meta">' +
             '<span>📍 ' + esc(P.location) + '</span>' +
+            (abroad ? '<span>🌏 ' + esc(abroad.role) + ' in ' + esc(abroad.location) +
+              ' · ' + esc(abroad.start) + ' – ' + esc(abroad.end) + '</span>' : '') +
             '<span>✉ <a href="mailto:' + esc(mail) + '">' + esc(mail) + '</a></span>' +
             (P.scholar ? '<span><a ' + linkAttrs(P.scholar) + '>Google Scholar</a></span>' : '') +
             (P.orcid ? '<span><a ' + linkAttrs(P.orcid) + '>ORCID</a></span>' : '') +
