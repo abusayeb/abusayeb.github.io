@@ -482,10 +482,16 @@ function removeItem(arrName, i){
     mark(); draw();
   });
 }
+/* Lists the pages render newest-first, so a new entry belongs at the top
+   rather than at the bottom where it would have to be dragged up. */
+var PREPEND = { news:true };
+
 function addItem(arrName){
   if(!Array.isArray(DATA[arrName])) DATA[arrName] = [];
-  DATA[arrName].push(clone(TPL[arrName]));
-  FOCUS_NEW = arrName + '.' + (DATA[arrName].length - 1);
+  var item = clone(TPL[arrName]), at;
+  if(PREPEND[arrName]){ DATA[arrName].unshift(item); at = 0; }
+  else { DATA[arrName].push(item); at = DATA[arrName].length - 1; }
+  FOCUS_NEW = arrName + '.' + at;
   mark(); draw();
 }
 
@@ -625,14 +631,15 @@ function panelProfile(){
 
 function panelNews(){
   return '<div class="panel"><h2>News</h2>' +
-    '<div class="hint">Dated updates on the research page. Keeping this current is the single easiest way to look active to a professor.</div>' +
+    '<div class="hint">Dated updates, newest first. Keeping this current is the single easiest ' +
+      'way to look active to a professor. New entries are added at the top.</div>' +
+    addBtn('news', 'Add update') +
     list('news', function(nw, i, n){
       return '<div class="item">' + itemHead('Update', i, 'news', n) +
         textField('Date', nw.date, 'news.' + i + '.date', 'e.g. Jul 2026') +
         areaField('Text', nw.text, 'news.' + i + '.text', '', 2) +
       '</div>';
-    }, 'No updates yet. Newest first reads best.') +
-    addBtn('news', 'Add update') + '</div>';
+    }, 'No updates yet. Newest first reads best.') + '</div>';
 }
 
 function panelResearch(){
