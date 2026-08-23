@@ -818,8 +818,9 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   letter-spacing:-.03em;line-height:1.1;margin-bottom:.45rem}
 .fact-v{color:var(--muted);font-size:var(--t-sm);line-height:1.55}
 
-.areas{display:grid;gap:var(--sp-gap);
-  grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr))}
+.areas{display:grid;gap:var(--sp-gap);grid-template-columns:minmax(0,1fr)}
+@media (min-width:700px){.areas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:2100px){.areas{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .area{
   background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);
   padding:clamp(1.25rem,1.9vw,2rem);display:grid;gap:.75rem;align-content:start;
@@ -831,6 +832,15 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 .area p{color:var(--muted);font-size:var(--t-sm);line-height:1.68}
 .area.is-next{border-color:var(--accent-line);
   background:linear-gradient(150deg,var(--accent-dim),var(--card) 55%)}
+
+/* Each card holds the same three parts, so sharing the parent's row tracks
+   lines up the labels, the titles and the first line of body text across a row
+   however many lines a title runs to. Without subgrid they simply keep their
+   own spacing. */
+@supports (grid-template-rows:subgrid){
+  .areas{grid-auto-rows:auto}
+  .area{grid-row:span 3;grid-template-rows:subgrid;row-gap:.75rem}
+}
 .area.is-next .area-n{color:var(--accent)}
 
 .refs{display:grid;gap:var(--sp-gap);
@@ -913,6 +923,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 @media (min-width:1100px){
   .hero-desc,
   .tl-item .bullets li,
+  .area p,
   .pub-note,
   .pub-contrib,
   .thesis-d,
@@ -927,14 +938,15 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 /* Card prose is a different problem: a project card is 40 characters wide in a
    three-column grid and 88 in a two-column span, at the same viewport. What
    matters is the card's own width, so ask the card rather than the screen. */
-.proj,.area,.arc-step,.qa-item{container-type:inline-size}
+.proj,.arc-step,.qa-item{container-type:inline-size}
+/* .area is deliberately not a container: it subgrids instead, and containment
+   would rule that out. Its justification is handled by viewport width below. */
 
 /* Two thresholds, because the same card is a different measure at a different
    type size: the small type in an interest card reaches a workable line sooner
    than project copy, which is a size larger. Note these are content-box
    widths — a container query does not count the card's own padding. */
 @container (min-width:20rem){
-  .area p,
   .arc-step p,
   .qa-a{
     text-align:justify;
