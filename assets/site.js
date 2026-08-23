@@ -632,29 +632,7 @@
       '</div>' +
       '<p class="sec-sub" id="projEmpty" hidden>No projects in this area yet.</p>'));
 
-    /* ---- 6. research interests + methods ---- */
-    var rskills = (d.skills || []).filter(function (s) { return s.research !== false; });
-    out.push(section('interests', '',
-      head('interests', 'Research interests',
-        P.researchInterestsLine ? esc(P.researchInterestsLine) : '',
-        (d.researchAreas || []).length + ' clusters') +
-      '<div class="areas">' + (d.researchAreas || []).map(function (a, i) {
-        var n = (i + 1 < 10 ? '0' : '') + (i + 1);
-        return '<article class="area' + (a.next ? ' is-next' : '') + '" data-reveal>' +
-          '<span class="area-n">' + n + (a.next ? ' · DIRECTION' : '') + '</span>' +
-          '<h3>' + esc(a.title) + '</h3><p>' + rich(a.desc) + '</p></article>';
-      }).join('') + '</div>' +
-      (rskills.length
-        ? '<h3 class="eyebrow" style="margin:clamp(2.25rem,4vw,3.5rem) 0 1.25rem">Methods &amp; tools</h3>' +
-          '<div class="grid-auto" style="--col:clamp(17rem,20vw,26rem)">' +
-          rskills.map(function (s) {
-            return '<div class="card skill-cat" data-reveal>' +
-              '<h3>' + esc(s.label) + '</h3>' +
-              '<div class="chips">' + chips(splitSkills(s.items)) + '</div></div>';
-          }).join('') + '</div>'
-        : '')));
-
-    /* ---- 7. engineering evidence ---- */
+    /* ---- 6. industry experience ---- */
     var engMetrics = (d.metrics || []).filter(function (m) {
       return !/papers?|publication/i.test(m.label);
     });
@@ -689,6 +667,28 @@
             return '<div class="card skill-cat" data-reveal>' +
               '<h3>' + esc(sk.label) + '</h3>' +
               '<div class="chips">' + chips(splitSkills(sk.items)) + '</div></div>';
+          }).join('') + '</div>'
+        : '')));
+
+    /* ---- 7. research interests + methods ---- */
+    var rskills = (d.skills || []).filter(function (s) { return s.research !== false; });
+    out.push(section('interests', '',
+      head('interests', 'Research interests',
+        P.researchInterestsLine ? esc(P.researchInterestsLine) : '',
+        (d.researchAreas || []).length + ' clusters') +
+      '<div class="areas">' + (d.researchAreas || []).map(function (a, i) {
+        var n = (i + 1 < 10 ? '0' : '') + (i + 1);
+        return '<article class="area' + (a.next ? ' is-next' : '') + '" data-reveal>' +
+          '<span class="area-n">' + n + (a.next ? ' · DIRECTION' : '') + '</span>' +
+          '<h3>' + esc(a.title) + '</h3><p>' + rich(a.desc) + '</p></article>';
+      }).join('') + '</div>' +
+      (rskills.length
+        ? '<h3 class="eyebrow" style="margin:clamp(2.25rem,4vw,3.5rem) 0 1.25rem">Methods &amp; tools</h3>' +
+          '<div class="grid-auto" style="--col:clamp(17rem,20vw,26rem)">' +
+          rskills.map(function (s) {
+            return '<div class="card skill-cat" data-reveal>' +
+              '<h3>' + esc(s.label) + '</h3>' +
+              '<div class="chips">' + chips(splitSkills(s.items)) + '</div></div>';
           }).join('') + '</div>'
         : '')));
 
