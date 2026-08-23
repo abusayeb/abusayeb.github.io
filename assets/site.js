@@ -240,7 +240,8 @@
           '</div>' +
           '<p class="portrait-tag">' +
             (isOngoing(lead) ? esc(P.roleIndustry) : 'Most recently') + '<br><b>' +
-            esc(lead.org || '') + '</b></p>' +
+            esc(lead.org || '') + (lead.location ? ', ' + esc(lead.location) : '') +
+            '</b></p>' +
         '</div>' +
       '</div></div>' +
     '</header>');
