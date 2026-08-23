@@ -616,23 +616,7 @@
         '</article>';
       }).join('') + '</div>'));
 
-    /* ---- 5. research projects ---- */
-    var rel = (d.projects || []).filter(function (p) {
-      return p.pages === 'research' || p.pages === 'both';
-    });
-    out.push(section('projects', 'section--band',
-      head('projects', 'Research projects',
-        'Selected for what they evidence rather than for scale. Open a case study for ' +
-        'the approach, the result and what it contributes. Code is public wherever the ' +
-        'work was not proprietary.',
-        rel.length + ' projects') +
-      filterBar(rel) +
-      '<div class="projects" id="projGrid">' +
-        rel.map(function (p) { return projectCard(p, { researchNote: true, academic: true }); }).join('') +
-      '</div>' +
-      '<p class="sec-sub" id="projEmpty" hidden>No projects in this area yet.</p>'));
-
-    /* ---- 6. industry experience ---- */
+    /* ---- 5. industry experience ---- */
     var engMetrics = (d.metrics || []).filter(function (m) {
       return !/papers?|publication/i.test(m.label);
     });
@@ -669,6 +653,22 @@
               '<div class="chips">' + chips(splitSkills(sk.items)) + '</div></div>';
           }).join('') + '</div>'
         : '')));
+
+    /* ---- 6. research projects ---- */
+    var rel = (d.projects || []).filter(function (p) {
+      return p.pages === 'research' || p.pages === 'both';
+    });
+    out.push(section('projects', 'section--band',
+      head('projects', 'Research projects',
+        'Selected for what they evidence rather than for scale. Open a case study for ' +
+        'the approach, the result and what it contributes. Code is public wherever the ' +
+        'work was not proprietary.',
+        rel.length + ' projects') +
+      filterBar(rel) +
+      '<div class="projects" id="projGrid">' +
+        rel.map(function (p) { return projectCard(p, { researchNote: true, academic: true }); }).join('') +
+      '</div>' +
+      '<p class="sec-sub" id="projEmpty" hidden>No projects in this area yet.</p>'));
 
     /* ---- 7. research interests + methods ---- */
     var rskills = (d.skills || []).filter(function (s) { return s.research !== false; });
