@@ -111,7 +111,7 @@
   "researchAreas": [
     {
       "title": "Edge AI",
-      "desc": "Perception that has to run on the device rather than in a data centre. At Othello I integrated IoT edge devices feeding real-time computer vision pipelines, and parallel inference optimisation cut processing latency by ~70% against a fixed processing budget. What I want to study is how those architectural choices hold up under the far tighter latency and power constraints of embedded hardware.",
+      "desc": "Perception that has to run on the device rather than in a data centre — and the widening gap between how fast models are advancing and how slowly the hardware underneath them is. At Othello, getting models onto **IoT edge devices** feeding real-time vision pipelines was the hard part, and parallel inference optimisation cut processing latency by **~70%** only by trading complexity against a fixed budget. I want to study how far those choices carry under the tighter latency and power constraints of embedded hardware.",
       "next": true
     },
     {
@@ -768,8 +768,8 @@
   "futureDirections": [
     {
       "area": "Edge AI",
-      "q": "How do embedded compute and latency budgets change what counts as good perception?",
-      "a": "At Othello, cutting inference latency by ~70% meant trading model complexity against a fixed processing budget for retail video, a generous budget compared to robotics. I want to study how that trade-off holds under the far tighter latency and power constraints of an embedded robotic platform, and whether the architectural choices that worked there even apply."
+      "q": "Models are advancing far faster than the hardware meant to run them. What gives first?",
+      "a": "AI moves quickly; the silicon it has to run on does not, and that gap is getting wider rather than narrower. At **Othello** it was the daily problem — getting the models onto **edge devices** at all was a real challenge, and parallel inference optimisation only bought its **~70%** latency reduction by trading model complexity against a fixed processing budget. Retail video is a generous budget next to a robot. I want to study where that trade-off breaks as the gap widens, and whether the architectural choices that worked there still apply under the far tighter latency and power constraints of an embedded platform."
     },
     {
       "area": "Robotics & Automation",

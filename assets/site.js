@@ -357,7 +357,7 @@
           return '<article class="award" data-reveal>' +
             '<span class="award-yr">' + esc(a.year) + '</span>' +
             '<h3>' + esc(a.title) + '</h3>' +
-            '<p>' + esc(a.detail) + '</p></article>';
+            '<p>' + rich(a.detail) + '</p></article>';
         }).join('') +
       '</div>' +
       ((d.talks || []).length ? '<div style="margin-top:var(--sp-gap)" data-reveal>' +
@@ -642,7 +642,7 @@
         var n = (i + 1 < 10 ? '0' : '') + (i + 1);
         return '<article class="area' + (a.next ? ' is-next' : '') + '" data-reveal>' +
           '<span class="area-n">' + n + (a.next ? ' · DIRECTION' : '') + '</span>' +
-          '<h3>' + esc(a.title) + '</h3><p>' + esc(a.desc) + '</p></article>';
+          '<h3>' + esc(a.title) + '</h3><p>' + rich(a.desc) + '</p></article>';
       }).join('') + '</div>' +
       (rskills.length
         ? '<h3 class="eyebrow" style="margin:clamp(2.25rem,4vw,3.5rem) 0 1.25rem">Methods &amp; tools</h3>' +
@@ -735,7 +735,7 @@
           '<ul class="list-plain">' + awards.map(function (a) {
             var key = /best presenter/i.test(a.title);
             return '<li' + (key ? ' class="is-key"' : '') + '><b>' + esc(a.title) +
-              ' (' + esc(a.year) + ')</b>' + esc(a.detail) + '</li>';
+              ' (' + esc(a.year) + ')</b>' + rich(a.detail) + '</li>';
           }).join('') + '</ul></div>' : '') +
       '</div>'));
 
