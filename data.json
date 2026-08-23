@@ -1,5 +1,5 @@
 {
-  "_readme": "This file is the single source of truth for both portfolio pages. Edit it at /edit/ in your browser, or edit it here directly. Text fields support **double asterisks** to highlight key terms.",
+  "_readme": "This file is the single source of truth for both portfolio pages. Edit it at /edit/ in your browser, or edit it here directly. Text fields support **double asterisks** to highlight key terms. Projects also carry: categories (drives the filter buttons: Computer Vision, Generative AI, LLM / RAG, Research, Deployment, Other), featured (gives the card extra width on wide screens), details (case-study bullets), challenge, and demo.",
   "profile": {
     "name": "Md Abu Sayeb Rayhan",
     "shortName": "Abu Sayeb Rayhan",
@@ -19,7 +19,18 @@
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
     "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
-    "roleResearchSub": "Multi-object tracking, activity recognition & pose estimation · Multimodal vision-language models · Generative modelling & synthetic data · Toward robotics, automation & embedded AI"
+    "roleResearchSub": "Multi-object tracking, activity recognition & pose estimation · Multimodal vision-language models · Generative modelling & synthetic data · Toward robotics, automation & embedded AI",
+    "focusAreas": [
+      "Computer Vision",
+      "Real-Time Perception",
+      "Multi-Object Tracking",
+      "Activity Recognition",
+      "Generative AI",
+      "LLM / RAG",
+      "Reliable AI",
+      "Edge / IoT"
+    ],
+    "researchInterestsLine": "Robot perception, embodied AI and intelligent autonomous systems; computer vision (multi-object tracking, activity recognition, pose estimation), multimodal vision-language models and generative models for simulation and robotic learning."
   },
   "news": [
     {
@@ -154,7 +165,7 @@
     },
     {
       "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
-      "authors": "**Md Abu Sayeb Rayhan** et al.",
+      "authors": "**Md Abu Sayeb Rayhan**, Mosammat Fahimah, Md Tarek Mahmud, Hustagna Hiya, Ajoy Shutra Dhar",
       "venue": "IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026",
       "year": "2026",
       "tags": [
@@ -254,7 +265,12 @@
       "role": "Implementation lead · Team of 3",
       "link": "",
       "pages": "both",
-      "researchNote": "Domain generalisation in practice: an action-recognition pipeline tuned for one controlled setting, then forced to hold up on unconstrained user video."
+      "researchNote": "Domain generalisation in practice: an action-recognition pipeline tuned for one controlled setting, then forced to hold up on unconstrained user video.",
+      "categories": [
+        "Computer Vision",
+        "Deployment"
+      ],
+      "featured": true
     },
     {
       "title": "Real-Time In-Store Behaviour Analytics",
@@ -270,7 +286,12 @@
       "role": "System developer · Team of 3",
       "link": "",
       "pages": "both",
-      "researchNote": "Pose estimation coupled with density-based clustering under a hard latency budget: evidence for perception under real deployment constraints."
+      "researchNote": "Pose estimation coupled with density-based clustering under a hard latency budget: evidence for perception under real deployment constraints.",
+      "categories": [
+        "Computer Vision",
+        "Deployment"
+      ],
+      "featured": true
     },
     {
       "title": "Sports NFT Generation System",
@@ -286,7 +307,19 @@
       "role": "AI Engineer · Team of 3",
       "link": "https://github.com/abusayeb/basketball-highlight-generator",
       "pages": "both",
-      "researchNote": "Multi-object tracking and temporal event segmentation on unconstrained broadcast video, where occlusion and camera motion are the hard cases."
+      "researchNote": "Multi-object tracking and temporal event segmentation on unconstrained broadcast video, where occlusion and camera motion are the hard cases.",
+      "categories": [
+        "Computer Vision",
+        "Deployment"
+      ],
+      "featured": true,
+      "details": [
+        "Detects players, the ball and the basket with **YOLOv8**, then tracks them across frames with DeepSORT or ByteTrack.",
+        "Keeps ball tracking smooth through brief occlusion using trajectory interpolation and **Kalman filtering**.",
+        "Recognises key actions and classifies highlight-worthy events from motion and positional data.",
+        "Compiles the final reel automatically: auto zoom on the action, slow-motion replay, transitions and metadata overlay.",
+        "Derives per-player statistics — shots, passes and time on court."
+      ]
     },
     {
       "title": "Context Searcher",
@@ -303,7 +336,34 @@
       "role": "AI Engineer & team lead",
       "link": "https://github.com/abusayeb/keyword-file-searcher",
       "pages": "both",
-      "researchNote": "Multimodal retrieval across text and images in a low-resource language (Bangla), combining OCR with dense embeddings."
+      "researchNote": "Multimodal retrieval across text and images in a low-resource language (Bangla), combining OCR with dense embeddings.",
+      "categories": [
+        "LLM / RAG",
+        "Deployment"
+      ],
+      "featured": true
+    },
+    {
+      "title": "Text-to-Image Generation using Diffusion Models",
+      "date": "Sep 2023 – Jan 2024",
+      "desc": "Bachelor's thesis. Fine-tuned **Stable Diffusion** with a U-Net backbone on a purpose-built dataset of Bangladeshi landmarks, examining prompt engineering and **conditioning mechanisms** as levers on generative fidelity, with OpenCV post-processing to reduce artefacts.",
+      "impact": "",
+      "tags": [
+        "Stable Diffusion",
+        "Diffusion Models",
+        "U-Net",
+        "PyTorch",
+        "OpenCV"
+      ],
+      "role": "Bachelor's thesis · Comilla University",
+      "link": "",
+      "pages": "both",
+      "categories": [
+        "Generative AI",
+        "Research"
+      ],
+      "featured": true,
+      "researchNote": "The origin of the generative-model thread in my research: diffusion-model fine-tuning and conditioning, which the forensic invariant learning paper later turned around into a detection problem."
     },
     {
       "title": "ILLUSION — Virtual Object Control by Hand Gesture",
@@ -320,7 +380,15 @@
       "role": "Solo project",
       "link": "https://github.com/abusayeb/virtual-object-control",
       "pages": "both",
-      "researchNote": "Real-time human-machine interaction from vision alone, closely related to the Human–Robot Interaction studies I ran as a Research Assistant."
+      "researchNote": "Real-time human-machine interaction from vision alone, closely related to the Human–Robot Interaction studies I ran as a Research Assistant.",
+      "categories": [
+        "Computer Vision"
+      ],
+      "details": [
+        "Processes the webcam feed frame by frame.",
+        "Detects and tracks **hand landmarks and fingertips**.",
+        "Maps finger position and pinch/grab gestures to a virtual object so it can be dragged in real time."
+      ]
     },
     {
       "title": "ADAS Lane & Vehicle Detection",
@@ -335,7 +403,18 @@
       "role": "Solo project",
       "link": "https://github.com/abusayeb/adas-lane-vehicle-detection",
       "pages": "both",
-      "researchNote": "Perception for a system that has to act: the closest existing work to my robotics and embedded AI direction."
+      "researchNote": "Perception for a system that has to act: the closest existing work to my robotics and embedded AI direction.",
+      "categories": [
+        "Computer Vision",
+        "Research"
+      ],
+      "demo": "https://github.com/abusayeb/adas-lane-vehicle-detection/blob/main/stacked.mp4",
+      "details": [
+        "Detects vehicles in road footage with a **YOLOv5** model fine-tuned on a custom dataset.",
+        "Detects lane boundaries and overlays them on the video stream.",
+        "Outputs a single annotated video combining both — the building blocks of lane-keeping and collision-warning systems.",
+        "Split across three notebooks: dataset preparation, YOLOv5 training/inference, and the full end-to-end pipeline."
+      ]
     },
     {
       "title": "RAG Customer Support Chatbot",
@@ -351,7 +430,94 @@
       ],
       "role": "Solo developer",
       "link": "https://github.com/abusayeb/rag-chatbot",
-      "pages": "industry"
+      "pages": "industry",
+      "categories": [
+        "LLM / RAG",
+        "Deployment"
+      ],
+      "details": [
+        "Documents are loaded, chunked and embedded, then stored in a **Pinecone** vector index.",
+        "At query time the most relevant chunks are retrieved by similarity search and passed to the LLM as context.",
+        "**LangChain** orchestrates retrieval and generation so the answer stays grounded in the retrieved content.",
+        "Served through a Flask web interface and deployed on **Microsoft Azure**."
+      ]
+    },
+    {
+      "title": "Paper Summarizer Chatbot",
+      "date": "Sep 2025",
+      "desc": "LLM-powered chatbot that reads research papers and generates concise summaries, then answers grounded follow-up questions about the paper.",
+      "impact": "",
+      "tags": [
+        "LLM",
+        "NLP",
+        "Python"
+      ],
+      "role": "Solo project",
+      "link": "https://github.com/abusayeb/paper-summarizer-chatbot",
+      "pages": "industry",
+      "categories": [
+        "LLM / RAG"
+      ],
+      "featured": false,
+      "details": [
+        "Takes a research paper as a PDF, then extracts and processes its content.",
+        "Generates a **structured summary** — problem, method, results.",
+        "Exposes a chat interface for follow-up questions about the same paper."
+      ]
+    },
+    {
+      "title": "Text Summarizer",
+      "date": "2024",
+      "desc": "Text summarization web app built with Python and Flask.",
+      "impact": "",
+      "tags": [
+        "Python",
+        "Flask",
+        "NLP"
+      ],
+      "role": "Solo project · archived",
+      "link": "https://github.com/abusayeb/summarizer",
+      "pages": "industry",
+      "categories": [
+        "Other"
+      ],
+      "featured": false
+    },
+    {
+      "title": "PATHAGAR — Library Management System",
+      "date": "2023",
+      "desc": "Library management system for the Department of Management, Comilla University, built with Flutter.",
+      "impact": "",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Mobile"
+      ],
+      "role": "University project · archived",
+      "link": "https://github.com/abusayeb/pathagar-library-management",
+      "pages": "industry",
+      "categories": [
+        "Other"
+      ],
+      "featured": false
+    },
+    {
+      "title": "JOB BAZAAR",
+      "date": "2022",
+      "desc": "Job recruiting platform connecting job seekers and employers, built with Flutter.",
+      "impact": "",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "Mobile"
+      ],
+      "role": "Archived",
+      "link": "https://github.com/abusayeb/job-bazaar",
+      "pages": "industry",
+      "categories": [
+        "Other"
+      ],
+      "featured": false
     }
   ],
   "education": {
@@ -406,12 +572,12 @@
   "skills": [
     {
       "label": "Research methods",
-      "items": "Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR",
+      "items": "Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR · NLP",
       "research": true
     },
     {
       "label": "Frameworks",
-      "items": "PyTorch · TensorFlow · OpenCV · MMAction2 · YOLO · ByteTrack · MoveNet · Stable Diffusion · Hugging Face · Scikit-learn · LangChain",
+      "items": "PyTorch · TensorFlow · OpenCV · MMAction2 · YOLO · ByteTrack · MoveNet · Stable Diffusion · Hugging Face · Scikit-learn · LangChain · Pandas",
       "research": true
     },
     {

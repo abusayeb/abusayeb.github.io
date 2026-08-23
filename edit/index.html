@@ -287,7 +287,8 @@ var TPL = {
   researchAreas:{title:'',desc:''},
   publications:{title:'',authors:'M. A. S. Rayhan et al.',venue:'',year:'',tags:[],status:'',link:'',note:'',bibkey:''},
   experience:{role:'',org:'',team:'',location:'',start:'',end:'',kind:'industry',note:'',bullets:[]},
-  projects:{title:'',date:'',desc:'',impact:'',tags:[],role:'',link:''},
+  projects:{title:'',date:'',desc:'',impact:'',tags:[],role:'',link:'',demo:'',
+            pages:'industry',categories:[],featured:false,details:[],researchNote:''},
   awards:{year:'',title:'',detail:''},
   talks:{title:'',venue:'',year:'',type:'Conference presentation'},
   skills:{label:'',items:''},
@@ -340,7 +341,11 @@ function normalize(raw){
     });
 
   d.publications.forEach(function(p){ p.tags = Array.isArray(p.tags) ? p.tags : splitTags(p.tags || ''); });
-  d.projects.forEach(function(p){ p.tags = Array.isArray(p.tags) ? p.tags : splitTags(p.tags || ''); });
+  d.projects.forEach(function(p){
+    p.tags = Array.isArray(p.tags) ? p.tags : splitTags(p.tags || '');
+    p.categories = Array.isArray(p.categories) ? p.categories : splitTags(p.categories || '');
+    p.details = asList(p.details);
+  });
   d.experience.forEach(function(e){
     e.bullets = asList(e.bullets);
     if(e.kind !== 'research') e.kind = 'industry';
@@ -401,6 +406,10 @@ function areaField(label, value, path, hint, rows, kind){
     '<textarea rows="' + (rows || 3) + '" data-path="' + esc(path) + '" ' +
     'data-kind="' + (kind || 'text') + '">' + esc(value) + '</textarea></label>' +
     (hint ? '<div class="tip">' + esc(hint) + '</div>' : '') + '</div>';
+}
+function opt(value, label, current){
+  return '<option value="' + esc(value) + '"' +
+    (String(current) === value ? ' selected' : '') + '>' + esc(label) + '</option>';
 }
 function itemHead(label, i, arrName, len){
   return '<div class="item-head"><span class="item-n">' + esc(label) + ' ' + (i + 1) + '</span>' +
@@ -671,6 +680,31 @@ function panelProjects(){
         '</div><div class="row">' +
           textField('Tags (comma separated)', (p.tags || []).join(', '), 'projects.' + i + '.tags', '', 'tags') +
           textField('Your role', p.role, 'projects.' + i + '.role', 'e.g. Team of 3') +
+        '</div><div class="row">' +
+          textField('Categories (comma separated)', (p.categories || []).join(', '),
+            'projects.' + i + '.categories', 
+            'Drives the filter buttons: Computer Vision, Generative AI, LLM / RAG, Research, Deployment, Other.',
+            'tags') +
+          textField('Demo link', p.demo, 'projects.' + i + '.demo', 'Optional - video or live demo.') +
+        '</div>' +
+        areaField('Case-study bullets (one per line)', (p.details || []).join('\n'),
+          'projects.' + i + '.details',
+          'Shown behind the "Case study" toggle on the card. Leave empty to hide the toggle.',
+          3, 'list') +
+        areaField('Why it matters for my research', p.researchNote, 'projects.' + i + '.researchNote',
+          'Only shown on the research portfolio.', 2) +
+        '<div class="row">' +
+          '<div class="field"><label><span class="lab">Show on</span>' +
+            '<select data-path="projects.' + i + '.pages" data-kind="text">' +
+              opt('industry', 'Industry portfolio only', p.pages) +
+              opt('both', 'Both portfolios', p.pages) +
+              opt('research', 'Research portfolio only', p.pages) +
+            '</select></label></div>' +
+          '<div class="field"><label><span class="lab">Featured</span>' +
+            '<select data-path="projects.' + i + '.featured" data-kind="bool">' +
+              opt('false', 'Normal card', String(!!p.featured)) +
+              opt('true', 'Wide card on large screens', String(!!p.featured)) +
+            '</select></label></div>' +
         '</div>' +
       '</div>';
     }, 'No projects yet.') +
@@ -857,6 +891,7 @@ function onFieldInput(e){
   var kind = el.dataset.kind || 'text';
   if(kind === 'list') setPath(path, splitLines(el.value));
   else if(kind === 'tags') setPath(path, splitTags(el.value));
+  else if(kind === 'bool') setPath(path, el.value === 'true');
   else setPath(path, el.value);
   if(path === 'profile.photo') schedulePhoto();
   mark();
