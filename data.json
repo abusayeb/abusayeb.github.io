@@ -1,5 +1,5 @@
 {
-  "_readme": "This file is the single source of truth for both portfolio pages. Edit it at /edit/ in your browser, or edit it here directly. Text fields support **double asterisks** to highlight key terms. Projects carry: categories (drives the filter buttons), featured (wider card on large screens), problem / experiment / details / challenge (the academic case study on the research page — each block is hidden when empty), researchNote and demo. Publications carry a code field for a repository link.",
+  "_readme": "This file is the single source of truth for both portfolio pages. Edit it at /edit/ in your browser, or edit it here directly. Text fields support **double asterisks** to highlight key terms.",
   "profile": {
     "name": "Md Abu Sayeb Rayhan",
     "shortName": "Abu Sayeb Rayhan",
@@ -8,7 +8,6 @@
     "roleResearch": "Computer vision researcher moving toward robotics, automation and embedded AI",
     "location": "Dhaka, Bangladesh",
     "email": "sayeb.cc.75@gmail.com",
-    "emailAcademic": "sayeb.cse@gmail.com",
     "linkedin": "https://www.linkedin.com/in/md-abu-sayeb-rayhan",
     "github": "https://github.com/abusayeb",
     "scholar": "",
@@ -16,32 +15,16 @@
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
     "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
-    "summaryResearch": "I am a computer-vision researcher with four conference papers (two published, one in press, one under review) and 2+ years of industry experience deploying perception systems at scale. I am now looking to move from vision applied to images toward **robotics, automation and embedded AI**, where perception has to work under real hardware and control constraints.",
+    "summaryResearch": "I am a computer-vision researcher with four conference papers (two published, one in press, one under review) and 2+ years of industry experience **including professional experience in Japan** deploying perception systems at scale. I am now looking to move from vision applied to images toward **robotics, automation and embedded AI**, where perception has to work under real hardware and control constraints.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
     "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
     "roleResearchSub": "Multi-object tracking, activity recognition & pose estimation · Multimodal vision-language models · Generative modelling & synthetic data · Toward robotics, automation & embedded AI",
-    "focusAreas": [
-      "Computer Vision",
-      "Real-Time Perception",
-      "Multi-Object Tracking",
-      "Activity Recognition",
-      "Generative AI",
-      "LLM / RAG",
-      "Reliable AI",
-      "Edge / IoT"
-    ],
-    "researchInterestsLine": "Robot perception, embodied AI and intelligent autonomous systems; computer vision (multi-object tracking, activity recognition, pose estimation), multimodal vision-language models and generative models for simulation and robotic learning.",
-    "titleResearch": "AI Engineer · Researcher",
-    "researchFocusAreas": [
-      "Edge AI",
-      "Robotics & Automation",
-      "Perception",
-      "Multi-Object Tracking",
-      "Activity Recognition",
-      "Pose Estimation",
-      "Real-Time Inference"
-    ]
+    "titleResearch": "",
+    "researchInterestsLine": "",
+    "focusAreas": [],
+    "researchFocusAreas": [],
+    "emailAcademic": ""
   },
   "news": [
     {
@@ -110,23 +93,23 @@
   ],
   "researchAreas": [
     {
-      "title": "Edge AI",
-      "desc": "Perception that has to run on the device rather than in a data centre — and the widening gap between how fast models are advancing and how slowly the hardware underneath them is. At Othello, getting models onto **IoT edge devices** feeding real-time vision pipelines was the hard part, and parallel inference optimisation cut processing latency by **~70%** only by trading complexity against a fixed budget. I want to study how far those choices carry under the tighter latency and power constraints of embedded hardware.",
-      "next": true
-    },
-    {
-      "title": "Robotics & Automation",
-      "desc": "AI that couples directly to hardware, sensors and real-time control rather than to images alone. My Research Assistant work was empirical Human–Robot Interaction; the ADAS lane and vehicle detection project is perception for a system that has to act; and RGEF's reliability gating is the closest I have come to a model deciding when not to act at all.",
-      "next": true
-    },
-    {
-      "title": "Perception",
-      "desc": "Making sense of a scene reliably enough to act on it, and knowing when that reading cannot be trusted. My four papers come at this from different angles: detecting synthetic imagery through physics-informed invariants, eye disease screening for low-resource clinics, CNNs against Vision Transformers under real compute limits, and evidential gating so a model can abstain instead of guess.",
+      "title": "Tracking, activity recognition & pose estimation",
+      "desc": "Multi-object tracking, human activity recognition and pose estimation on live video. Built and shipped in production at Othello (ByteTrack, MoveNet, MMAction2), and the same perceptual problem underlies the rice leaf and BD Eye-Doc classification studies.",
       "next": false
     },
     {
-      "title": "Tracking, activity recognition & pose estimation",
-      "desc": "Multi-object tracking, human activity recognition and pose estimation on live video. Built and shipped in production at Othello (ByteTrack, MoveNet, MMAction2), and the same perceptual problem underlies the rice leaf and BD Eye-Doc classification studies.",
+      "title": "Multimodal vision-language models",
+      "desc": "Coupling vision with language so a system can act on and explain what it sees. Evidenced in BD Eye-Doc's conversational screening interface and the retrieval-augmented pipelines I built at Othello and on the Bangladesh government project.",
+      "next": false
+    },
+    {
+      "title": "Generative models for simulation & robotic learning",
+      "desc": "Using generative models to produce data and scenarios that cannot be collected directly. Rooted in my thesis on diffusion models, and turned toward detection in the forensic invariant learning paper, which asks what generative signal survives across models.",
+      "next": false
+    },
+    {
+      "title": "Robotics, automation & embedded AI",
+      "desc": "Where I want to go next: AI systems that couple directly to hardware, sensors and real-time control, not just images. My IoT edge-device integration and 70%-latency-reduction work at Othello, an ADAS lane and vehicle detection project, and RGEF's abstention logic are the closest existing threads to pull on.",
       "next": false
     }
   ],
@@ -183,7 +166,7 @@
     },
     {
       "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
-      "authors": "**Md Abu Sayeb Rayhan**, Mosammat Fahimah, Md Tarek Mahmud, Hustagna Hiya, Ajoy Shutra Dhar",
+      "authors": "**Md Abu Sayeb Rayhan** et al.",
       "venue": "IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026",
       "year": "2026",
       "tags": [
@@ -271,75 +254,6 @@
   ],
   "projects": [
     {
-      "title": "eGP AutoPilot",
-      "date": "2026",
-      "desc": "My **first startup product**: a bilingual (English/Bengali) desktop application that automates tender submission on the **Bangladesh e-Government Procurement portal**. It drives the portal through Playwright — login, form filling, encryption and signing, document mapping and a verification pass — and keeps going through crashes, network drops and half-finished runs.",
-      "impact": "First startup product · v2.2.0, shipping on macOS and Windows",
-      "tags": [
-        "Python",
-        "PyQt5",
-        "Playwright",
-        "Firebase",
-        "Firestore",
-        "bKash",
-        "PyInstaller"
-      ],
-      "role": "Founder · solo design, build and release",
-      "link": "",
-      "demo": "",
-      "pages": "both",
-      "categories": [
-        "Deployment"
-      ],
-      "featured": true,
-      "problem": "Preparing a tender on the national e-GP portal is long, repetitive and unforgiving: one unfilled form or unmapped document can invalidate a bid, and the work has to be redone from the start if the connection drops.",
-      "details": [
-        "Drives the portal end to end with **Playwright** — login, Tenderer Info, Activities, Personnel and Priced BOQ forms, then click-sign, encrypt and save.",
-        "Resumes exactly where it stopped. Per-account state is written to disk, so a crash or a two-minute network drop does not cost the whole run.",
-        "Every failing row gets five attempts, then five more in a deferred pass; anything still failing is **reported rather than silently skipped**.",
-        "Maps uploaded files to the portal's document categories by fuzzy filename match — trade licence, TIN, VAT, liquid assets.",
-        "Runs from a phone: a mobile dashboard over a REST API with QR-code pairing, and no credentials sent over the wire.",
-        "Firebase-backed accounts, subscriptions and **bKash** billing, with an admin panel for users, plans, devices and payments.",
-        "Packaged for macOS and Windows, behind 273 offline tests that never touch the production database."
-      ],
-      "experiment": "",
-      "researchNote": "Reliability engineering against a system I do not control. Every step retries, defers and resumes from saved state, because the portal, the network and the user's machine each fail in a different way — the same instinct behind wanting a model to abstain rather than guess."
-    },
-    {
-      "title": "Why I Saved This — browser memory",
-      "date": "2026",
-      "desc": "A browser extension that remembers **why** you saved something, not just where. It keeps the page, the passage you highlighted and your own note together, then brings you back to the exact spot months later with the note in the margin beside it.",
-      "impact": "v1.3.0 · Chrome and Firefox",
-      "tags": [
-        "TypeScript",
-        "React",
-        "WXT",
-        "Tailwind",
-        "IndexedDB",
-        "MiniSearch",
-        "Playwright"
-      ],
-      "role": "Solo design, build and release",
-      "link": "",
-      "demo": "",
-      "pages": "industry",
-      "categories": [
-        "Other"
-      ],
-      "featured": true,
-      "problem": "",
-      "details": [
-        "Save a page, a highlighted passage, a link or an image — from the toolbar, the context menu, or one shortcut that works out which you meant.",
-        "Search runs on **your own notes and highlights first**, ranking them above titles and URLs.",
-        "Re-anchors to the saved passage even when the page has changed since, scrolls to it, and lights up every highlight from that page with its note alongside.",
-        "Entirely local: **no account, no server, no sync, no analytics, no network requests**. Installing asks for no site access at all.",
-        "Licence keys are signed tokens verified on the device, because there is no server to check them against.",
-        "TypeScript and React on WXT, Dexie over IndexedDB, MiniSearch for retrieval, with unit tests in Vitest and end-to-end tests in Playwright."
-      ],
-      "experiment": "",
-      "researchNote": ""
-    },
-    {
       "title": "Universal NFT Generation Platform",
       "date": "Jul–Oct 2025",
       "desc": "Generalised a sports-specific video system into a platform handling **user-generated footage** across festivals, concerts and other domains. Fine-tuned **action detection** models and built the pipeline for automated clip creation.",
@@ -354,14 +268,11 @@
       "link": "",
       "demo": "",
       "pages": "both",
-      "categories": [
-        "Computer Vision",
-        "Deployment"
-      ],
-      "featured": true,
-      "problem": "A video pipeline tuned for one controlled sport had to keep working on user-generated footage from festivals, concerts and other domains it was never built for.",
+      "categories": [],
+      "featured": false,
+      "problem": "",
       "details": [],
-      "experiment": "Action-detection models fine-tuned on the original sports setting were run against unconstrained user video, and the clip-creation pipeline rebuilt around what survived the change of domain.",
+      "experiment": "",
       "researchNote": "Domain generalisation in practice: an action-recognition pipeline tuned for one controlled setting, then forced to hold up on unconstrained user video."
     },
     {
@@ -379,14 +290,11 @@
       "link": "",
       "demo": "",
       "pages": "both",
-      "categories": [
-        "Computer Vision",
-        "Deployment"
-      ],
-      "featured": true,
-      "problem": "Reading how customers group and where their interest falls, from ordinary in-store camera feeds, fast enough for the answer to still be useful.",
+      "categories": [],
+      "featured": false,
+      "problem": "",
       "details": [],
-      "experiment": "Pose estimation feeding density-based spatial clustering was run on live store cameras; parallelising inference brought processing latency down by about 70%.",
+      "experiment": "",
       "researchNote": "Pose estimation coupled with density-based clustering under a hard latency budget: evidence for perception under real deployment constraints."
     },
     {
@@ -404,20 +312,11 @@
       "link": "https://github.com/abusayeb/basketball-highlight-generator",
       "demo": "",
       "pages": "both",
-      "categories": [
-        "Computer Vision",
-        "Deployment"
-      ],
-      "featured": true,
-      "problem": "Finding the moments worth keeping in raw sports footage without a person having to watch the whole match.",
-      "details": [
-        "Detects players, the ball and the basket with **YOLOv8**, then tracks them across frames with DeepSORT or ByteTrack.",
-        "Keeps ball tracking smooth through brief occlusion using trajectory interpolation and **Kalman filtering**.",
-        "Recognises key actions and classifies highlight-worthy events from motion and positional data.",
-        "Compiles the final reel automatically: auto zoom on the action, slow-motion replay, transitions and metadata overlay.",
-        "Derives per-player statistics — shots, passes and time on court."
-      ],
-      "experiment": "A custom detector was trained and run over full-length game video, reaching 90% detection accuracy and producing highlight clips with no human in the loop — cutting production cost by half.",
+      "categories": [],
+      "featured": false,
+      "problem": "",
+      "details": [],
+      "experiment": "",
       "researchNote": "Multi-object tracking and temporal event segmentation on unconstrained broadcast video, where occlusion and camera motion are the hard cases."
     },
     {
@@ -436,41 +335,12 @@
       "link": "https://github.com/abusayeb/keyword-file-searcher",
       "demo": "",
       "pages": "both",
-      "categories": [
-        "LLM / RAG",
-        "Deployment"
-      ],
-      "featured": true,
-      "problem": "Searching a mixed pile of office documents and scanned images by meaning rather than exact keyword, in a low-resource language where that is much harder.",
+      "categories": [],
+      "featured": false,
+      "problem": "",
       "details": [],
-      "experiment": "OCR combined with dense embeddings was exercised across PDF, DOCX, XLSX, TXT and image files in both Bengali and English, and shipped as a desktop application.",
+      "experiment": "",
       "researchNote": "Multimodal retrieval across text and images in a low-resource language (Bangla), combining OCR with dense embeddings."
-    },
-    {
-      "title": "Text-to-Image Generation using Diffusion Models",
-      "date": "Sep 2023 – Jan 2024",
-      "desc": "Bachelor's thesis. Fine-tuned **Stable Diffusion** with a U-Net backbone on a purpose-built dataset of Bangladeshi landmarks, examining prompt engineering and **conditioning mechanisms** as levers on generative fidelity, with OpenCV post-processing to reduce artefacts.",
-      "impact": "",
-      "tags": [
-        "Stable Diffusion",
-        "Diffusion Models",
-        "U-Net",
-        "PyTorch",
-        "OpenCV"
-      ],
-      "role": "Bachelor's thesis · Comilla University",
-      "link": "",
-      "demo": "",
-      "pages": "both",
-      "categories": [
-        "Generative AI",
-        "Research"
-      ],
-      "featured": true,
-      "problem": "Whether a general text-to-image model can be fine-tuned to render a specific, under-represented subject faithfully — in this case Bangladeshi landmarks.",
-      "details": [],
-      "experiment": "Stable Diffusion with a U-Net backbone was fine-tuned on a purpose-built dataset of those landmarks, varying prompts and conditioning to see how each moved generative fidelity, with OpenCV post-processing to reduce artefacts.",
-      "researchNote": "The origin of the generative-model thread in my research: diffusion-model fine-tuning and conditioning, which the forensic invariant learning paper later turned around into a detection problem."
     },
     {
       "title": "ILLUSION — Virtual Object Control by Hand Gesture",
@@ -488,17 +358,11 @@
       "link": "https://github.com/abusayeb/virtual-object-control",
       "demo": "",
       "pages": "both",
-      "categories": [
-        "Computer Vision"
-      ],
+      "categories": [],
       "featured": false,
-      "problem": "Driving an on-screen object with nothing but a webcam and your hands, at a speed that still feels like direct manipulation.",
-      "details": [
-        "Processes the webcam feed frame by frame.",
-        "Detects and tracks **hand landmarks and fingertips**.",
-        "Maps finger position and pinch/grab gestures to a virtual object so it can be dragged in real time."
-      ],
-      "experiment": "Hand landmarks and fingertips were detected frame by frame on a live webcam feed and pinch/grab gestures mapped to a virtual object, which can be dragged in real time.",
+      "problem": "",
+      "details": [],
+      "experiment": "",
       "researchNote": "Real-time human-machine interaction from vision alone, closely related to the Human–Robot Interaction studies I ran as a Research Assistant."
     },
     {
@@ -513,21 +377,13 @@
       ],
       "role": "Solo project",
       "link": "https://github.com/abusayeb/adas-lane-vehicle-detection",
-      "demo": "https://github.com/abusayeb/adas-lane-vehicle-detection/blob/main/stacked.mp4",
+      "demo": "",
       "pages": "both",
-      "categories": [
-        "Computer Vision",
-        "Research"
-      ],
+      "categories": [],
       "featured": false,
-      "problem": "Detecting lane boundaries and surrounding vehicles in road footage reliably enough to sit underneath lane-keeping and collision-warning behaviour.",
-      "details": [
-        "Detects vehicles in road footage with a **YOLOv5** model fine-tuned on a custom dataset.",
-        "Detects lane boundaries and overlays them on the video stream.",
-        "Outputs a single annotated video combining both — the building blocks of lane-keeping and collision-warning systems.",
-        "Split across three notebooks: dataset preparation, YOLOv5 training/inference, and the full end-to-end pipeline."
-      ],
-      "experiment": "A YOLOv5 detector fine-tuned on a custom dataset was combined with classical lane-geometry vision and run end-to-end over road video, producing a single annotated stream — the demo output is in stacked.mp4.",
+      "problem": "",
+      "details": [],
+      "experiment": "",
       "researchNote": "Perception for a system that has to act: the closest existing work to my robotics and embedded AI direction."
     },
     {
@@ -546,111 +402,7 @@
       "link": "https://github.com/abusayeb/rag-chatbot",
       "demo": "",
       "pages": "industry",
-      "categories": [
-        "LLM / RAG",
-        "Deployment"
-      ],
-      "featured": false,
-      "problem": "",
-      "details": [
-        "Documents are loaded, chunked and embedded, then stored in a **Pinecone** vector index.",
-        "At query time the most relevant chunks are retrieved by similarity search and passed to the LLM as context.",
-        "**LangChain** orchestrates retrieval and generation so the answer stays grounded in the retrieved content.",
-        "Served through a Flask web interface and deployed on **Microsoft Azure**."
-      ],
-      "experiment": "",
-      "researchNote": ""
-    },
-    {
-      "title": "Paper Summarizer Chatbot",
-      "date": "Sep 2025",
-      "desc": "LLM-powered chatbot that reads research papers and generates concise summaries, then answers grounded follow-up questions about the paper.",
-      "impact": "",
-      "tags": [
-        "LLM",
-        "NLP",
-        "Python"
-      ],
-      "role": "Solo project",
-      "link": "https://github.com/abusayeb/paper-summarizer-chatbot",
-      "demo": "",
-      "pages": "industry",
-      "categories": [
-        "LLM / RAG"
-      ],
-      "featured": false,
-      "problem": "",
-      "details": [
-        "Takes a research paper as a PDF, then extracts and processes its content.",
-        "Generates a **structured summary** — problem, method, results.",
-        "Exposes a chat interface for follow-up questions about the same paper."
-      ],
-      "experiment": "",
-      "researchNote": ""
-    },
-    {
-      "title": "Text Summarizer",
-      "date": "2024",
-      "desc": "Text summarization web app built with Python and Flask.",
-      "impact": "",
-      "tags": [
-        "Python",
-        "Flask",
-        "NLP"
-      ],
-      "role": "Solo project · archived",
-      "link": "https://github.com/abusayeb/summarizer",
-      "demo": "",
-      "pages": "industry",
-      "categories": [
-        "Other"
-      ],
-      "featured": false,
-      "problem": "",
-      "details": [],
-      "experiment": "",
-      "researchNote": ""
-    },
-    {
-      "title": "PATHAGAR — Library Management System",
-      "date": "2023",
-      "desc": "Library management system for the Department of Management, Comilla University, built with Flutter.",
-      "impact": "",
-      "tags": [
-        "Flutter",
-        "Dart",
-        "Mobile"
-      ],
-      "role": "University project · archived",
-      "link": "https://github.com/abusayeb/pathagar-library-management",
-      "demo": "",
-      "pages": "industry",
-      "categories": [
-        "Other"
-      ],
-      "featured": false,
-      "problem": "",
-      "details": [],
-      "experiment": "",
-      "researchNote": ""
-    },
-    {
-      "title": "JOB BAZAAR",
-      "date": "2022",
-      "desc": "Job recruiting platform connecting job seekers and employers, built with Flutter.",
-      "impact": "",
-      "tags": [
-        "Flutter",
-        "Dart",
-        "Mobile"
-      ],
-      "role": "Archived",
-      "link": "https://github.com/abusayeb/job-bazaar",
-      "demo": "",
-      "pages": "industry",
-      "categories": [
-        "Other"
-      ],
+      "categories": [],
       "featured": false,
       "problem": "",
       "details": [],
@@ -710,12 +462,12 @@
   "skills": [
     {
       "label": "Research methods",
-      "items": "Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR · NLP",
+      "items": "Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR",
       "research": true
     },
     {
       "label": "Frameworks",
-      "items": "PyTorch · TensorFlow · OpenCV · MMAction2 · YOLO · ByteTrack · MoveNet · Stable Diffusion · Hugging Face · Scikit-learn · LangChain · Pandas",
+      "items": "PyTorch · TensorFlow · OpenCV · MMAction2 · YOLO · ByteTrack · MoveNet · Stable Diffusion · Hugging Face · Scikit-learn · LangChain",
       "research": true
     },
     {
@@ -767,24 +519,24 @@
   },
   "futureDirections": [
     {
-      "area": "Edge AI",
-      "q": "Models are advancing far faster than the hardware meant to run them. What gives first?",
-      "a": "AI moves quickly; the silicon it has to run on does not, and that gap is getting wider rather than narrower. At **Othello** it was the daily problem — getting the models onto **edge devices** at all was a real challenge, and parallel inference optimisation only bought its **~70%** latency reduction by trading model complexity against a fixed processing budget. Retail video is a generous budget next to a robot. I want to study where that trade-off breaks as the gap widens, and whether the architectural choices that worked there still apply under the far tighter latency and power constraints of an embedded platform."
-    },
-    {
-      "area": "Robotics & Automation",
+      "area": "",
       "q": "Can a model's own uncertainty drive a robot's actions, not just flag them?",
       "a": "RGEF stops at weighting and abstaining on a single decision. The useful extension is whether that same evidential state can feed a control loop directly: slowing a system down, triggering a sensor check, or handing off to a human, in real time rather than as an offline diagnostic. That is what turns reliability estimation into a control problem."
     },
     {
-      "area": "Perception",
+      "area": "",
       "q": "What perceptual structure survives when the sensor or hardware changes?",
       "a": "The forensic invariant work looked for cues that persist across different image generators. The same question applies to a robot or embedded system moving between cameras, lighting conditions and constrained onboard compute. I want to know how far that invariant-seeking approach carries over from detecting synthetic images to holding perception steady on real hardware in the field."
     },
     {
-      "area": "Tracking & activity recognition",
-      "q": "Does activity recognition survive the move from a fixed camera to one that moves?",
-      "a": "Everything I have built for tracking, activity recognition and pose estimation assumed a camera that stays put: **ByteTrack**, **MoveNet** and **MMAction2** running on live retail video, with OPTICS clustering on top of the pose output. A robot carries its own camera, so ego-motion, a shifting viewpoint and self-occlusion all arrive at once. I want to know how much of that pipeline transfers and which parts have to be rebuilt rather than retuned. The closest thing I have to a first answer is the Universal NFT work, where models tuned on one controlled setting had to hold up on unconstrained user video."
+      "area": "",
+      "q": "How far can generative simulation substitute for data a physical system can't collect on its own?",
+      "a": "Low-resource settings and robots trained largely in simulation share the same data problem, and my thesis work on diffusion models points at one route around it. The open question is which properties of simulated data actually transfer to real hardware, and how to tell before deployment rather than discovering the sim-to-real gap after."
+    },
+    {
+      "area": "",
+      "q": "How do embedded compute and latency budgets change what counts as good perception?",
+      "a": "At Othello, cutting inference latency by ~70% meant trading model complexity against a fixed processing budget for retail video, a generous budget compared to robotics. I want to study how that trade-off holds under the far tighter latency and power constraints of an embedded robotic platform, and whether the architectural choices that worked there even apply."
     }
   ],
   "quickFacts": [
@@ -805,21 +557,5 @@
       "v": "BSc Computer Science & Engineering, Comilla University"
     }
   ],
-  "researchProfile": [
-    {
-      "stage": "Engineering experience",
-      "title": "Building perception systems that had to work",
-      "body": "Eighteen months as a Data Scientist at **Othello Financial Services** in Japan, building multi-object tracking, pose estimation and human activity recognition on live retail video. Parallel inference optimisation cut processing latency by **~70%**; a fine-tuned YOLO event-segmentation system reached **90%+ accuracy** and cut production cost by **50%**. Before that I led a three-person team delivering a multilingual OCR and retrieval system for a **Bangladesh government project**, from first design through to deployment."
-    },
-    {
-      "stage": "Research experience",
-      "title": "Turning those problems into peer-reviewed work",
-      "body": "Research Assistant at **Comilla University** under Partha Chakraborty, running empirical studies in **Human–Robot Interaction** and OCR — dataset design, experimental protocol and quantitative analysis — with results incorporated into peer-reviewed conference publications. Four conference papers followed: two published in **IEEE Xplore**, one in press with **Springer Nature** and one under review, alongside a **Best Presenter Award at IEEE QPAIN 2026**."
-    },
-    {
-      "stage": "Future graduate research",
-      "title": "Perception that stays reliable when conditions change",
-      "body": "I am seeking a **research-based Master's for the 2026-27 intake**. The thread I want to pull on runs through work I have already done: **evidential reliability gating** that lets a model abstain rather than guess, **invariants that survive a change of sensor or generator**, and how both behave under the latency and power budgets of embedded and robotic platforms."
-    }
-  ]
+  "researchProfile": []
 }
