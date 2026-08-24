@@ -36,27 +36,40 @@
 
   /* Publication status is the one thing that must never be overstated, so it
      is always derived from the data rather than written out by hand. */
+  /* Four real states, ranked by how close the work is to being public:
+     published (it is, and linked) > in press (accepted, typeset, awaiting the
+     issue) > accepted (accepted for the venue, not yet presented or indexed) >
+     under review (decision pending). Never collapse "accepted" into
+     "published" — the paper has no DOI yet and that distinction is the one
+     a reviewer actually cares about. */
   function pubState(p) {
     var s = String(p.status || '').toLowerCase();
     if (s.indexOf('review') > -1) return 'review';
     if (s.indexOf('press') > -1) return 'press';
+    if (s.indexOf('accept') > -1) return 'accepted';
     return 'published';
   }
-  function pubRank(p) { return { published: 0, press: 1, review: 2 }[pubState(p)]; }
+  function pubRank(p) { return { published: 0, press: 1, accepted: 2, review: 3 }[pubState(p)]; }
   function sortPubs(list) {
     return (list || []).slice().sort(function (a, b) { return pubRank(a) - pubRank(b); });
   }
   function pubBreakdown(d) {
-    var c = { published: 0, press: 0, review: 0 };
+    var c = { published: 0, press: 0, accepted: 0, review: 0 };
     (d.publications || []).forEach(function (p) { c[pubState(p)]++; });
     var bits = [];
     if (c.published) bits.push(c.published + ' published');
     if (c.press) bits.push(c.press + ' in press');
+    if (c.accepted) bits.push(c.accepted + ' accepted');
     if (c.review) bits.push(c.review + ' under review');
     return bits.join(', ').replace(/,([^,]*)$/, ' and$1');
   }
   function statusLabel(p) {
-    return { published: 'Published', press: 'In press', review: 'Under review' }[pubState(p)];
+    return { published: 'Published', press: 'In press', accepted: 'Accepted',
+      review: 'Under review' }[pubState(p)];
+  }
+  function statusChip(p) {
+    return { published: 'chip--accent', press: 'chip--gold', accepted: 'chip--accent2',
+      review: 'chip--warn' }[pubState(p)];
   }
 
   function bibtex(p, name) {
@@ -325,8 +338,7 @@
                 'padding-left:0;border-left:0">' + esc(p.authorRole) + '</span></p>' : '')) +
           '<p class="pub-venue">' + esc(p.venue) + '</p>' +
           '<div class="pub-meta">' +
-            '<span class="chip ' + (pubState(p) === 'published' ? 'chip--accent'
-              : pubState(p) === 'press' ? 'chip--gold' : 'chip--warn') + '">' + statusLabel(p) + '</span>' +
+            '<span class="chip ' + statusChip(p) + '">' + statusLabel(p) + '</span>' +
             chips(p.tags) +
           '</div>' +
           (p.note ? '<p class="pub-note">' + rich(p.note) + '</p>' : '') +
@@ -606,8 +618,7 @@
             : '') +
           '<p class="pub-venue">' + esc(p.venue) + (p.year ? ' · ' + esc(p.year) : '') + '</p>' +
           '<div class="pub-meta">' +
-            '<span class="chip ' + (pubState(p) === 'published' ? 'chip--accent'
-              : pubState(p) === 'press' ? 'chip--gold' : 'chip--warn') + '">' + statusLabel(p) + '</span>' +
+            '<span class="chip ' + statusChip(p) + '">' + statusLabel(p) + '</span>' +
             chips(p.tags) +
             '<button class="bib-btn" type="button" data-bib="bib' + i + '" aria-expanded="false">BibTeX</button>' +
           '</div>' +

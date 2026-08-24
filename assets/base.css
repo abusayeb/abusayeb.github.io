@@ -265,6 +265,13 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 .chip--accent{color:var(--accent);background:var(--accent-dim);border-color:var(--accent-line)}
 .chip--gold{color:var(--gold);background:var(--gold-dim);border-color:var(--gold-line)}
 .chip--warn{color:var(--warn);background:var(--warn-dim);border-color:var(--warn-line)}
+/* Accepted: distinct from Published (already public) and In press (typeset,
+   awaiting the issue) — accepted for the venue, no DOI yet. Built from
+   --accent-2 with color-mix rather than a fixed hex, so it follows whichever
+   palette is active instead of needing a fifth token defined per page. */
+.chip--accent2{color:var(--accent-2);
+  background:color-mix(in srgb,var(--accent-2) 15%,transparent);
+  border-color:color-mix(in srgb,var(--accent-2) 38%,transparent)}
 
 .badge-dot{
   width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;

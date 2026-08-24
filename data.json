@@ -16,7 +16,7 @@
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
     "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
-    "summaryResearch": "I am a computer-vision researcher with four conference papers (two published, one in press, one under review) and 2+ years of industry experience — eighteen months of it **in Japan**, deploying perception systems at scale for **Othello Financial Services**. I am now looking to move from vision applied to images toward **robotics, automation and embedded AI**, where perception has to work under real hardware and control constraints.",
+    "summaryResearch": "I am a computer-vision researcher with four conference papers (two published, one in press, one accepted) and 2+ years of industry experience — eighteen months of it **in Japan**, deploying perception systems at scale for **Othello Financial Services**. I am now looking to move from vision applied to images toward **robotics, automation and embedded AI**, where perception has to work under real hardware and control constraints.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
     "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
@@ -100,7 +100,7 @@
     },
     {
       "value": "4",
-      "label": "Conference papers: 2 published, 1 in press, 1 under review"
+      "label": "Conference papers: 2 published, 1 in press, 1 accepted"
     }
   ],
   "researchStatement": [
@@ -189,7 +189,7 @@
       "tags": [
         "IEEE"
       ],
-      "status": "Under review",
+      "status": "Accepted",
       "link": "",
       "code": "",
       "note": "Evidential deep learning for medical decision support. **Reliability gating** weights each modality by how trustworthy its evidence is, so the model can abstain rather than guess when its inputs are unreliable.",
@@ -790,7 +790,7 @@
   "quickFacts": [
     {
       "k": "4",
-      "v": "conference papers — 2 published (IEEE Xplore, Scopus), 1 in press (Springer), 1 under review"
+      "v": "conference papers — 2 published (IEEE Xplore, Scopus), 1 in press (Springer), 1 accepted (IEEE RAAICON)"
     },
     {
       "k": "Best Presenter",
@@ -814,7 +814,7 @@
     {
       "stage": "Research experience",
       "title": "Turning those problems into peer-reviewed work",
-      "body": "Research Assistant at **Comilla University** under Partha Chakraborty, running empirical studies in **Human–Robot Interaction** and OCR — dataset design, experimental protocol and quantitative analysis — with results incorporated into peer-reviewed conference publications. Four conference papers followed: two published in **IEEE Xplore**, one in press with **Springer Nature** and one under review, alongside a **Best Presenter Award at IEEE QPAIN 2026**."
+      "body": "Research Assistant at **Comilla University** under Partha Chakraborty, running empirical studies in **Human–Robot Interaction** and OCR — dataset design, experimental protocol and quantitative analysis — with results incorporated into peer-reviewed conference publications. Four conference papers followed: two published in **IEEE Xplore**, one in press with **Springer Nature** and one accepted at **IEEE RAAICON 2026**, alongside a **Best Presenter Award at IEEE QPAIN 2026**."
     },
     {
       "stage": "Future graduate research",

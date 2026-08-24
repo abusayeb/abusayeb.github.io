@@ -294,7 +294,7 @@ var TPL = {
   researchStatement:'',
   researchAreas:{title:'',desc:'',next:false},
   researchProfile:{stage:'',title:'',body:''},
-  publications:{title:'',authors:'M. A. S. Rayhan et al.',venue:'',year:'',tags:[],status:'',link:'',code:'',note:'',contribution:'',bibkey:''},
+  publications:{title:'',authors:'M. A. S. Rayhan et al.',venue:'',year:'',tags:[],status:'Under review',link:'',code:'',note:'',contribution:'',bibkey:''},
   experience:{role:'',org:'',team:'',location:'',start:'',end:'',kind:'industry',note:'',bullets:[]},
   projects:{title:'',date:'',desc:'',impact:'',tags:[],role:'',link:'',demo:'',
             pages:'industry',categories:[],featured:false,problem:'',details:[],
@@ -703,8 +703,16 @@ function panelPubs(){
         areaField('Venue', p.venue, 'publications.' + i + '.venue', '', 2) +
         '<div class="row">' +
           textField('Link (DOI or Xplore URL)', p.link, 'publications.' + i + '.link', 'Leave blank until published.') +
-          textField('Status', p.status, 'publications.' + i + '.status', 'e.g. In press - clear this once published.') +
         '</div>' +
+        '<div class="field"><label><span class="lab">Status</span>' +
+          '<select data-path="publications.' + i + '.status" data-kind="text">' +
+            opt('', 'Published (blank - it is public, link it above)', p.status || '') +
+            opt('In press', 'In press (accepted, typeset, awaiting the issue)', p.status || '') +
+            opt('Accepted', 'Accepted (accepted for the venue, not yet public)', p.status || '') +
+            opt('Under review', 'Under review (decision pending)', p.status || '') +
+          '</select></label>' +
+          '<div class="tip">Drives the coloured chip and the sort order on both pages - ' +
+            'move a paper to Published once it has a DOI or Xplore link.</div></div>' +
         '<div class="row">' +
           textField('Tags (comma separated)', (p.tags || []).join(', '), 'publications.' + i + '.tags', '', 'tags') +
           textField('Code link', p.code, 'publications.' + i + '.code',
@@ -1282,7 +1290,7 @@ function load(){
       'data.json on its own. Choose the file below, or open the editor through your site instead.');
     return;
   }
-  fetch('../data.json?t=' + Date.now())
+  fetch('../data.json?t=' + Date.now(), {cache:'no-store'})
     .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function(d){
       var published = normalize(d);
