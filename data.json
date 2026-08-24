@@ -45,6 +45,10 @@
   },
   "news": [
     {
+      "date": "Aug 2026",
+      "text": "**RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI** accepted at the IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (**RAAICON 2026**)."
+    },
+    {
       "date": "Aug 2026 ",
       "text": "Submitted **“Foundation-Gated Evidential Fusion for Skin Lesions: Disentangling Acquisition Shift and Semantic Novelty”** to the IEEE Journal of Biomedical and Health Informatics (**J-BHI**)."
     },
