@@ -45,6 +45,10 @@
   },
   "news": [
     {
+      "date": "Sep 2026",
+      "text": "Presented the the Paper **RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI** at **RAAICON 2026**."
+    },
+    {
       "date": "Aug 2026",
       "text": "**RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI** accepted at the IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (**RAAICON 2026**)."
     },
@@ -136,6 +140,22 @@
   ],
   "publications": [
     {
+      "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
+      "authors": "**Md Abu Sayeb Rayhan**, Mosammat Fahimah, Md Tarek Mahmud, Hustagna Hiya, Ajoy Shutra Dhar",
+      "venue": "IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026",
+      "year": "2026",
+      "tags": [
+        "IEEE"
+      ],
+      "status": "In press",
+      "link": "",
+      "code": "",
+      "note": "Evidential deep learning for medical decision support. **Reliability gating** weights each modality by how trustworthy its evidence is, so the model can abstain rather than guess when its inputs are unreliable.",
+      "contribution": "",
+      "bibkey": "rayhan2026rgef",
+      "authorRole": "First author"
+    },
+    {
       "title": "Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles",
       "authors": "**Md Abu Sayeb Rayhan**, Ajoy Shutradhar, Hustagna Hiya",
       "venue": "IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026",
@@ -184,22 +204,6 @@
       "contribution": "",
       "bibkey": "rayhan2026cnn",
       "authorRole": "Fourth author"
-    },
-    {
-      "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
-      "authors": "**Md Abu Sayeb Rayhan**, Mosammat Fahimah, Md Tarek Mahmud, Hustagna Hiya, Ajoy Shutra Dhar",
-      "venue": "IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026",
-      "year": "2026",
-      "tags": [
-        "IEEE"
-      ],
-      "status": "Accepted",
-      "link": "",
-      "code": "",
-      "note": "Evidential deep learning for medical decision support. **Reliability gating** weights each modality by how trustworthy its evidence is, so the model can abstain rather than guess when its inputs are unreliable.",
-      "contribution": "",
-      "bibkey": "rayhan2026rgef",
-      "authorRole": "First author"
     }
   ],
   "talks": [
