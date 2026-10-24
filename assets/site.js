@@ -600,8 +600,7 @@
       S.experience = function () { return section('experience', 'section--band',
         head('experience', 'Academic research experience',
           'Supervised research at university: dataset design, experimental protocol and ' +
-          'quantitative analysis, with results carried through to peer review. My industry ' +
-          'roles are further down, under Industry experience.',
+          'quantitative analysis, with results carried through to peer review.',
           researchExp.length + (researchExp.length === 1 ? ' role' : ' roles')) +
         '<div class="timeline">' + researchExp.map(function (e) { return entry(e, true); }).join('') + '</div>'); };
     }
@@ -805,12 +804,13 @@
         }).join('') + '</ul></div>'); };
     }
 
-    /* Reading order for a prospective supervisor: what I work on, what I have
-       published, the evidence behind it, what I would do next, then the
-       record (education, research roles, awards) and the industry background
-       last. Section numbers and alternating bands follow this order. */
-    ['interests', 'publications', 'projects', 'direction', 'skills', 'education',
-     'experience', 'achievements', 'profile', 'engineering', 'news']
+    /* Reading order for a prospective supervisor: what I work on, then
+       experience — eighteen months shipping perception in Japan is the
+       strongest thing on the page — then publications, the projects, what I
+       would do next and the record. Section numbers and alternating bands
+       follow this order. */
+    ['interests', 'engineering', 'experience', 'publications', 'projects', 'direction',
+     'skills', 'education', 'achievements', 'profile', 'news']
       .filter(function (k) { return S[k]; })
       .forEach(function (k, i) {
         out.push(S[k]().replace(/^<section id="([^"]+)" class="section [^"]*"/,
