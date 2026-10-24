@@ -5,7 +5,7 @@
     "shortName": "Abu Sayeb Rayhan",
     "roleIndustry": "AI Engineer & Data Scientist",
     "specialismIndustry": "Computer Vision, LLMs & RAG",
-    "roleResearch": "Robotics researcher working on perception and navigation for home service robots, from a computer-vision background",
+    "roleResearch": "AI researcher working across computer vision, reliable AI and robot perception",
     "location": "Dhaka, Bangladesh",
     "email": "sayeb.cc.75@gmail.com",
     "emailAcademic": "sayeb.cse@gmail.com",
@@ -16,11 +16,11 @@
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
     "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
-    "summaryResearch": "I am moving from computer vision into **robotics**, and the move is now on the record. In 2026 I led two **preregistered simulation studies of home service robots** in scanned real homes (HM3D, Habitat): one tests whether **adaptive perception** can cut a navigating robot's detector compute without costing safety, the other predicts how long a **robot vacuum** takes to clean a home from its floor plan. Both are under journal review, alongside four conference papers in vision and reliable medical AI and eighteen months **in Japan** deploying perception systems at **Othello Financial Services**.",
+    "summaryResearch": "I am a computer-vision researcher whose work spans **reliable medical AI**, **video understanding**, **robot perception**, **generative models and image forensics**, and **vision for low-resource settings**. I have four conference papers and three first-author journal papers under review, from **uncertainty fusion** that lets a skin-lesion classifier flag inputs it should not answer, to two **preregistered studies of home service robots** in scanned real homes. Behind that is eighteen months **in Japan** deploying tracking, pose and activity-recognition systems at **Othello Financial Services**.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
-    "availabilityResearch": "Seeking research-based Master's positions in robotics for the 2026-27 intake",
-    "roleResearchSub": "Perception for home service robots · Closed-loop navigation in simulation · Preregistered robot evaluation · Reliable and uncertainty-aware AI · Tracking, activity recognition & pose estimation",
+    "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
+    "roleResearchSub": "Reliable & uncertainty-aware AI · Video understanding: tracking, activity & pose · Robot perception & navigation · Generative models & image forensics · Vision and language for low-resource settings · Edge AI",
     "focusAreas": [
       "Computer Vision",
       "Real-Time Perception",
@@ -32,17 +32,17 @@
       "Reliable AI",
       "Edge / IoT"
     ],
-    "researchInterestsLine": "Robot perception, embodied AI and intelligent autonomous systems; computer vision (multi-object tracking, activity recognition, pose estimation), multimodal vision-language models and generative models for simulation and robotic learning.",
+    "researchInterestsLine": "Computer vision and the reliability of what it outputs: uncertainty-aware and out-of-distribution-robust models, video understanding (tracking, activity recognition, pose estimation), robot perception and navigation, generative models and synthetic-image forensics, and vision-language systems for low-resource settings.",
     "titleResearch": "AI Engineer · Researcher",
     "researchFocusAreas": [
-      "Service Robots",
-      "Robot Navigation",
-      "Edge AI",
-      "Perception",
-      "Simulation (Habitat / HM3D)",
-      "Preregistered Evaluation",
+      "Computer Vision",
       "Reliable AI",
-      "Multi-Object Tracking"
+      "Medical Imaging",
+      "Video Understanding",
+      "Robot Perception",
+      "Generative AI",
+      "Image Forensics",
+      "Edge AI"
     ]
   },
   "news": [
@@ -126,29 +126,39 @@
     }
   ],
   "researchStatement": [
-    "My earlier work is **computer vision**, applied across four problems: detecting synthetic images, screening for eye disease, classifying rice leaf disease, and fusing uncertainty for medical AI. Eighteen months at **Othello** added the production side: tracking, pose estimation and activity recognition running on live video, with a first hands-on look at **IoT edge devices**.",
-    "In 2026 I took that perception work onto robots. In **scanned real homes in simulation** (HM3D, Habitat) I ran two **preregistered** studies. The first asks whether a navigating robot can learn when to run its object detector: it cut compute by 85% but missed its safety and success bar, and I report that negative result as it came out. The second predicts how long a **robot vacuum** takes to clean a home from its doorways alone, and was confirmed on 100 homes it had never seen.",
-    "What I want to do next is the same kind of work on **real hardware**: perception that a robot's planner and controller depend on, evaluated in the closed loop rather than by accuracy alone, and tested with the discipline of a preregistration. I am looking for a research-based Master's in robotics where I can move these studies from simulation onto physical robots."
+    "My research is **computer vision**, and the question that runs through it is whether a model's output can be trusted where it is actually used. I have come at that from several directions: **uncertainty fusion** for skin-lesion screening, **physics-informed invariants** for detecting AI-generated images, eye-disease screening and rice-leaf classification for **low-resource settings**, and, in 2026, **perception for home service robots** in scanned real homes.",
+    "Industry gave the same question a deadline. At **Othello** in Japan I built multi-object tracking, pose estimation and activity recognition on live video, where a model has to hold up against messy data and a fixed latency budget. That experience shaped how I run research now: the robot studies were **preregistered**, evaluated in the closed loop rather than by accuracy alone, and one of them is reported as the negative result it turned out to be.",
+    "For a Master's I am open to several of these threads rather than one: **reliable and uncertainty-aware vision**, **video understanding**, **robot and embodied perception**, and **generative models**. What I want from any of them is the same — methods that stay dependable under distribution shift and real deployment constraints, tested honestly."
   ],
   "researchAreas": [
     {
-      "title": "Robotics & Automation",
-      "desc": "Robots whose perception feeds a planner, so a miss shows up as a collision or an unfinished task. My two 2026 studies are in **home service robotics**: adaptive perception for navigation, and a **room-graph model** that predicts robot vacuum cleaning time and where two robots jam at doorways. Both ran in scanned real homes in simulation, under preregistration; earlier I ran empirical **Human–Robot Interaction** studies as a Research Assistant.",
+      "title": "Reliable & uncertainty-aware AI",
+      "desc": "Knowing when a model should not be trusted. **RGEF** (IEEE RAAICON 2026) and its journal extension fuse **eight uncertainty signals** with a per-image reliability gate, so a skin-lesion classifier can flag inputs from outside its training distribution instead of returning a confident wrong label — and the conference paper reports the smartphone dataset where it barely helps.",
       "next": false
     },
     {
-      "title": "Edge AI",
-      "desc": "Perception that has to run on the robot rather than in a data centre. My closed-loop study of **adaptive perception** asked whether a robot can save detector compute by learning when to look; it saved **85%** but lost too much safety, which is the trade-off I want to understand properly. At Othello, getting models onto **IoT edge devices** and cutting latency by **~70%** taught me the same lesson from the deployment side.",
-      "next": true
-    },
-    {
-      "title": "Perception",
-      "desc": "Making sense of a scene reliably enough to act on it, and knowing when that reading cannot be trusted. My papers come at this from several angles: physics-informed invariants for synthetic-image detection, eye-disease screening for low-resource clinics, CNNs against Vision Transformers under compute limits, and **uncertainty fusion** that lets a model flag inputs it should not answer.",
+      "title": "Video understanding: tracking, activity & pose",
+      "desc": "Multi-object tracking, human activity recognition and pose estimation on live video. Built and shipped in production at **Othello** (ByteTrack, MoveNet, MMAction2), extended to sports highlight detection and then to unconstrained user video, where models tuned for one setting had to survive a change of domain.",
       "next": false
     },
     {
-      "title": "Tracking, activity recognition & pose estimation",
-      "desc": "Multi-object tracking, human activity recognition and pose estimation on live video. Built and shipped in production at Othello (ByteTrack, MoveNet, MMAction2), and the same perceptual problem underlies the rice leaf and BD Eye-Doc classification studies.",
+      "title": "Robot perception & navigation",
+      "desc": "Perception whose mistakes become collisions. Two **preregistered** 2026 studies in scanned real homes: whether a navigating robot can learn when to run its detector (it saved 85% of compute but missed its safety bar), and a **room-graph model** that predicts robot-vacuum cleaning time from a floor plan, confirmed on 100 unseen homes.",
+      "next": false
+    },
+    {
+      "title": "Generative models & image forensics",
+      "desc": "Both sides of image generation. My bachelor's thesis fine-tuned **Stable Diffusion** on Bangladeshi landmarks; my first-author QPAIN paper turned the problem around, detecting AI-generated images through **Benford's-law and topological invariants** that survive a change of generator.",
+      "next": false
+    },
+    {
+      "title": "Vision & language for low-resource settings",
+      "desc": "AI where specialists, data and compute are scarce: **BD Eye-Doc** pairs eye-disease classification with a conversational interface for clinics without ophthalmologists; the rice-leaf study tests CNNs against Vision Transformers under real compute limits; and a **Bangla–English OCR and retrieval** system shipped for a government project.",
+      "next": false
+    },
+    {
+      "title": "Edge AI & efficient perception",
+      "desc": "Getting perception to fit the hardware. Parallel inference cut latency by **~70%** on Othello's live pipelines, and my adaptive-perception study measured what skipping detector calls costs a robot. The open question is when saving compute is actually safe.",
       "next": false
     }
   ],
@@ -354,71 +364,6 @@
   ],
   "projects": [
     {
-      "title": "Learning When to Look — adaptive perception for home robots",
-      "date": "2026",
-      "desc": "A preregistered **closed-loop** test of whether a navigating home robot can save detector compute by learning when to run it, where to look and which model size to use. Built in **Habitat** on scanned **HM3D** homes, with obstacles that reach the planner only through the detector.",
-      "impact": "85% less detector compute · success criterion not met · under review at Intelligent Service Robotics",
-      "tags": [
-        "Habitat-sim",
-        "HM3D",
-        "PyTorch",
-        "YOLO",
-        "Python",
-        "Preregistration"
-      ],
-      "role": "First author · design, build and analysis",
-      "link": "",
-      "demo": "",
-      "pages": "both",
-      "categories": [
-        "Robotics",
-        "Research"
-      ],
-      "featured": true,
-      "problem": "Adaptive perception is a popular way to cut a robot's compute, but it is rarely tested where a missed detection costs a collision or an unfinished task.",
-      "details": [
-        "Controller learns **when** to run the detector, with hand-designed rules for **where** to look and which model size to use, a safety shield and an experience memory.",
-        "Navigation stack made to work in real-home scans: a static-map costmap layer, visibility-aware track ageing and floor-grounded obstacles took no-obstacle success from 0.55 to **0.95**.",
-        "Task, validity gates and success criterion fixed in a **preregistration**; the comparison against **twelve baselines** was run once, with 120 paired episodes per policy in 25 held-out homes.",
-        "Reported numbers come only from a certification pipeline that checks code, data and provenance before a result can enter the paper."
-      ],
-      "experiment": "The learned scheduler cut computation by 85% relative to running the heavy detector on every frame, but reached the goal in 55.0% of episodes against 79.2%, and collided in 8.3% against 0.8% for the light detector on every frame. The preregistered criterion was not met, and the paper reports it that way.",
-      "researchNote": "My first robotics study, and a negative result I am glad to have: for a home robot, running the cheapest adequate detector on every frame is a strong default to beat.",
-      "codeNote": "Code to be released with the paper"
-    },
-    {
-      "title": "HomeClean — doorways and robot vacuum cleaning",
-      "date": "2026",
-      "desc": "A **parameter-free room-graph model** that predicts how long a robot vacuum takes to clean a home from its floor plan, and where two robots obstruct each other. Tested in a simulation benchmark of **200 scanned homes** with clutter, five cleaning strategies and two-robot teams.",
-      "impact": "17,580 simulated runs · R² 0.81 on 100 unseen homes · under review at Robotics and Autonomous Systems",
-      "tags": [
-        "Habitat-sim",
-        "HM3D",
-        "Markov chains",
-        "Python",
-        "Preregistration"
-      ],
-      "role": "First author · design, build and analysis",
-      "link": "",
-      "demo": "",
-      "pages": "both",
-      "categories": [
-        "Robotics",
-        "Research"
-      ],
-      "featured": true,
-      "problem": "Nobody can yet say from a floor plan how long a randomly moving robot vacuum will take, or where two robots in the same home will get in each other's way.",
-      "details": [
-        "Turns a home's geometry into a **Markov chain over rooms**: exit rates from a billiard door law, per-point cleaning rates from Crofton's formula, no fitted parameters.",
-        "First preregistered study on 100 homes: the door law held (slope **0.86**) and the model ranked homes well, but predicted cleaning faster than simulated.",
-        "Diagnosed the gap — clutter makes visits to a spot come in bursts — and fixed it with two corrections from the same billiard picture.",
-        "A **second preregistration**, frozen before 100 unseen homes were downloaded, confirmed the refined model, replicated the door law and showed a vacuum and a delivery robot jam at the doors delivery routes use most."
-      ],
-      "experiment": "Five cleaning strategies and two-robot teams were simulated in 200 scanned homes (17,580 runs). On the 100 unseen homes the refined model reached R² 0.81, near the ceiling set by run-to-run variation. It describes robots that bounce; for Roomba-like robots it ranks homes but misjudges absolute times.",
-      "researchNote": "Theory checked against a large simulated benchmark, twice preregistered, with the failed predictions reported next to the ones that held.",
-      "codeNote": "Code to be released with the paper"
-    },
-    {
       "title": "eGP AutoPilot",
       "date": "2026",
       "desc": "My **first startup product**: a bilingual (English/Bengali) desktop application that automates tender submission on the **Bangladesh e-Government Procurement portal**. It drives the portal through Playwright — login, form filling, encryption and signing, document mapping and a verification pass — and keeps going through crashes, network drops and half-finished runs.",
@@ -451,7 +396,8 @@
         "Packaged for macOS and Windows, behind 273 offline tests that never touch the production database."
       ],
       "experiment": "",
-      "researchNote": "Reliability engineering against a system I do not control. Every step retries, defers and resumes from saved state, because the portal, the network and the user's machine each fail in a different way — the same instinct behind wanting a model to abstain rather than guess."
+      "researchNote": "Reliability engineering against a system I do not control. Every step retries, defers and resumes from saved state, because the portal, the network and the user's machine each fail in a different way — the same instinct behind wanting a model to abstain rather than guess.",
+      "researchRank": 11
     },
     {
       "title": "Why I Saved This — browser memory",
@@ -510,7 +456,8 @@
       "problem": "A video pipeline tuned for one controlled sport had to keep working on user-generated footage from festivals, concerts and other domains it was never built for.",
       "details": [],
       "experiment": "Action-detection models fine-tuned on the original sports setting were run against unconstrained user video, and the clip-creation pipeline rebuilt around what survived the change of domain.",
-      "researchNote": "Domain generalisation in practice: an action-recognition pipeline tuned for one controlled setting, then forced to hold up on unconstrained user video."
+      "researchNote": "Domain generalisation in practice: an action-recognition pipeline tuned for one controlled setting, then forced to hold up on unconstrained user video.",
+      "researchRank": 7
     },
     {
       "title": "Real-Time In-Store Behaviour Analytics",
@@ -535,7 +482,8 @@
       "problem": "Reading how customers group and where their interest falls, from ordinary in-store camera feeds, fast enough for the answer to still be useful.",
       "details": [],
       "experiment": "Pose estimation feeding density-based spatial clustering was run on live store cameras; parallelising inference brought processing latency down by about 70%.",
-      "researchNote": "Pose estimation coupled with density-based clustering under a hard latency budget: evidence for perception under real deployment constraints."
+      "researchNote": "Pose estimation coupled with density-based clustering under a hard latency budget: evidence for perception under real deployment constraints.",
+      "researchRank": 2
     },
     {
       "title": "Sports NFT Generation System",
@@ -566,7 +514,8 @@
         "Derives per-player statistics — shots, passes and time on court."
       ],
       "experiment": "A custom detector was trained and run over full-length game video, reaching 90% detection accuracy and producing highlight clips with no human in the loop — cutting production cost by half.",
-      "researchNote": "Multi-object tracking and temporal event segmentation on unconstrained broadcast video, where occlusion and camera motion are the hard cases."
+      "researchNote": "Multi-object tracking and temporal event segmentation on unconstrained broadcast video, where occlusion and camera motion are the hard cases.",
+      "researchRank": 5
     },
     {
       "title": "Context Searcher",
@@ -592,7 +541,110 @@
       "problem": "Searching a mixed pile of office documents and scanned images by meaning rather than exact keyword, in a low-resource language where that is much harder.",
       "details": [],
       "experiment": "OCR combined with dense embeddings was exercised across PDF, DOCX, XLSX, TXT and image files in both Bengali and English, and shipped as a desktop application.",
-      "researchNote": "Multimodal retrieval across text and images in a low-resource language (Bangla), combining OCR with dense embeddings."
+      "researchNote": "Multimodal retrieval across text and images in a low-resource language (Bangla), combining OCR with dense embeddings.",
+      "researchRank": 8
+    },
+    {
+      "title": "RGEF — knowing when not to answer in skin-lesion screening",
+      "date": "2026",
+      "desc": "A skin-lesion classifier that **flags images it should not answer**. RGEF fuses eight uncertainty signals — ensemble disagreement, evidential vacuity, conformal set size and five feature-space detectors — with a learned **per-image reliability gate**, accumulated as subjective-logic evidence.",
+      "impact": "IEEE RAAICON 2026 (in press) · journal extension under review at BSPC",
+      "tags": [
+        "PyTorch",
+        "DINOv2",
+        "Evidential deep learning",
+        "Conformal prediction",
+        "HAM10000",
+        "ISIC 2019"
+      ],
+      "role": "First author · method, experiments and paper",
+      "link": "",
+      "demo": "",
+      "pages": "both",
+      "categories": [
+        "Reliable AI",
+        "Computer Vision",
+        "Research"
+      ],
+      "featured": true,
+      "problem": "Deep classifiers for skin-lesion diagnosis return a confident label even for lesion types they were never trained on, and the usual fix — fusing uncertainty signals with one fixed weighting — treats every image the same.",
+      "details": [
+        "Gate conditioned on **frozen self-supervised (DINOv2) features** rather than the task backbone, giving each signal its own reliability per image.",
+        "The journal version filters the external archive against the training corpus by identifier and pixel hashing, removing **10,015** training-derived images before evaluation.",
+        "In the journal version, on the remaining 14,602 in-distribution and 666 out-of-distribution images, gated fusion reaches **AUROC 0.7946** under acquisition shift, against 0.6945 for static fusion.",
+        "Reported honestly where it struggles: in the conference version, on smartphone images (PAD-UFES-20), the gain over simpler fusion is small."
+      ],
+      "experiment": "Conference version: trained on HAM10000 with two lesion classes held out as novel, then evaluated zero-shot on ISIC 2019 and PAD-UFES-20 against eleven published out-of-distribution detectors and static fusion. The journal version re-runs the external test on the deduplicated archive.",
+      "researchNote": "The reliability thread in my work: a model that can say when its own reading should not be trusted.",
+      "codeNote": "Code to be released with the journal paper",
+      "researchRank": 1
+    },
+    {
+      "title": "Learning When to Look — adaptive perception for home robots",
+      "date": "2026",
+      "desc": "A preregistered **closed-loop** test of whether a navigating home robot can save detector compute by learning when to run it, where to look and which model size to use. Built in **Habitat** on scanned **HM3D** homes, with obstacles that reach the planner only through the detector.",
+      "impact": "85% less detector compute · success criterion not met · under review at Intelligent Service Robotics",
+      "tags": [
+        "Habitat-sim",
+        "HM3D",
+        "PyTorch",
+        "YOLO",
+        "Python",
+        "Preregistration"
+      ],
+      "role": "First author · design, build and analysis",
+      "link": "",
+      "demo": "",
+      "pages": "both",
+      "categories": [
+        "Robotics",
+        "Research"
+      ],
+      "featured": true,
+      "problem": "Adaptive perception is a popular way to cut a robot's compute, but it is rarely tested where a missed detection costs a collision or an unfinished task.",
+      "details": [
+        "Controller learns **when** to run the detector, with hand-designed rules for **where** to look and which model size to use, a safety shield and an experience memory.",
+        "Navigation stack made to work in real-home scans: a static-map costmap layer, visibility-aware track ageing and floor-grounded obstacles took no-obstacle success from 0.55 to **0.95**.",
+        "Task, validity gates and success criterion fixed in a **preregistration**; the comparison against **twelve baselines** was run once, with 120 paired episodes per policy in 25 held-out homes.",
+        "Reported numbers come only from a certification pipeline that checks code, data and provenance before a result can enter the paper."
+      ],
+      "experiment": "The learned scheduler cut computation by 85% relative to running the heavy detector on every frame, but reached the goal in 55.0% of episodes against 79.2%, and collided in 8.3% against 0.8% for the light detector on every frame. The preregistered criterion was not met, and the paper reports it that way.",
+      "researchNote": "My first robotics study, and a negative result I am glad to have: for a home robot, running the cheapest adequate detector on every frame is a strong default to beat.",
+      "codeNote": "Code to be released with the paper",
+      "researchRank": 3
+    },
+    {
+      "title": "HomeClean — doorways and robot vacuum cleaning",
+      "date": "2026",
+      "desc": "A **parameter-free room-graph model** that predicts how long a robot vacuum takes to clean a home from its floor plan, and where two robots obstruct each other. Tested in a simulation benchmark of **200 scanned homes** with clutter, five cleaning strategies and two-robot teams.",
+      "impact": "17,580 simulated runs · R² 0.81 on 100 unseen homes · under review at Robotics and Autonomous Systems",
+      "tags": [
+        "Habitat-sim",
+        "HM3D",
+        "Markov chains",
+        "Python",
+        "Preregistration"
+      ],
+      "role": "First author · design, build and analysis",
+      "link": "",
+      "demo": "",
+      "pages": "both",
+      "categories": [
+        "Robotics",
+        "Research"
+      ],
+      "featured": true,
+      "problem": "Nobody can yet say from a floor plan how long a randomly moving robot vacuum will take, or where two robots in the same home will get in each other's way.",
+      "details": [
+        "Turns a home's geometry into a **Markov chain over rooms**: exit rates from a billiard door law, per-point cleaning rates from Crofton's formula, no fitted parameters.",
+        "First preregistered study on 100 homes: the door law held (slope **0.86**) and the model ranked homes well, but predicted cleaning faster than simulated.",
+        "Diagnosed the gap — clutter makes visits to a spot come in bursts — and fixed it with two corrections from the same billiard picture.",
+        "A **second preregistration**, frozen before 100 unseen homes were downloaded, confirmed the refined model, replicated the door law and showed a vacuum and a delivery robot jam at the doors delivery routes use most."
+      ],
+      "experiment": "Five cleaning strategies and two-robot teams were simulated in 200 scanned homes (17,580 runs). On the 100 unseen homes the refined model reached R² 0.81, near the ceiling set by run-to-run variation. It describes robots that bounce; for Roomba-like robots it ranks homes but misjudges absolute times.",
+      "researchNote": "Theory checked against a large simulated benchmark, twice preregistered, with the failed predictions reported next to the ones that held.",
+      "codeNote": "Code to be released with the paper",
+      "researchRank": 6
     },
     {
       "title": "Text-to-Image Generation using Diffusion Models",
@@ -618,7 +670,8 @@
       "problem": "Whether a general text-to-image model can be fine-tuned to render a specific, under-represented subject faithfully — in this case Bangladeshi landmarks.",
       "details": [],
       "experiment": "Stable Diffusion with a U-Net backbone was fine-tuned on a purpose-built dataset of those landmarks, varying prompts and conditioning to see how each moved generative fidelity, with OpenCV post-processing to reduce artefacts.",
-      "researchNote": "The origin of the generative-model thread in my research: diffusion-model fine-tuning and conditioning, which the forensic invariant learning paper later turned around into a detection problem."
+      "researchNote": "The origin of the generative-model thread in my research: diffusion-model fine-tuning and conditioning, which the forensic invariant learning paper later turned around into a detection problem.",
+      "researchRank": 4
     },
     {
       "title": "ILLUSION — Virtual Object Control by Hand Gesture",
@@ -647,7 +700,8 @@
         "Maps finger position and pinch/grab gestures to a virtual object so it can be dragged in real time."
       ],
       "experiment": "Hand landmarks and fingertips were detected frame by frame on a live webcam feed and pinch/grab gestures mapped to a virtual object, which can be dragged in real time.",
-      "researchNote": "Real-time human-machine interaction from vision alone, closely related to the Human–Robot Interaction studies I ran as a Research Assistant."
+      "researchNote": "Real-time human-machine interaction from vision alone, closely related to the Human–Robot Interaction studies I ran as a Research Assistant.",
+      "researchRank": 10
     },
     {
       "title": "ADAS Lane & Vehicle Detection",
@@ -676,7 +730,8 @@
         "Split across three notebooks: dataset preparation, YOLOv5 training/inference, and the full end-to-end pipeline."
       ],
       "experiment": "A YOLOv5 detector fine-tuned on a custom dataset was combined with classical lane-geometry vision and run end-to-end over road video, producing a single annotated stream — the demo output is in stacked.mp4.",
-      "researchNote": "Perception for a system that has to act: the closest existing work to my robotics and embedded AI direction."
+      "researchNote": "Perception for a system that has to act: the closest existing work to my robotics and embedded AI direction.",
+      "researchRank": 9
     },
     {
       "title": "RAG Customer Support Chatbot",
@@ -858,7 +913,7 @@
   "skills": [
     {
       "label": "Research methods",
-      "items": "Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR · NLP",
+      "items": "Uncertainty quantification · Out-of-distribution detection · Evidential deep learning · Conformal prediction · Object detection · Multi-object tracking · Action recognition · Pose estimation · Spatial clustering · Diffusion models · Retrieval-augmented generation · Dense embeddings · Temporal segmentation · OCR · NLP",
       "research": true
     },
     {
@@ -920,24 +975,29 @@
   },
   "futureDirections": [
     {
-      "area": "Robotics & Automation",
+      "area": "Reliable & uncertainty-aware AI",
+      "q": "Can a screening model tell a new camera from a new disease?",
+      "a": "RGEF flags inputs it should not answer, but a single uncertainty score mixes two very different causes: an image from an unfamiliar device or clinic (**acquisition shift**) and a lesion type the model has never seen (**semantic novelty**). The first calls for recalibration; the second for a specialist. Conditioning the gate on frozen self-supervised features is a first step toward separating them, and the conference version's weakest dataset, smartphone images in PAD-UFES-20, shows how far there is to go. I want to make that separation explicit and test it across institutions."
+    },
+    {
+      "area": "Video understanding",
+      "q": "Does activity recognition survive the move from a fixed camera to one that moves?",
+      "a": "Everything I have built for tracking, activity recognition and pose estimation assumed a camera that stays put: **ByteTrack**, **MoveNet** and **MMAction2** running on live retail video, with OPTICS clustering on top of the pose output. A robot carries its own camera, so ego-motion, a shifting viewpoint and self-occlusion all arrive at once. I want to know how much of that pipeline transfers and which parts have to be rebuilt rather than retuned. The closest thing I have to a first answer is the Universal NFT work, where models tuned on one controlled setting had to hold up on unconstrained user video."
+    },
+    {
+      "area": "Robot perception & navigation",
       "q": "Can a model's own uncertainty drive a robot's actions, not just flag them?",
       "a": "RGEF and its journal extension stop at flagging a single decision. My adaptive-perception study showed what happens when a robot's choice of when to look is not tied to how sure it is: the misses turned into collisions. The extension I want to work on is feeding that evidential state into the control loop directly — slowing down, looking again or handing off to a human, in real time rather than as an offline diagnostic."
     },
     {
-      "area": "Edge AI",
-      "q": "Models are advancing far faster than the hardware meant to run them. What gives first?",
-      "a": "My closed-loop study gave a first, uncomfortable answer: safety goes first. A robot that learned when to run its detector saved **85%** of the compute but reached its goal less often and collided more than one that simply ran a small detector on every frame. At **Othello** the same squeeze showed up as getting models onto **edge devices** at all, where parallel inference bought a **~70%** latency cut only by trading complexity against a fixed budget. I want to find the conditions under which skipping perception is actually safe, and test them on real embedded hardware rather than in simulation."
-    },
-    {
-      "area": "Perception",
+      "area": "Generative models & image forensics",
       "q": "What perceptual structure survives when the sensor or hardware changes?",
       "a": "The forensic invariant work looked for cues that persist across different image generators. The same question applies to a robot or embedded system moving between cameras, lighting conditions and constrained onboard compute. I want to know how far that invariant-seeking approach carries over from detecting synthetic images to holding perception steady on real hardware in the field."
     },
     {
-      "area": "Tracking & activity recognition",
-      "q": "Does activity recognition survive the move from a fixed camera to one that moves?",
-      "a": "Everything I have built for tracking, activity recognition and pose estimation assumed a camera that stays put: **ByteTrack**, **MoveNet** and **MMAction2** running on live retail video, with OPTICS clustering on top of the pose output. A robot carries its own camera, so ego-motion, a shifting viewpoint and self-occlusion all arrive at once. I want to know how much of that pipeline transfers and which parts have to be rebuilt rather than retuned. The closest thing I have to a first answer is the Universal NFT work, where models tuned on one controlled setting had to hold up on unconstrained user video."
+      "area": "Edge AI & efficient perception",
+      "q": "Models are advancing far faster than the hardware meant to run them. What gives first?",
+      "a": "My closed-loop study gave a first, uncomfortable answer: safety goes first. A robot that learned when to run its detector saved **85%** of the compute but reached its goal less often and collided more than one that simply ran a small detector on every frame. At **Othello** the same squeeze showed up as getting models onto **edge devices** at all, where parallel inference bought a **~70%** latency cut only by trading complexity against a fixed budget. I want to find the conditions under which skipping perception is actually safe, and test them on real embedded hardware rather than in simulation."
     }
   ],
   "quickFacts": [
@@ -971,8 +1031,8 @@
     },
     {
       "stage": "Future graduate research",
-      "title": "Moving robot perception from simulation onto hardware",
-      "body": "I am seeking a **research-based Master's in robotics for the 2026-27 intake**. The thread runs through work I have already done: **closed-loop evaluation** of perception on home robots, **uncertainty** that tells a system when not to trust its own reading, and how both hold up under the latency and power budgets of real embedded platforms."
+      "title": "Dependable perception, wherever it is deployed",
+      "body": "I am seeking a **research-based Master's for the 2026-27 intake**, and I am open to several of the threads I have already worked on: **reliable and uncertainty-aware vision**, **video understanding**, **robot perception** and **generative models**. The common aim is perception that stays trustworthy under distribution shift and the latency and power budgets of real systems."
     }
   ]
 }

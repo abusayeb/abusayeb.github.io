@@ -143,7 +143,7 @@
 
   /* ----------------------------------------------------- project helpers */
 
-  var CATEGORY_ORDER = ['Robotics', 'Computer Vision', 'Generative AI', 'LLM / RAG', 'Research', 'Deployment', 'Other'];
+  var CATEGORY_ORDER = ['Computer Vision', 'Reliable AI', 'Robotics', 'Generative AI', 'LLM / RAG', 'Research', 'Deployment', 'Other'];
 
   function projCats(p) {
     var c = Array.isArray(p.categories) ? p.categories.filter(Boolean) : [];
@@ -468,7 +468,7 @@
     var parts = String(P.name || '').trim().split(' ');
     var first = parts.slice(0, -1).join(' '), last = parts[parts.length - 1] || '';
 
-    document.title = P.name + ' | Research — robotics, perception & reliable AI';
+    document.title = P.name + ' | Research — computer vision, reliable AI & robotics';
     $('brandName').innerHTML = '<b>' + esc(first) + '</b> <i>' + esc(last) + '</i>';
 
     /* Academics write to the academic address; the professional one is the
@@ -692,12 +692,14 @@
     var rel = (d.projects || []).filter(function (p) {
       return p.pages === 'research' || p.pages === 'both';
     });
+    /* researchRank orders the research page for breadth across topics;
+       unranked projects keep data order after the ranked ones. */
     function researchRank(p) {
-      var c = projCats(p);
-      return c.indexOf('Robotics') > -1 ? 0 : c.indexOf('Research') > -1 ? 1 : 2;
+      var r = parseFloat(p.researchRank);
+      return isNaN(r) ? Infinity : r;
     }
     rel = rel.map(function (p, i) { return [p, i]; }).sort(function (a, b) {
-      return researchRank(a[0]) - researchRank(b[0]) || a[1] - b[1];
+      return (researchRank(a[0]) - researchRank(b[0])) || (a[1] - b[1]);
     }).map(function (x) { return x[0]; });
     S.projects = function () { return section('projects', 'section--band',
       head('projects', 'Research projects',
