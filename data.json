@@ -195,7 +195,20 @@
       "contribution": "",
       "bibkey": "rayhan2026doorways",
       "authorRole": "First author",
-      "kind": "journal"
+      "kind": "journal",
+      "abstract": "How long a randomly moving robot vacuum takes to clean a home, and where two robots in the same home obstruct each other, cannot yet be predicted from the floor plan. We argue that the doorways govern both. A room-graph model with no fitted parameters turns the geometry of a home into a Markov chain over rooms, with exit rates from a billiard door law and per-point cleaning rates from Crofton's formula. We tested it in HomeClean-200, a simulation benchmark of 200 scanned HM3D homes with floor clutter, five cleaning strategies and two-robot teams (17,580 runs). In a preregistered first study on 100 homes the door law held (slope 0.86) and the model ranked homes well (r = 0.84), but it predicted cleaning 26% faster than simulated (R² = 0.54); 3 of eight predictions held. An exploratory diagnosis traced the gap to an independence assumption: furniture and clutter make the robot's visits to a spot come in bursts. Two corrections from the same billiard picture, free-space chambers and two-dimensional recurrence, removed most of the gap. A second preregistration, frozen before 100 unseen homes were downloaded, confirmed the refined model (R² = 0.81, near the ceiling of 0.84 set by run-to-run variation), replicated the door law, and showed that a vacuum and a delivery robot jam at the doors most used by delivery routes (rank percentile 0.66). The model describes robots that bounce; for Roomba-like robots it ranks homes but misjudges absolute times. All results come from simulation.",
+      "figure": "figure.png",
+      "figureCaption": "Overview. Top: the model turns a scanned home into predicted cleaning times using geometry alone. Middle: the simulator runs robots in the same homes. Bottom: the order of the two preregistered studies and the exploratory work between them. Schematic composed by code with an AI assistant from the study's own images; HM3D © Matterport.",
+      "videos": [
+        {
+          "src": "video.mp4",
+          "title": "Method and results (2.5 min)"
+        },
+        {
+          "src": "short.mp4",
+          "title": "60-second summary"
+        }
+      ]
     },
     {
       "title": "Input-conditional uncertainty fusion for skin lesion screening",
@@ -212,7 +225,10 @@
       "contribution": "",
       "bibkey": "rayhan2026bspc",
       "authorRole": "First author",
-      "kind": "journal"
+      "kind": "journal",
+      "abstract": "Deep classifiers for skin lesion diagnosis do not abstain on inputs from outside their training distribution: they return a confident label, and the failure is silent. Fusing several uncertainty signals is the usual remedy, but the fusions in common use apply one weight vector to every image. We fuse eight signals, spanning ensemble disagreement, evidential vacuity, conformal set size and five feature-space detectors, with a gate that emits a per-image reliability for each and accumulates them as reliability-discounted subjective-logic evidence. The gate is conditioned on frozen self-supervised features rather than the task backbone, and the external archive is filtered against the training corpus by identifier and pixel hashing. On the 14,602 in-distribution and 666 out-of-distribution images left after removing 10,015 training-derived ones, gated fusion reaches 0.7946 in area under the receiver operating characteristic curve (AUROC) under acquisition shift, against 0.6945 for static fusion of identical signals, every comparison significant after multiplicity correction. The rule reduces to static fusion under constant reliabilities, so that margin is attributable to input-conditionality alone, and frozen-encoder conditioning supplies 0.0534 of it. A leave-one-class-out protocol then tests the boundary. Against a lesion class withheld from calibration the advantage disappears, the gate falling 0.0371 AUROC below static fusion, while cross-validation over exposed outliers overstates unseen-class performance by 0.1975. Reliability gating addresses acquisition shift; it is not a novelty detector, and the two regimes should not be reported together.",
+      "figure": "figure.png",
+      "figureCaption": "Graphical abstract."
     },
     {
       "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
@@ -229,7 +245,11 @@
       "contribution": "",
       "bibkey": "rayhan2026rgef",
       "authorRole": "First author",
-      "kind": "conference"
+      "kind": "conference",
+      "abstract": "Deep skin-lesion classifiers rival dermatologists on curated benchmarks, yet they fail silently once deployed, where many inputs fall outside the training distribution. No single notion of uncertainty explains this failure: ensembles stay jointly overconfident under covariate shift, evidential deep learning degrades once features shift, and conformal prediction certifies only marginal coverage. We address this gap with Reliability-Gated Evidential Fusion (RGEF), which integrates these paradigms through a learned, input-conditional gate that allocates trust on a per-sample basis. Rather than conditioning the gate on the task backbone, whose representation collapses under shift, we condition it on frozen self-supervised DINOv2 embeddings, which are weak detectors in isolation but domain-invariant routers. When an input drifts outside the gate's calibrated support, a density-based fallback smoothly reverts fusion to its static mode. Benchmarked against eleven published post-hoc detectors on an internal near-OOD split (HAM10000, with df/vasc held out), RGEF attains an AUROC of 0.9594 (10-seed mean 0.9596, 95% CI [0.9585, 0.9608]) versus 0.7805 for MSP, 0.8179 for the best single pillar and 0.8239 for a scalar meta-learner, each significant at p < 10⁻⁴, and cuts FPR@95 from 52.6% to 23.2%. The advantage persists under external shift: on ISIC 2019 (unseen SCC) AUROC rises from 0.6705 to 0.8144, and on PAD-UFES-20 (smartphone acquisition) from 0.5567 to 0.6148 — above the static and supervised-gate variants, though not above the strongest scalar baselines, a residual modality gap we analyse rather than conceal. A per-class error audit and a three-tier triage protocol connect the score to clinical use. Reliability-aware fusion, rather than any individual estimator, is the key ingredient for safe dermatology AI.",
+      "figure": "figure.png",
+      "figureCaption": "RGEF architecture. Eight uncertainty pillars are fused under per-sample reliabilities produced by a gate routed on frozen DINOv2 features and guarded by a density-based support weight; the calibrated score drives a three-tier triage decision.",
+      "slides": "slides.pdf"
     },
     {
       "title": "Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles",
@@ -263,7 +283,7 @@
       "code": "",
       "note": "An image-classification pipeline paired with a conversational interface, so screening can reach places where ophthalmologists are scarce. The hard question here is **deployability in low-resource clinical settings** rather than raw accuracy.",
       "contribution": "",
-      "bibkey": "rayhan2026bdeyedoc",
+      "bibkey": "shutradhar2026bdeyedoc",
       "authorRole": "Second author",
       "kind": "conference"
     },
@@ -280,7 +300,7 @@
       "code": "",
       "note": "A controlled comparison of CNNs, ensembles and **Vision Transformers** under the compute and data constraints that agricultural deployment actually imposes. The strongest architecture on ImageNet is rarely the right choice there.",
       "contribution": "",
-      "bibkey": "rayhan2026cnn",
+      "bibkey": "dhar2026cnn",
       "authorRole": "Fourth author",
       "kind": "conference"
     }
@@ -290,7 +310,8 @@
       "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
       "venue": "IEEE RAAICON 2026",
       "year": "2026",
-      "type": "Conference presentation"
+      "type": "Conference presentation",
+      "slides": "papers/rayhan2026rgef/slides.pdf"
     },
     {
       "title": "Forensic Invariant Learning for Synthetic Image Detection",
@@ -577,7 +598,8 @@
       "experiment": "Conference version: trained on HAM10000 with two lesion classes held out as novel, then evaluated zero-shot on ISIC 2019 and PAD-UFES-20 against eleven published out-of-distribution detectors and static fusion. The journal version re-runs the external test on the deduplicated archive.",
       "researchNote": "The reliability thread in my work: a model that can say when its own reading should not be trusted.",
       "codeNote": "Code to be released with the journal paper",
-      "researchRank": 1
+      "researchRank": 1,
+      "paper": "rayhan2026rgef"
     },
     {
       "title": "Learning When to Look — adaptive perception for home robots",
@@ -611,7 +633,8 @@
       "experiment": "The learned scheduler cut computation by 85% relative to running the heavy detector on every frame, but reached the goal in 55.0% of episodes against 79.2%, and collided in 8.3% against 0.8% for the light detector on every frame. The preregistered criterion was not met, and the paper reports it that way.",
       "researchNote": "My first robotics study, and a negative result I am glad to have: for a home robot, running the cheapest adequate detector on every frame is a strong default to beat.",
       "codeNote": "Code to be released with the paper",
-      "researchRank": 3
+      "researchRank": 3,
+      "paper": "rayhan2026lookpay"
     },
     {
       "title": "HomeClean — doorways and robot vacuum cleaning",
@@ -644,7 +667,8 @@
       "experiment": "Five cleaning strategies and two-robot teams were simulated in 200 scanned homes (17,580 runs). On the 100 unseen homes the refined model reached R² 0.81, near the ceiling set by run-to-run variation. It describes robots that bounce; for Roomba-like robots it ranks homes but misjudges absolute times.",
       "researchNote": "Theory checked against a large simulated benchmark, twice preregistered, with the failed predictions reported next to the ones that held.",
       "codeNote": "Code to be released with the paper",
-      "researchRank": 6
+      "researchRank": 6,
+      "paper": "rayhan2026doorways"
     },
     {
       "title": "Text-to-Image Generation using Diffusion Models",

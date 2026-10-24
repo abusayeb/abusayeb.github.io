@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.className+=' js'</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI | Md Abu Sayeb Rayhan</title>
+<meta name="description" content="Deep skin-lesion classifiers rival dermatologists on curated benchmarks, yet they fail silently once deployed, where many inputs fall outside the training distribution. No single notion of uncertainty explains this failure: ensembles stay jointly overconfident under covariate shift, evidential deep ">
+<meta name="author" content="Md Abu Sayeb Rayhan">
+<meta name="theme-color" content="#0A1220">
+<link rel="canonical" href="https://abusayeb.github.io/papers/rayhan2026rgef/">
+<meta name="citation_title" content="RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI">
+<meta name="citation_author" content="Md Abu Sayeb Rayhan">
+<meta name="citation_author" content="Mosammat Fahimah">
+<meta name="citation_author" content="Md Tarek Mahmud">
+<meta name="citation_author" content="Hustagna Hiya">
+<meta name="citation_author" content="Ajoy Shutra Dhar">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_conference_title" content="IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026">
+<meta name="citation_abstract_html_url" content="https://abusayeb.github.io/papers/rayhan2026rgef/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Md Abu Sayeb Rayhan — Research">
+<meta property="og:url" content="https://abusayeb.github.io/papers/rayhan2026rgef/">
+<meta property="og:title" content="RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI">
+<meta property="og:description" content="Deep skin-lesion classifiers rival dermatologists on curated benchmarks, yet they fail silently once deployed, where many inputs fall outside the training distribution. No single notion of uncertainty explains this failure: ensembles stay jointly overconfident under covariate shift, evidential deep ">
+<meta property="og:image" content="https://abusayeb.github.io/papers/rayhan2026rgef/figure.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon-research.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/base.css?v=43">
+<style>
+/* ---- Research identity: deep navy, academic blue and soft cyan on ivory
+       text. Identical design language to the industry page — same type scale,
+       spacing, components and motion — with a deliberately different, more
+       academic colour system. ---- */
+:root{
+  --bg:#0A1220;
+  --bg-2:#101B2D;
+  --card:#16243A;
+  --card-2:#1C2C46;
+  --line:rgba(121,184,216,.14);
+  --line-2:rgba(121,184,216,.26);
+
+  --text:#F2F4F3;
+  --muted:#A8B5C4;
+  --dim:#7C8A9C;
+
+  --accent:#4F8FBA;
+  --accent-2:#79B8D8;
+  --soft:#A8C7D8;
+  --on-accent:#061018;
+  --accent-dim:rgba(79,143,186,.15);
+  --accent-line:rgba(121,184,216,.32);
+  --glow:rgba(79,143,186,.30);
+
+  /* Publication status colours: three distinguishable steps down from the
+     accent, so status reads at a glance without a badge shouting for it. */
+  --gold:#A8C7D8;
+  --gold-dim:rgba(168,199,216,.10);
+  --gold-line:rgba(168,199,216,.26);
+  --warn:#7C8A9C;
+  --warn-dim:rgba(124,138,156,.12);
+  --warn-line:rgba(124,138,156,.30);
+
+  --nav-h:66px;
+  --nav-bg:rgba(10,18,32,.74);
+  --nav-bg-solid:rgba(10,18,32,.95);
+  --card-glass:rgba(22,36,58,.5);
+  --portrait-wash:rgba(10,18,32,.55);
+
+  --grad-name:linear-gradient(115deg,#4F8FBA 0%,#79B8D8 55%,#A8C7D8 100%);
+  --grad-rail:linear-gradient(180deg,#4F8FBA,rgba(79,143,186,0));
+  --grad-contact:linear-gradient(155deg,#101B2D 0%,#0A1220 60%);
+  --hero-glow-1:rgba(79,143,186,.16);
+  --hero-glow-2:rgba(121,184,216,.08);
+  --viz-dot:#79B8D8;
+  --viz-line:rgba(79,143,186,.42);
+}
+</style>
+<style>
+.paper-top{display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;padding-block:1.25rem;border-bottom:1px solid var(--line)}
+.paper-top a{color:var(--muted);font-size:var(--t-sm)}
+.paper-top a:hover{color:var(--accent)}
+.paper-top .brand-mini{color:var(--text);font-weight:700;margin-right:auto}
+.paper{max-width:52rem;padding-block:clamp(2rem,5vw,4rem)}
+.paper h1{font-size:clamp(1.5rem,1.1rem + 1.6vw,2.4rem);line-height:1.25;letter-spacing:-.02em;margin:.75rem 0 1rem}
+.paper h2{font-size:var(--t-h3);margin:clamp(2rem,4vw,3rem) 0 .9rem}
+.paper p{color:var(--muted);line-height:1.75}
+.paper .pub-meta,.paper .proj-foot{margin-top:1rem}
+.paper .proj-foot{display:flex;flex-wrap:wrap;gap:1.25rem;border-top:0;padding-top:0}
+.paper-fig,.paper-media{margin:clamp(1.75rem,3.5vw,2.5rem) 0 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(.75rem,2vw,1.25rem)}
+.paper-fig img{width:100%;height:auto;border-radius:6px;background:#fff}
+.paper-media video{width:100%;max-height:80vh;border-radius:6px;background:#000}
+.paper figcaption{color:var(--dim);font-size:var(--t-sm);line-height:1.6;margin-top:.75rem}
+.paper-bib{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:1rem 1.25rem;overflow-x:auto;font-family:var(--mono, 'JetBrains Mono', monospace);font-size:.82rem;line-height:1.6;color:var(--soft);white-space:pre}
+.paper-note{border-left:2px solid var(--accent-line);padding-left:1rem}
+</style>
+</head>
+<body data-page="paper">
+<div class="shell paper-top">
+  <a class="brand-mini" href="../../research/">Md Abu Sayeb Rayhan</a>
+  <a href="../../research/#publications">All publications</a>
+  <a href="../../research/#contact">Contact</a>
+  <a href="../../abu_sayeb_rayhan_cv.pdf" target="_blank" rel="noopener">CV</a>
+</div>
+<main class="shell paper">
+  <span class="eyebrow">Conference paper · 2026</span>
+  <h1>RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI</h1>
+  <p class="pub-authors"><strong class="kw">Md Abu Sayeb Rayhan</strong>, Mosammat Fahimah, Md Tarek Mahmud, Hustagna Hiya, Ajoy Shutra Dhar<span class="pub-role">First author</span></p>
+  <p class="pub-venue">IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026</p>
+  <div class="pub-meta"><span class="chip chip--gold">In press</span><span class="chip">IEEE</span></div>
+  <div class="proj-foot"><a class="btn-link" href="slides.pdf" target="_blank" rel="noopener">Slides (PDF) →</a></div>
+  <figure class="paper-fig"><img src="figure.png" alt="RGEF architecture. Eight uncertainty pillars are fused under per-sample reliabilities produced by a gate routed on frozen DINOv2 features and guarded by a density-based support weight; the calibrated score drives a three-tier triage decision." loading="lazy"><figcaption>RGEF architecture. Eight uncertainty pillars are fused under per-sample reliabilities produced by a gate routed on frozen DINOv2 features and guarded by a density-based support weight; the calibrated score drives a three-tier triage decision.</figcaption></figure>
+  <h2>Abstract</h2>
+  <p>Deep skin-lesion classifiers rival dermatologists on curated benchmarks, yet they fail silently once deployed, where many inputs fall outside the training distribution. No single notion of uncertainty explains this failure: ensembles stay jointly overconfident under covariate shift, evidential deep learning degrades once features shift, and conformal prediction certifies only marginal coverage. We address this gap with Reliability-Gated Evidential Fusion (RGEF), which integrates these paradigms through a learned, input-conditional gate that allocates trust on a per-sample basis. Rather than conditioning the gate on the task backbone, whose representation collapses under shift, we condition it on frozen self-supervised DINOv2 embeddings, which are weak detectors in isolation but domain-invariant routers. When an input drifts outside the gate's calibrated support, a density-based fallback smoothly reverts fusion to its static mode. Benchmarked against eleven published post-hoc detectors on an internal near-OOD split (HAM10000, with df/vasc held out), RGEF attains an AUROC of 0.9594 (10-seed mean 0.9596, 95% CI [0.9585, 0.9608]) versus 0.7805 for MSP, 0.8179 for the best single pillar and 0.8239 for a scalar meta-learner, each significant at p &lt; 10⁻⁴, and cuts FPR@95 from 52.6% to 23.2%. The advantage persists under external shift: on ISIC 2019 (unseen SCC) AUROC rises from 0.6705 to 0.8144, and on PAD-UFES-20 (smartphone acquisition) from 0.5567 to 0.6148 — above the static and supervised-gate variants, though not above the strongest scalar baselines, a residual modality gap we analyse rather than conceal. A per-class error audit and a three-tier triage protocol connect the score to clinical use. Reliability-aware fusion, rather than any individual estimator, is the key ingredient for safe dermatology AI.</p>
+  
+  
+  
+  
+  <h2>Cite</h2>
+  <pre class="paper-bib">@inproceedings{rayhan2026rgef,
+  title     = {RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI},
+  author    = {Rayhan, Md Abu Sayeb and Fahimah, Mosammat and Mahmud, Md Tarek and Hiya, Hustagna and Dhar, Ajoy Shutra},
+  booktitle = {IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (RAAICON) 2026},
+  year      = {2026}
+}</pre>
+</main>
+<footer class="foot"><div class="shell foot-in"><span>© 2026 Md Abu Sayeb Rayhan</span>
+  <nav aria-label="Footer"><a href="../../research/">Research portfolio</a><a href="mailto:sayeb.cse@gmail.com">sayeb.cse@gmail.com</a><a href="https://github.com/abusayeb" target="_blank" rel="noopener">GitHub</a></nav></div></footer>
+</body>
+</html>

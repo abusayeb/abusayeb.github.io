@@ -94,12 +94,22 @@
       review: 'chip--warn' }[pubState(p)];
   }
 
+  /* The paper's real author order, as "Last, First and Last, First"; falls
+     back to me and others only when a paper has no author list. */
+  function bibAuthors(p, name) {
+    var list = plain(p.authors || '').split(',').map(function (x) { return x.trim(); }).filter(Boolean);
+    if (!list.length) return (name || 'Rayhan, Md Abu Sayeb') + ' and others';
+    return list.map(function (n) {
+      var w = n.split(/\s+/);
+      return w.length > 1 ? w[w.length - 1] + ', ' + w.slice(0, -1).join(' ') : n;
+    }).join(' and ');
+  }
   function bibtex(p, name) {
     var venue = String(p.venue || '').split('·')[0].trim();
     var j = isJournal(p);
     return (j ? '@article{' : '@inproceedings{') + (p.bibkey || 'rayhan' + (p.year || '')) + ',\n' +
       '  title     = {' + p.title + '},\n' +
-      '  author    = {' + (name || 'Rayhan, Md Abu Sayeb') + ' and others},\n' +
+      '  author    = {' + bibAuthors(p, name) + '},\n' +
       (j ? '  journal   = {' : '  booktitle = {') + venue + '},\n' +
       (j && pubState(p) === 'review' ? '  note      = {Under review},\n' : '') +
       '  year      = {' + (p.year || '') + '}\n}';
@@ -110,6 +120,11 @@
   function isOngoing(e) {
     return /present|now|current|ongoing/i.test(String((e || {}).end || ''));
   }
+
+  /* Every paper has its own page at papers/<bibkey>/, built by
+     scripts/prerender.mjs: abstract, figure, slides, video and BibTeX. */
+  function paperHref(p) { return BASE + 'papers/' + encodeURIComponent(p.bibkey || '') + '/'; }
+  function paperFile(p, f) { return /^https?:/.test(f) ? f : paperHref(p) + f; }
 
   function linkAttrs(href) {
     return 'href="' + esc(href) + '" target="_blank" rel="noopener noreferrer"';
@@ -207,6 +222,7 @@
         (p.link
           ? '<a class="btn-link" ' + linkAttrs(p.link) + '>View on GitHub ' + ARROW + '</a>'
           : '<span class="proj-private">' + esc(p.codeNote || 'Proprietary — code not public') + '</span>') +
+        (p.paper ? '<a class="btn-link" href="' + BASE + 'papers/' + encodeURIComponent(p.paper) + '/">Paper ' + ARROW + '</a>' : '') +
         (p.demo ? '<a class="btn-link" ' + linkAttrs(p.demo) + '>Demo ' + ARROW + '</a>' : '') +
         '<span class="chips">' + chips(cats, 'chip--accent') + '</span>' +
       '</div>' +
@@ -353,7 +369,7 @@
         '<a href="research/">research portfolio</a>.',
         (d.publications || []).length + ' papers') +
       '<div class="pubs">' + sortPubs(d.publications).map(function (p) {
-        var t = p.link ? '<a ' + linkAttrs(p.link) + '>' + esc(p.title) + '</a>' : esc(p.title);
+        var t = '<a href="' + paperHref(p) + '">' + esc(p.title) + '</a>';
         return '<article class="pub" data-state="' + pubState(p) + '" data-reveal>' +
           '<h3 class="pub-title">' + t + '</h3>' +
           (p.authors ? '<p class="pub-authors">' + rich(p.authors) +
@@ -400,7 +416,8 @@
         '<div class="card"><h3 class="eyebrow" style="margin-bottom:1rem">Conference presentations</h3>' +
         '<ul class="list-plain">' + d.talks.map(function (t) {
           return '<li><b>' + esc(t.title) + '</b>' + esc(t.venue) +
-            (t.type ? ' · ' + esc(t.type) : '') + '</li>';
+            (t.type ? ' · ' + esc(t.type) : '') +
+            (t.slides ? ' · <a ' + linkAttrs(BASE + t.slides) + '>Slides</a>' : '') + '</li>';
         }).join('') + '</ul></div></div>' : '')));
 
     /* ---- about (education, thesis, languages, news) ---- */
@@ -626,7 +643,7 @@
         var review = all.filter(function (p) { return pubState(p) === 'review'; });
         function card(p) {
           var i = bib++;
-          var t = p.link ? '<a ' + linkAttrs(p.link) + '>' + esc(p.title) + '</a>' : esc(p.title);
+          var t = '<a href="' + paperHref(p) + '">' + esc(p.title) + '</a>';
           return '<article class="pub" data-state="' + pubState(p) + '" data-reveal>' +
             '<h3 class="pub-title">' + t + '</h3>' +
             ((p.authors || p.authorRole)
@@ -643,10 +660,15 @@
             '</div>' +
             (p.note ? '<p class="pub-note">' + rich(p.note) + '</p>' : '') +
             (p.contribution ? '<p class="pub-contrib"><b>My contribution:</b> ' + rich(p.contribution) + '</p>' : '') +
-            ((p.link || p.code) ? '<div class="proj-foot">' +
+            '<div class="proj-foot">' +
+              '<a class="btn-link" href="' + paperHref(p) + '">' +
+                (p.abstract ? 'Abstract &amp; figure' : 'Paper page') + ' ' + ARROW + '</a>' +
               (p.link ? '<a class="btn-link" ' + linkAttrs(p.link) + '>Read the paper ' + ARROW + '</a>' : '') +
+              (p.arxiv ? '<a class="btn-link" ' + linkAttrs(p.arxiv) + '>Preprint ' + ARROW + '</a>' : '') +
+              (p.slides ? '<a class="btn-link" ' + linkAttrs(paperFile(p, p.slides)) + '>Slides ' + ARROW + '</a>' : '') +
+              ((p.videos || []).length ? '<a class="btn-link" href="' + paperHref(p) + '#video">Video ' + ARROW + '</a>' : '') +
               (p.code ? '<a class="btn-link" ' + linkAttrs(p.code) + '>Code ' + ARROW + '</a>' : '') +
-            '</div>' : '') +
+            '</div>' +
             '<pre class="bib" id="bib' + i + '">' + esc(bibtex(p, P.name)) + '</pre>' +
           '</article>';
         }
@@ -791,7 +813,8 @@
           '<h3>Conference presentations</h3>' +
           '<ul class="list-plain">' + d.talks.map(function (t) {
             return '<li><b>' + esc(t.title) + '</b>' + esc(t.venue) + ' · ' + esc(t.year) +
-              (t.type ? ' · ' + esc(t.type) : '') + '</li>';
+              (t.type ? ' · ' + esc(t.type) : '') +
+              (t.slides ? ' · <a ' + linkAttrs(BASE + t.slides) + '>Slides</a>' : '') + '</li>';
           }).join('') + '</ul></div>' : '') +
         (awards.length ? '<div class="ach" data-reveal>' +
           '<h3>Awards &amp; activities</h3>' +
@@ -1189,7 +1212,7 @@
         return r;
       },
       esc: esc, rich: rich, plain: plain, bibtex: bibtex, sortPubs: sortPubs,
-      pubState: pubState, statusLabel: statusLabel, isJournal: isJournal
+      pubState: pubState, statusLabel: statusLabel, statusChip: statusChip, isJournal: isJournal
     };
     return;
   }

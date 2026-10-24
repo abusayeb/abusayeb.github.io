@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.className+=' js'</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles | Md Abu Sayeb Rayhan</title>
+<meta name="description" content="Detecting AI-generated imagery through physics-informed invariants rather than learned artefacts. It combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator. That is the failure mode most detectors share.">
+<meta name="author" content="Md Abu Sayeb Rayhan">
+<meta name="theme-color" content="#0A1220">
+<link rel="canonical" href="https://abusayeb.github.io/papers/rayhan2026forensic/">
+<meta name="citation_title" content="Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles">
+<meta name="citation_author" content="Md Abu Sayeb Rayhan">
+<meta name="citation_author" content="Ajoy Shutradhar">
+<meta name="citation_author" content="Hustagna Hiya">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_conference_title" content="IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026">
+<meta name="citation_abstract_html_url" content="https://abusayeb.github.io/papers/rayhan2026forensic/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Md Abu Sayeb Rayhan — Research">
+<meta property="og:url" content="https://abusayeb.github.io/papers/rayhan2026forensic/">
+<meta property="og:title" content="Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles">
+<meta property="og:description" content="Detecting AI-generated imagery through physics-informed invariants rather than learned artefacts. It combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator. That is the failure mode most detectors share.">
+<meta property="og:image" content="https://abusayeb.github.io/photos.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon-research.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/base.css?v=43">
+<style>
+/* ---- Research identity: deep navy, academic blue and soft cyan on ivory
+       text. Identical design language to the industry page — same type scale,
+       spacing, components and motion — with a deliberately different, more
+       academic colour system. ---- */
+:root{
+  --bg:#0A1220;
+  --bg-2:#101B2D;
+  --card:#16243A;
+  --card-2:#1C2C46;
+  --line:rgba(121,184,216,.14);
+  --line-2:rgba(121,184,216,.26);
+
+  --text:#F2F4F3;
+  --muted:#A8B5C4;
+  --dim:#7C8A9C;
+
+  --accent:#4F8FBA;
+  --accent-2:#79B8D8;
+  --soft:#A8C7D8;
+  --on-accent:#061018;
+  --accent-dim:rgba(79,143,186,.15);
+  --accent-line:rgba(121,184,216,.32);
+  --glow:rgba(79,143,186,.30);
+
+  /* Publication status colours: three distinguishable steps down from the
+     accent, so status reads at a glance without a badge shouting for it. */
+  --gold:#A8C7D8;
+  --gold-dim:rgba(168,199,216,.10);
+  --gold-line:rgba(168,199,216,.26);
+  --warn:#7C8A9C;
+  --warn-dim:rgba(124,138,156,.12);
+  --warn-line:rgba(124,138,156,.30);
+
+  --nav-h:66px;
+  --nav-bg:rgba(10,18,32,.74);
+  --nav-bg-solid:rgba(10,18,32,.95);
+  --card-glass:rgba(22,36,58,.5);
+  --portrait-wash:rgba(10,18,32,.55);
+
+  --grad-name:linear-gradient(115deg,#4F8FBA 0%,#79B8D8 55%,#A8C7D8 100%);
+  --grad-rail:linear-gradient(180deg,#4F8FBA,rgba(79,143,186,0));
+  --grad-contact:linear-gradient(155deg,#101B2D 0%,#0A1220 60%);
+  --hero-glow-1:rgba(79,143,186,.16);
+  --hero-glow-2:rgba(121,184,216,.08);
+  --viz-dot:#79B8D8;
+  --viz-line:rgba(79,143,186,.42);
+}
+</style>
+<style>
+.paper-top{display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;padding-block:1.25rem;border-bottom:1px solid var(--line)}
+.paper-top a{color:var(--muted);font-size:var(--t-sm)}
+.paper-top a:hover{color:var(--accent)}
+.paper-top .brand-mini{color:var(--text);font-weight:700;margin-right:auto}
+.paper{max-width:52rem;padding-block:clamp(2rem,5vw,4rem)}
+.paper h1{font-size:clamp(1.5rem,1.1rem + 1.6vw,2.4rem);line-height:1.25;letter-spacing:-.02em;margin:.75rem 0 1rem}
+.paper h2{font-size:var(--t-h3);margin:clamp(2rem,4vw,3rem) 0 .9rem}
+.paper p{color:var(--muted);line-height:1.75}
+.paper .pub-meta,.paper .proj-foot{margin-top:1rem}
+.paper .proj-foot{display:flex;flex-wrap:wrap;gap:1.25rem;border-top:0;padding-top:0}
+.paper-fig,.paper-media{margin:clamp(1.75rem,3.5vw,2.5rem) 0 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(.75rem,2vw,1.25rem)}
+.paper-fig img{width:100%;height:auto;border-radius:6px;background:#fff}
+.paper-media video{width:100%;max-height:80vh;border-radius:6px;background:#000}
+.paper figcaption{color:var(--dim);font-size:var(--t-sm);line-height:1.6;margin-top:.75rem}
+.paper-bib{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:1rem 1.25rem;overflow-x:auto;font-family:var(--mono, 'JetBrains Mono', monospace);font-size:.82rem;line-height:1.6;color:var(--soft);white-space:pre}
+.paper-note{border-left:2px solid var(--accent-line);padding-left:1rem}
+</style>
+</head>
+<body data-page="paper">
+<div class="shell paper-top">
+  <a class="brand-mini" href="../../research/">Md Abu Sayeb Rayhan</a>
+  <a href="../../research/#publications">All publications</a>
+  <a href="../../research/#contact">Contact</a>
+  <a href="../../abu_sayeb_rayhan_cv.pdf" target="_blank" rel="noopener">CV</a>
+</div>
+<main class="shell paper">
+  <span class="eyebrow">Conference paper · 2026</span>
+  <h1>Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles</h1>
+  <p class="pub-authors"><strong class="kw">Md Abu Sayeb Rayhan</strong>, Ajoy Shutradhar, Hustagna Hiya<span class="pub-role">First author</span></p>
+  <p class="pub-venue">IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026</p>
+  <div class="pub-meta"><span class="chip chip--accent">Published</span><span class="chip">IEEE Xplore</span><span class="chip">Scopus-indexed</span></div>
+  <div class="proj-foot"><a class="btn-link" href="https://ieeexplore.ieee.org/document/11546484" target="_blank" rel="noopener noreferrer">Read the paper →</a></div>
+  
+  <h2>Summary</h2>
+  <p>Detecting AI-generated imagery through <strong class="kw">physics-informed invariants</strong> rather than learned artefacts. It combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator. That is the failure mode most detectors share.</p>
+  
+  
+  
+  
+  <h2>Cite</h2>
+  <pre class="paper-bib">@inproceedings{rayhan2026forensic,
+  title     = {Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles},
+  author    = {Rayhan, Md Abu Sayeb and Shutradhar, Ajoy and Hiya, Hustagna},
+  booktitle = {IEEE International Conference on Quantum Photonics, Artificial Intelligence and Networking (QPAIN) 2026},
+  year      = {2026}
+}</pre>
+</main>
+<footer class="foot"><div class="shell foot-in"><span>© 2026 Md Abu Sayeb Rayhan</span>
+  <nav aria-label="Footer"><a href="../../research/">Research portfolio</a><a href="mailto:sayeb.cse@gmail.com">sayeb.cse@gmail.com</a><a href="https://github.com/abusayeb" target="_blank" rel="noopener">GitHub</a></nav></div></footer>
+</body>
+</html>

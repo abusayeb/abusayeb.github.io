@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.className+=' js'</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doorways set the pace of robot vacuum cleaning: a parameter-free room-graph model, tested and confirmed in 200 real homes | Md Abu Sayeb Rayhan</title>
+<meta name="description" content="How long a randomly moving robot vacuum takes to clean a home, and where two robots in the same home obstruct each other, cannot yet be predicted from the floor plan. We argue that the doorways govern both. A room-graph model with no fitted parameters turns the geometry of a home into a Markov chain">
+<meta name="author" content="Md Abu Sayeb Rayhan">
+<meta name="theme-color" content="#0A1220">
+<link rel="canonical" href="https://abusayeb.github.io/papers/rayhan2026doorways/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Md Abu Sayeb Rayhan — Research">
+<meta property="og:url" content="https://abusayeb.github.io/papers/rayhan2026doorways/">
+<meta property="og:title" content="Doorways set the pace of robot vacuum cleaning: a parameter-free room-graph model, tested and confirmed in 200 real homes">
+<meta property="og:description" content="How long a randomly moving robot vacuum takes to clean a home, and where two robots in the same home obstruct each other, cannot yet be predicted from the floor plan. We argue that the doorways govern both. A room-graph model with no fitted parameters turns the geometry of a home into a Markov chain">
+<meta property="og:image" content="https://abusayeb.github.io/papers/rayhan2026doorways/figure.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon-research.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/base.css?v=43">
+<style>
+/* ---- Research identity: deep navy, academic blue and soft cyan on ivory
+       text. Identical design language to the industry page — same type scale,
+       spacing, components and motion — with a deliberately different, more
+       academic colour system. ---- */
+:root{
+  --bg:#0A1220;
+  --bg-2:#101B2D;
+  --card:#16243A;
+  --card-2:#1C2C46;
+  --line:rgba(121,184,216,.14);
+  --line-2:rgba(121,184,216,.26);
+
+  --text:#F2F4F3;
+  --muted:#A8B5C4;
+  --dim:#7C8A9C;
+
+  --accent:#4F8FBA;
+  --accent-2:#79B8D8;
+  --soft:#A8C7D8;
+  --on-accent:#061018;
+  --accent-dim:rgba(79,143,186,.15);
+  --accent-line:rgba(121,184,216,.32);
+  --glow:rgba(79,143,186,.30);
+
+  /* Publication status colours: three distinguishable steps down from the
+     accent, so status reads at a glance without a badge shouting for it. */
+  --gold:#A8C7D8;
+  --gold-dim:rgba(168,199,216,.10);
+  --gold-line:rgba(168,199,216,.26);
+  --warn:#7C8A9C;
+  --warn-dim:rgba(124,138,156,.12);
+  --warn-line:rgba(124,138,156,.30);
+
+  --nav-h:66px;
+  --nav-bg:rgba(10,18,32,.74);
+  --nav-bg-solid:rgba(10,18,32,.95);
+  --card-glass:rgba(22,36,58,.5);
+  --portrait-wash:rgba(10,18,32,.55);
+
+  --grad-name:linear-gradient(115deg,#4F8FBA 0%,#79B8D8 55%,#A8C7D8 100%);
+  --grad-rail:linear-gradient(180deg,#4F8FBA,rgba(79,143,186,0));
+  --grad-contact:linear-gradient(155deg,#101B2D 0%,#0A1220 60%);
+  --hero-glow-1:rgba(79,143,186,.16);
+  --hero-glow-2:rgba(121,184,216,.08);
+  --viz-dot:#79B8D8;
+  --viz-line:rgba(79,143,186,.42);
+}
+</style>
+<style>
+.paper-top{display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;padding-block:1.25rem;border-bottom:1px solid var(--line)}
+.paper-top a{color:var(--muted);font-size:var(--t-sm)}
+.paper-top a:hover{color:var(--accent)}
+.paper-top .brand-mini{color:var(--text);font-weight:700;margin-right:auto}
+.paper{max-width:52rem;padding-block:clamp(2rem,5vw,4rem)}
+.paper h1{font-size:clamp(1.5rem,1.1rem + 1.6vw,2.4rem);line-height:1.25;letter-spacing:-.02em;margin:.75rem 0 1rem}
+.paper h2{font-size:var(--t-h3);margin:clamp(2rem,4vw,3rem) 0 .9rem}
+.paper p{color:var(--muted);line-height:1.75}
+.paper .pub-meta,.paper .proj-foot{margin-top:1rem}
+.paper .proj-foot{display:flex;flex-wrap:wrap;gap:1.25rem;border-top:0;padding-top:0}
+.paper-fig,.paper-media{margin:clamp(1.75rem,3.5vw,2.5rem) 0 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(.75rem,2vw,1.25rem)}
+.paper-fig img{width:100%;height:auto;border-radius:6px;background:#fff}
+.paper-media video{width:100%;max-height:80vh;border-radius:6px;background:#000}
+.paper figcaption{color:var(--dim);font-size:var(--t-sm);line-height:1.6;margin-top:.75rem}
+.paper-bib{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:1rem 1.25rem;overflow-x:auto;font-family:var(--mono, 'JetBrains Mono', monospace);font-size:.82rem;line-height:1.6;color:var(--soft);white-space:pre}
+.paper-note{border-left:2px solid var(--accent-line);padding-left:1rem}
+</style>
+</head>
+<body data-page="paper">
+<div class="shell paper-top">
+  <a class="brand-mini" href="../../research/">Md Abu Sayeb Rayhan</a>
+  <a href="../../research/#publications">All publications</a>
+  <a href="../../research/#contact">Contact</a>
+  <a href="../../abu_sayeb_rayhan_cv.pdf" target="_blank" rel="noopener">CV</a>
+</div>
+<main class="shell paper">
+  <span class="eyebrow">Journal paper · 2026</span>
+  <h1>Doorways set the pace of robot vacuum cleaning: a parameter-free room-graph model, tested and confirmed in 200 real homes</h1>
+  <p class="pub-authors"><strong class="kw">Md Abu Sayeb Rayhan</strong>, Hustagna Hiya, Ajoy Shutra Dhar<span class="pub-role">First author</span></p>
+  <p class="pub-venue">Robotics and Autonomous Systems (Elsevier)</p>
+  <div class="pub-meta"><span class="chip chip--warn">Under review</span><span class="chip">Elsevier</span></div>
+  <div class="proj-foot"><a class="btn-link" href="#video">Video ↓</a></div>
+  <figure class="paper-fig"><img src="figure.png" alt="Overview. Top: the model turns a scanned home into predicted cleaning times using geometry alone. Middle: the simulator runs robots in the same homes. Bottom: the order of the two preregistered studies and the exploratory work between them. Schematic composed by code with an AI assistant from the study's own images; HM3D © Matterport." loading="lazy"><figcaption>Overview. Top: the model turns a scanned home into predicted cleaning times using geometry alone. Middle: the simulator runs robots in the same homes. Bottom: the order of the two preregistered studies and the exploratory work between them. Schematic composed by code with an AI assistant from the study's own images; HM3D © Matterport.</figcaption></figure>
+  <h2>Abstract</h2>
+  <p>How long a randomly moving robot vacuum takes to clean a home, and where two robots in the same home obstruct each other, cannot yet be predicted from the floor plan. We argue that the doorways govern both. A room-graph model with no fitted parameters turns the geometry of a home into a Markov chain over rooms, with exit rates from a billiard door law and per-point cleaning rates from Crofton's formula. We tested it in HomeClean-200, a simulation benchmark of 200 scanned HM3D homes with floor clutter, five cleaning strategies and two-robot teams (17,580 runs). In a preregistered first study on 100 homes the door law held (slope 0.86) and the model ranked homes well (r = 0.84), but it predicted cleaning 26% faster than simulated (R² = 0.54); 3 of eight predictions held. An exploratory diagnosis traced the gap to an independence assumption: furniture and clutter make the robot's visits to a spot come in bursts. Two corrections from the same billiard picture, free-space chambers and two-dimensional recurrence, removed most of the gap. A second preregistration, frozen before 100 unseen homes were downloaded, confirmed the refined model (R² = 0.81, near the ceiling of 0.84 set by run-to-run variation), replicated the door law, and showed that a vacuum and a delivery robot jam at the doors most used by delivery routes (rank percentile 0.66). The model describes robots that bounce; for Roomba-like robots it ranks homes but misjudges absolute times. All results come from simulation.</p>
+  <p class="paper-note">Under review. The full manuscript is available on request: <a href="mailto:sayeb.cse@gmail.com">sayeb.cse@gmail.com</a>.</p>
+  
+  
+  <h2 id="video">Video</h2><figure class="paper-media"><video controls preload="metadata" playsinline src="video.mp4"></video><figcaption>Method and results (2.5 min)</figcaption></figure><figure class="paper-media"><video controls preload="metadata" playsinline src="short.mp4"></video><figcaption>60-second summary</figcaption></figure>
+  <h2>Cite</h2>
+  <pre class="paper-bib">@article{rayhan2026doorways,
+  title     = {Doorways set the pace of robot vacuum cleaning: a parameter-free room-graph model, tested and confirmed in 200 real homes},
+  author    = {Rayhan, Md Abu Sayeb and Hiya, Hustagna and Dhar, Ajoy Shutra},
+  journal   = {Robotics and Autonomous Systems (Elsevier)},
+  note      = {Under review},
+  year      = {2026}
+}</pre>
+</main>
+<footer class="foot"><div class="shell foot-in"><span>© 2026 Md Abu Sayeb Rayhan</span>
+  <nav aria-label="Footer"><a href="../../research/">Research portfolio</a><a href="mailto:sayeb.cse@gmail.com">sayeb.cse@gmail.com</a><a href="https://github.com/abusayeb" target="_blank" rel="noopener">GitHub</a></nav></div></footer>
+</body>
+</html>

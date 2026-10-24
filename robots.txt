@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /edit/
+Sitemap: https://abusayeb.github.io/sitemap.xml

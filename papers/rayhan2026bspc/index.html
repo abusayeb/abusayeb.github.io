@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.className+=' js'</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Input-conditional uncertainty fusion for skin lesion screening | Md Abu Sayeb Rayhan</title>
+<meta name="description" content="Deep classifiers for skin lesion diagnosis do not abstain on inputs from outside their training distribution: they return a confident label, and the failure is silent. Fusing several uncertainty signals is the usual remedy, but the fusions in common use apply one weight vector to every image. We fus">
+<meta name="author" content="Md Abu Sayeb Rayhan">
+<meta name="theme-color" content="#0A1220">
+<link rel="canonical" href="https://abusayeb.github.io/papers/rayhan2026bspc/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Md Abu Sayeb Rayhan — Research">
+<meta property="og:url" content="https://abusayeb.github.io/papers/rayhan2026bspc/">
+<meta property="og:title" content="Input-conditional uncertainty fusion for skin lesion screening">
+<meta property="og:description" content="Deep classifiers for skin lesion diagnosis do not abstain on inputs from outside their training distribution: they return a confident label, and the failure is silent. Fusing several uncertainty signals is the usual remedy, but the fusions in common use apply one weight vector to every image. We fus">
+<meta property="og:image" content="https://abusayeb.github.io/papers/rayhan2026bspc/figure.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../assets/favicon-research.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/base.css?v=43">
+<style>
+/* ---- Research identity: deep navy, academic blue and soft cyan on ivory
+       text. Identical design language to the industry page — same type scale,
+       spacing, components and motion — with a deliberately different, more
+       academic colour system. ---- */
+:root{
+  --bg:#0A1220;
+  --bg-2:#101B2D;
+  --card:#16243A;
+  --card-2:#1C2C46;
+  --line:rgba(121,184,216,.14);
+  --line-2:rgba(121,184,216,.26);
+
+  --text:#F2F4F3;
+  --muted:#A8B5C4;
+  --dim:#7C8A9C;
+
+  --accent:#4F8FBA;
+  --accent-2:#79B8D8;
+  --soft:#A8C7D8;
+  --on-accent:#061018;
+  --accent-dim:rgba(79,143,186,.15);
+  --accent-line:rgba(121,184,216,.32);
+  --glow:rgba(79,143,186,.30);
+
+  /* Publication status colours: three distinguishable steps down from the
+     accent, so status reads at a glance without a badge shouting for it. */
+  --gold:#A8C7D8;
+  --gold-dim:rgba(168,199,216,.10);
+  --gold-line:rgba(168,199,216,.26);
+  --warn:#7C8A9C;
+  --warn-dim:rgba(124,138,156,.12);
+  --warn-line:rgba(124,138,156,.30);
+
+  --nav-h:66px;
+  --nav-bg:rgba(10,18,32,.74);
+  --nav-bg-solid:rgba(10,18,32,.95);
+  --card-glass:rgba(22,36,58,.5);
+  --portrait-wash:rgba(10,18,32,.55);
+
+  --grad-name:linear-gradient(115deg,#4F8FBA 0%,#79B8D8 55%,#A8C7D8 100%);
+  --grad-rail:linear-gradient(180deg,#4F8FBA,rgba(79,143,186,0));
+  --grad-contact:linear-gradient(155deg,#101B2D 0%,#0A1220 60%);
+  --hero-glow-1:rgba(79,143,186,.16);
+  --hero-glow-2:rgba(121,184,216,.08);
+  --viz-dot:#79B8D8;
+  --viz-line:rgba(79,143,186,.42);
+}
+</style>
+<style>
+.paper-top{display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center;padding-block:1.25rem;border-bottom:1px solid var(--line)}
+.paper-top a{color:var(--muted);font-size:var(--t-sm)}
+.paper-top a:hover{color:var(--accent)}
+.paper-top .brand-mini{color:var(--text);font-weight:700;margin-right:auto}
+.paper{max-width:52rem;padding-block:clamp(2rem,5vw,4rem)}
+.paper h1{font-size:clamp(1.5rem,1.1rem + 1.6vw,2.4rem);line-height:1.25;letter-spacing:-.02em;margin:.75rem 0 1rem}
+.paper h2{font-size:var(--t-h3);margin:clamp(2rem,4vw,3rem) 0 .9rem}
+.paper p{color:var(--muted);line-height:1.75}
+.paper .pub-meta,.paper .proj-foot{margin-top:1rem}
+.paper .proj-foot{display:flex;flex-wrap:wrap;gap:1.25rem;border-top:0;padding-top:0}
+.paper-fig,.paper-media{margin:clamp(1.75rem,3.5vw,2.5rem) 0 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:clamp(.75rem,2vw,1.25rem)}
+.paper-fig img{width:100%;height:auto;border-radius:6px;background:#fff}
+.paper-media video{width:100%;max-height:80vh;border-radius:6px;background:#000}
+.paper figcaption{color:var(--dim);font-size:var(--t-sm);line-height:1.6;margin-top:.75rem}
+.paper-bib{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:1rem 1.25rem;overflow-x:auto;font-family:var(--mono, 'JetBrains Mono', monospace);font-size:.82rem;line-height:1.6;color:var(--soft);white-space:pre}
+.paper-note{border-left:2px solid var(--accent-line);padding-left:1rem}
+</style>
+</head>
+<body data-page="paper">
+<div class="shell paper-top">
+  <a class="brand-mini" href="../../research/">Md Abu Sayeb Rayhan</a>
+  <a href="../../research/#publications">All publications</a>
+  <a href="../../research/#contact">Contact</a>
+  <a href="../../abu_sayeb_rayhan_cv.pdf" target="_blank" rel="noopener">CV</a>
+</div>
+<main class="shell paper">
+  <span class="eyebrow">Journal paper · 2026</span>
+  <h1>Input-conditional uncertainty fusion for skin lesion screening</h1>
+  <p class="pub-authors"><strong class="kw">Md Abu Sayeb Rayhan</strong>, Hustagna Hiya, Ajoy Shutra Dhar<span class="pub-role">First author</span></p>
+  <p class="pub-venue">Biomedical Signal Processing and Control (Elsevier)</p>
+  <div class="pub-meta"><span class="chip chip--warn">Under review</span><span class="chip">Elsevier</span></div>
+  
+  <figure class="paper-fig"><img src="figure.png" alt="Graphical abstract." loading="lazy"><figcaption>Graphical abstract.</figcaption></figure>
+  <h2>Abstract</h2>
+  <p>Deep classifiers for skin lesion diagnosis do not abstain on inputs from outside their training distribution: they return a confident label, and the failure is silent. Fusing several uncertainty signals is the usual remedy, but the fusions in common use apply one weight vector to every image. We fuse eight signals, spanning ensemble disagreement, evidential vacuity, conformal set size and five feature-space detectors, with a gate that emits a per-image reliability for each and accumulates them as reliability-discounted subjective-logic evidence. The gate is conditioned on frozen self-supervised features rather than the task backbone, and the external archive is filtered against the training corpus by identifier and pixel hashing. On the 14,602 in-distribution and 666 out-of-distribution images left after removing 10,015 training-derived ones, gated fusion reaches 0.7946 in area under the receiver operating characteristic curve (AUROC) under acquisition shift, against 0.6945 for static fusion of identical signals, every comparison significant after multiplicity correction. The rule reduces to static fusion under constant reliabilities, so that margin is attributable to input-conditionality alone, and frozen-encoder conditioning supplies 0.0534 of it. A leave-one-class-out protocol then tests the boundary. Against a lesion class withheld from calibration the advantage disappears, the gate falling 0.0371 AUROC below static fusion, while cross-validation over exposed outliers overstates unseen-class performance by 0.1975. Reliability gating addresses acquisition shift; it is not a novelty detector, and the two regimes should not be reported together.</p>
+  <p class="paper-note">Under review. The full manuscript is available on request: <a href="mailto:sayeb.cse@gmail.com">sayeb.cse@gmail.com</a>.</p>
+  
+  
+  
+  <h2>Cite</h2>
+  <pre class="paper-bib">@article{rayhan2026bspc,
+  title     = {Input-conditional uncertainty fusion for skin lesion screening},
+  author    = {Rayhan, Md Abu Sayeb and Hiya, Hustagna and Dhar, Ajoy Shutra},
+  journal   = {Biomedical Signal Processing and Control (Elsevier)},
+  note      = {Under review},
+  year      = {2026}
+}</pre>
+</main>
+<footer class="foot"><div class="shell foot-in"><span>© 2026 Md Abu Sayeb Rayhan</span>
+  <nav aria-label="Footer"><a href="../../research/">Research portfolio</a><a href="mailto:sayeb.cse@gmail.com">sayeb.cse@gmail.com</a><a href="https://github.com/abusayeb" target="_blank" rel="noopener">GitHub</a></nav></div></footer>
+</body>
+</html>
