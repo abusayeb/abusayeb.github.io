@@ -132,14 +132,14 @@
   ],
   "researchAreas": [
     {
-      "title": "Edge AI",
-      "desc": "Perception that has to run on the robot rather than in a data centre. My closed-loop study of **adaptive perception** asked whether a robot can save detector compute by learning when to look; it saved **85%** but lost too much safety, which is the trade-off I want to understand properly. At Othello, getting models onto **IoT edge devices** and cutting latency by **~70%** taught me the same lesson from the deployment side.",
-      "next": true
-    },
-    {
       "title": "Robotics & Automation",
       "desc": "Robots whose perception feeds a planner, so a miss shows up as a collision or an unfinished task. My two 2026 studies are in **home service robotics**: adaptive perception for navigation, and a **room-graph model** that predicts robot vacuum cleaning time and where two robots jam at doorways. Both ran in scanned real homes in simulation, under preregistration; earlier I ran empirical **Human–Robot Interaction** studies as a Research Assistant.",
       "next": false
+    },
+    {
+      "title": "Edge AI",
+      "desc": "Perception that has to run on the robot rather than in a data centre. My closed-loop study of **adaptive perception** asked whether a robot can save detector compute by learning when to look; it saved **85%** but lost too much safety, which is the trade-off I want to understand properly. At Othello, getting models onto **IoT edge devices** and cutting latency by **~70%** taught me the same lesson from the deployment side.",
+      "next": true
     },
     {
       "title": "Perception",
@@ -383,7 +383,8 @@
         "Reported numbers come only from a certification pipeline that checks code, data and provenance before a result can enter the paper."
       ],
       "experiment": "The learned scheduler cut computation by 85% relative to running the heavy detector on every frame, but reached the goal in 55.0% of episodes against 79.2%, and collided in 8.3% against 0.8% for the light detector on every frame. The preregistered criterion was not met, and the paper reports it that way.",
-      "researchNote": "My first robotics study, and a negative result I am glad to have: for a home robot, running the cheapest adequate detector on every frame is a strong default to beat."
+      "researchNote": "My first robotics study, and a negative result I am glad to have: for a home robot, running the cheapest adequate detector on every frame is a strong default to beat.",
+      "codeNote": "Code to be released with the paper"
     },
     {
       "title": "HomeClean — doorways and robot vacuum cleaning",
@@ -414,7 +415,8 @@
         "A **second preregistration**, frozen before 100 unseen homes were downloaded, confirmed the refined model, replicated the door law and showed a vacuum and a delivery robot jam at the doors delivery routes use most."
       ],
       "experiment": "Five cleaning strategies and two-robot teams were simulated in 200 scanned homes (17,580 runs). On the 100 unseen homes the refined model reached R² 0.81, near the ceiling set by run-to-run variation. It describes robots that bounce; for Roomba-like robots it ranks homes but misjudges absolute times.",
-      "researchNote": "Theory checked against a large simulated benchmark, twice preregistered, with the failed predictions reported next to the ones that held."
+      "researchNote": "Theory checked against a large simulated benchmark, twice preregistered, with the failed predictions reported next to the ones that held.",
+      "codeNote": "Code to be released with the paper"
     },
     {
       "title": "eGP AutoPilot",
@@ -918,14 +920,14 @@
   },
   "futureDirections": [
     {
-      "area": "Edge AI",
-      "q": "Models are advancing far faster than the hardware meant to run them. What gives first?",
-      "a": "My closed-loop study gave a first, uncomfortable answer: safety goes first. A robot that learned when to run its detector saved **85%** of the compute but reached its goal less often and collided more than one that simply ran a small detector on every frame. At **Othello** the same squeeze showed up as getting models onto **edge devices** at all, where parallel inference bought a **~70%** latency cut only by trading complexity against a fixed budget. I want to find the conditions under which skipping perception is actually safe, and test them on real embedded hardware rather than in simulation."
-    },
-    {
       "area": "Robotics & Automation",
       "q": "Can a model's own uncertainty drive a robot's actions, not just flag them?",
       "a": "RGEF and its journal extension stop at flagging a single decision. My adaptive-perception study showed what happens when a robot's choice of when to look is not tied to how sure it is: the misses turned into collisions. The extension I want to work on is feeding that evidential state into the control loop directly — slowing down, looking again or handing off to a human, in real time rather than as an offline diagnostic."
+    },
+    {
+      "area": "Edge AI",
+      "q": "Models are advancing far faster than the hardware meant to run them. What gives first?",
+      "a": "My closed-loop study gave a first, uncomfortable answer: safety goes first. A robot that learned when to run its detector saved **85%** of the compute but reached its goal less often and collided more than one that simply ran a small detector on every frame. At **Othello** the same squeeze showed up as getting models onto **edge devices** at all, where parallel inference bought a **~70%** latency cut only by trading complexity against a fixed budget. I want to find the conditions under which skipping perception is actually safe, and test them on real embedded hardware rather than in simulation."
     },
     {
       "area": "Perception",

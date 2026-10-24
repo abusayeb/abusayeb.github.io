@@ -143,7 +143,7 @@
 
   /* ----------------------------------------------------- project helpers */
 
-  var CATEGORY_ORDER = ['Computer Vision', 'Generative AI', 'LLM / RAG', 'Research', 'Deployment', 'Other'];
+  var CATEGORY_ORDER = ['Robotics', 'Computer Vision', 'Generative AI', 'LLM / RAG', 'Research', 'Deployment', 'Other'];
 
   function projCats(p) {
     var c = Array.isArray(p.categories) ? p.categories.filter(Boolean) : [];
@@ -200,7 +200,7 @@
       '<div class="proj-foot">' +
         (p.link
           ? '<a class="btn-link" ' + linkAttrs(p.link) + '>View on GitHub ' + ARROW + '</a>'
-          : '<span class="proj-private">Proprietary — code not public</span>') +
+          : '<span class="proj-private">' + esc(p.codeNote || 'Proprietary — code not public') + '</span>') +
         (p.demo ? '<a class="btn-link" ' + linkAttrs(p.demo) + '>Demo ' + ARROW + '</a>' : '') +
         '<span class="chips">' + chips(cats, 'chip--accent') + '</span>' +
       '</div>' +
@@ -464,6 +464,7 @@
      credit for. */
   function renderResearch(d) {
     var P = d.profile || {}, E = d.education || {}, out = [];
+    var S = {};  /* section builders, assembled below in reading order */
     var parts = String(P.name || '').trim().split(' ');
     var first = parts.slice(0, -1).join(' '), last = parts[parts.length - 1] || '';
 
@@ -532,12 +533,13 @@
         }).join('') + '</div></div></section>');
     }
 
-    /* ---- 1. research profile: the transition ---- */
-    out.push(section('profile', 'section--band',
-      head('profile', 'Research profile',
+    /* ---- research profile: the engineering-to-research arc. Context for a
+       reader who has already seen the research, so it sits late on the page. ---- */
+    S.profile = function () { return section('profile', '',
+      head('profile', 'How I got here',
         'How the engineering and the research fit together, and where the two are heading.') +
       ((d.researchProfile || []).length
-        ? '<div class="arc" style="margin-bottom:clamp(2rem,3.5vw,3.25rem)">' +
+        ? '<div class="arc">' +
           d.researchProfile.map(function (r, i, arr) {
             var n = (i + 1 < 10 ? '0' : '') + (i + 1);
             return '<article class="arc-step' + (i === arr.length - 1 ? ' is-future' : '') + '" data-reveal>' +
@@ -545,23 +547,10 @@
               '<h3>' + esc(r.title) + '</h3>' +
               '<p>' + rich(r.body) + '</p></article>';
           }).join('') + '</div>'
-        : '') +
-      ((d.researchStatement || []).length
-        ? '<div class="statement" data-reveal>' +
-            '<div class="statement-head">' +
-              '<h3 class="eyebrow">Research statement</h3>' +
-              '<span class="note">' + d.researchStatement.length + ' paragraphs</span>' +
-            '</div>' +
-            '<div class="statement-cols">' +
-              d.researchStatement.map(function (para) {
-                return '<p>' + rich(para) + '</p>';
-              }).join('') +
-            '</div>' +
-          '</div>'
-        : '')));
+        : '')); };
 
-    /* ---- 2. academic background ---- */
-    out.push(section('education', '',
+    /* ---- academic background ---- */
+    S.education = function () { return section('education', '',
       head('education', 'Academic background', '') +
       '<div class="split">' +
         '<div class="card edu-card" data-reveal>' +
@@ -587,9 +576,9 @@
             return '<li><b>' + esc(r.name) + '</b>' + esc(r.role) + ' · ' + esc(r.org) + '</li>';
           }).join('') + '</ul>' +
         '</div>' +
-      '</div>'));
+      '</div>'); };
 
-    /* ---- 3. research experience ---- */
+    /* ---- research experience ---- */
     function entry(e, lead) {
       return '<article class="tl-item' + (lead ? ' is-lead' : '') + '" data-reveal>' +
         '<div>' +
@@ -608,54 +597,66 @@
     var researchExp = (d.experience || []).filter(function (e) { return e.kind === 'research'; });
     var appliedExp = (d.experience || []).filter(function (e) { return e.kind !== 'research'; });
     if (researchExp.length) {
-      out.push(section('experience', 'section--band',
+      S.experience = function () { return section('experience', 'section--band',
         head('experience', 'Academic research experience',
           'Supervised research at university: dataset design, experimental protocol and ' +
           'quantitative analysis, with results carried through to peer review. My industry ' +
           'roles are further down, under Industry experience.',
           researchExp.length + (researchExp.length === 1 ? ' role' : ' roles')) +
-        '<div class="timeline">' + researchExp.map(function (e) { return entry(e, true); }).join('') + '</div>'));
+        '<div class="timeline">' + researchExp.map(function (e) { return entry(e, true); }).join('') + '</div>'); };
     }
 
-    /* ---- 4. publications ---- */
-    out.push(section('publications', '',
+    /* ---- publications ---- */
+    S.publications = function () { return section('publications', '',
       head('publications', 'Publications',
         'Papers: ' + esc(pubSummary(d)) +
         '. Status is stated per paper and never rounded up. ' +
         'Use <em>BibTeX</em> to copy a citation.',
         (d.publications || []).length + ' papers') +
-      '<div class="pubs">' + sortPubs(d.publications).map(function (p, i) {
-        var t = p.link ? '<a ' + linkAttrs(p.link) + '>' + esc(p.title) + '</a>' : esc(p.title);
-        return '<article class="pub" data-state="' + pubState(p) + '" data-reveal>' +
-          '<h3 class="pub-title">' + t + '</h3>' +
-          ((p.authors || p.authorRole)
-            ? '<p class="pub-authors">' + (p.authors ? rich(p.authors) : '') +
-              (p.authorRole ? '<span class="pub-role"' + (p.authors ? '' :
-                ' style="margin-left:0;padding-left:0;border-left:0"') + '>' +
-                esc(p.authorRole) + '</span>' : '') + '</p>'
-            : '') +
-          '<p class="pub-venue">' + esc(p.venue) + (p.year ? ' · ' + esc(p.year) : '') + '</p>' +
-          '<div class="pub-meta">' +
-            '<span class="chip ' + statusChip(p) + '">' + statusLabel(p) + '</span>' +
-            chips(p.tags) +
-            '<button class="bib-btn" type="button" data-bib="bib' + i + '" aria-expanded="false">BibTeX</button>' +
-          '</div>' +
-          (p.note ? '<p class="pub-note">' + rich(p.note) + '</p>' : '') +
-          (p.contribution ? '<p class="pub-contrib"><b>My contribution:</b> ' + rich(p.contribution) + '</p>' : '') +
-          ((p.link || p.code) ? '<div class="proj-foot">' +
-            (p.link ? '<a class="btn-link" ' + linkAttrs(p.link) + '>Read the paper ' + ARROW + '</a>' : '') +
-            (p.code ? '<a class="btn-link" ' + linkAttrs(p.code) + '>Code ' + ARROW + '</a>' : '') +
-          '</div>' : '') +
-          '<pre class="bib" id="bib' + i + '">' + esc(bibtex(p, P.name)) + '</pre>' +
-        '</article>';
-      }).join('') + '</div>'));
+      /* Peer-reviewed work first, manuscripts under review after it under their
+         own heading, the way an academic CV separates them. */
+      (function () {
+        var bib = 0, all = sortPubs(d.publications);
+        var done = all.filter(function (p) { return pubState(p) !== 'review'; });
+        var review = all.filter(function (p) { return pubState(p) === 'review'; });
+        function card(p) {
+          var i = bib++;
+          var t = p.link ? '<a ' + linkAttrs(p.link) + '>' + esc(p.title) + '</a>' : esc(p.title);
+          return '<article class="pub" data-state="' + pubState(p) + '" data-reveal>' +
+            '<h3 class="pub-title">' + t + '</h3>' +
+            ((p.authors || p.authorRole)
+              ? '<p class="pub-authors">' + (p.authors ? rich(p.authors) : '') +
+                (p.authorRole ? '<span class="pub-role"' + (p.authors ? '' :
+                  ' style="margin-left:0;padding-left:0;border-left:0"') + '>' +
+                  esc(p.authorRole) + '</span>' : '') + '</p>'
+              : '') +
+            '<p class="pub-venue">' + esc(p.venue) + (p.year ? ' · ' + esc(p.year) : '') + '</p>' +
+            '<div class="pub-meta">' +
+              '<span class="chip ' + statusChip(p) + '">' + statusLabel(p) + '</span>' +
+              chips(p.tags) +
+              '<button class="bib-btn" type="button" data-bib="bib' + i + '" aria-expanded="false">BibTeX</button>' +
+            '</div>' +
+            (p.note ? '<p class="pub-note">' + rich(p.note) + '</p>' : '') +
+            (p.contribution ? '<p class="pub-contrib"><b>My contribution:</b> ' + rich(p.contribution) + '</p>' : '') +
+            ((p.link || p.code) ? '<div class="proj-foot">' +
+              (p.link ? '<a class="btn-link" ' + linkAttrs(p.link) + '>Read the paper ' + ARROW + '</a>' : '') +
+              (p.code ? '<a class="btn-link" ' + linkAttrs(p.code) + '>Code ' + ARROW + '</a>' : '') +
+            '</div>' : '') +
+            '<pre class="bib" id="bib' + i + '">' + esc(bibtex(p, P.name)) + '</pre>' +
+          '</article>';
+        }
+        return (done.length ? '<h3 class="eyebrow" style="margin-bottom:1.25rem">Peer-reviewed</h3>' +
+            '<div class="pubs">' + done.map(card).join('') + '</div>' : '') +
+          (review.length ? '<h3 class="eyebrow" style="margin:clamp(2rem,3.5vw,3rem) 0 1.25rem">Under review</h3>' +
+            '<div class="pubs">' + review.map(card).join('') + '</div>' : '');
+      })()); };
 
-    /* ---- 5. industry experience ---- */
+    /* ---- industry experience ---- */
     var engMetrics = (d.metrics || []).filter(function (m) {
       return !/papers?|publication/i.test(m.label);
     });
     var engSkills = (d.skills || []).filter(function (sk) { return sk.research === false; });
-    out.push(section('engineering', 'section--band',
+    S.engineering = function () { return section('engineering', 'section--band',
       head('engineering', 'Industry experience',
         'My professional roles outside the university: two years building and shipping ' +
         'production AI systems, the measured results they produced, and the stack behind ' +
@@ -686,13 +687,20 @@
               '<h3>' + esc(sk.label) + '</h3>' +
               '<div class="chips">' + chips(splitSkills(sk.items)) + '</div></div>';
           }).join('') + '</div>'
-        : '')));
+        : '')); };
 
-    /* ---- 6. research projects ---- */
+    /* ---- research projects ---- */
     var rel = (d.projects || []).filter(function (p) {
       return p.pages === 'research' || p.pages === 'both';
     });
-    out.push(section('projects', 'section--band',
+    function researchRank(p) {
+      var c = projCats(p);
+      return c.indexOf('Robotics') > -1 ? 0 : c.indexOf('Research') > -1 ? 1 : 2;
+    }
+    rel = rel.map(function (p, i) { return [p, i]; }).sort(function (a, b) {
+      return researchRank(a[0]) - researchRank(b[0]) || a[1] - b[1];
+    }).map(function (x) { return x[0]; });
+    S.projects = function () { return section('projects', 'section--band',
       head('projects', 'Research projects',
         'Selected for what they evidence rather than for scale. Open a case study for ' +
         'the approach, the result and what it contributes. Code is public wherever the ' +
@@ -702,34 +710,48 @@
       '<div class="projects" id="projGrid">' +
         rel.map(function (p) { return projectCard(p, { researchNote: true, academic: true }); }).join('') +
       '</div>' +
-      '<p class="sec-sub" id="projEmpty" hidden>No projects in this area yet.</p>'));
+      '<p class="sec-sub" id="projEmpty" hidden>No projects in this area yet.</p>'); };
 
-    /* ---- 7. research interests + methods ---- */
+    /* ---- research interests + methods ---- */
     var rskills = (d.skills || []).filter(function (s) { return s.research !== false; });
-    out.push(section('interests', '',
+    S.interests = function () { return section('interests', '',
       head('interests', 'Research interests',
         P.researchInterestsLine ? esc(P.researchInterestsLine) : '',
         (d.researchAreas || []).length + ' clusters') +
+      ((d.researchStatement || []).length
+        ? '<div class="statement" data-reveal style="margin-bottom:clamp(2rem,3.5vw,3.25rem)">' +
+            '<div class="statement-head">' +
+              '<h3 class="eyebrow">Research statement</h3>' +
+              '<span class="note">' + d.researchStatement.length + ' paragraphs</span>' +
+            '</div>' +
+            '<div class="statement-cols">' +
+              d.researchStatement.map(function (para) {
+                return '<p>' + rich(para) + '</p>';
+              }).join('') +
+            '</div>' +
+          '</div>'
+        : '') +
       '<div class="areas">' + (d.researchAreas || []).map(function (a, i) {
         var n = (i + 1 < 10 ? '0' : '') + (i + 1);
         return '<article class="area' + (a.next ? ' is-next' : '') + '" data-reveal>' +
           '<span class="area-n">' + n + (a.next ? ' · DIRECTION' : '') + '</span>' +
           '<h3>' + esc(a.title) + '</h3><p>' + rich(a.desc) + '</p></article>';
-      }).join('') + '</div>' +
-      (rskills.length
-        ? '<h3 class="eyebrow" style="margin:clamp(2.25rem,4vw,3.5rem) 0 1.25rem">Methods &amp; tools</h3>' +
-          '<div class="grid-auto" style="--col:clamp(17rem,20vw,26rem)">' +
-          rskills.map(function (s) {
-            return '<div class="card skill-cat" data-reveal>' +
-              '<h3>' + esc(s.label) + '</h3>' +
-              '<div class="chips">' + chips(splitSkills(s.items)) + '</div></div>';
-          }).join('') + '</div>'
-        : '')));
+      }).join('') + '</div>'); };
+    if (rskills.length) {
+      S.skills = function () { return section('skills', '',
+        head('skills', 'Methods & tools', '') +
+        '<div class="grid-auto" style="--col:clamp(17rem,20vw,26rem)">' +
+        rskills.map(function (s) {
+          return '<div class="card skill-cat" data-reveal>' +
+            '<h3>' + esc(s.label) + '</h3>' +
+            '<div class="chips">' + chips(splitSkills(s.items)) + '</div></div>';
+        }).join('') + '</div>'); };
+    }
 
-    /* ---- 8. research direction ---- */
+    /* ---- research direction ---- */
     if ((d.futureDirections || []).length) {
-      out.push(section('direction', '',
-        head('direction', 'Research direction',
+      S.direction = function () { return section('direction', '',
+        head('direction', 'Proposed Master’s research',
           'What I want to investigate during a Master’s — one question per research ' +
           'interest above. Each extends something I have already built rather than ' +
           'starting from scratch.',
@@ -739,16 +761,16 @@
             (f.area ? '<span class="qa-area">' + esc(f.area) + '</span>' : '') +
             '<h3 class="qa-q">' + rich(f.q) + '</h3>' +
             '<p class="qa-a">' + rich(f.a) + '</p></article>';
-        }).join('') + '</div>'));
+        }).join('') + '</div>'); };
     }
 
-    /* ---- 9. academic achievements ---- */
+    /* ---- academic achievements ---- */
     var awards = (d.awards || []).filter(function (a) { return a.pages !== 'industry'; });
     var venues = [];
     (d.publications || []).forEach(function (p) {
       (p.tags || []).forEach(function (t) { if (venues.indexOf(t) === -1) venues.push(t); });
     });
-    out.push(section('achievements', 'section--band',
+    S.achievements = function () { return section('achievements', 'section--band',
       head('achievements', 'Academic achievements', '') +
       '<div class="grid-auto" style="--col:clamp(18rem,22vw,28rem)">' +
         '<div class="ach" data-reveal>' +
@@ -771,17 +793,29 @@
             return '<li' + (key ? ' class="is-key"' : '') + '><b>' + esc(a.title) +
               ' (' + esc(a.year) + ')</b>' + rich(a.detail) + '</li>';
           }).join('') + '</ul></div>' : '') +
-      '</div>'));
+      '</div>'); };
 
-    /* ---- 10. news ---- */
+    /* ---- news ---- */
     if ((d.news || []).length) {
-      out.push(section('news', '',
+      S.news = function () { return section('news', '',
         head('news', 'News', '') +
         '<div class="card" data-reveal><ul class="news">' + d.news.map(function (n) {
           return '<li><span class="news-date">' + esc(n.date) + '</span>' +
             '<span class="news-text">' + rich(n.text) + '</span></li>';
-        }).join('') + '</ul></div>'));
+        }).join('') + '</ul></div>'); };
     }
+
+    /* Reading order for a prospective supervisor: what I work on, what I have
+       published, the evidence behind it, what I would do next, then the
+       record (education, research roles, awards) and the industry background
+       last. Section numbers and alternating bands follow this order. */
+    ['interests', 'publications', 'projects', 'direction', 'skills', 'education',
+     'experience', 'achievements', 'profile', 'engineering', 'news']
+      .filter(function (k) { return S[k]; })
+      .forEach(function (k, i) {
+        out.push(S[k]().replace(/^<section id="([^"]+)" class="section [^"]*"/,
+          '<section id="$1" class="section ' + (i % 2 ? 'section--band' : '') + '"'));
+      });
 
     /* ---- contact ---- */
     out.push('<section id="contact" class="section contact-band" aria-labelledby="contact-title">' +
