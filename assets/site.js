@@ -5,14 +5,20 @@
    turns it into either the industry page or the research page, decided by
    document.body.dataset.page. Everything is vanilla JS with no dependencies
    and no network calls beyond the one same-origin fetch of data.json.
+
+   The render functions only build HTML strings; mount() puts them in the
+   page. Loaded under Node (scripts/prerender.mjs) the same file exports a
+   build() that writes that HTML into the static pages, so the content is
+   readable before, or without, any JavaScript.
    ========================================================================== */
 (function () {
   'use strict';
 
-  var BODY = document.body;
+  var HAS_DOM = typeof document !== 'undefined';
+  var BODY = HAS_DOM ? document.body : { dataset: {} };
   var PAGE = BODY.dataset.page || 'industry';
   var BASE = BODY.dataset.base || '';           // '' on the root page, '../' under /research/
-  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var REDUCED = HAS_DOM && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------------------------------------------- helpers */
 
@@ -234,8 +240,8 @@
     var parts = String(P.name || '').trim().split(' ');
     var first = parts.slice(0, -1).join(' '), last = parts[parts.length - 1] || '';
 
-    document.title = P.name + ' | ' + P.roleIndustry + ' — ' + P.specialismIndustry;
-    $('brandName').innerHTML = '<b>' + esc(first) + '</b> <i>' + esc(last) + '</i>';
+    var title = P.name + ' | ' + P.roleIndustry + ' — ' + P.specialismIndustry;
+    var brand = '<b>' + esc(first) + '</b> <i>' + esc(last) + '</i>';
 
     var focus = (P.focusAreas || []);
     var lead = (d.experience || [])[0] || {};
@@ -452,7 +458,7 @@
         '</div>' +
       '</div></div></section>');
 
-    mount(out, P, d);
+    return { title: title, brand: brand, html: out.join(''), P: P };
   }
 
   /* ============================================================ RESEARCH */
@@ -468,8 +474,8 @@
     var parts = String(P.name || '').trim().split(' ');
     var first = parts.slice(0, -1).join(' '), last = parts[parts.length - 1] || '';
 
-    document.title = P.name + ' | Research — computer vision, reliable AI & robotics';
-    $('brandName').innerHTML = '<b>' + esc(first) + '</b> <i>' + esc(last) + '</i>';
+    var title = P.name + ' | Research — computer vision, reliable AI & robotics';
+    var brand = '<b>' + esc(first) + '</b> <i>' + esc(last) + '</i>';
 
     /* Academics write to the academic address; the professional one is the
        fallback so a blank field can never leave the page without a contact. */
@@ -851,14 +857,28 @@
         '</div>' +
       '</div></div></section>');
 
-    mount(out, P, d);
+    return { title: title, brand: brand, html: out.join(''), P: P };
   }
 
   /* -------------------------------------------------------------- mount */
 
-  function mount(out, P, d) {
-    var app = $('app');
-    app.innerHTML = out.join('');
+  /* A short fingerprint of data.json. The pre-rendered page records the one
+     it was built from, so the browser only re-renders when data.json has
+     changed since (an edit made at /edit/ before the next build). */
+  function dataSum(d) {
+    var str = JSON.stringify(d), h = 5381;
+    for (var i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0;
+    return (h >>> 0).toString(16);
+  }
+
+  function mount(r, d) {
+    var app = $('app'), P = r.P, sum = dataSum(d);
+    document.title = r.title;
+    $('brandName').innerHTML = r.brand;
+    if (app.getAttribute('data-sum') !== sum) {
+      app.innerHTML = r.html;
+      app.setAttribute('data-sum', sum);
+    }
     app.hidden = false;
     $('loading').hidden = true;
 
@@ -1129,6 +1149,14 @@
 
   function fail(err) {
     $('loading').hidden = true;
+    /* The pre-rendered page is already complete: keep it and make it interactive. */
+    var app = $('app');
+    if (app && app.childElementCount) {
+      wireUp();
+      heroViz();
+      if (window.console) console.warn('data.json failed to load; showing the pre-rendered page:', err);
+      return;
+    }
     var box = $('loadError');
     box.hidden = false;
     if (window.console) console.error('data.json failed to load:', err);
@@ -1142,13 +1170,28 @@
       })
       .then(function (d) {
         try {
-          if (PAGE === 'research') renderResearch(d); else renderIndustry(d);
+          mount(PAGE === 'research' ? renderResearch(d) : renderIndustry(d), d);
         } catch (e) { fail(e); }
       })
       .catch(function (e) {
         if (attempt < 1) { setTimeout(function () { boot(attempt + 1); }, 600); return; }
         fail(e);
       });
+  }
+
+  /* Under Node: export the builders for scripts/prerender.mjs and stop. */
+  if (!HAS_DOM) {
+    module.exports = {
+      build: function (d, page, base) {
+        PAGE = page; BASE = base || ''; secN = 0;
+        var r = page === 'research' ? renderResearch(d) : renderIndustry(d);
+        r.sum = dataSum(d);
+        return r;
+      },
+      esc: esc, rich: rich, plain: plain, bibtex: bibtex, sortPubs: sortPubs,
+      pubState: pubState, statusLabel: statusLabel, isJournal: isJournal
+    };
+    return;
   }
 
   /* Keep the sticky nav height in sync with what it actually measures, so

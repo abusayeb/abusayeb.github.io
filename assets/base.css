@@ -973,12 +973,14 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
 
 /* --------------------------------------------------------------- reveal */
 
-[data-reveal]{
+/* Hidden only once JavaScript has marked the page (html.js), so the
+   pre-rendered content stays visible to readers without it. */
+.js [data-reveal]{
   opacity:0;transform:translateY(18px);
   transition:opacity .6s var(--ease),transform .6s var(--ease);
   transition-delay:var(--d,0ms);
 }
-[data-reveal].is-in{opacity:1;transform:none}
+.js [data-reveal].is-in{opacity:1;transform:none}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -986,7 +988,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
     animation-duration:.001ms!important;animation-iteration-count:1!important;
     transition-duration:.001ms!important;scroll-behavior:auto!important;
   }
-  [data-reveal]{opacity:1;transform:none}
+  .js [data-reveal]{opacity:1;transform:none}
 }
 
 /* Phones: the layout reflows and density drops, rather than the desktop

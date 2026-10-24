@@ -11,7 +11,7 @@
     "emailAcademic": "sayeb.cse@gmail.com",
     "linkedin": "https://www.linkedin.com/in/md-abu-sayeb-rayhan",
     "github": "https://github.com/abusayeb",
-    "scholar": "",
+    "scholar": "https://scholar.google.com/citations?user=XKZF8K4AAAAJ&hl=en",
     "orcid": "",
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
@@ -269,7 +269,7 @@
     },
     {
       "title": "Is CNN Dead? A Comprehensive Empirical Analysis of Convolutional Neural Networks, Ensemble Methods, and Vision Transformers for Rice Leaf Disease Classification in Low-Resource Agricultural Settings",
-      "authors": "",
+      "authors": "Ajoy Shutra Dhar, Bishwajit Das, Md Mehedi Hassan, **Md Abu Sayeb Rayhan**, Halima Tuj Saydia, Shamima Akter Shimu",
       "venue": "International Conference on Emerging Computing and Communication Technologies (ECCT) 2026 · Advances in Computer Science Research, Atlantis Press (Springer Nature)",
       "year": "2026",
       "tags": [
@@ -1002,20 +1002,20 @@
   ],
   "quickFacts": [
     {
-      "k": "7",
-      "v": "papers — 4 conference (2 in IEEE Xplore, 2 in press) and 3 first-author journal papers under review (Springer, Elsevier)"
+      "k": "7 papers",
+      "v": "**5 first-author**: 4 conference (2 in IEEE Xplore, 2 in press) and 3 journal papers under review"
+    },
+    {
+      "k": "18 months",
+      "v": "in **Japan**, shipping tracking, pose estimation and activity recognition at Othello Financial Services"
     },
     {
       "k": "Best Presenter",
       "v": "IEEE QPAIN 2026"
     },
     {
-      "k": "2+ years experience",
-      "v": "Including production computer vision at Othello Financial Services, Japan"
-    },
-    {
-      "k": "GPA 3.4/4.0",
-      "v": "BSc Computer Science & Engineering, Comilla University"
+      "k": "IELTS 7.0",
+      "v": "Listening 7.5 · Reading 8.0 · Writing 6.5 · Speaking 6.5"
     }
   ],
   "researchProfile": [
