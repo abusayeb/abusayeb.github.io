@@ -53,15 +53,31 @@
   function sortPubs(list) {
     return (list || []).slice().sort(function (a, b) { return pubRank(a) - pubRank(b); });
   }
-  function pubBreakdown(d) {
+  function isJournal(p) { return String(p.kind || '').toLowerCase() === 'journal'; }
+  function pubBreakdown(list) {
     var c = { published: 0, press: 0, accepted: 0, review: 0 };
-    (d.publications || []).forEach(function (p) { c[pubState(p)]++; });
+    (list || []).forEach(function (p) { c[pubState(p)]++; });
     var bits = [];
     if (c.published) bits.push(c.published + ' published');
     if (c.press) bits.push(c.press + ' in press');
     if (c.accepted) bits.push(c.accepted + ' accepted');
     if (c.review) bits.push(c.review + ' under review');
     return bits.join(', ').replace(/,([^,]*)$/, ' and$1');
+  }
+  /* "4 conference papers (2 published and 2 in press) and 3 journal papers
+     (3 under review)": conference and journal work are counted apart so an
+     under-review journal manuscript is never read as a published paper. */
+  function pubSummary(d) {
+    var all = d.publications || [];
+    var groups = [
+      ['conference paper', all.filter(function (p) { return !isJournal(p); })],
+      ['journal paper', all.filter(isJournal)]
+    ].filter(function (g) { return g[1].length; });
+    return groups.map(function (g) {
+      var n = g[1].length, b = pubBreakdown(g[1]), same = b === n + ' ' + b.replace(/^\d+ /, '');
+      return n + ' ' + g[0] + (n === 1 ? '' : 's') +
+        (same ? ' ' + b.replace(/^\d+ /, '') : ' (' + b + ')');
+    }).join(' and ');
   }
   function statusLabel(p) {
     return { published: 'Published', press: 'In press', accepted: 'Accepted',
@@ -74,10 +90,12 @@
 
   function bibtex(p, name) {
     var venue = String(p.venue || '').split('·')[0].trim();
-    return '@inproceedings{' + (p.bibkey || 'rayhan' + (p.year || '')) + ',\n' +
+    var j = isJournal(p);
+    return (j ? '@article{' : '@inproceedings{') + (p.bibkey || 'rayhan' + (p.year || '')) + ',\n' +
       '  title     = {' + p.title + '},\n' +
       '  author    = {' + (name || 'Rayhan, Md Abu Sayeb') + ' and others},\n' +
-      '  booktitle = {' + venue + '},\n' +
+      (j ? '  journal   = {' : '  booktitle = {') + venue + '},\n' +
+      (j && pubState(p) === 'review' ? '  note      = {Under review},\n' : '') +
       '  year      = {' + (p.year || '') + '}\n}';
   }
 
@@ -242,7 +260,7 @@
           '<div class="hero-meta">' +
             '<span>📍 ' + esc(P.location) + '</span>' +
             '<span>🎓 ' + esc(E.degree) + '</span>' +
-            '<span>📄 ' + (d.publications || []).length + ' conference papers · ' + esc(pubBreakdown(d)) + '</span>' +
+            '<span>📄 ' + esc(pubSummary(d)) + '</span>' +
           '</div>' +
         '</div>' +
         '<div class="portrait" id="portraitWrap" hidden>' +
@@ -324,7 +342,7 @@
     /* ---- publications ---- */
     out.push(section('publications', '',
       head('publications', 'Research & publications',
-        'Peer-reviewed conference papers: ' + esc(pubBreakdown(d)) +
+        'Papers: ' + esc(pubSummary(d)) +
         '. Full method and result detail lives on the ' +
         '<a href="research/">research portfolio</a>.',
         (d.publications || []).length + ' papers') +
@@ -449,7 +467,7 @@
     var parts = String(P.name || '').trim().split(' ');
     var first = parts.slice(0, -1).join(' '), last = parts[parts.length - 1] || '';
 
-    document.title = P.name + ' | Research — computer vision & reliable AI';
+    document.title = P.name + ' | Research — robotics, perception & reliable AI';
     $('brandName').innerHTML = '<b>' + esc(first) + '</b> <i>' + esc(last) + '</i>';
 
     /* Academics write to the academic address; the professional one is the
@@ -602,7 +620,7 @@
     /* ---- 4. publications ---- */
     out.push(section('publications', '',
       head('publications', 'Publications',
-        'Peer-reviewed conference papers: ' + esc(pubBreakdown(d)) +
+        'Papers: ' + esc(pubSummary(d)) +
         '. Status is stated per paper and never rounded up. ' +
         'Use <em>BibTeX</em> to copy a citation.',
         (d.publications || []).length + ' papers') +
@@ -734,10 +752,10 @@
       head('achievements', 'Academic achievements', '') +
       '<div class="grid-auto" style="--col:clamp(18rem,22vw,28rem)">' +
         '<div class="ach" data-reveal>' +
-          '<h3>Peer-reviewed output</h3>' +
+          '<h3>Research output</h3>' +
           '<div class="ach-n">' + (d.publications || []).length + '</div>' +
           '<p style="color:var(--muted);font-size:var(--t-sm);line-height:1.6">' +
-            'Conference papers — ' + esc(pubBreakdown(d)) + '.</p>' +
+            esc(pubSummary(d)) + '.</p>' +
           (venues.length ? '<div class="chips">' + chips(venues) + '</div>' : '') +
         '</div>' +
         ((d.talks || []).length ? '<div class="ach" data-reveal>' +

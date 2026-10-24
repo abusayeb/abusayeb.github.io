@@ -5,7 +5,7 @@
     "shortName": "Abu Sayeb Rayhan",
     "roleIndustry": "AI Engineer & Data Scientist",
     "specialismIndustry": "Computer Vision, LLMs & RAG",
-    "roleResearch": "Computer vision researcher moving toward robotics, automation and embedded AI",
+    "roleResearch": "Robotics researcher working on perception and navigation for home service robots, from a computer-vision background",
     "location": "Dhaka, Bangladesh",
     "email": "sayeb.cc.75@gmail.com",
     "emailAcademic": "sayeb.cse@gmail.com",
@@ -16,14 +16,15 @@
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
     "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
-    "summaryResearch": "I am a computer-vision researcher with four conference papers (two published, one in press, one accepted) and 2+ years of industry experience — eighteen months of it **in Japan**, deploying perception systems at scale for **Othello Financial Services**. I am now looking to move from vision applied to images toward **robotics, automation and embedded AI**, where perception has to work under real hardware and control constraints.",
+    "summaryResearch": "I am moving from computer vision into **robotics**, and the move is now on the record. In 2026 I led two **preregistered simulation studies of home service robots** in scanned real homes (HM3D, Habitat): one tests whether **adaptive perception** can cut a navigating robot's detector compute without costing safety, the other predicts how long a **robot vacuum** takes to clean a home from its floor plan. Both are under journal review, alongside four conference papers in vision and reliable medical AI and eighteen months **in Japan** deploying perception systems at **Othello Financial Services**.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
-    "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
-    "roleResearchSub": "Multi-object tracking, activity recognition & pose estimation · Multimodal vision-language models · Generative modelling & synthetic data · Toward robotics, automation & embedded AI",
+    "availabilityResearch": "Seeking research-based Master's positions in robotics for the 2026-27 intake",
+    "roleResearchSub": "Perception for home service robots · Closed-loop navigation in simulation · Preregistered robot evaluation · Reliable and uncertainty-aware AI · Tracking, activity recognition & pose estimation",
     "focusAreas": [
       "Computer Vision",
       "Real-Time Perception",
+      "Robotics Simulation",
       "Multi-Object Tracking",
       "Activity Recognition",
       "Generative AI",
@@ -34,27 +35,40 @@
     "researchInterestsLine": "Robot perception, embodied AI and intelligent autonomous systems; computer vision (multi-object tracking, activity recognition, pose estimation), multimodal vision-language models and generative models for simulation and robotic learning.",
     "titleResearch": "AI Engineer · Researcher",
     "researchFocusAreas": [
+      "Service Robots",
+      "Robot Navigation",
       "Edge AI",
-      "Robotics & Automation",
       "Perception",
-      "Multi-Object Tracking",
-      "Activity Recognition",
-      "Pose Estimation",
-      "Real-Time Inference"
+      "Simulation (Habitat / HM3D)",
+      "Preregistered Evaluation",
+      "Reliable AI",
+      "Multi-Object Tracking"
     ]
   },
   "news": [
     {
+      "date": "Oct 2026",
+      "text": "Scored an overall band **7.0 in IELTS** (Listening 7.5, Reading 8.0, Writing 6.5, Speaking 6.5)."
+    },
+    {
+      "date": "Oct 2026",
+      "text": "Submitted **“Doorways set the pace of robot vacuum cleaning”**, a preregistered room-graph model tested in 200 scanned homes, to **Robotics and Autonomous Systems**."
+    },
+    {
+      "date": "Oct 2026",
+      "text": "Submitted **“Does learning when to look pay for home service robots?”**, a preregistered closed-loop test of adaptive perception, to **Intelligent Service Robotics**."
+    },
+    {
+      "date": "Oct 2026",
+      "text": "Submitted the journal extension of RGEF, **“Input-conditional uncertainty fusion for skin lesion screening”**, to **Biomedical Signal Processing and Control**."
+    },
+    {
       "date": "Sep 2026",
-      "text": "Presented the the Paper **RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI** at **RAAICON 2026**."
+      "text": "Presented the paper **RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI** at **RAAICON 2026**."
     },
     {
       "date": "Aug 2026",
       "text": "**RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI** accepted at the IEEE International Conference on Robotics, Automation, Artificial-Intelligence and Internet-of-Things (**RAAICON 2026**)."
-    },
-    {
-      "date": "Aug 2026 ",
-      "text": "Submitted **“Foundation-Gated Evidential Fusion for Skin Lesions: Disentangling Acquisition Shift and Semantic Novelty”** to the IEEE Journal of Biomedical and Health Informatics (**J-BHI**)."
     },
     {
       "date": "Jul 2026",
@@ -107,29 +121,29 @@
       "label": "Detection accuracy on custom-trained YOLO models"
     },
     {
-      "value": "4",
-      "label": "Conference papers: 2 published, 1 in press, 1 accepted"
+      "value": "7",
+      "label": "Papers: 4 conference (2 published, 2 in press), 3 journal under review"
     }
   ],
   "researchStatement": [
-    "My published work is all **computer vision**, applied across four different problems: detecting synthetic images, screening for eye disease, classifying rice leaf disease, and fusing evidence for medical AI. Eighteen months at **Othello** added the production side: tracking, pose estimation and activity recognition running on live video, including a first hands-on look at **IoT edge devices** feeding those pipelines.",
-    "The forensic invariant paper looks for cues that survive a change of image generator rather than artefacts a classifier memorises. BD Eye-Doc pairs a vision classifier with a conversational interface for places without a specialist. The rice leaf study compares CNNs, ensembles and **Vision Transformers** under real compute limits. RGEF uses **evidential reliability gating** so a medical AI model can abstain instead of guess.",
-    "What I want to work on next is where **AI meets hardware directly**: robotics, automation and embedded systems, rather than vision applied to static images alone. That means perception under real actuation and control constraints, not just classification accuracy, and I am looking for a research-based Master's in robotics, automation or embedded AI where I can make that shift properly."
+    "My earlier work is **computer vision**, applied across four problems: detecting synthetic images, screening for eye disease, classifying rice leaf disease, and fusing uncertainty for medical AI. Eighteen months at **Othello** added the production side: tracking, pose estimation and activity recognition running on live video, with a first hands-on look at **IoT edge devices**.",
+    "In 2026 I took that perception work onto robots. In **scanned real homes in simulation** (HM3D, Habitat) I ran two **preregistered** studies. The first asks whether a navigating robot can learn when to run its object detector: it cut compute by 85% but missed its safety and success bar, and I report that negative result as it came out. The second predicts how long a **robot vacuum** takes to clean a home from its doorways alone, and was confirmed on 100 homes it had never seen.",
+    "What I want to do next is the same kind of work on **real hardware**: perception that a robot's planner and controller depend on, evaluated in the closed loop rather than by accuracy alone, and tested with the discipline of a preregistration. I am looking for a research-based Master's in robotics where I can move these studies from simulation onto physical robots."
   ],
   "researchAreas": [
     {
       "title": "Edge AI",
-      "desc": "Perception that has to run on the device rather than in a data centre — and the widening gap between how fast models are advancing and how slowly the hardware underneath them is. At Othello, getting models onto **IoT edge devices** feeding real-time vision pipelines was the hard part, and parallel inference optimisation cut processing latency by **~70%** only by trading complexity against a fixed budget. I want to study how far those choices carry under the tighter latency and power constraints of embedded hardware.",
+      "desc": "Perception that has to run on the robot rather than in a data centre. My closed-loop study of **adaptive perception** asked whether a robot can save detector compute by learning when to look; it saved **85%** but lost too much safety, which is the trade-off I want to understand properly. At Othello, getting models onto **IoT edge devices** and cutting latency by **~70%** taught me the same lesson from the deployment side.",
       "next": true
     },
     {
       "title": "Robotics & Automation",
-      "desc": "AI that couples directly to hardware, sensors and real-time control rather than to images alone. My Research Assistant work was empirical Human–Robot Interaction; the ADAS lane and vehicle detection project is perception for a system that has to act; and RGEF's reliability gating is the closest I have come to a model deciding when not to act at all.",
-      "next": true
+      "desc": "Robots whose perception feeds a planner, so a miss shows up as a collision or an unfinished task. My two 2026 studies are in **home service robotics**: adaptive perception for navigation, and a **room-graph model** that predicts robot vacuum cleaning time and where two robots jam at doorways. Both ran in scanned real homes in simulation, under preregistration; earlier I ran empirical **Human–Robot Interaction** studies as a Research Assistant.",
+      "next": false
     },
     {
       "title": "Perception",
-      "desc": "Making sense of a scene reliably enough to act on it, and knowing when that reading cannot be trusted. My four papers come at this from different angles: detecting synthetic imagery through physics-informed invariants, eye disease screening for low-resource clinics, CNNs against Vision Transformers under real compute limits, and evidential gating so a model can abstain instead of guess.",
+      "desc": "Making sense of a scene reliably enough to act on it, and knowing when that reading cannot be trusted. My papers come at this from several angles: physics-informed invariants for synthetic-image detection, eye-disease screening for low-resource clinics, CNNs against Vision Transformers under compute limits, and **uncertainty fusion** that lets a model flag inputs it should not answer.",
       "next": false
     },
     {
@@ -139,6 +153,57 @@
     }
   ],
   "publications": [
+    {
+      "title": "Does learning when to look pay for home service robots? A preregistered test of adaptive perception scheduling in closed-loop navigation",
+      "authors": "**Md Abu Sayeb Rayhan**, Hustagna Hiya, Ajoy Shutra Dhar",
+      "venue": "Intelligent Service Robotics (Springer)",
+      "year": "2026",
+      "tags": [
+        "Springer"
+      ],
+      "status": "Under review",
+      "link": "",
+      "code": "",
+      "note": "Adaptive perception runs a robot's object detector only when and where it seems needed. Tested in a **closed loop** in 25 held-out scanned homes, against twelve baselines in a single **preregistered** run, the learned scheduler cut detector compute by **85%** but reached the goal less often (55.0% vs 79.2%) and collided more, so it **did not meet its success criterion**. Running the cheapest adequate detector on every frame is a strong default.",
+      "contribution": "",
+      "bibkey": "rayhan2026lookpay",
+      "authorRole": "First author",
+      "kind": "journal"
+    },
+    {
+      "title": "Doorways set the pace of robot vacuum cleaning: a parameter-free room-graph model, tested and confirmed in 200 real homes",
+      "authors": "**Md Abu Sayeb Rayhan**, Hustagna Hiya, Ajoy Shutra Dhar",
+      "venue": "Robotics and Autonomous Systems (Elsevier)",
+      "year": "2026",
+      "tags": [
+        "Elsevier"
+      ],
+      "status": "Under review",
+      "link": "",
+      "code": "",
+      "note": "A **room-graph model with no fitted parameters** turns a home's floor plan into a Markov chain over rooms, with exit rates set by the doorways, to predict how long a randomly moving robot vacuum takes to clean it and where two robots jam. Across **17,580 simulated runs** in 200 scanned homes, a second preregistration frozen before 100 unseen homes were downloaded confirmed the refined model (**R² 0.81**) and the door law. Simulation only.",
+      "contribution": "",
+      "bibkey": "rayhan2026doorways",
+      "authorRole": "First author",
+      "kind": "journal"
+    },
+    {
+      "title": "Input-conditional uncertainty fusion for skin lesion screening",
+      "authors": "**Md Abu Sayeb Rayhan**, Hustagna Hiya, Ajoy Shutra Dhar",
+      "venue": "Biomedical Signal Processing and Control (Elsevier)",
+      "year": "2026",
+      "tags": [
+        "Elsevier"
+      ],
+      "status": "Under review",
+      "link": "",
+      "code": "",
+      "note": "Journal extension of RGEF. A gate conditioned on frozen self-supervised features gives each image its own reliability for **eight uncertainty signals** and fuses them as subjective-logic evidence, so a skin-lesion classifier can flag inputs it should not answer. On a deduplicated external archive it reaches **AUROC 0.7946** under acquisition shift, against 0.6945 for static fusion.",
+      "contribution": "",
+      "bibkey": "rayhan2026bspc",
+      "authorRole": "First author",
+      "kind": "journal"
+    },
     {
       "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
       "authors": "**Md Abu Sayeb Rayhan**, Mosammat Fahimah, Md Tarek Mahmud, Hustagna Hiya, Ajoy Shutra Dhar",
@@ -150,10 +215,11 @@
       "status": "In press",
       "link": "",
       "code": "",
-      "note": "Evidential deep learning for medical decision support. **Reliability gating** weights each modality by how trustworthy its evidence is, so the model can abstain rather than guess when its inputs are unreliable.",
+      "note": "Out-of-distribution detection for skin-lesion diagnosis. A learned **reliability gate** weights each uncertainty signal per image and fuses them as evidence, so the model can flag inputs it should not answer instead of returning a confident wrong label.",
       "contribution": "",
       "bibkey": "rayhan2026rgef",
-      "authorRole": "First author"
+      "authorRole": "First author",
+      "kind": "conference"
     },
     {
       "title": "Forensic Invariant Learning for Synthetic Image Detection: Bridging Benford's Law and Topological Analysis with Machine Learning Ensembles",
@@ -170,7 +236,8 @@
       "note": "Detecting AI-generated imagery through **physics-informed invariants** rather than learned artefacts. It combines Benford's Law digit statistics with topological features across a six-model ensemble, targeting cues that survive a change of generator. That is the failure mode most detectors share.",
       "contribution": "",
       "bibkey": "rayhan2026forensic",
-      "authorRole": "First author"
+      "authorRole": "First author",
+      "kind": "conference"
     },
     {
       "title": "BD Eye-Doc: When Computer Vision Meets Conversational AI for Scalable Eye Disease Screening in Bangladesh",
@@ -187,7 +254,8 @@
       "note": "An image-classification pipeline paired with a conversational interface, so screening can reach places where ophthalmologists are scarce. The hard question here is **deployability in low-resource clinical settings** rather than raw accuracy.",
       "contribution": "",
       "bibkey": "rayhan2026bdeyedoc",
-      "authorRole": "Second author"
+      "authorRole": "Second author",
+      "kind": "conference"
     },
     {
       "title": "Is CNN Dead? A Comprehensive Empirical Analysis of Convolutional Neural Networks, Ensemble Methods, and Vision Transformers for Rice Leaf Disease Classification in Low-Resource Agricultural Settings",
@@ -203,10 +271,17 @@
       "note": "A controlled comparison of CNNs, ensembles and **Vision Transformers** under the compute and data constraints that agricultural deployment actually imposes. The strongest architecture on ImageNet is rarely the right choice there.",
       "contribution": "",
       "bibkey": "rayhan2026cnn",
-      "authorRole": "Fourth author"
+      "authorRole": "Fourth author",
+      "kind": "conference"
     }
   ],
   "talks": [
+    {
+      "title": "RGEF: Reliability-Gated Evidential Fusion for Robust Medical AI",
+      "venue": "IEEE RAAICON 2026",
+      "year": "2026",
+      "type": "Conference presentation"
+    },
     {
       "title": "Forensic Invariant Learning for Synthetic Image Detection",
       "venue": "IEEE QPAIN 2026",
@@ -278,6 +353,69 @@
     }
   ],
   "projects": [
+    {
+      "title": "Learning When to Look — adaptive perception for home robots",
+      "date": "2026",
+      "desc": "A preregistered **closed-loop** test of whether a navigating home robot can save detector compute by learning when to run it, where to look and which model size to use. Built in **Habitat** on scanned **HM3D** homes, with obstacles that reach the planner only through the detector.",
+      "impact": "85% less detector compute · success criterion not met · under review at Intelligent Service Robotics",
+      "tags": [
+        "Habitat-sim",
+        "HM3D",
+        "PyTorch",
+        "YOLO",
+        "Python",
+        "Preregistration"
+      ],
+      "role": "First author · design, build and analysis",
+      "link": "",
+      "demo": "",
+      "pages": "both",
+      "categories": [
+        "Robotics",
+        "Research"
+      ],
+      "featured": true,
+      "problem": "Adaptive perception is a popular way to cut a robot's compute, but it is rarely tested where a missed detection costs a collision or an unfinished task.",
+      "details": [
+        "Controller learns **when** to run the detector, with hand-designed rules for **where** to look and which model size to use, a safety shield and an experience memory.",
+        "Navigation stack made to work in real-home scans: a static-map costmap layer, visibility-aware track ageing and floor-grounded obstacles took no-obstacle success from 0.55 to **0.95**.",
+        "Task, validity gates and success criterion fixed in a **preregistration**; the comparison against **twelve baselines** was run once, with 120 paired episodes per policy in 25 held-out homes.",
+        "Reported numbers come only from a certification pipeline that checks code, data and provenance before a result can enter the paper."
+      ],
+      "experiment": "The learned scheduler cut computation by 85% relative to running the heavy detector on every frame, but reached the goal in 55.0% of episodes against 79.2%, and collided in 8.3% against 0.8% for the light detector on every frame. The preregistered criterion was not met, and the paper reports it that way.",
+      "researchNote": "My first robotics study, and a negative result I am glad to have: for a home robot, running the cheapest adequate detector on every frame is a strong default to beat."
+    },
+    {
+      "title": "HomeClean — doorways and robot vacuum cleaning",
+      "date": "2026",
+      "desc": "A **parameter-free room-graph model** that predicts how long a robot vacuum takes to clean a home from its floor plan, and where two robots obstruct each other. Tested in a simulation benchmark of **200 scanned homes** with clutter, five cleaning strategies and two-robot teams.",
+      "impact": "17,580 simulated runs · R² 0.81 on 100 unseen homes · under review at Robotics and Autonomous Systems",
+      "tags": [
+        "Habitat-sim",
+        "HM3D",
+        "Markov chains",
+        "Python",
+        "Preregistration"
+      ],
+      "role": "First author · design, build and analysis",
+      "link": "",
+      "demo": "",
+      "pages": "both",
+      "categories": [
+        "Robotics",
+        "Research"
+      ],
+      "featured": true,
+      "problem": "Nobody can yet say from a floor plan how long a randomly moving robot vacuum will take, or where two robots in the same home will get in each other's way.",
+      "details": [
+        "Turns a home's geometry into a **Markov chain over rooms**: exit rates from a billiard door law, per-point cleaning rates from Crofton's formula, no fitted parameters.",
+        "First preregistered study on 100 homes: the door law held (slope **0.86**) and the model ranked homes well, but predicted cleaning faster than simulated.",
+        "Diagnosed the gap — clutter makes visits to a spot come in bursts — and fixed it with two corrections from the same billiard picture.",
+        "A **second preregistration**, frozen before 100 unseen homes were downloaded, confirmed the refined model, replicated the door law and showed a vacuum and a delivery robot jam at the doors delivery routes use most."
+      ],
+      "experiment": "Five cleaning strategies and two-robot teams were simulated in 200 scanned homes (17,580 runs). On the 100 unseen homes the refined model reached R² 0.81, near the ceiling set by run-to-run variation. It describes robots that bounce; for Roomba-like robots it ranks homes but misjudges absolute times.",
+      "researchNote": "Theory checked against a large simulated benchmark, twice preregistered, with the failed predictions reported next to the ones that held."
+    },
     {
       "title": "eGP AutoPilot",
       "date": "2026",
@@ -580,7 +718,7 @@
         "Python"
       ],
       "role": "Solo project",
-      "link": "https://github.com/abusayeb/paper-summarizer-chatbot",
+      "link": "",
       "demo": "",
       "pages": "industry",
       "categories": [
@@ -727,6 +865,11 @@
       "research": true
     },
     {
+      "label": "Robotics & evaluation",
+      "items": "Habitat-sim · HM3D · Closed-loop navigation · Costmaps & local planning · Markov-chain modelling · Preregistration · Friedman / Holm-corrected tests · Reproducible result pipelines",
+      "research": true
+    },
+    {
       "label": "Programming",
       "items": "Python (advanced) · C/C++ · SQL · Java",
       "research": true
@@ -748,7 +891,7 @@
     },
     {
       "label": "Languages",
-      "items": "Bangla (native) · English (professional fluency) · Japanese (conversational, studying toward N3)",
+      "items": "Bangla (native) · English (IELTS 7.0: Listening 7.5, Reading 8.0, Writing 6.5, Speaking 6.5) · Japanese (conversational, studying toward N3)",
       "research": true
     }
   ],
@@ -777,12 +920,12 @@
     {
       "area": "Edge AI",
       "q": "Models are advancing far faster than the hardware meant to run them. What gives first?",
-      "a": "AI moves quickly; the silicon it has to run on does not, and that gap is getting wider rather than narrower. At **Othello** it was the daily problem — getting the models onto **edge devices** at all was a real challenge, and parallel inference optimisation only bought its **~70%** latency reduction by trading model complexity against a fixed processing budget. Retail video is a generous budget next to a robot. I want to study where that trade-off breaks as the gap widens, and whether the architectural choices that worked there still apply under the far tighter latency and power constraints of an embedded platform."
+      "a": "My closed-loop study gave a first, uncomfortable answer: safety goes first. A robot that learned when to run its detector saved **85%** of the compute but reached its goal less often and collided more than one that simply ran a small detector on every frame. At **Othello** the same squeeze showed up as getting models onto **edge devices** at all, where parallel inference bought a **~70%** latency cut only by trading complexity against a fixed budget. I want to find the conditions under which skipping perception is actually safe, and test them on real embedded hardware rather than in simulation."
     },
     {
       "area": "Robotics & Automation",
       "q": "Can a model's own uncertainty drive a robot's actions, not just flag them?",
-      "a": "RGEF stops at weighting and abstaining on a single decision. The useful extension is whether that same evidential state can feed a control loop directly: slowing a system down, triggering a sensor check, or handing off to a human, in real time rather than as an offline diagnostic. That is what turns reliability estimation into a control problem."
+      "a": "RGEF and its journal extension stop at flagging a single decision. My adaptive-perception study showed what happens when a robot's choice of when to look is not tied to how sure it is: the misses turned into collisions. The extension I want to work on is feeding that evidential state into the control loop directly — slowing down, looking again or handing off to a human, in real time rather than as an offline diagnostic."
     },
     {
       "area": "Perception",
@@ -797,8 +940,8 @@
   ],
   "quickFacts": [
     {
-      "k": "4",
-      "v": "conference papers — 2 published (IEEE Xplore, Scopus), 1 in press (Springer), 1 accepted (IEEE RAAICON)"
+      "k": "7",
+      "v": "papers — 4 conference (2 in IEEE Xplore, 2 in press) and 3 first-author journal papers under review (Springer, Elsevier)"
     },
     {
       "k": "Best Presenter",
@@ -822,12 +965,12 @@
     {
       "stage": "Research experience",
       "title": "Turning those problems into peer-reviewed work",
-      "body": "Research Assistant at **Comilla University** under Partha Chakraborty, running empirical studies in **Human–Robot Interaction** and OCR — dataset design, experimental protocol and quantitative analysis — with results incorporated into peer-reviewed conference publications. Four conference papers followed: two published in **IEEE Xplore**, one in press with **Springer Nature** and one accepted at **IEEE RAAICON 2026**, alongside a **Best Presenter Award at IEEE QPAIN 2026**."
+      "body": "Research Assistant at **Comilla University** under Partha Chakraborty, running empirical studies in **Human–Robot Interaction** and OCR. Four conference papers followed — two in **IEEE Xplore**, two in press — with a **Best Presenter Award at IEEE QPAIN 2026**. In 2026 I led two **preregistered robotics studies** in simulated real homes and the journal version of RGEF; all three are first-author and under review at **Intelligent Service Robotics**, **Robotics and Autonomous Systems** and **Biomedical Signal Processing and Control**."
     },
     {
       "stage": "Future graduate research",
-      "title": "Perception that stays reliable when conditions change",
-      "body": "I am seeking a **research-based Master's for the 2026-27 intake**. The thread I want to pull on runs through work I have already done: **evidential reliability gating** that lets a model abstain rather than guess, **invariants that survive a change of sensor or generator**, and how both behave under the latency and power budgets of embedded and robotic platforms."
+      "title": "Moving robot perception from simulation onto hardware",
+      "body": "I am seeking a **research-based Master's in robotics for the 2026-27 intake**. The thread runs through work I have already done: **closed-loop evaluation** of perception on home robots, **uncertainty** that tells a system when not to trust its own reading, and how both hold up under the latency and power budgets of real embedded platforms."
     }
   ]
 }
