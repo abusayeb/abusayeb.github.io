@@ -20,7 +20,7 @@
     "summaryResearch": "I am a computer-vision researcher whose work spans **reliable medical AI**, **video understanding**, **robot perception**, **generative models and image forensics**, and **vision for low-resource settings**. I have four conference papers and three first-author journal papers under review, from **uncertainty fusion** that lets a skin-lesion classifier flag inputs it should not answer, to two **preregistered studies of home service robots** in scanned real homes. Behind that is eighteen months **in Japan** deploying tracking, pose and activity-recognition systems at **Othello Financial Services**.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
-    "availabilityResearch": "Seeking research-based Master's positions for the 2026-27 intake",
+    "availabilityResearch": "Seeking funded research-based Master's or PhD positions for the 2026-27 intake",
     "roleResearchSub": "Reliable & uncertainty-aware AI · Video understanding: tracking, activity & pose · Robot perception & navigation · Generative models & image forensics · Vision and language for low-resource settings · Edge AI",
     "focusAreas": [
       "Computer Vision",
@@ -77,7 +77,7 @@
     },
     {
       "date": "Jul 2026",
-      "text": "Looking for **research-based Master's positions** for the 2026-27 intake."
+      "text": "Looking for **research-based Master's or PhD positions** for the 2026-27 intake."
     },
     {
       "date": "Apr 2026",
@@ -129,7 +129,7 @@
   "researchStatement": [
     "My research is **computer vision**, and the question that runs through it is whether a model's output can be trusted where it is actually used. I have come at that from several directions: **uncertainty fusion** for skin-lesion screening, **physics-informed invariants** for detecting AI-generated images, eye-disease screening and rice-leaf classification for **low-resource settings**, and, in 2026, **perception for home service robots** in scanned real homes.",
     "Industry gave the same question a deadline. At **Othello** in Japan I built multi-object tracking, pose estimation and activity recognition on live video, where a model has to hold up against messy data and a fixed latency budget. That experience shaped how I run research now: the robot studies were **preregistered**, evaluated in the closed loop rather than by accuracy alone, and one of them is reported as the negative result it turned out to be.",
-    "For a Master's I am open to several of these threads rather than one: **reliable and uncertainty-aware vision**, **video understanding**, **robot and embodied perception**, and **generative models**. What I want from any of them is the same — methods that stay dependable under distribution shift and real deployment constraints, tested honestly."
+    "For a Master's or PhD I am open to several of these threads rather than one: **reliable and uncertainty-aware vision**, **video understanding**, **robot and embodied perception**, and **generative models**. What I want from any of them is the same — methods that stay dependable under distribution shift and real deployment constraints, tested honestly."
   ],
   "researchAreas": [
     {
@@ -1110,7 +1110,7 @@
     {
       "stage": "Future graduate research",
       "title": "Dependable perception, wherever it is deployed",
-      "body": "I am seeking a **research-based Master's for the 2026-27 intake**, and I am open to several of the threads I have already worked on: **reliable and uncertainty-aware vision**, **video understanding**, **robot perception** and **generative models**. The common aim is perception that stays trustworthy under distribution shift and the latency and power budgets of real systems."
+      "body": "I am seeking a **research-based Master's or PhD for the 2026-27 intake**, and I am open to several of the threads I have already worked on: **reliable and uncertainty-aware vision**, **video understanding**, **robot perception** and **generative models**. The common aim is perception that stays trustworthy under distribution shift and the latency and power budgets of real systems."
     }
   ]
 }

@@ -809,8 +809,8 @@
     /* ---- research direction ---- */
     if ((d.futureDirections || []).length) {
       S.direction = function () { return section('direction', '',
-        head('direction', 'Proposed Master’s research',
-          'What I want to investigate during a Master’s — one question for each of the ' +
+        head('direction', 'Proposed graduate research',
+          'What I want to investigate in a Master’s or PhD — one question for each of the ' +
           'threads above that I most want to take further. Each extends something I have ' +
           'already built rather than starting from scratch.',
           d.futureDirections.length + ' questions') +
