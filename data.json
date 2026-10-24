@@ -13,6 +13,7 @@
     "github": "https://github.com/abusayeb",
     "scholar": "https://scholar.google.com/citations?user=XKZF8K4AAAAJ&hl=en",
     "orcid": "",
+    "researchgate": "https://www.researchgate.net/profile/Md-Abu-Sayeb-Rayhan",
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
     "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",

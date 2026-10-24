@@ -541,6 +541,7 @@
             '<span>✉ <a href="mailto:' + esc(mail) + '">' + esc(mail) + '</a></span>' +
             (P.scholar ? '<span><a ' + linkAttrs(P.scholar) + '>Google Scholar</a></span>' : '') +
             (P.orcid ? '<span><a ' + linkAttrs(P.orcid) + '>ORCID</a></span>' : '') +
+            (P.researchgate ? '<span><a ' + linkAttrs(P.researchgate) + '>ResearchGate</a></span>' : '') +
             '<span><a ' + linkAttrs(P.linkedin) + '>LinkedIn</a></span>' +
             '<span><a ' + linkAttrs(P.github) + '>GitHub</a></span>' +
           '</div>' +
@@ -899,6 +900,8 @@
             '<span class="k">Scholar</span><span class="v">Google Scholar</span></a>' : '') +
           (P.orcid ? '<a class="contact-row" ' + linkAttrs(P.orcid) + '>' +
             '<span class="k">ORCID</span><span class="v">ORCID record</span></a>' : '') +
+          (P.researchgate ? '<a class="contact-row" ' + linkAttrs(P.researchgate) + '>' +
+            '<span class="k">ResearchGate</span><span class="v">Md-Abu-Sayeb-Rayhan</span></a>' : '') +
           '<a class="contact-row" ' + linkAttrs(P.linkedin) + '>' +
             '<span class="k">LinkedIn</span><span class="v">md-abu-sayeb-rayhan</span></a>' +
           '<a class="contact-row" ' + linkAttrs(P.github) + '>' +
