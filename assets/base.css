@@ -971,6 +971,23 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   }
 }
 
+/* ---------------------------------------------------------------- focus */
+
+/* ?focus= on the research page: a note under the hero, and the related
+   cards outlined in the accent colour. */
+.focus-bar{background:var(--accent-dim);border-block:1px solid var(--accent-line)}
+.focus-in{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:.6rem 1.75rem;padding-block:clamp(.9rem,1.6vw,1.25rem);
+}
+.focus-in p{margin:0;color:var(--text);line-height:1.6}
+.focus-in .eyebrow{margin-right:.5rem}
+.focus-links{display:flex;flex-wrap:wrap;gap:1.25rem}
+.area.is-focus,.pub.is-focus,.proj.is-focus,.qa-item.is-focus{
+  border-color:var(--accent-line);
+  box-shadow:0 0 0 1px var(--accent-line),0 14px 34px -22px var(--glow);
+}
+
 /* --------------------------------------------------------------- reveal */
 
 /* Hidden only once JavaScript has marked the page (html.js), so the

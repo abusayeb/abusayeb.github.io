@@ -132,34 +132,82 @@
   ],
   "researchAreas": [
     {
+      "key": "reliable",
       "title": "Reliable & uncertainty-aware AI",
       "desc": "Knowing when a model should not be trusted. **RGEF** (IEEE RAAICON 2026) and its journal extension fuse **eight uncertainty signals** with a per-image reliability gate, so a skin-lesion classifier can flag inputs from outside its training distribution instead of returning a confident wrong label — and the conference paper reports the smartphone dataset where it barely helps.",
-      "next": false
+      "next": false,
+      "papers": [
+        "rayhan2026rgef",
+        "rayhan2026bspc"
+      ],
+      "projects": [
+        "RGEF — knowing when not to answer in skin-lesion screening"
+      ]
     },
     {
+      "key": "video",
       "title": "Video understanding: tracking, activity & pose",
       "desc": "Multi-object tracking, human activity recognition and pose estimation on live video. Built and shipped in production at **Othello** (ByteTrack, MoveNet, MMAction2), extended to sports highlight detection and then to unconstrained user video, where models tuned for one setting had to survive a change of domain.",
-      "next": false
+      "next": false,
+      "papers": [],
+      "projects": [
+        "Real-Time In-Store Behaviour Analytics",
+        "Sports NFT Generation System",
+        "Universal NFT Generation Platform"
+      ]
     },
     {
+      "key": "robotics",
       "title": "Robot perception & navigation",
       "desc": "Perception whose mistakes become collisions. Two **preregistered** 2026 studies in scanned real homes: whether a navigating robot can learn when to run its detector (it saved 85% of compute but missed its safety bar), and a **room-graph model** that predicts robot-vacuum cleaning time from a floor plan, confirmed on 100 unseen homes.",
-      "next": false
+      "next": false,
+      "papers": [
+        "rayhan2026lookpay",
+        "rayhan2026doorways"
+      ],
+      "projects": [
+        "Learning When to Look — adaptive perception for home robots",
+        "HomeClean — doorways and robot vacuum cleaning",
+        "ADAS Lane & Vehicle Detection"
+      ]
     },
     {
+      "key": "generative",
       "title": "Generative models & image forensics",
       "desc": "Both sides of image generation. My bachelor's thesis fine-tuned **Stable Diffusion** on Bangladeshi landmarks; my first-author QPAIN paper turned the problem around, detecting AI-generated images through **Benford's-law and topological invariants** that survive a change of generator.",
-      "next": false
+      "next": false,
+      "papers": [
+        "rayhan2026forensic"
+      ],
+      "projects": [
+        "Text-to-Image Generation using Diffusion Models"
+      ]
     },
     {
+      "key": "lowresource",
       "title": "Vision & language for low-resource settings",
       "desc": "AI where specialists, data and compute are scarce: **BD Eye-Doc** pairs eye-disease classification with a conversational interface for clinics without ophthalmologists; the rice-leaf study tests CNNs against Vision Transformers under real compute limits; and a **Bangla–English OCR and retrieval** system shipped for a government project.",
-      "next": false
+      "next": false,
+      "papers": [
+        "shutradhar2026bdeyedoc",
+        "dhar2026cnn"
+      ],
+      "projects": [
+        "Context Searcher"
+      ]
     },
     {
+      "key": "edge",
       "title": "Edge AI & efficient perception",
       "desc": "Getting perception to fit the hardware. Parallel inference cut latency by **~70%** on Othello's live pipelines, and my adaptive-perception study measured what skipping detector calls costs a robot. The open question is when saving compute is actually safe.",
-      "next": false
+      "next": false,
+      "papers": [
+        "rayhan2026lookpay"
+      ],
+      "projects": [
+        "Real-Time In-Store Behaviour Analytics",
+        "Learning When to Look — adaptive perception for home robots"
+      ]
     }
   ],
   "publications": [
@@ -1001,27 +1049,32 @@
     {
       "area": "Reliable & uncertainty-aware AI",
       "q": "Can a screening model tell a new camera from a new disease?",
-      "a": "RGEF flags inputs it should not answer, but a single uncertainty score mixes two very different causes: an image from an unfamiliar device or clinic (**acquisition shift**) and a lesion type the model has never seen (**semantic novelty**). The first calls for recalibration; the second for a specialist. Conditioning the gate on frozen self-supervised features is a first step toward separating them, and the conference version's weakest dataset, smartphone images in PAD-UFES-20, shows how far there is to go. I want to make that separation explicit and test it across institutions."
+      "a": "RGEF flags inputs it should not answer, but a single uncertainty score mixes two very different causes: an image from an unfamiliar device or clinic (**acquisition shift**) and a lesion type the model has never seen (**semantic novelty**). The first calls for recalibration; the second for a specialist. Conditioning the gate on frozen self-supervised features is a first step toward separating them, and the conference version's weakest dataset, smartphone images in PAD-UFES-20, shows how far there is to go. I want to make that separation explicit and test it across institutions.",
+      "focus": "reliable"
     },
     {
       "area": "Video understanding",
       "q": "Does activity recognition survive the move from a fixed camera to one that moves?",
-      "a": "Everything I have built for tracking, activity recognition and pose estimation assumed a camera that stays put: **ByteTrack**, **MoveNet** and **MMAction2** running on live retail video, with OPTICS clustering on top of the pose output. A robot carries its own camera, so ego-motion, a shifting viewpoint and self-occlusion all arrive at once. I want to know how much of that pipeline transfers and which parts have to be rebuilt rather than retuned. The closest thing I have to a first answer is the Universal NFT work, where models tuned on one controlled setting had to hold up on unconstrained user video."
+      "a": "Everything I have built for tracking, activity recognition and pose estimation assumed a camera that stays put: **ByteTrack**, **MoveNet** and **MMAction2** running on live retail video, with OPTICS clustering on top of the pose output. A robot carries its own camera, so ego-motion, a shifting viewpoint and self-occlusion all arrive at once. I want to know how much of that pipeline transfers and which parts have to be rebuilt rather than retuned. The closest thing I have to a first answer is the Universal NFT work, where models tuned on one controlled setting had to hold up on unconstrained user video.",
+      "focus": "video"
     },
     {
       "area": "Robot perception & navigation",
       "q": "Can a model's own uncertainty drive a robot's actions, not just flag them?",
-      "a": "RGEF and its journal extension stop at flagging a single decision. My adaptive-perception study showed what happens when a robot's choice of when to look is not tied to how sure it is: the misses turned into collisions. The extension I want to work on is feeding that evidential state into the control loop directly — slowing down, looking again or handing off to a human, in real time rather than as an offline diagnostic."
+      "a": "RGEF and its journal extension stop at flagging a single decision. My adaptive-perception study showed what happens when a robot's choice of when to look is not tied to how sure it is: the misses turned into collisions. The extension I want to work on is feeding that evidential state into the control loop directly — slowing down, looking again or handing off to a human, in real time rather than as an offline diagnostic.",
+      "focus": "robotics"
     },
     {
       "area": "Generative models & image forensics",
       "q": "What perceptual structure survives when the sensor or hardware changes?",
-      "a": "The forensic invariant work looked for cues that persist across different image generators. The same question applies to a robot or embedded system moving between cameras, lighting conditions and constrained onboard compute. I want to know how far that invariant-seeking approach carries over from detecting synthetic images to holding perception steady on real hardware in the field."
+      "a": "The forensic invariant work looked for cues that persist across different image generators. The same question applies to a robot or embedded system moving between cameras, lighting conditions and constrained onboard compute. I want to know how far that invariant-seeking approach carries over from detecting synthetic images to holding perception steady on real hardware in the field.",
+      "focus": "generative"
     },
     {
       "area": "Edge AI & efficient perception",
       "q": "Models are advancing far faster than the hardware meant to run them. What gives first?",
-      "a": "My closed-loop study gave a first, uncomfortable answer: safety goes first. A robot that learned when to run its detector saved **85%** of the compute but reached its goal less often and collided more than one that simply ran a small detector on every frame. At **Othello** the same squeeze showed up as getting models onto **edge devices** at all, where parallel inference bought a **~70%** latency cut only by trading complexity against a fixed budget. I want to find the conditions under which skipping perception is actually safe, and test them on real embedded hardware rather than in simulation."
+      "a": "My closed-loop study gave a first, uncomfortable answer: safety goes first. A robot that learned when to run its detector saved **85%** of the compute but reached its goal less often and collided more than one that simply ran a small detector on every frame. At **Othello** the same squeeze showed up as getting models onto **edge devices** at all, where parallel inference bought a **~70%** latency cut only by trading complexity against a fixed budget. I want to find the conditions under which skipping perception is actually safe, and test them on real embedded hardware rather than in simulation.",
+      "focus": "edge"
     }
   ],
   "quickFacts": [

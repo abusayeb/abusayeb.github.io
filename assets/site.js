@@ -19,6 +19,10 @@
   var PAGE = BODY.dataset.page || 'industry';
   var BASE = BODY.dataset.base || '';           // '' on the root page, '../' under /research/
   var REDUCED = HAS_DOM && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ?focus=reliable|video|robotics|generative|lowresource|edge on the research
+     page puts that thread's papers, projects and question first and marks them,
+     so each email to a supervisor can carry a link that opens on their area. */
+  var FOCUS = HAS_DOM ? String(new URLSearchParams(location.search).get('focus') || '').toLowerCase() : '';
 
   /* ------------------------------------------------------------- helpers */
 
@@ -203,7 +207,7 @@
         '<p>' + rich(p.researchNote) + '</p>');
     }
 
-    return '<article class="proj' + (p.featured ? ' is-featured' : '') + '"' +
+    return '<article class="proj' + (p.featured ? ' is-featured' : '') + (opts.focus ? ' is-focus' : '') + '"' +
         ' data-cats="' + esc(cats.join('|')) + '" data-reveal>' +
       '<div class="proj-head">' +
         '<h3 class="proj-title">' + title + '</h3>' +
@@ -499,6 +503,15 @@
     var mail = P.emailAcademic || P.email;
 
     var focus = (P.researchFocusAreas || []);
+    var FA = (d.researchAreas || []).filter(function (a) { return a.key && a.key === FOCUS; })[0] || null;
+    function inFocus(list, v) { return !!FA && (FA[list] || []).indexOf(v) > -1; }
+    /* stable: items that pass the test move to the front, order kept otherwise */
+    function focusFirst(arr, test) {
+      if (!FA) return arr;
+      return arr.map(function (x, i) { return [x, i]; }).sort(function (a, b) {
+        return (test(b[0]) - test(a[0])) || (a[1] - b[1]);
+      }).map(function (x) { return x[0]; });
+    }
     var abroad = (d.experience || []).filter(function (e) {
       return e.kind !== 'research' && e.location && e.location !== P.location;
     })[0] || null;
@@ -544,6 +557,17 @@
         '</div>' +
       '</div></div>' +
     '</header>');
+
+    if (FA) {
+      out.push('<div class="focus-bar" role="note"><div class="shell focus-in">' +
+        '<p><span class="eyebrow">Focus</span> <b>' + esc(FA.title) + '</b>: the related ' +
+        'papers, projects and research question are listed first and outlined.</p>' +
+        '<div class="focus-links">' +
+          ((FA.papers || []).length ? '<a class="btn-link" href="#publications">Papers ↓</a>' : '') +
+          '<a class="btn-link" href="#projects">Projects ↓</a>' +
+          '<a class="btn-link" href="./">Show everything</a>' +
+        '</div></div></div>');
+    }
 
     /* ---- profile at a glance (full-bleed) ---- */
     if ((d.quickFacts || []).length) {
@@ -639,12 +663,13 @@
          own heading, the way an academic CV separates them. */
       (function () {
         var bib = 0, all = sortPubs(d.publications);
-        var done = all.filter(function (p) { return pubState(p) !== 'review'; });
-        var review = all.filter(function (p) { return pubState(p) === 'review'; });
+        var isF = function (p) { return inFocus('papers', p.bibkey); };
+        var done = focusFirst(all.filter(function (p) { return pubState(p) !== 'review'; }), isF);
+        var review = focusFirst(all.filter(function (p) { return pubState(p) === 'review'; }), isF);
         function card(p) {
           var i = bib++;
           var t = '<a href="' + paperHref(p) + '">' + esc(p.title) + '</a>';
-          return '<article class="pub" data-state="' + pubState(p) + '" data-reveal>' +
+          return '<article class="pub' + (isF(p) ? ' is-focus' : '') + '" data-state="' + pubState(p) + '" data-reveal>' +
             '<h3 class="pub-title">' + t + '</h3>' +
             ((p.authors || p.authorRole)
               ? '<p class="pub-authors">' + (p.authors ? rich(p.authors) : '') +
@@ -729,6 +754,7 @@
     rel = rel.map(function (p, i) { return [p, i]; }).sort(function (a, b) {
       return (researchRank(a[0]) - researchRank(b[0])) || (a[1] - b[1]);
     }).map(function (x) { return x[0]; });
+    rel = focusFirst(rel, function (p) { return inFocus('projects', p.title); });
     S.projects = function () { return section('projects', 'section--band',
       head('projects', 'Research projects',
         'Selected for what they evidence rather than for scale. Open a case study for ' +
@@ -737,7 +763,9 @@
         rel.length + ' projects') +
       filterBar(rel) +
       '<div class="projects" id="projGrid">' +
-        rel.map(function (p) { return projectCard(p, { researchNote: true, academic: true }); }).join('') +
+        rel.map(function (p) {
+          return projectCard(p, { researchNote: true, academic: true, focus: inFocus('projects', p.title) });
+        }).join('') +
       '</div>' +
       '<p class="sec-sub" id="projEmpty" hidden>No projects in this area yet.</p>'); };
 
@@ -760,9 +788,9 @@
             '</div>' +
           '</div>'
         : '') +
-      '<div class="areas">' + (d.researchAreas || []).map(function (a, i) {
+      '<div class="areas">' + focusFirst(d.researchAreas || [], function (a) { return a === FA; }).map(function (a, i) {
         var n = (i + 1 < 10 ? '0' : '') + (i + 1);
-        return '<article class="area' + (a.next ? ' is-next' : '') + '" data-reveal>' +
+        return '<article class="area' + (a.next ? ' is-next' : '') + (a === FA ? ' is-focus' : '') + '" data-reveal>' +
           '<span class="area-n">' + n + (a.next ? ' · DIRECTION' : '') + '</span>' +
           '<h3>' + esc(a.title) + '</h3><p>' + rich(a.desc) + '</p></article>';
       }).join('') + '</div>'); };
@@ -781,12 +809,12 @@
     if ((d.futureDirections || []).length) {
       S.direction = function () { return section('direction', '',
         head('direction', 'Proposed Master’s research',
-          'What I want to investigate during a Master’s — one question per research ' +
-          'interest above. Each extends something I have already built rather than ' +
-          'starting from scratch.',
+          'What I want to investigate during a Master’s — one question for each of the ' +
+          'threads above that I most want to take further. Each extends something I have ' +
+          'already built rather than starting from scratch.',
           d.futureDirections.length + ' questions') +
-        '<div class="qa">' + d.futureDirections.map(function (f) {
-          return '<article class="qa-item" data-reveal>' +
+        '<div class="qa">' + focusFirst(d.futureDirections, function (f) { return !!FA && f.focus === FA.key; }).map(function (f) {
+          return '<article class="qa-item' + (FA && f.focus === FA.key ? ' is-focus' : '') + '" data-reveal>' +
             (f.area ? '<span class="qa-area">' + esc(f.area) + '</span>' : '') +
             '<h3 class="qa-q">' + rich(f.q) + '</h3>' +
             '<p class="qa-a">' + rich(f.a) + '</p></article>';
@@ -898,7 +926,7 @@
     var app = $('app'), P = r.P, sum = dataSum(d);
     document.title = r.title;
     $('brandName').innerHTML = r.brand;
-    if (app.getAttribute('data-sum') !== sum) {
+    if (FOCUS || app.getAttribute('data-sum') !== sum) {
       app.innerHTML = r.html;
       app.setAttribute('data-sum', sum);
     }
@@ -1206,7 +1234,7 @@
   if (!HAS_DOM) {
     module.exports = {
       build: function (d, page, base) {
-        PAGE = page; BASE = base || ''; secN = 0;
+        PAGE = page; BASE = base || ''; secN = 0; FOCUS = '';
         var r = page === 'research' ? renderResearch(d) : renderIndustry(d);
         r.sum = dataSum(d);
         return r;
