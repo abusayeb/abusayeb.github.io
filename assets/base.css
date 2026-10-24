@@ -1028,3 +1028,106 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   .contact-row .v{text-align:left}
   .foot-in{flex-direction:column;align-items:flex-start}
 }
+
+/* ---------------------------------------------------------------- print */
+
+/* The research page prints as a short, ink-friendly summary for application
+   files: who I am, experience, publications, education and interests. Media,
+   navigation, case studies and narrative sections are left to the web page. */
+@media print{
+  @page{size:A4;margin:10mm 12mm}
+  /* html:root outranks the page's own :root colour block, which loads after this file */
+  html:root{
+    --bg:#fff;--bg-2:#fff;--card:#fff;--card-2:#fff;--line:#d5d9e0;--line-2:#c4c9d2;
+    --text:#111;--muted:#2b2f36;--dim:#555;--soft:#2b2f36;
+    --accent:#1F3A5F;--accent-2:#1F3A5F;--accent-dim:transparent;--accent-line:#9aa8bb;
+  }
+  html{font-size:8.2pt}
+  body{background:#fff!important;color:#111}
+  *,*::before,*::after{box-shadow:none!important;text-shadow:none!important;animation:none!important;transition:none!important}
+  .js [data-reveal],[data-reveal]{opacity:1!important;transform:none!important}
+  a{color:inherit;text-decoration:none}
+  .grad{background:none!important;-webkit-text-fill-color:#1F3A5F!important;color:#1F3A5F!important}
+  .hero::before,.hero::after{display:none!important}
+  .hero h1 .grad::before{content:" "}
+  /* print drops the card padding, so rounded clipping would cut the first letters */
+  .proj,.tl-item,.pub,.area,.card,.edu-card,.qa-item,.stat,.stats{border-radius:0!important;overflow:visible!important}
+
+  /* leave out what does not work on paper */
+  .nav,.skip,.hero-viz,canvas,.hero-cta,.hero-badge,.portrait,.focus-bar,.filters,#projEmpty,
+  .case,.proj-foot,.bib,.bib-btn,.foot,.load-state,video,.sec-aside,.sec-sub,.stat:hover{display:none!important}
+  body[data-page="research"] :is(#news,#profile,#skills,#direction,#contact,#achievements,#projects){display:none!important}
+  body[data-page="research"] .statement,
+  body[data-page="research"] #engineering .stats,
+  body[data-page="research"] #engineering .grid-auto,
+  body[data-page="research"] #engineering .eyebrow + .grid-auto,
+  body[data-page="research"] #engineering h3.eyebrow{display:none!important}
+
+  /* density */
+  .shell{max-width:none!important;padding-inline:0!important;width:100%!important}
+  .section,.stats-band{padding-block:.45rem!important;background:#fff!important;border:0!important}
+  .section--band{background:#fff!important}
+  .sec-head{margin-bottom:.4rem!important;padding:0!important;display:block!important}
+  .sec-head .eyebrow{display:none}
+  .sec-title{font-size:11.5pt!important;margin:0!important;padding-bottom:.15rem;border-bottom:1.5px solid #1F3A5F;color:#1F3A5F}
+  .hero{min-height:0!important;padding:0 0 .3rem!important;background:#fff!important}
+  .hero-grid{display:block!important;min-height:0!important}
+  .hero h1{font-size:19pt!important;line-height:1.1;margin:0}
+  .hero h1 br{display:none}
+  .hero-role{font-size:10pt!important;margin:.15rem 0 0!important}
+  .hero-lead{font-size:9.5pt!important;margin:.15rem 0 .3rem!important}
+  .hero-focus{display:none!important}
+  .hero-desc{font-size:8.8pt!important;margin:.3rem 0!important;max-width:none!important}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:.2rem 1rem;font-size:8.2pt;margin-top:.3rem!important}
+  .chip{border:1px solid #c4c9d2!important;background:#fff!important;color:#2b2f36!important;padding:.05rem .4rem!important;font-size:7.4pt!important}
+  .kw{color:#111!important;font-weight:700}
+
+  .stats{border:1px solid #d5d9e0!important;grid-template-columns:repeat(4,1fr)!important}
+  .stat{padding:.35rem .5rem!important;background:#fff!important}
+  .stat-n{font-size:12pt!important;margin-bottom:.1rem!important;color:#1F3A5F!important}
+  .stat-l{font-size:7.6pt!important;max-width:none!important}
+
+  .areas{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:.35rem .8rem!important}
+  .area{padding:0!important;border:0!important;background:none!important;min-height:0!important;margin:0!important}
+  .area-n{display:none}
+  .area h3{font-size:8.8pt!important;margin:0 0 .1rem!important;color:#1F3A5F}
+  .area p{display:none!important}
+  .areas{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .area h3 br{display:none}
+
+  .timeline{gap:.4rem!important}
+  .tl-where{display:none!important}
+  .tl-item{grid-template-columns:5.6rem 1fr!important;gap:.6rem!important;padding:0!important;border:0!important;background:none!important}
+  .tl-item::before{display:none}
+  .tl-role{font-size:9pt!important}
+  .tl-org,.tl-when,.tl-where{font-size:7.8pt!important}
+  .bullets li{font-size:7.7pt!important;line-height:1.35!important;margin:0!important}
+
+  #publications h3.eyebrow{display:block;font-size:7.6pt;margin:.25rem 0 .2rem!important;color:#555}
+  .pubs{display:block!important}
+  .pub{padding:.15rem 0 .25rem!important;border:0!important;border-bottom:1px solid #e3e6eb!important;background:none!important;break-inside:avoid}
+  .pub-title{font-size:8.8pt!important;line-height:1.3!important}
+  .pub-authors,.pub-venue{font-size:7.8pt!important;margin:.05rem 0!important}
+  .pub-meta{margin:.1rem 0 0!important;gap:.25rem!important}
+  .pub-note,.pub-contrib{display:none!important}
+
+  .projects{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:.15rem .9rem!important}
+  .proj{padding:.2rem 0!important;border:0!important;border-bottom:1px solid #e3e6eb!important;background:none!important;break-inside:avoid;grid-column:auto!important}
+  .proj-head{margin:0!important}
+  .proj-title{font-size:8.6pt!important}
+  .proj-when,.proj-role{display:none!important}
+  .proj-desc,.proj .chips{display:none!important}
+  .proj-impact{font-size:7.4pt!important;font-weight:500!important;color:#2b2f36!important;margin:0!important;padding:0!important;border:0!important;background:none!important}
+  .proj-title br{display:none}
+
+  .split{display:grid!important;grid-template-columns:1.4fr 1fr!important;gap:.9rem!important}
+  .card,.edu-card{padding:0!important;border:0!important;background:none!important}
+  .edu-deg{font-size:9pt!important}
+  .edu-school,.edu-meta,.thesis-d,.list-plain li{font-size:7.6pt!important;line-height:1.35!important;margin:0 0 .15rem!important}
+  .thesis{padding:.3rem 0 0!important;border:0!important;background:none!important}
+  .thesis-t{font-size:8.4pt!important}
+  .edu-meta,.thesis-d{display:none!important}
+
+  .pub,.proj,.bullets li{break-inside:avoid}
+  h2,h3{break-after:avoid}
+}
