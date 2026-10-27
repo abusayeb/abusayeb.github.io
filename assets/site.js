@@ -19,7 +19,7 @@
   var PAGE = BODY.dataset.page || 'industry';
   var BASE = BODY.dataset.base || '';           // '' on the root page, '../' under /research/
   var REDUCED = HAS_DOM && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  /* ?focus=reliable|video|robotics|generative|lowresource|edge on the research
+  /* ?focus=reliable|video|robotics|lowresource|edge on the research
      page puts that thread's papers, projects and question first and marks them,
      so each email to a supervisor can carry a link that opens on their area. */
   var FOCUS = HAS_DOM ? String(new URLSearchParams(location.search).get('focus') || '').toLowerCase() : '';

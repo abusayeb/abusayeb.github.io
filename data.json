@@ -17,11 +17,11 @@
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
     "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
-    "summaryResearch": "I am a computer-vision researcher whose work spans **reliable medical AI**, **video understanding**, **robot perception**, **generative models and image forensics**, and **vision for low-resource settings**. I have four conference papers and three first-author journal papers under review, from **uncertainty fusion** that lets a skin-lesion classifier flag inputs it should not answer, to two **preregistered studies of home service robots** in scanned real homes. Behind that is eighteen months **in Japan** deploying tracking, pose and activity-recognition systems at **Othello Financial Services**.",
+    "summaryResearch": "I am a computer-vision researcher whose work spans **reliable medical AI**, **video understanding**, **robot perception**, **efficient perception on edge hardware** and **vision for low-resource settings**. I have four conference papers and three first-author journal papers under review, from **uncertainty fusion** that lets a skin-lesion classifier flag inputs it should not answer, to two **preregistered studies of home service robots** in scanned real homes. Behind that is eighteen months **in Japan** deploying tracking, pose and activity-recognition systems at **Othello Financial Services**.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
     "availabilityResearch": "Seeking funded research-based Master's or PhD positions for the 2026-27 intake",
-    "roleResearchSub": "Reliable & uncertainty-aware AI · Video understanding: tracking, activity & pose · Robot perception & navigation · Generative models & image forensics · Vision and language for low-resource settings · Edge AI",
+    "roleResearchSub": "Trustworthy computer vision · Video understanding: tracking, activity & pose · Robot perception & embodied AI · Efficient deep learning on edge devices",
     "focusAreas": [
       "Computer Vision",
       "Real-Time Perception",
@@ -33,17 +33,16 @@
       "Reliable AI",
       "Edge / IoT"
     ],
-    "researchInterestsLine": "Computer vision and the reliability of what it outputs: uncertainty-aware and out-of-distribution-robust models, video understanding (tracking, activity recognition, pose estimation), robot perception and navigation, generative models and synthetic-image forensics, and vision-language systems for low-resource settings.",
+    "researchInterestsLine": "Trustworthy computer vision (uncertainty estimation, out-of-distribution detection, distribution shift, medical imaging); video understanding (multi-object tracking, human activity recognition, pose estimation); robot perception and embodied AI; efficient deep learning on edge devices; and vision-language systems for low-resource settings.",
     "titleResearch": "AI Engineer · Researcher",
     "researchFocusAreas": [
       "Computer Vision",
-      "Reliable AI",
+      "Trustworthy AI",
       "Medical Imaging",
       "Video Understanding",
       "Robot Perception",
-      "Generative AI",
-      "Image Forensics",
-      "Edge AI"
+      "Embodied AI",
+      "Efficient Deep Learning"
     ]
   },
   "news": [
@@ -61,7 +60,7 @@
     },
     {
       "date": "Oct 2026",
-      "text": "Submitted the journal extension of RGEF, **“Input-conditional uncertainty fusion for skin lesion screening”**, to **Biomedical Signal Processing and Control**."
+      "text": "Submitted the journal extension of RGEF, **“Input-conditional uncertainty fusion for skin lesion screening”**, to **Biomedical Physics & Engineering Express**."
     },
     {
       "date": "Sep 2026",
@@ -129,17 +128,17 @@
   "researchStatement": [
     "My research is **computer vision**, and the question that runs through it is whether a model's output can be trusted where it is actually used. I have come at that from several directions: **uncertainty fusion** for skin-lesion screening, **physics-informed invariants** for detecting AI-generated images, eye-disease screening and rice-leaf classification for **low-resource settings**, and, in 2026, **perception for home service robots** in scanned real homes.",
     "Industry gave the same question a deadline. At **Othello** in Japan I built multi-object tracking, pose estimation and activity recognition on live video, where a model has to hold up against messy data and a fixed latency budget. That experience shaped how I run research now: the robot studies were **preregistered**, evaluated in the closed loop rather than by accuracy alone, and one of them is reported as the negative result it turned out to be.",
-    "For a Master's or PhD I am open to several of these threads rather than one: **reliable and uncertainty-aware vision**, **video understanding**, **robot and embodied perception**, and **generative models**. What I want from any of them is the same — methods that stay dependable under distribution shift and real deployment constraints, tested honestly."
+    "For a Master's or PhD I am open to several of these threads rather than one: **reliable and uncertainty-aware vision**, **video understanding**, **robot and embodied perception**, and **efficient perception on edge hardware**. What I want from any of them is the same — methods that stay dependable under distribution shift and real deployment constraints, tested honestly."
   ],
   "researchAreas": [
     {
       "key": "reliable",
-      "title": "Reliable & uncertainty-aware AI",
+      "title": "Trustworthy computer vision",
       "desc": "Knowing when a model should not be trusted. **RGEF** (IEEE RAAICON 2026) and its journal extension fuse **eight uncertainty signals** with a per-image reliability gate, so a skin-lesion classifier can flag inputs from outside its training distribution instead of returning a confident wrong label — and the conference paper reports the smartphone dataset where it barely helps.",
       "next": false,
       "papers": [
         "rayhan2026rgef",
-        "rayhan2026bspc"
+        "rayhan2026bpex"
       ],
       "projects": [
         "RGEF — knowing when not to answer in skin-lesion screening"
@@ -159,7 +158,7 @@
     },
     {
       "key": "robotics",
-      "title": "Robot perception & navigation",
+      "title": "Robot perception & embodied AI",
       "desc": "Perception whose mistakes become collisions. Two **preregistered** 2026 studies in scanned real homes: whether a navigating robot can learn when to run its detector (it saved 85% of compute but missed its safety bar), and a **room-graph model** that predicts robot-vacuum cleaning time from a floor plan, confirmed on 100 unseen homes.",
       "next": false,
       "papers": [
@@ -170,18 +169,6 @@
         "Learning When to Look — adaptive perception for home robots",
         "HomeClean — doorways and robot vacuum cleaning",
         "ADAS Lane & Vehicle Detection"
-      ]
-    },
-    {
-      "key": "generative",
-      "title": "Generative models & image forensics",
-      "desc": "Both sides of image generation. My bachelor's thesis fine-tuned **Stable Diffusion** on Bangladeshi landmarks; my first-author QPAIN paper turned the problem around, detecting AI-generated images through **Benford's-law and topological invariants** that survive a change of generator.",
-      "next": false,
-      "papers": [
-        "rayhan2026forensic"
-      ],
-      "projects": [
-        "Text-to-Image Generation using Diffusion Models"
       ]
     },
     {
@@ -199,7 +186,7 @@
     },
     {
       "key": "edge",
-      "title": "Edge AI & efficient perception",
+      "title": "Efficient deep learning on edge devices",
       "desc": "Getting perception to fit the hardware. Parallel inference cut latency by **~70%** on Othello's live pipelines, and my adaptive-perception study measured what skipping detector calls costs a robot. The open question is when saving compute is actually safe.",
       "next": false,
       "papers": [
@@ -222,6 +209,7 @@
       ],
       "status": "Under review",
       "link": "",
+      "arxiv": "https://doi.org/10.21203/rs.3.rs-11335280/v1",
       "code": "",
       "note": "Adaptive perception runs a robot's object detector only when and where it seems needed. Tested in a **closed loop** in 25 held-out scanned homes, against twelve baselines in a single **preregistered** run, the learned scheduler cut detector compute by **85%** but reached the goal less often (55.0% vs 79.2%) and collided more, so it **did not meet its success criterion**. Running the cheapest adequate detector on every frame is a strong default.",
       "contribution": "",
@@ -262,17 +250,17 @@
     {
       "title": "Input-conditional uncertainty fusion for skin lesion screening",
       "authors": "**Md Abu Sayeb Rayhan**, Hustagna Hiya, Ajoy Shutra Dhar",
-      "venue": "Biomedical Signal Processing and Control (Elsevier)",
+      "venue": "Biomedical Physics & Engineering Express (IOP Publishing)",
       "year": "2026",
       "tags": [
-        "Elsevier"
+        "IOP Publishing"
       ],
       "status": "Under review",
       "link": "",
       "code": "",
       "note": "Journal extension of RGEF. A gate conditioned on frozen self-supervised features gives each image its own reliability for **eight uncertainty signals** and fuses them as subjective-logic evidence, so a skin-lesion classifier can flag inputs it should not answer. On a deduplicated external archive it reaches **AUROC 0.7946** under acquisition shift, against 0.6945 for static fusion.",
       "contribution": "",
-      "bibkey": "rayhan2026bspc",
+      "bibkey": "rayhan2026bpex",
       "authorRole": "First author",
       "kind": "journal",
       "abstract": "Deep classifiers for skin lesion diagnosis do not abstain on inputs from outside their training distribution: they return a confident label, and the failure is silent. Fusing several uncertainty signals is the usual remedy, but the fusions in common use apply one weight vector to every image. We fuse eight signals, spanning ensemble disagreement, evidential vacuity, conformal set size and five feature-space detectors, with a gate that emits a per-image reliability for each and accumulates them as reliability-discounted subjective-logic evidence. The gate is conditioned on frozen self-supervised features rather than the task backbone, and the external archive is filtered against the training corpus by identifier and pixel hashing. On the 14,602 in-distribution and 666 out-of-distribution images left after removing 10,015 training-derived ones, gated fusion reaches 0.7946 in area under the receiver operating characteristic curve (AUROC) under acquisition shift, against 0.6945 for static fusion of identical signals, every comparison significant after multiplicity correction. The rule reduces to static fusion under constant reliabilities, so that margin is attributable to input-conditionality alone, and frozen-encoder conditioning supplies 0.0534 of it. A leave-one-class-out protocol then tests the boundary. Against a lesion class withheld from calibration the advantage disappears, the gate falling 0.0371 AUROC below static fusion, while cross-validation over exposed outliers overstates unseen-class performance by 0.1975. Reliability gating addresses acquisition shift; it is not a novelty detector, and the two regimes should not be reported together.",
@@ -618,7 +606,7 @@
       "title": "RGEF — knowing when not to answer in skin-lesion screening",
       "date": "2026",
       "desc": "A skin-lesion classifier that **flags images it should not answer**. RGEF fuses eight uncertainty signals — ensemble disagreement, evidential vacuity, conformal set size and five feature-space detectors — with a learned **per-image reliability gate**, accumulated as subjective-logic evidence.",
-      "impact": "IEEE RAAICON 2026 (in press) · journal extension under review at BSPC",
+      "impact": "IEEE RAAICON 2026 (in press) · journal extension under review at Biomedical Physics & Engineering Express",
       "tags": [
         "PyTorch",
         "DINOv2",
@@ -743,7 +731,7 @@
       "problem": "Whether a general text-to-image model can be fine-tuned to render a specific, under-represented subject faithfully — in this case Bangladeshi landmarks.",
       "details": [],
       "experiment": "Stable Diffusion with a U-Net backbone was fine-tuned on a purpose-built dataset of those landmarks, varying prompts and conditioning to see how each moved generative fidelity, with OpenCV post-processing to reduce artefacts.",
-      "researchNote": "The origin of the generative-model thread in my research: diffusion-model fine-tuning and conditioning, which the forensic invariant learning paper later turned around into a detection problem.",
+      "researchNote": "Where my computer-vision research started: fine-tuning and conditioning a diffusion model, which the forensic invariant learning paper later turned around into a detection problem.",
       "researchRank": 4
     },
     {
@@ -1048,7 +1036,7 @@
   },
   "futureDirections": [
     {
-      "area": "Reliable & uncertainty-aware AI",
+      "area": "Trustworthy computer vision",
       "q": "Can a screening model tell a new camera from a new disease?",
       "a": "RGEF flags inputs it should not answer, but a single uncertainty score mixes two very different causes: an image from an unfamiliar device or clinic (**acquisition shift**) and a lesion type the model has never seen (**semantic novelty**). The first calls for recalibration; the second for a specialist. Conditioning the gate on frozen self-supervised features is a first step toward separating them, and the conference version's weakest dataset, smartphone images in PAD-UFES-20, shows how far there is to go. I want to make that separation explicit and test it across institutions.",
       "focus": "reliable"
@@ -1060,19 +1048,13 @@
       "focus": "video"
     },
     {
-      "area": "Robot perception & navigation",
+      "area": "Robot perception & embodied AI",
       "q": "Can a model's own uncertainty drive a robot's actions, not just flag them?",
       "a": "RGEF and its journal extension stop at flagging a single decision. My adaptive-perception study showed what happens when a robot's choice of when to look is not tied to how sure it is: the misses turned into collisions. The extension I want to work on is feeding that evidential state into the control loop directly — slowing down, looking again or handing off to a human, in real time rather than as an offline diagnostic.",
       "focus": "robotics"
     },
     {
-      "area": "Generative models & image forensics",
-      "q": "What perceptual structure survives when the sensor or hardware changes?",
-      "a": "The forensic invariant work looked for cues that persist across different image generators. The same question applies to a robot or embedded system moving between cameras, lighting conditions and constrained onboard compute. I want to know how far that invariant-seeking approach carries over from detecting synthetic images to holding perception steady on real hardware in the field.",
-      "focus": "generative"
-    },
-    {
-      "area": "Edge AI & efficient perception",
+      "area": "Efficient deep learning",
       "q": "Models are advancing far faster than the hardware meant to run them. What gives first?",
       "a": "My closed-loop study gave a first, uncomfortable answer: safety goes first. A robot that learned when to run its detector saved **85%** of the compute but reached its goal less often and collided more than one that simply ran a small detector on every frame. At **Othello** the same squeeze showed up as getting models onto **edge devices** at all, where parallel inference bought a **~70%** latency cut only by trading complexity against a fixed budget. I want to find the conditions under which skipping perception is actually safe, and test them on real embedded hardware rather than in simulation.",
       "focus": "edge"
@@ -1105,12 +1087,12 @@
     {
       "stage": "Research experience",
       "title": "Turning those problems into peer-reviewed work",
-      "body": "Research Assistant at **Comilla University** under Partha Chakraborty, running empirical studies in **Human–Robot Interaction** and OCR. Four conference papers followed — two in **IEEE Xplore**, two in press — with a **Best Presenter Award at IEEE QPAIN 2026**. In 2026 I led two **preregistered robotics studies** in simulated real homes and the journal version of RGEF; all three are first-author and under review at **Intelligent Service Robotics**, **Robotics and Autonomous Systems** and **Biomedical Signal Processing and Control**."
+      "body": "Research Assistant at **Comilla University** under Partha Chakraborty, running empirical studies in **Human–Robot Interaction** and OCR. Four conference papers followed — two in **IEEE Xplore**, two in press — with a **Best Presenter Award at IEEE QPAIN 2026**. In 2026 I led two **preregistered robotics studies** in simulated real homes and the journal version of RGEF; all three are first-author and under review at **Intelligent Service Robotics**, **Robotics and Autonomous Systems** and **Biomedical Physics & Engineering Express**."
     },
     {
       "stage": "Future graduate research",
       "title": "Dependable perception, wherever it is deployed",
-      "body": "I am seeking a **research-based Master's or PhD for the 2026-27 intake**, and I am open to several of the threads I have already worked on: **reliable and uncertainty-aware vision**, **video understanding**, **robot perception** and **generative models**. The common aim is perception that stays trustworthy under distribution shift and the latency and power budgets of real systems."
+      "body": "I am seeking a **research-based Master's or PhD for the 2026-27 intake**, and I am open to several of the threads I have already worked on: **reliable and uncertainty-aware vision**, **video understanding**, **robot perception** and **efficient perception**. The common aim is perception that stays trustworthy under distribution shift and the latency and power budgets of real systems."
     }
   ]
 }
