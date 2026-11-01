@@ -16,8 +16,8 @@
     "researchgate": "https://www.researchgate.net/profile/Md-Abu-Sayeb-Rayhan",
     "photo": "photos.jpeg",
     "photoFocus": "50% 18%",
-    "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks. Over eighteen months at **Othello Financial Services** in **Japan** I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
-    "summaryResearch": "I am a computer-vision researcher whose work spans **reliable medical AI**, **video understanding**, **robot perception**, **efficient perception on edge hardware** and **vision for low-resource settings**. I have four conference papers and three first-author journal papers under review, from **uncertainty fusion** that lets a skin-lesion classifier flag inputs it should not answer, to two **preregistered studies of home service robots** in scanned real homes. Behind that is eighteen months **in Japan** deploying tracking, pose and activity-recognition systems at **Othello Financial Services**.",
+    "summaryIndustry": "I build computer-vision and language systems that run in production, not just in notebooks, and have more than two years of industry experience across **Japan** and **Bangladesh**. At **Othello Financial Services** in Japan I took real-time video analytics from prototype to deployment on Azure, cutting inference latency by **70%** and production costs by **50%**. Before that I led a three-person team that delivered a **multilingual OCR and retrieval system** for a Bangladesh government project, from first design through to release. The work I enjoy most is the kind where a model has to hold up against messy data, a tight latency budget and real users.",
+    "summaryResearch": "I am a computer-vision researcher whose work spans **reliable medical AI**, **video understanding**, **robot perception**, **efficient perception on edge hardware** and **vision for low-resource settings**. I have four conference papers and three first-author journal papers under review, from **uncertainty fusion** that lets a skin-lesion classifier flag inputs it should not answer, to two **preregistered studies of home service robots** in scanned real homes. Behind that are more than two years in industry across **Japan** and **Bangladesh**, including deploying tracking, pose and activity-recognition systems at **Othello Financial Services** in Japan.",
     "photoZoom": 1.6,
     "availabilityIndustry": "Open to AI Engineer and Data Scientist roles",
     "availabilityResearch": "Seeking funded research-based Master's or PhD positions for the 2026-27 intake",
@@ -1066,8 +1066,8 @@
       "v": "**5 first-author**: 4 conference (2 in IEEE Xplore, 2 in press) and 3 journal papers under review"
     },
     {
-      "k": "18 months",
-      "v": "in **Japan**, shipping tracking, pose estimation and activity recognition at Othello Financial Services"
+      "k": "2+ years",
+      "v": "in industry across **Japan** and **Bangladesh**, shipping tracking, pose estimation and activity recognition at Othello Financial Services and multilingual OCR for a government project"
     },
     {
       "k": "Best Presenter",

@@ -865,7 +865,7 @@
     }
 
     /* Reading order for a prospective supervisor: what I work on, then
-       experience — eighteen months shipping perception in Japan is the
+       experience — two-plus years in industry across Japan and Bangladesh is the
        strongest thing on the page — then publications, the projects, what I
        would do next and the record. Section numbers and alternating bands
        follow this order. */
