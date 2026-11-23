@@ -126,6 +126,8 @@ function paperPage(p) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-G50p3OQJdzmNSHgmrckkRv9E5DVGNkEspwW0gLrWXBE='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://github.com https://avatars.githubusercontent.com; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <script>document.documentElement.className+=' js'</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${site.esc(site.plain(p.title))} | ${site.esc(P.name)}</title>
@@ -188,7 +190,7 @@ ${tokens}
   ${p.notes ? `<h2>Notes</h2><p>${site.rich(p.notes)}</p>` : ''}
   ${videos ? `<h2 id="video">Video</h2>${videos}` : ''}
   <h2>Cite</h2>
-  <pre class="paper-bib">${site.esc(site.bibtex(p, P.name))}</pre>
+  <pre class="paper-bib" tabindex="0" role="region" aria-label="BibTeX citation">${site.esc(site.bibtex(p, P.name))}</pre>
 </main>
 <footer class="foot"><div class="shell foot-in"><span>© ${new Date().getFullYear()} ${site.esc(P.name)}</span>
   <nav aria-label="Footer"><a href="../../research/">Research portfolio</a><a href="mailto:${site.esc(mail)}">${site.esc(mail)}</a><a href="${site.esc(P.github || '')}" target="_blank" rel="noopener">GitHub</a></nav></div></footer>

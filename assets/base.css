@@ -513,6 +513,7 @@ h1,h2,h3,h4{line-height:1.15;letter-spacing:-.028em;font-weight:700;text-wrap:ba
   color:var(--on-accent);background:var(--accent);border-color:var(--accent);
 }
 .filter .n{opacity:.55;margin-left:.4rem}
+.filter[aria-pressed="true"] .n{opacity:1}
 
 .projects{
   display:grid;gap:var(--sp-gap);
